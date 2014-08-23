@@ -3,7 +3,7 @@ INPUT_DIR=`pwd`
 FILES=`ls -1 $INPUT_DIR | grep \..pp`
 ERROR=0
 for FILE in $FILES; do
-	echo "Checking $FILE"
+	echo "Checando $FILE"
 	CPPLINT_ERRORS=`./cpplint.py --root=$INPUT_DIR $FILE  2>&1 >/dev/null`
 	NUM_COUNT=`echo $CPPLINT_ERRORS | grep -E -o "Total errors found: [0-9]+" | grep -E -o "[0-9]+"`
 	if [ "$NUM_COUNT" == "0" ]; then
@@ -30,7 +30,7 @@ if [ ! -z "$DOXYGEN_PATH" ]; then
 		ERROR=1
 	fi;
 else
-	echo "Doxygen not found. Documentation status not verified."
+	echo "Doxygen nao encontrado. Status da documentacao nao avaliado."
 fi;
 python -c "print '-'*100"
 echo "Compilando projeto.."
