@@ -1,6 +1,6 @@
 #!/bin/bash
 INPUT_DIR=`pwd`
-FILES=`find $INPUT_DIR -iregex ".*.cpp"`
+FILES=`ls -1 $INPUT_DIR | grep \..pp`
 ERROR=0
 for FILE in $FILES; do
 	echo "Checking $FILE"
