@@ -1,14 +1,10 @@
-/* 
- * File:   main.cpp
- * Author: caique
- *
- * Created on 21 de Agosto de 2014, 14:20
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #include <cstdlib>
 #include <cstdio>
 #include "Lista.hpp"
-using namespace std;
+
+using std::printf;
 
 int main(int argc, char** argv) {
     Lista teste = Lista(7);
@@ -19,18 +15,18 @@ int main(int argc, char** argv) {
     teste.adicionar(42);
     teste.adicionar(50);
     teste.adicionar(32);
-    printf("O tamanho da Lista é: %d", teste.pegaTamanho());
+    printf("O tamanho da Lista é: %d\n", teste.pegaTamanho());
     teste.removerPrimeiro();
     teste.removerUltimo();
     teste.remover(3);
-    printf("\nO primeiro valor é: %d", teste.mostreValor(1));
-    printf("\nO segundo valor é: %d", teste.mostreValor(2));
-    printf("\nO terceiro valor é: %d", teste.mostreValor(3));
-    printf("\nO quarto valor é: %d", teste.mostreValor(4));
-    printf("\nO valor do topo é: %d", teste.mostreTopo());
-    printf("\nO tamanho da lista é: %d", teste.pegaTamanho());
-    teste.troca(2, 4);
-    printf("\nO segundo valor é: %d", teste.mostreValor(2));
-    printf("\nO quarto valor é: %d", teste.mostreValor(4));
-    return 0;
+    printf("O primeiro valor é: %d\n", teste.pegaValor(0));
+    printf("O segundo valor é: %d\n", teste.pegaValor(1));
+    printf("O terceiro valor é: %d\n", teste.pegaValor(2));
+    printf("O quarto valor é: %d\n", teste.pegaValor(3));
+    printf("O ultimo valor é: %d\n", teste.pegaUltimo());
+    printf("O tamanho da lista é: %d\n", teste.pegaTamanho());
+    teste.troca(1, 3);
+    printf("O segundo valor é: %d\n", teste.pegaValor(1));
+    printf("O quarto valor é: %d", teste.pegaValor(3));
+    return EXIT_SUCCESS;
 }
