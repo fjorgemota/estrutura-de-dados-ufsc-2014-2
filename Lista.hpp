@@ -1,31 +1,95 @@
-/* 
- * File:   Lista.hpp
- * Author: caique
- *
- * Created on 21 de Agosto de 2014, 14:25
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #ifndef LISTA_HPP
 #define	LISTA_HPP
 
+/*!
+ * Representa uma lista cujos elementos podem ser adicionados, 'pegados' de 
+ * uma posição específica e removidos facilmente sem necessidade de manipulação 
+ * de arranjos por quem usa esta classe.
+ * 
+ * @see Lista::adicionar
+ * @see Lista::remover
+ * @see Lista::pegaValor
+ */
 class Lista {
 public:
-    /*! Construtor Lista
+    /*! 
+     * Constrói uma lista vazia com o tamanho máximo especificado.
      * 
-     * Constrói uma lista.
-     * Um arranjo (array) é incializado e definido com tamanho especificado pelo 
-     * usuário. O arranjo não possui nenhum valor, mas o topo é pré-carregado 
-     * com o valor '-1' (menos um) que, por convenção, serve para indicar uma 
-     * lista vazia.
+     * @param tamanho O número máximo de elementos que a lista pode conter.
      */
     Lista(int tamanho);
-    void adicionar(int obj); //!< Adiciona um valor pelo topo.
+    
+    /*!
+     * Adiciona um valor à lista.
+     * 
+     * @param obj O objeto à ser adicionado na lista
+     */
+    void adicionar(int obj); 
+    
+    /*!
+     * Retorna o numero de elementos presentes na lista atualmente
+     */
     int pegaTamanho();
-    void remover(int posicao); //!< Remove um valor especificado pelo usuário.
-    void removerPrimeiro(); //!< Remove o primeiro valor, por baixo do arranjo.
+    
+    /*!
+     * Remove um valor da posicao especificado pelo usuário.
+     * 
+     * @param posicao Posição do elemento que vai ser removido
+     * @see Lista::removerPrimeiro
+     * @see Lista::removerUltimo
+     * @see Lista::troca
+     */
+    void remover(int posicao);
+    
+    /*!
+     * Remove o primeiro valor inserido na lista, que é, portanto, 
+     * o valor que está  à mais tempo presente na lista.
+     * 
+     * @see Lista::remover
+     */
+    void removerPrimeiro();
+    
+    /*!
+     * Remove o último elemento inserido na lista, que é, portanto, 
+     * o valor que está à menos tempo presente na lista.
+     * 
+     * @see Lista::remover
+     */
     void removerUltimo();
-    int mostreTopo();
-    int mostreValor(int valor); //!< Apresenta o valor da posição especificada.
+    
+    /*!
+     * Pega o valor do primeiro elemento inserido na lista, 
+     * que está, portanto, a mais tempo presente na lista.
+     * 
+     * @see Lista::pegaValor
+     */
+    int pegaPrimeiro();
+    
+    /*!
+     * Pega o valor do ultimo elemento adicionado, 
+     * que está, portanto, a menos tempo presente na lista.
+     * 
+     * @see Lista::pegaValor
+     */
+    int pegaUltimo();
+    
+    /*!
+     * Pega o valor da posição especificada.
+     * 
+     * @param A posição do qual o elemento deve ser retirado
+     * @see Lista::pegaUltimo
+     * @see Lista::pegaPrimeiro
+     */
+    int pegaValor(int posicao); 
+    
+    /*!
+     * Realiza a troca de posição entre dois elementos da lista.
+     * 
+     * @param posicao1 Posição do 1º elemento cujo valor que vai ser trocado com o do 2º elemento
+     * @param posicao2 Posição do 2º elemento cujo valor vai ser trocado com o do 1º elemento
+     */
     void troca(int posicao1, int posicao2);
     
 private:
