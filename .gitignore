@@ -30,3 +30,9 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+# Hide documentation build files
+html/
+latex/
+
+# Hide cpplint.py file
+cpplint.py
