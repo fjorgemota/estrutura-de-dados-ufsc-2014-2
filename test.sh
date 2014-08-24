@@ -19,7 +19,7 @@ DOXYGEN_PATH=`which doxygen`
 if [ ! -z "$DOXYGEN_PATH" ]; then
 	OLD=`pwd`
 	cd $INPUT_DIR
-	DOXYGEN_ERRORS=`echo 'OUTPUT_DIRECTORY = /tmp/' | $DOXYGEN_PATH - 2>&1 | grep -o '.*is not documented' | grep -v 'cpplint.py'`
+	DOXYGEN_ERRORS=`echo -e 'OUTPUT_DIRECTORY = /tmp/\nEXCLUDE = cpplint.py' | $DOXYGEN_PATH - 2>&1 | grep -o '.*is not documented'`
 	cd $OLD
 	if [ -z "$DOXYGEN_ERRORS" ]; then
 		echo "Parece que o Doxygen aprovou sua documentacao! Parabens!"
