@@ -4,11 +4,17 @@
 #define PRIMEIRO_ELEMENTO 0
 
 Lista::Lista(int tamanho) {
+    if (tamanho < 1) {
+        throw "Impossivel criar lista";
+    }
     this->topo = -1;
     this->arranjo = new int[tamanho];
 }
 
 void Lista::adicionar(int obj) {
+    if (topo >= tamanho) {
+        throw "Nao e possivel adicionar mais valores";
+    }
     this->topo += 1;
     this->arranjo[this->topo] = obj;
 }
@@ -34,6 +40,9 @@ int Lista::pegaUltimo() {
 }
 
 int Lista::pegaValor(int valor) {
+    if (valor < 0 || valor >= topo) {
+        throw "Posicao indefinida";
+    }
     return this->arranjo[valor];
 }
 
