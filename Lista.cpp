@@ -3,20 +3,29 @@
 
 #define PRIMEIRO_ELEMENTO 0
 
-Lista::Lista(int tamanho) {
-    if (tamanho < 1) {
-        throw "Impossivel criar lista";
+Lista::Lista(int tamanhoMaximo) {
+    if (tamanhoMaximo < 1) {
+        throw "Impossivel criar lista com menos de 1 elemento";
     }
     this->topo = -1;
-    this->arranjo = new int[tamanho];
+    this->arranjo = new int[tamanhoMaximo];
+    this->tamanhoMaximo = tamanhoMaximo;
 }
 
 void Lista::adicionar(int obj) {
-    if (topo >= tamanho) {
-        throw "Nao e possivel adicionar mais valores";
+    if (this->topo >= this->tamanhoMaximo) {
+        throw "Nao e possivel adicionar mais valores: Tamanho maximo excedido";
     }
     this->topo += 1;
     this->arranjo[this->topo] = obj;
+}
+
+bool Lista::listaCheia(){
+    return this->pegaTamanho() == this->tamanhoMaximo;
+}
+
+bool Lista::listaVazia(){
+    return this->pegaTamanho() == PRIMEIRO_ELEMENTO;
 }
 
 int Lista::pegaTamanho() {
@@ -39,16 +48,16 @@ int Lista::pegaUltimo() {
     return this->pegaValor(this->topo);
 }
 
-int Lista::pegaValor(int valor) {
-    if (valor < 0 || valor >= topo) {
-        throw "Posicao indefinida";
+int Lista::pegaValor(int posicao) {
+    if (posicao < 0 || posicao > topo) {
+        throw "Posicao invalida: A posicao especificada esta fora dos limites da lista";
     }
-    return this->arranjo[valor];
+    return this->arranjo[posicao];
 }
 
 void Lista::remover(int posicao) {
     if (topo == -1) {
-        throw "Nao ha elementos para remover";
+        throw "Nao ha elementos para remover: A lista esta vazia";
     }
     for (int a = posicao-1; a <= topo; a++) {
         this->arranjo[a] = this->arranjo[a+1];

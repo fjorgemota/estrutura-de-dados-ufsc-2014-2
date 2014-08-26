@@ -19,7 +19,7 @@ public:
      * 
      * @param tamanho O número máximo de elementos que a lista pode conter.
      */
-    Lista(int tamanho);
+    Lista(int tamanhoMaximo);
     
     /*!
      * Adiciona um valor à lista.
@@ -92,10 +92,20 @@ public:
      */
     void troca(int posicao1, int posicao2);
     
+    /*!
+     * Retorna um booleano indicando se a lista está cheia ou não.
+     */
+    bool listaCheia();
+    
+    /*!
+     * Retorna um booleano indicando se a lista está vazia ou não.
+     */
+    bool listaVazia();
+    
 private:
-    int* arranjo; //! < O arranjo indica a 'lista' em si. 
+    int* arranjo; //! < É onde é guardado os valores salvos na lista. 
     int topo; //! < O topo é a última posição, de baixo para cima.
-    int tamanho;
+    int tamanhoMaximo; //! < Tamanho máximo da lista
 };
 
 #endif	/* LISTA_HPP */
