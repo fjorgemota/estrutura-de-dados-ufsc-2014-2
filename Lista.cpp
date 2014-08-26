@@ -20,11 +20,11 @@ void Lista::adicionar(int obj) {
     this->arranjo[this->topo] = obj;
 }
 
-bool Lista::listaCheia(){
+bool Lista::listaCheia() {
     return this->pegaTamanho() == this->tamanhoMaximo;
 }
 
-bool Lista::listaVazia(){
+bool Lista::listaVazia() {
     return this->pegaTamanho() == PRIMEIRO_ELEMENTO;
 }
 
@@ -50,7 +50,7 @@ int Lista::pegaUltimo() {
 
 int Lista::pegaValor(int posicao) {
     if (posicao < 0 || posicao > topo) {
-        throw "Posicao invalida: A posicao especificada esta fora dos limites da lista";
+        throw "Posicao invalida: A posicao esta fora dos limites da lista";
     }
     return this->arranjo[posicao];
 }

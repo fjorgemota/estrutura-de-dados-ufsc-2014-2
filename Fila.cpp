@@ -1,9 +1,4 @@
-/* 
- * File:   Fila.cpp
- * Author: fernando
- * 
- * Created on 25 de Agosto de 2014, 22:14
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #include "Fila.hpp"
 #include "Lista.hpp"
@@ -24,7 +19,7 @@ void Fila::inclui(int dado) {
     this->lista->adicionar(dado);
 }
 
-void Fila::retira(){
+void Fila::retira() {
     this->lista->removerPrimeiro();
 }
 
