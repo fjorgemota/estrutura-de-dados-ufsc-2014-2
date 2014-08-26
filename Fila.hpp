@@ -26,9 +26,9 @@ public:
     Fila(int tamanhoMaximo);
     
     /*!
-     * Adiciona um valor à pilha.
+     * Adiciona um valor à fila.
      * 
-     * @param dado O objeto à ser adicionado na pilha
+     * @param dado O objeto à ser adicionado na fila
      * @see Lista::adicionar
      */
     void inclui(int dado);

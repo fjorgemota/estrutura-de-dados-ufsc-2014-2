@@ -102,6 +102,11 @@ public:
      */
     bool listaVazia();
     
+    /*!
+     * Apaga todos os valores da lista, sem alterar seu tamanho original.
+     */
+    void limpaLista();
+    
 private:
     int* arranjo; //! < É onde é guardado os valores salvos na lista. 
     int topo; //! < O topo é a última posição, de baixo para cima.

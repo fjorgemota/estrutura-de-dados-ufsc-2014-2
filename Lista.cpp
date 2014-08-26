@@ -70,3 +70,7 @@ void Lista::troca(int posicao1, int posicao2) {
     this->arranjo[posicao1] = this->pegaValor(posicao2);
     this->arranjo[posicao2] = aux;
 }
+
+void Lista::limpaLista() {
+    this->topo -= 1;
+}
