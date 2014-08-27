@@ -4,12 +4,16 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Arquivos de Cabeçalho"
                    projectFiles="true">
+      <itemPath>Fila.hpp</itemPath>
       <itemPath>Lista.hpp</itemPath>
+      <itemPath>Pilha.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Arquivos de Código-Fonte"
                    projectFiles="true">
+      <itemPath>Fila.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
+      <itemPath>Pilha.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -46,6 +50,10 @@
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Pilha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Pilha.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -76,6 +84,10 @@
       <item path="Lista.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pilha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Pilha.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include "Lista.hpp"
-#include "Fila.cpp"
+#include "Fila.hpp"
 
 using std::printf;
 

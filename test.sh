@@ -42,7 +42,7 @@ else
 	echo "Compilacao falhou! Veja o relatorio:"
 	echo -e "$COMPILATION_DEBUG" | grep "\..pp" | grep -v "g++"
 	echo "Registrando erro.."
-	ERROR=100
+	ERROR=1
 fi;
 python -c "print '-'*100"
 echo "Compilando no modo 'Release' (com otimizacoes)"
