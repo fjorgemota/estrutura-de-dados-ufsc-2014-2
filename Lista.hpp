@@ -2,6 +2,7 @@
 
 #ifndef LISTA_HPP
 #define	LISTA_HPP
+template <typename T>
 
 /*!
  * Representa uma lista cujos elementos podem ser adicionados, 'pegados' de 
@@ -26,7 +27,7 @@ public:
      * 
      * @param obj O objeto à ser adicionado na lista
      */
-    void adicionar(int obj); 
+    void adicionar(T obj); 
     
     /*!
      * Retorna o numero de elementos presentes na lista atualmente
@@ -108,7 +109,7 @@ public:
     void limpaLista();
     
 private:
-    int* arranjo; //! < É onde é guardado os valores salvos na lista. 
+    T* arranjo; //! < É onde é guardado os valores salvos na lista. 
     int topo; //! < O topo é a última posição, de baixo para cima.
     int tamanhoMaximo; //! < Tamanho máximo da lista
 };

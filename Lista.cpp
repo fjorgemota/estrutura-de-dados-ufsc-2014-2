@@ -8,11 +8,11 @@ Lista::Lista(int tamanhoMaximo) {
         throw "Impossivel criar lista com menos de 1 elemento";
     }
     this->topo = -1;
-    this->arranjo = new int[tamanhoMaximo];
+    this->arranjo = new T[tamanhoMaximo];
     this->tamanhoMaximo = tamanhoMaximo;
 }
 
-void Lista::adicionar(int obj) {
+void Lista::adicionar(T obj) {
     if (this->topo >= this->tamanhoMaximo) {
         throw "Nao e possivel adicionar mais valores: Tamanho maximo excedido";
     }
@@ -48,7 +48,7 @@ int Lista::pegaUltimo() {
     return this->pegaValor(this->topo);
 }
 
-int Lista::pegaValor(int posicao) {
+T Lista::pegaValor(int posicao) {
     if (posicao < 0 || posicao > topo) {
         throw "Posicao invalida: A posicao esta fora dos limites da lista";
     }

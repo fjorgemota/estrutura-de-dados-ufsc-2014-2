@@ -1,9 +1,4 @@
-/* 
- * File:   Fila.hpp
- * Author: fernando
- *
- * Created on 25 de Agosto de 2014, 22:14
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #ifndef FILA_HPP
 #define	FILA_HPP
@@ -16,7 +11,7 @@
  */
 class Fila {
 private: 
-    Lista* lista;
+    Lista<int> lista;
 public:
     /*!
      * Constrói uma lista vazia com o tamanho máximo especificado.
@@ -65,4 +60,3 @@ public:
 };
 
 #endif	/* FILA_HPP */
-
