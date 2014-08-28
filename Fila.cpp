@@ -45,7 +45,7 @@ T Fila<T>::ultimo() {
 
 template <typename T>
 int Fila<T>::getUltimo() {
-    return this->lista->pegaTamanho();
+    return this->lista->pegaTopo();
 }
 
 template <typename T>

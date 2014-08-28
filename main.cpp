@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
         printf("A fila nao esta vazia\n");
     }
     // Pilha
-    Pilha<int> testePilha = Pilha<int>();
+    Pilha<int> testePilha = Pilha<int>(10);
     if (testePilha.PilhaCheia()) {
         printf("A pilha esta cheia\n");
     } else {
