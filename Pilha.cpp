@@ -28,7 +28,11 @@ bool Pilha<T>::PilhaVazia() {
 
 template<typename T>
 int Pilha<T>::getPosTopo() {
-    return this->lista->pegaTamanho();
+    int topo = this->lista->pegaTopo();
+    if (topo < 0) {
+        throw "A pilha está vazia";
+    }
+    return topo;
 }
 
 template<typename T>

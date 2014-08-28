@@ -89,4 +89,9 @@ template <typename T>
 void Lista<T>::limpaLista() {
     this->topo -= 1;
 }
+
+template<typename T>
+int Lista<T>::pegaTopo() {
+    return this->topo;
+}
 #endif
