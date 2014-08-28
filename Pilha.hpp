@@ -41,7 +41,7 @@ public:
     * @see Lista::removerUltimo()
     * @see Pilha::Topo()
     */
-    T desempilha();
+    void desempilha();
     
     /*!
      * Apresenta o valor que está no topo
@@ -68,7 +68,7 @@ public:
      */
     bool PilhaCheia();
 private:
-    Lista* lista;
+    Lista<T>* lista;
 };
 
 #endif	/* PILHA_HPP */

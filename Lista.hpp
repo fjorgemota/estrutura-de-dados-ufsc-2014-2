@@ -83,7 +83,7 @@ public:
      * @see Lista::pegaUltimo
      * @see Lista::pegaPrimeiro
      */
-    int pegaValor(int posicao); 
+    T pegaValor(int posicao); 
     
     /*!
      * Realiza a troca de posição entre dois elementos da lista.

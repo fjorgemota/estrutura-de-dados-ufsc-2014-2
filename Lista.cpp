@@ -3,7 +3,8 @@
 
 #define PRIMEIRO_ELEMENTO 0
 
-Lista::Lista(int tamanhoMaximo) {
+template <typename T>
+Lista<T>::Lista(int tamanhoMaximo) {
     if (tamanhoMaximo < 1) {
         throw "Impossivel criar lista com menos de 1 elemento";
     }
@@ -12,7 +13,8 @@ Lista::Lista(int tamanhoMaximo) {
     this->tamanhoMaximo = tamanhoMaximo;
 }
 
-void Lista::adicionar(T obj) {
+template <typename T>
+void Lista<T>::adicionar(T obj) {
     if (this->topo >= this->tamanhoMaximo) {
         throw "Nao e possivel adicionar mais valores: Tamanho maximo excedido";
     }
@@ -20,42 +22,51 @@ void Lista::adicionar(T obj) {
     this->arranjo[this->topo] = obj;
 }
 
-bool Lista::listaCheia() {
+template <typename T>
+bool Lista<T>::listaCheia() {
     return this->pegaTamanho() == this->tamanhoMaximo;
 }
 
-bool Lista::listaVazia() {
+template <typename T>
+bool Lista<T>::listaVazia() {
     return this->pegaTamanho() == PRIMEIRO_ELEMENTO;
 }
 
-int Lista::pegaTamanho() {
+template <typename T>
+int Lista<T>::pegaTamanho() {
     return  this->topo + 1;
 }
 
-void Lista::removerUltimo() {
+template <typename T>
+void Lista<T>::removerUltimo() {
     this->remover(this->topo);
 }
 
-void Lista::removerPrimeiro() {
+template <typename T>
+void Lista<T>::removerPrimeiro() {
     this->remover(PRIMEIRO_ELEMENTO);
 }
 
-int Lista::pegaPrimeiro() {
+template <typename T>
+int Lista<T>::pegaPrimeiro() {
     return this->pegaValor(PRIMEIRO_ELEMENTO);
 }
 
-int Lista::pegaUltimo() {
+template <typename T>
+int Lista<T>::pegaUltimo() {
     return this->pegaValor(this->topo);
 }
 
-T Lista::pegaValor(int posicao) {
+template <typename T>
+T Lista<T>::pegaValor(int posicao) {
     if (posicao < 0 || posicao > topo) {
         throw "Posicao invalida: A posicao esta fora dos limites da lista";
     }
     return this->arranjo[posicao];
 }
 
-void Lista::remover(int posicao) {
+template <typename T>
+void Lista<T>::remover(int posicao) {
     if (topo == -1) {
         throw "Nao ha elementos para remover: A lista esta vazia";
     }
@@ -65,12 +76,14 @@ void Lista::remover(int posicao) {
     this->topo -= 1;
 }
 
-void Lista::troca(int posicao1, int posicao2) {
+template <typename T>
+void Lista<T>::troca(int posicao1, int posicao2) {
     int aux = this->pegaValor(posicao1);
     this->arranjo[posicao1] = this->pegaValor(posicao2);
     this->arranjo[posicao2] = aux;
 }
 
-void Lista::limpaLista() {
+template <typename T>
+void Lista<T>::limpaLista() {
     this->topo -= 1;
 }

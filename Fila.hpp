@@ -11,7 +11,7 @@
  */
 class Fila {
 private: 
-    Lista<int> lista;
+    Lista<int> *lista;
 public:
     /*!
      * Constrói uma lista vazia com o tamanho máximo especificado.

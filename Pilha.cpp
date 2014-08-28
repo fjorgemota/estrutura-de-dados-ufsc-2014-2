@@ -3,34 +3,42 @@
 #include "Pilha.hpp"
 #include "Lista.hpp"
 
-Pilha::Pilha(int t) {
-    this->lista = new Lista(t);
+template<typename T>
+Pilha<T>::Pilha(int t) {
+    this->lista = new Lista<T>(t);
 }
 
-int Pilha::topo() {
+template<typename T>
+T Pilha<T>::topo() {
     return this->lista->pegaUltimo();
 }
 
-bool Pilha::PilhaVazia() {
+template<typename T>
+bool Pilha<T>::PilhaVazia() {
     return this->lista->listaVazia();
 }
 
-int Pilha::getPosTopo() {
+template<typename T>
+int Pilha<T>::getPosTopo() {
     return this->lista->pegaTamanho();
 }
 
-void Pilha::empilha(int dado) {
+template<typename T>
+void Pilha<T>::empilha(T dado) {
     this->lista->adicionar(dado);
 }
 
-int Pilha::desempilha() {
+template<typename T>
+void Pilha<T>::desempilha() {
     this->lista->removerUltimo();
 }
 
-bool Pilha::PilhaCheia() {
+template<typename T>
+bool Pilha<T>::PilhaCheia() {
     return this->lista->listaCheia();
 }
 
-void Pilha::limparPilha() {
+template<typename T>
+void Pilha<T>::limparPilha() {
     this->lista->limpaLista();
 }

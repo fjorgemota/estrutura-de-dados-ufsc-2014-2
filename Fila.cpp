@@ -1,10 +1,10 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #include "Fila.hpp"
-#include "Lista.hpp"
+#include "Lista.cpp"
 
 Fila::Fila(int tamanhoMaximo) {
-    this->lista = new Lista(tamanhoMaximo);
+    this->lista = new Lista<int>(tamanhoMaximo);
 }
 
 bool Fila::filaCheia() {

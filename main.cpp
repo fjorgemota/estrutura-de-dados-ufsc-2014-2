@@ -2,13 +2,13 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include "Lista.hpp"
+#include "Lista.cpp"
 #include "Fila.hpp"
 
 using std::printf;
 
 int main(int argc, char** argv) {
-    Lista teste = Lista(7);
+    Lista<int> teste = Lista<int>(7);
     teste.adicionar(0);
     teste.adicionar(5);
     teste.adicionar(4);
