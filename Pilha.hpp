@@ -3,7 +3,6 @@
 #ifndef PILHA_HPP
 #define	PILHA_HPP
 #include "Lista.hpp"
-template <typename T>
 
 /*!
  * Representa uma pilha. Estrutura que a cada novo elemento, pode ser adicionado
@@ -14,6 +13,7 @@ template <typename T>
  * @see Pilha::desempilha()
  * @see Pilha::Topo()
  */
+template <typename T>
 class Pilha {
 public:
     /*!
@@ -41,7 +41,7 @@ public:
     * @see Lista::removerUltimo()
     * @see Pilha::Topo()
     */
-    void desempilha();
+    T desempilha();
     
     /*!
      * Apresenta o valor que está no topo

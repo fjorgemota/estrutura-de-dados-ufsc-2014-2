@@ -2,7 +2,7 @@
 
 #ifndef LISTA_HPP
 #define	LISTA_HPP
-template <typename T>
+
 
 /*!
  * Representa uma lista cujos elementos podem ser adicionados, 'pegados' de 
@@ -13,6 +13,7 @@ template <typename T>
  * @see Lista::remover
  * @see Lista::pegaValor
  */
+template <typename T>       
 class Lista {
 public:
     /*! 
@@ -66,7 +67,7 @@ public:
      * 
      * @see Lista::pegaValor
      */
-    int pegaPrimeiro();
+    T pegaPrimeiro();
     
     /*!
      * Pega o valor do ultimo elemento adicionado, 
@@ -74,7 +75,7 @@ public:
      * 
      * @see Lista::pegaValor
      */
-    int pegaUltimo();
+    T pegaUltimo();
     
     /*!
      * Pega o valor da posição especificada.

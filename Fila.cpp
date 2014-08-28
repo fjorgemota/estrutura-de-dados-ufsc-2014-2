@@ -1,28 +1,50 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
+#ifndef FILA_CPP
+#define FILA_CPP
+
 #include "Fila.hpp"
 #include "Lista.cpp"
 
-Fila::Fila(int tamanhoMaximo) {
-    this->lista = new Lista<int>(tamanhoMaximo);
+template <typename T>
+Fila<T>::Fila(int tamanhoMaximo) {
+    this->lista = new Lista<T>(tamanhoMaximo);
 }
 
-bool Fila::filaCheia() {
+template <typename T>
+bool Fila<T>::filaCheia() {
     return this->lista->listaCheia();
 }
 
-bool Fila::filaVazia() {
+template <typename T>
+bool Fila<T>::filaVazia() {
     return this->lista->listaVazia();
 }
 
-void Fila::inclui(int dado) {
+template <typename T>
+void Fila<T>::inclui(T dado) {
     this->lista->adicionar(dado);
 }
 
-void Fila::retira() {
+template <typename T>
+T Fila<T>::retira() {
+    T primeiro = this->lista->pegaPrimeiro();
     this->lista->removerPrimeiro();
+    return primeiro;
 }
 
-int Fila::ultimo() {
-    return this->lista->pegaPrimeiro();
+template <typename T>
+T Fila<T>::ultimo() {
+    return this->lista->pegaUltimo();
 }
+
+template <typename T>
+int Fila<T>::getUltimo() {
+    return this->lista->pegaTamanho();
+}
+
+template <typename T>
+void Fila<T>::inicializaFila() {
+    this->lista->limpaLista();
+}
+#endif

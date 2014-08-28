@@ -1,6 +1,8 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
-#include "Lista.hpp"
 
+#ifndef LISTA_CPP
+#define LISTA_CPP
+#include "Lista.hpp"
 #define PRIMEIRO_ELEMENTO 0
 
 template <typename T>
@@ -48,12 +50,12 @@ void Lista<T>::removerPrimeiro() {
 }
 
 template <typename T>
-int Lista<T>::pegaPrimeiro() {
+T Lista<T>::pegaPrimeiro() {
     return this->pegaValor(PRIMEIRO_ELEMENTO);
 }
 
 template <typename T>
-int Lista<T>::pegaUltimo() {
+T Lista<T>::pegaUltimo() {
     return this->pegaValor(this->topo);
 }
 
@@ -70,7 +72,7 @@ void Lista<T>::remover(int posicao) {
     if (topo == -1) {
         throw "Nao ha elementos para remover: A lista esta vazia";
     }
-    for (int a = posicao-1; a <= topo; a++) {
+    for (int a = posicao; a <= topo; a++) {
         this->arranjo[a] = this->arranjo[a+1];
     }
     this->topo -= 1;
@@ -87,3 +89,4 @@ template <typename T>
 void Lista<T>::limpaLista() {
     this->topo -= 1;
 }
+#endif

@@ -1,7 +1,10 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
+#ifndef PILHA_CPP
+#define PILHA_CPP
+
 #include "Pilha.hpp"
-#include "Lista.hpp"
+#include "Lista.cpp"
 
 template<typename T>
 Pilha<T>::Pilha(int t) {
@@ -29,8 +32,10 @@ void Pilha<T>::empilha(T dado) {
 }
 
 template<typename T>
-void Pilha<T>::desempilha() {
+T Pilha<T>::desempilha() {
+    T ultimo = this->lista->pegaUltimo();
     this->lista->removerUltimo();
+    return ultimo;
 }
 
 template<typename T>
@@ -42,3 +47,4 @@ template<typename T>
 void Pilha<T>::limparPilha() {
     this->lista->limpaLista();
 }
+#endif

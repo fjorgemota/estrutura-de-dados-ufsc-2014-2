@@ -3,7 +3,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include "Lista.cpp"
-#include "Fila.hpp"
+#include "Fila.cpp"
+#include "Pilha.cpp"
 
 using std::printf;
 
@@ -29,7 +30,8 @@ int main(int argc, char** argv) {
     teste.troca(1, 3);
     printf("O segundo valor é: %d\n", teste.pegaValor(1));
     printf("O quarto valor é: %d\n", teste.pegaValor(3));
-    Fila testeFila = Fila(10);
+    // Fila
+    Fila<int> testeFila = Fila<int>(10);
     if (testeFila.filaCheia()) {
         printf("A fila esta cheia\n");
     } else {
@@ -55,8 +57,7 @@ int main(int argc, char** argv) {
         printf("A fila nao esta vazia\n");
     }
     for (int a = 0; a < 10; a++) {
-        printf("Retirando numero da fila: O numero é %d\n", testeFila.ultimo());
-        testeFila.retira();
+        printf("Retirando numero da fila: O numero é %d\n", testeFila.retira());
     }
     if (testeFila.filaCheia()) {
         printf("A fila esta cheia\n");
@@ -67,6 +68,46 @@ int main(int argc, char** argv) {
         printf("A fila esta vazia\n");
     } else {
         printf("A fila nao esta vazia\n");
+    }
+    // Pilha
+    Pilha<int> testePilha = Pilha<int>(10);
+    if (testePilha.PilhaCheia()) {
+        printf("A pilha esta cheia\n");
+    } else {
+        printf("A pilha nao esta cheia\n");
+    }
+    if (testePilha.PilhaVazia()) {
+        printf("A pilha esta vazia\n");
+    } else {
+        printf("A pilha nao esta vazia\n");
+    }
+    for (int a = 0; a < 10; a++) {
+        printf("Adicionando numero %d na pilha\n", a);
+        testePilha.empilha(a);
+    }
+    if (testePilha.PilhaCheia()) {
+        printf("A pilha esta cheia\n");
+    } else {
+        printf("A pilha nao esta cheia\n");
+    }
+    if (testePilha.PilhaVazia()) {
+        printf("A pilha esta vazia\n");
+    } else {
+        printf("A pilha nao esta vazia\n");
+    }
+    for (int a = 0; a < 10; a++) {
+        printf("Retirando numero da pilha: O numero é %d\n",
+               testePilha.desempilha());
+    }
+    if (testePilha.PilhaCheia()) {
+        printf("A pilha esta cheia\n");
+    } else {
+        printf("A pilha nao esta cheia\n");
+    }
+    if (testePilha.PilhaVazia()) {
+        printf("A pilha esta vazia\n");
+    } else {
+        printf("A pilha nao esta vazia\n");
     }
     return EXIT_SUCCESS;
 }
