@@ -17,10 +17,10 @@ Lista<T>::Lista(int tamanhoMaximo) {
 
 template <typename T>
 void Lista<T>::adicionar(T obj) {
+    this->topo += 1;
     if (this->topo >= this->tamanhoMaximo) {
         throw "Nao e possivel adicionar mais valores: Tamanho maximo excedido";
     }
-    this->topo += 1;
     this->arranjo[this->topo] = obj;
 }
 
@@ -87,7 +87,7 @@ void Lista<T>::troca(int posicao1, int posicao2) {
 
 template <typename T>
 void Lista<T>::limpaLista() {
-    this->topo -= 1;
+    this->topo = -1;
 }
 
 template<typename T>

@@ -118,5 +118,5 @@ class Lista {
      */
     int pegaTopo();
 };
-
+#include "Lista.cpp"
 #endif /* LISTA_HPP */
