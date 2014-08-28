@@ -75,5 +75,5 @@ class Pilha {
      */
     bool PilhaCheia();
 };
-
+#include "Pilha.cpp"
 #endif /* PILHA_HPP */

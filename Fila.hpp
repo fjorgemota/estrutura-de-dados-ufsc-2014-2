@@ -82,5 +82,5 @@ class Fila {
      */
     void inicializaFila();
 };
-
+#include "Fila.cpp"
 #endif /* FILA_HPP */
