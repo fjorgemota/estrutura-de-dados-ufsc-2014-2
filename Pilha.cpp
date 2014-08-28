@@ -7,6 +7,11 @@
 #include "Lista.cpp"
 
 template<typename T>
+Pilha<T>::Pilha() {
+    this->lista = new Lista<T>(TAMANHO_MAXIMO_PILHA);
+}
+
+template<typename T>
 Pilha<T>::Pilha(int t) {
     this->lista = new Lista<T>(t);
 }

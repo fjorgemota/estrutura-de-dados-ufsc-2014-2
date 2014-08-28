@@ -3,25 +3,30 @@
 #ifndef PILHA_HPP
 #define	PILHA_HPP
 #include "Lista.hpp"
+#define TAMANHO_MAXIMO_PILHA 30
 
 /*!
  * Representa uma pilha. Estrutura que a cada novo elemento, pode ser adicionado
- * e removido apenas pelo topo. Tal valor pode ser verificado, assim como a sua
- * posiçao.
+ * e removido apenas pelo topo, tal valor pode ser verificado, assim como a sua
+ * posiçao
  * 
  * @see Pilha::empilha()
  * @see Pilha::desempilha()
- * @see Pilha::Topo()
+ * @see Pilha::topo()
  */
 template <typename T>
 class Pilha {
+private:
+    Lista<T> *lista; //! < A lista no qual os elemetos da pilha serão guardados
+    
 public:
     /*!
-     * Constrói uma pilha vazia
+     * Constrói uma pilha vazia com um tamanho padrão (30)
      */
     Pilha();
+    
     /*!
-     * Constrói uma pilha vazia.
+     * Constrói uma pilha vazia
      * 
      * @param t O tamanho da pilha especificado pelo usuário
      */
@@ -39,7 +44,7 @@ public:
     * Remove um valor da pilha, isto é, que está armazenado no topo
     * 
     * @see Lista::removerUltimo()
-    * @see Pilha::Topo()
+    * @see Pilha::topo()
     */
     T desempilha();
     
@@ -54,7 +59,9 @@ public:
     int getPosTopo();
     
     /*!
-     * Apaga todos os valores presentes na pilha
+     * Apaga todos os valores presentes na pilha, mantendo seu tamanho original
+     * 
+     * @see Lista::limpaLista()
      */
     void limparPilha();
     
@@ -67,8 +74,6 @@ public:
      * Verifica se a pilha possui o número máximo de elementos armazenáveis
      */
     bool PilhaCheia();
-private:
-    Lista<T>* lista;
 };
 
 #endif	/* PILHA_HPP */

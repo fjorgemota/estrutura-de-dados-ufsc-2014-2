@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     printf("O segundo valor é: %d\n", teste.pegaValor(1));
     printf("O quarto valor é: %d\n", teste.pegaValor(3));
     // Fila
-    Fila<int> testeFila = Fila<int>(10);
+    Fila<int> testeFila = Fila<int>();
     if (testeFila.filaCheia()) {
         printf("A fila esta cheia\n");
     } else {
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
         printf("A fila nao esta vazia\n");
     }
     // Pilha
-    Pilha<int> testePilha = Pilha<int>(10);
+    Pilha<int> testePilha = Pilha<int>();
     if (testePilha.PilhaCheia()) {
         printf("A pilha esta cheia\n");
     } else {

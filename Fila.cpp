@@ -7,6 +7,11 @@
 #include "Lista.cpp"
 
 template <typename T>
+Fila<T>::Fila() {
+    this->lista = new Lista<T>(TAMANHO_MAXIMO_FILA);
+}
+
+template <typename T>
 Fila<T>::Fila(int tamanhoMaximo) {
     this->lista = new Lista<T>(tamanhoMaximo);
 }
