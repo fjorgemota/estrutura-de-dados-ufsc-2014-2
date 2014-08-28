@@ -4,7 +4,7 @@ FILES=`ls -1 $INPUT_DIR | grep \..pp`
 ERROR=0
 for FILE in $FILES; do
 	echo "Checando $FILE"
-	CPPLINT_ERRORS=`./cpplint.py --root=$INPUT_DIR $FILE  2>&1 >/dev/null`
+	CPPLINT_ERRORS=`./cpplint.py --extensions=hpp,cpp --root=$INPUT_DIR $FILE  2>&1 >/dev/null`
 	NUM_COUNT=`echo $CPPLINT_ERRORS | grep -E -o "Total errors found: [0-9]+" | grep -E -o "[0-9]+"`
 	if [ "$NUM_COUNT" == "0" ]; then
 		echo "Nenhum erro de estilo detectado! Parabens!"
