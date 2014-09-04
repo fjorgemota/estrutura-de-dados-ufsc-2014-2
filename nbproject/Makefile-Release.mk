@@ -97,25 +97,25 @@ ${OBJECTDIR}/main.o: main.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f3: ${TESTDIR}/_ext/962120059/FilaTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/FilaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/962120059/PilhaTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
 
-${TESTDIR}/_ext/962120059/FilaTest.o: /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaTest.cpp 
-	${MKDIR} -p ${TESTDIR}/_ext/962120059
+${TESTDIR}/tests/FilaTest.o: tests/FilaTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/962120059/FilaTest.o /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaTest.cpp
+	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/FilaTest.o tests/FilaTest.cpp
 
 
-${TESTDIR}/_ext/962120059/PilhaTest.o: /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/PilhaTest.cpp 
-	${MKDIR} -p ${TESTDIR}/_ext/962120059
+${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/962120059/PilhaTest.o /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/PilhaTest.cpp
+	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaTest.o tests/PilhaTest.cpp
 
 
 ${OBJECTDIR}/Fila_nomain.o: ${OBJECTDIR}/Fila.o Fila.cpp 
