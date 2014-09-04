@@ -8,8 +8,8 @@
  * uma posição específica e removidos facilmente sem necessidade de manipulação 
  * de arranjos por quem usa esta classe
  * 
- * @see Lista::adicionar
- * @see Lista::remover
+ * @see Lista::Adiciona
+ * @see Lista::RetiraDaPosicao
  * @see Lista::pegaValor
  */
 template <typename T>
@@ -32,38 +32,15 @@ class Lista {
      * 
      * @param obj O objeto a ser adicionado na lista
      */
-    void adicionar(T obj);
+    int Adiciona(T obj);
 
     /*!
-     * Retorna o número de elementos presentes na lista atualmente
-     */
-    int pegaTamanho();
-
-    /*!
-     * Remove um valor da posição especificado pelo usuário
+     * Um novo dado é adicionado à primeira posição, enquanto os então presentes
+     * são "empurrados" para cima para a adiçao do dado
      * 
-     * @param posicao Posição do elemento que vai ser removido
-     * @see Lista::removerPrimeiro
-     * @see Lista::removerUltimo
-     * @see Lista::troca
+     * @param dado O dado a ser adicionado no início da lista 
      */
-    void remover(int posicao);
-
-    /*!
-     * Remove o primeiro valor inserido na lista, que é, portanto, 
-     * o valor que está mais tempo presente na lista
-     * 
-     * @see Lista::remover
-     */
-    void removerPrimeiro();
-
-    /*!
-     * Remove o último elemento inserido na lista, que é, portanto, 
-     * o valor que está menos tempo presente na lista
-     * 
-     * @see Lista::remover
-     */
-    void removerUltimo();
+    int AdicionaNoInicio(T dado);
 
     /*!
      * Pega o valor do primeiro elemento inserido na lista, 
@@ -72,6 +49,58 @@ class Lista {
      * @see Lista::pegaValor
      */
     T pegaPrimeiro();
+
+    /*!
+     * Adiciona um dado valor a uma posição especificada, enquanto os dados então
+     * presentes são "empurrados" para cima para a entrada do novo dado
+     * 
+     * @param dado O dado a ser adicionado
+     * @param destino A posição na qual o dado será armazenado
+     */
+    int AdicionaNaPosicao(T dado, int destino);
+
+    /*!
+     * Adiciona o elemento à lista logo após a algum dado inferior a ele
+     * 
+     * @param dado O dado a ser adicionado à lista
+     */
+    int AdicionaEmOrdem(T dado);
+
+    /*!
+     * Remove o último elemento inserido na lista, que é, portanto, 
+     * o valor que está menos tempo presente na lista
+     * 
+     * @see Lista::RetiraDaPosicao
+     */
+    T Retira();
+
+    /*!
+     * Remove o primeiro valor inserido na lista, que é, portanto, 
+     * o valor que está mais tempo presente na lista
+     * 
+     * @see Lista::RetiraDaPosicao
+     */
+    T RetiraDoInicio();
+
+    /*!
+     * Remove um valor da posição especificado pelo usuário
+     * 
+     * @param posicao Posição do elemento que vai ser removido
+     * @see Lista::RetiraDoInicio
+     * @see Lista::removerUltimo
+     * @see Lista::troca
+     */
+    T RetiraDaPosicao(int fonte);
+
+    /*!
+     * Retira da lista o valor especificado
+     */
+    T RetiraEspecifico(T dado);
+
+    /*!
+     * Retorna o número de elementos presentes na lista atualmente
+     */
+    int pegaTamanho();
 
     /*!
      * Pega o valor do último elemento adicionado, 
@@ -101,22 +130,66 @@ class Lista {
     /*!
      * Retorna um booleano indicando se a lista está cheia ou não
      */
-    bool listaCheia();
+    bool ListaCheia();
 
     /*!
      * Retorna um booleano indicando se a lista está vazia ou não
      */
-    bool listaVazia();
+    bool ListaVazia();
 
     /*!
      * Apaga todos os valores da lista
      */
-    void limpaLista();
+    void DestroiLista();
 
     /*!
-     * Retorna o valor interno do topo
+     * Verifica se um dado especificado pertence à lista
+     * 
+     * @param dado O valor especificado que pode ou não estar na lista
+     */
+    bool Contem(T dado);
+
+    /*!
+     * Retorna o valor do atributo interno topo
      */
     int pegaTopo();
+
+    /*!
+     * Retorna a posição de um dado especificado
+     * 
+     * @param dado O dado cuja posiçao sera retornada
+     */
+    int Posicao(T dado);
+
+    /*!
+     * Verifica se os dois dados especificados da lista são iguais
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com o primeiro
+     */
+    bool Igual(T dado1, T dado2);
+
+    /*!
+     * Verifica se o primeiro dado especificado é maior que o segundo
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com o primeiro
+     */
+    bool Maior(T dado1, T dado2);
+
+    /*!
+     * Verifica se o primeiro dado especificado é menor que o segundo
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com a segundo
+     */
+    bool Menor(T dado1, T dado2);
+
+    // inline bool operator<(T dado, T dado2);
+
+    // inline bool operator>(T dado, T dado2);
+
+    // inline bool operator==(T dado, T dado2);
 };
 #include "Lista.cpp"
 #endif /* LISTA_HPP */

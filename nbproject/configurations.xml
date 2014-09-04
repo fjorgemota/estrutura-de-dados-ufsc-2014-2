@@ -14,7 +14,6 @@
       <itemPath>Fila.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
       <itemPath>Pilha.cpp</itemPath>
-      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Arquivos de Recurso"
@@ -26,6 +25,12 @@
                    kind="TEST_LOGICAL_FOLDER">
       <logicalFolder name="f3" displayName="FilaTest" projectFiles="true" kind="TEST">
         <itemPath>tests/FilaTest.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="ListaTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/ListaTest.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1"
                      displayName="PilhaTest"
@@ -59,6 +64,7 @@
           <incDir>
             <pElem>.</pElem>
           </incDir>
+          <warningLevel>2</warningLevel>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f2</output>
@@ -98,6 +104,21 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f3">
         <cTool>
           <incDir>
@@ -113,9 +134,9 @@
           <output>${TESTDIR}/TestFiles/f3</output>
         </linkerTool>
       </folder>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/ListaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/PilhaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -198,9 +219,9 @@
           <output>${TESTDIR}/TestFiles/f3</output>
         </linkerTool>
       </folder>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/ListaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/PilhaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
