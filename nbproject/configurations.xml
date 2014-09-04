@@ -24,6 +24,15 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f3" displayName="FilaTest" projectFiles="true" kind="TEST">
+        <itemPath>/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaTest.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1"
+                     displayName="PilhaTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/PilhaTest.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
@@ -42,6 +51,16 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/PilhaTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fila.hpp" ex="false" tool="3" flavor2="0">
@@ -54,6 +73,58 @@
       </item>
       <item path="Pilha.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles">
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lgtest -lpthread</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -77,6 +148,16 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/PilhaTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fila.hpp" ex="false" tool="3" flavor2="0">
@@ -89,6 +170,58 @@
       </item>
       <item path="Pilha.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles">
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lgtest -lpthread</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>

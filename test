@@ -1,6 +1,6 @@
 #!/bin/bash
 INPUT_DIR=`pwd`
-FILES=`ls -1 $INPUT_DIR | grep \..pp`
+FILES=`find $INPUT_DIR | grep \..pp`
 ERROR=0
 for FILE in $FILES; do
 	echo "Checando $FILE"
