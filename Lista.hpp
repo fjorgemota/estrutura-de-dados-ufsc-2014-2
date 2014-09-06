@@ -16,9 +16,9 @@
 template <typename T>
 class Lista {
  private:
-    T* arranjo;  //! < Onde é guardado os valores salvos na lista
-    int topo;  //! < O topo é a última posição, de baixo para cima
-    int tamanhoMaximo;  //! < Tamanho máximo da lista
+    T* arranjo;  //!< Onde é guardado os valores salvos na lista
+    int topo;  //!< O topo é a última posição, de baixo para cima
+    int tamanhoMaximo;  //!< Tamanho máximo da lista
 
  public:
      /*!
@@ -29,7 +29,7 @@ class Lista {
     /*! 
      * Constrói uma lista vazia com o tamanho máximo especificado
      * 
-     * @param tamanho O número máximo de elementos que a lista pode conter
+     * @param tamanhoMaximo O número máximo de elementos que a lista pode conter
      */
     explicit Lista<T>(int tamanhoMaximo);
 
@@ -38,7 +38,6 @@ class Lista {
      * 
      * @param obj O objeto a ser adicionado na lista
      * @see Lista::adicionaNaPosicao
-     * @see Lista::adicionaEspecifico
      * @see Lista::adicionaEmOrdem
      */
     void adiciona(T obj);

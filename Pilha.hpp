@@ -17,7 +17,7 @@
 template <typename T>
 class Pilha {
  private:
-    Lista<T> *lista;  //! < A lista no qual os elemetos da pilha serão guardados
+    Lista<T> *lista;  //!< A lista no qual os elemetos da pilha serão guardados
 
  public:
     /*!

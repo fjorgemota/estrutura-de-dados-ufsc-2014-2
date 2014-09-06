@@ -15,7 +15,7 @@
 template <typename T>
 class Fila {
  private:
-    Lista<T> *lista;  //! < A lista no qual os elementos da fila serão guardados
+    Lista<T> *lista;  //!< A lista no qual os elementos da fila serão guardados
 
  public:
     /*!
@@ -26,7 +26,7 @@ class Fila {
     /*!
      * Constrói uma fila vazia com o tamanho máximo especificado
      * 
-     * @param tamanho O número máximo de elementos que a fila pode conter
+     * @param tamanhoMaximo O número máximo de elementos que a fila pode conter
      */
     Fila<T>(int tamanhoMaximo);
 
@@ -78,7 +78,9 @@ class Fila {
 
     /*!
      * Reseta todo o conteúdo da fila, de forma que ela fique novamente
-     * com tamanho zero
+     * com tamanho zero.
+     * 
+     * @see Lista::destroiLista
      */
     void inicializaFila();
 };
