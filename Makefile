@@ -76,7 +76,7 @@ clobber: .clobber-post
 .clobber-pre:
 # Add your pre 'clobber' code here...
 
-.clobber-post: .clobber-impl
+.clobber-post: .clobber-impl clean-docs
 # Add your post 'clobber' code here...
 
 
@@ -109,6 +109,11 @@ test: .test-post
 .test-post: .test-impl 
 # Add your post 'test' code here...
 
+docs:
+	doxygen Doxyfile
+	
+clean-docs:
+	rm -Rf docs
 
 # help
 help: .help-post
