@@ -6,6 +6,13 @@
 #define PRIMEIRO_ELEMENTO 0
 
 template <typename T>
+Lista<T>::Lista() {
+    this->topo = -1;
+    this->arranjo = new T[TAMANHO_MAXIMO_LISTA];
+    this->tamanhoMaximo = TAMANHO_MAXIMO_LISTA;
+}
+
+template <typename T>
 Lista<T>::Lista(int tamanhoMaximo) {
     if (tamanhoMaximo < 1) {
         throw "Impossível criar lista com menos de 1 elemento";
@@ -16,17 +23,16 @@ Lista<T>::Lista(int tamanhoMaximo) {
 }
 
 template <typename T>
-int Lista<T>::Adiciona(T obj) {
+void Lista<T>::adiciona(T obj) {
     this->topo += 1;
     if (this->topo >= this->tamanhoMaximo) {
         throw "Não é possível adicionar mais valores: Tamanho máximo excedido";
     }
     this->arranjo[this->topo] = obj;
-    return this->topo;
 }
 
 template <typename T>
-int Lista<T>::AdicionaNaPosicao(T dado, int destino) {
+void Lista<T>::adicionaNaPosicao(T dado, int destino) {
     if (destino >= this->tamanhoMaximo || destino < 0) {
         throw "Não é possível adicionar o valor na posição especificada";
     }
@@ -36,16 +42,15 @@ int Lista<T>::AdicionaNaPosicao(T dado, int destino) {
         this->arranjo[posicao] = this->arranjo[posicao-1];
     }
     this->arranjo[destino] = dado;
-    return destino;
 }
 
 template <typename T>
-bool Lista<T>::ListaCheia() {
+bool Lista<T>::listaCheia() {
     return this->pegaTamanho() == this->tamanhoMaximo;
 }
 
 template <typename T>
-bool Lista<T>::ListaVazia() {
+bool Lista<T>::listaVazia() {
     return this->pegaTamanho() == PRIMEIRO_ELEMENTO;
 }
 
@@ -55,8 +60,8 @@ int Lista<T>::pegaTamanho() {
 }
 
 template <typename T>
-T Lista<T>::Retira() {
-    if (this->ListaVazia()) {
+T Lista<T>::retira() {
+    if (this->listaVazia()) {
         throw "Não há elementos para remover, a lista está vazia";
     }
     this->topo -= 1;
@@ -64,8 +69,8 @@ T Lista<T>::Retira() {
 }
 
 template <typename T>
-T Lista<T>::RetiraDoInicio() {
-    T valor = this->RetiraDaPosicao(PRIMEIRO_ELEMENTO);
+T Lista<T>::retiraDoInicio() {
+    T valor = this->retiraDaPosicao(PRIMEIRO_ELEMENTO);
     return valor;
 }
 
@@ -88,17 +93,17 @@ T Lista<T>::pegaValor(int posicao) {
 }
 
 template <typename T>
-T Lista<T>::RetiraDaPosicao(int fonte) {
-    if (this->ListaVazia()) {
+T Lista<T>::retiraDaPosicao(int posicao) {
+    if (this->listaVazia()) {
         throw "Não há elementos para remover: A lista está vazia";
-    } else if (fonte > topo || fonte < 0) {
+    } else if (posicao > topo || posicao < 0) {
         throw "Impossivel remover valores: posiçao invalida";
     }
-    int posicao;
+    int fonte;
     T valor;
-    valor = this->arranjo[fonte];
-    posicao = fonte;
-    for (int a = posicao; a <= topo; a++) {
+    valor = this->arranjo[posicao];
+    fonte = posicao;
+    for (int a = fonte; a <= topo; a++) {
         this->arranjo[a] = this->arranjo[a+1];
     }
     this->topo -= 1;
@@ -106,36 +111,52 @@ T Lista<T>::RetiraDaPosicao(int fonte) {
 }
 
 template <typename T>
-int Lista<T>::AdicionaNoInicio(T dado) {
-    if (this->ListaCheia()) {
+void Lista<T>::adicionaNoInicio(T dado) {
+    if (this->listaCheia()) {
         throw "Lista Cheia, não é possível adicionar mais elementos";
     }
-    return this->AdicionaNaPosicao(dado, PRIMEIRO_ELEMENTO);
+    this->adicionaNaPosicao(dado, PRIMEIRO_ELEMENTO);
 }
 
 template <typename T>
-int Lista<T>::AdicionaEmOrdem(T dado) {
-    if (this->ListaCheia()) {
+void Lista<T>::adicionaEmOrdem(T dado) {
+    if (this->listaCheia()) {
         throw "A lista está cheia";
     }
+    this->insertionSort();
     int posicao = 0;
-    while (posicao <= this->topo &&
-            this->Maior(dado, this->arranjo[posicao])) {
+        while (posicao <= this->topo &&
+                dado > this->arranjo[posicao]) {
         posicao++;
     }
-    return this->AdicionaNaPosicao(dado, posicao);
+    this->adicionaNaPosicao(dado, posicao);
 }
 
 template <typename T>
-T Lista<T>::RetiraEspecifico(T dado) {
-    if (this->ListaVazia()) {
+void Lista<T>::insertionSort() {
+    int h, posicao;
+    T valorAux;
+    for (h = 1; h <= this->topo; h++) {
+        valorAux = this->arranjo[h];
+        posicao = h - 1;
+        while (posicao > -1 && this->arranjo[posicao] > valorAux) {
+            this->arranjo[posicao + 1] = this->arranjo[posicao];
+            posicao -= 1;
+        }
+        this->arranjo[posicao + 1] = valorAux;
+    }
+}
+
+template <typename T>
+T Lista<T>::retiraEspecifico(T dado) {
+    if (this->listaVazia()) {
         throw "A lista esta vazia";
-    } else if (!this->Contem(dado)) {
+    } else if (!this->contem(dado)) {
         throw "O dado não pertence à lista";
     }
     int h;
-    h = this->Posicao(dado);
-    return this->RetiraDaPosicao(h);
+    h = this->posicao(dado);
+    return this->retiraDaPosicao(h);
 }
 
 template <typename T>
@@ -146,12 +167,12 @@ void Lista<T>::troca(int posicao1, int posicao2) {
 }
 
 template <typename T>
-void Lista<T>::DestroiLista() {
+void Lista<T>::destroiLista() {
     this->topo = -1;
 }
 
 template <typename T>
-bool Lista<T>::Contem(T dado) {
+bool Lista<T>::contem(T dado) {
     int h;
     for (h = 0; h <= topo; h++) {
         if (this->arranjo[h] == dado) {
@@ -162,7 +183,7 @@ bool Lista<T>::Contem(T dado) {
 }
 
 template <typename T>
-int Lista<T>::Posicao(T dado) {
+int Lista<T>::posicao(T dado) {
     int a;
     for (a = 0; a<= topo; a++) {
         if (this->arranjo[a] == dado) {
@@ -178,10 +199,10 @@ int Lista<T>::pegaTopo() {
 }
 
 template <typename T>
-bool Lista<T>::Igual(T dado1, T dado2) {
-    if (!this->Contem(dado1)) {
+bool Lista<T>::igual(T dado1, T dado2) {
+    if (!this->contem(dado1)) {
         throw "O primeiro dado não pertence à lista";
-    } else if (!this->Contem(dado2)) {
+    } else if (!this->contem(dado2)) {
         throw "O segundo dado não pertence à lista";
     }
     if (dado1 == dado2) {
@@ -191,10 +212,10 @@ bool Lista<T>::Igual(T dado1, T dado2) {
 }
 
 template <typename T>
-bool Lista<T>::Maior(T dado1, T dado2) {
-    if (!this->Contem(dado1)) {
+bool Lista<T>::maior(T dado1, T dado2) {
+    if (!this->contem(dado1)) {
         throw "O primeiro dado não pertence à lista";
-    } else if (!this->Contem(dado2)) {
+    } else if (!this->contem(dado2)) {
         throw "O segundo dado não pertence à lista";
     }
     if (dado1 > dado2) {
@@ -204,10 +225,10 @@ bool Lista<T>::Maior(T dado1, T dado2) {
 }
 
 template <typename T>
-bool Lista<T>::Menor(T dado1, T dado2) {
-    if (!this->Contem(dado1)) {
+bool Lista<T>::menor(T dado1, T dado2) {
+    if (!this->contem(dado1)) {
         throw "O primeiro dado não pertence à lista";
-    } else if (!this->Contem(dado2)) {
+    } else if (!this->contem(dado2)) {
         throw "O segundo dado não pertence à lista";
     }
     if (dado1 < dado2) {
@@ -215,29 +236,4 @@ bool Lista<T>::Menor(T dado1, T dado2) {
     }
     return false;
 }
-
-/*template<typename T>
-bool T::operator==(T dado, T dado2) {
-    if (dado == dado2) {
-        return true;
-    }
-    return false;
-}
-
-template<typename T>
-bool T::operator>(T dado, T dado2) {
-    if (T > t) {
-        return true;
-    }
-    return false;
-}
-
-template<typename T>
-bool T::operator<(T dado, T dado2) {
-    if (T < t) {
-        return true;
-    }
-    return false;
-}*/
-
 #endif
