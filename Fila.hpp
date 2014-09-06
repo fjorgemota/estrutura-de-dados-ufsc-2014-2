@@ -34,7 +34,7 @@ class Fila {
      * Adiciona um valor à fila
      * 
      * @param dado O objeto à ser adicionado na fila
-     * @see Lista::adicionar
+     * @see Lista::adiciona
      */
     void inclui(T dado);
 
@@ -42,7 +42,7 @@ class Fila {
      * Remove o primeiro elemento adicionado à fila, ou seja, o elemento que
      * está mais tempo nela
      * 
-     * @see Lista::removePrimeiro
+     * @see Lista::retiraDoInicio
      */
     T retira();
 

@@ -18,22 +18,22 @@ Fila<T>::Fila(int tamanhoMaximo) {
 
 template <typename T>
 bool Fila<T>::filaCheia() {
-    return this->lista->ListaCheia();
+    return this->lista->listaCheia();
 }
 
 template <typename T>
 bool Fila<T>::filaVazia() {
-    return this->lista->ListaVazia();
+    return this->lista->listaVazia();
 }
 
 template <typename T>
 void Fila<T>::inclui(T dado) {
-    this->lista->Adiciona(dado);
+    this->lista->adiciona(dado);
 }
 
 template <typename T>
 T Fila<T>::retira() {
-    return this->lista->RetiraDoInicio();
+    return this->lista->retiraDoInicio();
 }
 
 template <typename T>
@@ -48,6 +48,6 @@ int Fila<T>::getUltimo() {
 
 template <typename T>
 void Fila<T>::inicializaFila() {
-    this->lista->DestroiLista();
+    this->lista->destroiLista();
 }
 #endif

@@ -23,7 +23,7 @@ T Pilha<T>::topo() {
 
 template<typename T>
 bool Pilha<T>::PilhaVazia() {
-    return this->lista->ListaVazia();
+    return this->lista->listaVazia();
 }
 
 template<typename T>
@@ -37,21 +37,21 @@ int Pilha<T>::getPosTopo() {
 
 template<typename T>
 void Pilha<T>::empilha(T dado) {
-    this->lista->Adiciona(dado);
+    this->lista->adiciona(dado);
 }
 
 template<typename T>
 T Pilha<T>::desempilha() {
-    return this->lista->Retira();
+    return this->lista->retira();
 }
 
 template<typename T>
 bool Pilha<T>::PilhaCheia() {
-    return this->lista->ListaCheia();
+    return this->lista->listaCheia();
 }
 
 template<typename T>
 void Pilha<T>::limparPilha() {
-    this->lista->DestroiLista();
+    this->lista->destroiLista();
 }
 #endif
