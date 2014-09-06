@@ -125,8 +125,8 @@ void Lista<T>::adicionaEmOrdem(T dado) {
     }
     this->insertionSort();
     int posicao = 0;
-        while (posicao <= this->topo &&
-                dado > this->arranjo[posicao]) {
+    while (posicao <= this->topo &&
+           dado > this->arranjo[posicao]) {
         posicao++;
     }
     this->adicionaNaPosicao(dado, posicao);
