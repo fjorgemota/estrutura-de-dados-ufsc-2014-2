@@ -12,67 +12,73 @@ int main(int argc, char **argv) {
 class Objeto{};
 
 class FilaTest: public testing::Test {
+ public:
+    virtual void SetUp() {
+        this->obj = Fila<Objeto>();
+        this->inteiro = Fila<int>(2);
+    }
+
  protected:
-    Fila<int> i = Fila<int>(2);
-    Fila<Objeto> o = Fila<Objeto>();
+    Fila<int> inteiro;
+    Fila<Objeto> obj;
 };
 
 TEST_F(FilaTest, FilaVazia) {
-    ASSERT_TRUE(i.filaVazia());
+    ASSERT_TRUE(inteiro.filaVazia());
 }
 
 TEST_F(FilaTest, FilaCheia) {
-    ASSERT_FALSE(i.filaCheia());
+    ASSERT_FALSE(inteiro.filaCheia());
 }
 
 TEST_F(FilaTest, inclui) {
-    ASSERT_TRUE(i.filaVazia());
-    ASSERT_FALSE(i.filaCheia());
-    i.inclui(5);
-    ASSERT_EQ(i.ultimo(), 5);
-    i.inclui(2);
-    ASSERT_EQ(i.ultimo(), 2);
-    ASSERT_FALSE(i.filaVazia());
-    ASSERT_TRUE(i.filaCheia());
-    ASSERT_ANY_THROW(i.inclui(3));
+    ASSERT_TRUE(inteiro.filaVazia());
+    ASSERT_FALSE(inteiro.filaCheia());
+    inteiro.inclui(5);
+    ASSERT_EQ(inteiro.ultimo(), 5);
+    inteiro.inclui(2);
+    ASSERT_EQ(inteiro.ultimo(), 2);
+    ASSERT_FALSE(inteiro.filaVazia());
+    ASSERT_TRUE(inteiro.filaCheia());
+    ASSERT_ANY_THROW(inteiro.inclui(3));
 }
 
 TEST_F(FilaTest, retira) {
-    ASSERT_TRUE(i.filaVazia());
-    ASSERT_FALSE(i.filaCheia());
-    ASSERT_ANY_THROW(i.retira());
-    i.inclui(5);
-    i.inclui(2);
-    ASSERT_FALSE(i.filaVazia());
-    ASSERT_TRUE(i.filaCheia());
-    ASSERT_EQ(i.retira(), 5);
-    ASSERT_EQ(i.retira(), 2);
+    ASSERT_TRUE(inteiro.filaVazia());
+    ASSERT_FALSE(inteiro.filaCheia());
+    ASSERT_ANY_THROW(inteiro.retira());
+    inteiro.inclui(5);
+    inteiro.inclui(2);
+    ASSERT_FALSE(inteiro.filaVazia());
+    ASSERT_TRUE(inteiro.filaCheia());
+    ASSERT_EQ(inteiro.retira(), 5);
+    ASSERT_EQ(inteiro.retira(), 2);
 }
 
 TEST_F(FilaTest, getUltimo) {
-    ASSERT_EQ(i.getUltimo(), -1);
-    i.inclui(5);
-    ASSERT_EQ(i.getUltimo(), 0);
-    i.inclui(3);
-    ASSERT_EQ(i.getUltimo(), 1);
+    ASSERT_EQ(inteiro.getUltimo(), -1);
+    inteiro.inclui(5);
+    ASSERT_EQ(inteiro.getUltimo(), 0);
+    inteiro.inclui(3);
+    ASSERT_EQ(inteiro.getUltimo(), 1);
 }
 
 TEST_F(FilaTest, ultimo) {
-    ASSERT_ANY_THROW(i.ultimo());
-    i.inclui(5);
-    ASSERT_EQ(i.ultimo(), 5);
-    i.inclui(3);
-    ASSERT_EQ(i.ultimo(), 3);
+    ASSERT_ANY_THROW(inteiro.ultimo());
+    inteiro.inclui(5);
+    ASSERT_EQ(inteiro.ultimo(), 5);
+    inteiro.inclui(3);
+    ASSERT_EQ(inteiro.ultimo(), 3);
 }
 
 TEST_F(FilaTest, inicializaFila) {
-    ASSERT_FALSE(i.filaCheia());
-    ASSERT_TRUE(i.filaVazia());
-    i.inclui(5);
-    i.inclui(2);
-    ASSERT_TRUE(i.filaCheia());
-    ASSERT_FALSE(i.filaVazia());
-    i.inicializaFila();
-    ASSERT_FALSE(i.filaCheia());
-    ASSERT_TRUE(i.filaVazia());
+    ASSERT_FALSE(inteiro.filaCheia());
+    ASSERT_TRUE(inteiro.filaVazia());
+    inteiro.inclui(5);
+    inteiro.inclui(2);
+    ASSERT_TRUE(inteiro.filaCheia());
+    ASSERT_FALSE(inteiro.filaVazia());
+    inteiro.inicializaFila();
+    ASSERT_FALSE(inteiro.filaCheia());
+    ASSERT_TRUE(inteiro.filaVazia());
 }

@@ -11,10 +11,17 @@ int main(int argc, char **argv) {
 class Objeto {};
 
 class ListaTest: public ::testing::Test {
+ public:
+    virtual void SetUp() {
+        this->inteiro = Lista<int>(10);
+        this->valores = Lista<int>();
+        this->obj = Lista<Objeto>(10);
+    }
+
  protected:
-    Lista<int> inteiro = Lista<int>(10);
-    Lista<int> valores = Lista<int>();
-    Lista<Objeto> obj = Lista<Objeto>(10);
+    Lista<int> inteiro;
+    Lista<int> valores;
+    Lista<Objeto> obj;
 };
 
 TEST_F(ListaTest, listaPadrao) {
