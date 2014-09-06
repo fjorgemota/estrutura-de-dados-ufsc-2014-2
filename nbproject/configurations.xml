@@ -43,7 +43,9 @@
                    displayName="Arquivos Importantes"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Doxyfile</itemPath>
       <itemPath>Makefile</itemPath>
+      <itemPath>test</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
