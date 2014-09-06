@@ -34,18 +34,22 @@ else
 fi;
 python -c "print '-'*100"
 echo "Testando projeto em modo DEBUG.."
-TEST_LOG=`make CONF=Debug test 2>1`
-NUM_ERRORS=`echo $TEST_LOG | grep 'FAILED' | grep '(' | wc -l`
-if [ "$NUM_ERRORS" == "0" ]; then
-    echo "Nenhum erro encontrado, parabens!" 
+TEST_LOG=`make CONF=Debug test 2>&1`
+if [ "$?" == "0" ]; then
+	NUM_ERRORS=`echo $TEST_LOG | grep 'FAILED' | grep '(' | wc -l`
 else
-    echo "Encontrado $NUM_ERRORS erros durante o teste. Verifique-os:"
-    echo -e "$TEST_LOG"
-    ERROR=1
+	NUM_ERRORS=1
+fi
+if [ "$NUM_ERRORS" == "0" ]; then
+	echo "Nenhum erro encontrado, parabens!"
+else
+	echo "Encontrado $NUM_ERRORS erros durante o teste. Verifique-os:"
+	echo -e "$TEST_LOG"
+	ERROR=1
 fi
 python -c "print '-'*100"
 echo "Limpando arquivos executaveis.."
-make clobber 2>&1 1>/dev/null
+make clobber 2>/dev/null 1>/dev/null
 echo "Tudo limpo :D"
 python -c "print '-'*100"
 if [ $ERROR == 1 ]; then
