@@ -200,11 +200,6 @@ int Lista<T>::pegaTopo() {
 
 template <typename T>
 bool Lista<T>::igual(T dado1, T dado2) {
-    if (!this->contem(dado1)) {
-        throw "O primeiro dado não pertence à lista";
-    } else if (!this->contem(dado2)) {
-        throw "O segundo dado não pertence à lista";
-    }
     if (dado1 == dado2) {
         return true;
     }
@@ -213,11 +208,6 @@ bool Lista<T>::igual(T dado1, T dado2) {
 
 template <typename T>
 bool Lista<T>::maior(T dado1, T dado2) {
-    if (!this->contem(dado1)) {
-        throw "O primeiro dado não pertence à lista";
-    } else if (!this->contem(dado2)) {
-        throw "O segundo dado não pertence à lista";
-    }
     if (dado1 > dado2) {
         return true;
     }
@@ -226,11 +216,6 @@ bool Lista<T>::maior(T dado1, T dado2) {
 
 template <typename T>
 bool Lista<T>::menor(T dado1, T dado2) {
-    if (!this->contem(dado1)) {
-        throw "O primeiro dado não pertence à lista";
-    } else if (!this->contem(dado2)) {
-        throw "O segundo dado não pertence à lista";
-    }
     if (dado1 < dado2) {
         return true;
     }

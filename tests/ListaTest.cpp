@@ -101,7 +101,6 @@ TEST_F(ListaTest, igual) {
     inteiro.adiciona(75);
     ASSERT_TRUE(inteiro.igual(75, 75));
     ASSERT_FALSE(inteiro.igual(100, 88));
-    ASSERT_ANY_THROW(inteiro.igual(100, 42));
 }
 
 TEST_F(ListaTest, retiraEspecifico) {
@@ -160,8 +159,6 @@ TEST_F(ListaTest, maior) {
     inteiro.adiciona(6);
     ASSERT_TRUE(inteiro.maior(5100, 2600));
     ASSERT_FALSE(inteiro.maior(6, 42));
-    ASSERT_ANY_THROW(inteiro.maior(42, 7800));
-    ASSERT_ANY_THROW(inteiro.maior(5200, 6));
 }
 
 TEST_F(ListaTest, menor) {
@@ -172,8 +169,6 @@ TEST_F(ListaTest, menor) {
     inteiro.adiciona(6);
     ASSERT_TRUE(inteiro.menor(2600, 5100));
     ASSERT_FALSE(inteiro.menor(42, 6));
-    ASSERT_ANY_THROW(inteiro.menor(7800, 42));
-    ASSERT_ANY_THROW(inteiro.menor(6, 5200));
 }
 
 TEST_F(ListaTest, adicionaNaPosicao) {
