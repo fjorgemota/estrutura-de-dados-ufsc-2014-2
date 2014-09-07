@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=so
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/estrutura-de-dados-ufsc-2014-2
-OUTPUT_BASENAME=estrutura-de-dados-ufsc-2014-2
+OUTPUT_PATH=${TESTDIR}/TestFiles/f2
+OUTPUT_BASENAME=f2
 PACKAGE_TOP_DIR=estrutura-de-dados-ufsc-2014-2/
 
 # Functions

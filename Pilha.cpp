@@ -37,14 +37,12 @@ int Pilha<T>::getPosTopo() {
 
 template<typename T>
 void Pilha<T>::empilha(T dado) {
-    this->lista->adicionar(dado);
+    this->lista->adiciona(dado);
 }
 
 template<typename T>
 T Pilha<T>::desempilha() {
-    T ultimo = this->lista->pegaUltimo();
-    this->lista->removerUltimo();
-    return ultimo;
+    return this->lista->retira();
 }
 
 template<typename T>
@@ -54,6 +52,6 @@ bool Pilha<T>::PilhaCheia() {
 
 template<typename T>
 void Pilha<T>::limparPilha() {
-    this->lista->limpaLista();
+    this->lista->destroiLista();
 }
 #endif

@@ -17,7 +17,7 @@
 template <typename T>
 class Pilha {
  private:
-    Lista<T> *lista;  //! < A lista no qual os elemetos da pilha serão guardados
+    Lista<T> *lista;  //!< A lista no qual os elemetos da pilha serão guardados
 
  public:
     /*!
@@ -36,7 +36,7 @@ class Pilha {
      * Adiciona um novo valor à pilha 
      * 
      * @param dado O dado a ser adicionado para a pilha
-     * @see Lista::adicionar()
+     * @see Lista::adiciona()
      */
     void empilha(T dado);
 
@@ -61,7 +61,7 @@ class Pilha {
     /*!
      * Apaga todos os valores presentes na pilha, mantendo seu tamanho original
      * 
-     * @see Lista::limpaLista()
+     * @see Lista::destroiLista()
      */
     void limparPilha();
 

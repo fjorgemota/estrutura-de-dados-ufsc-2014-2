@@ -28,14 +28,12 @@ bool Fila<T>::filaVazia() {
 
 template <typename T>
 void Fila<T>::inclui(T dado) {
-    this->lista->adicionar(dado);
+    this->lista->adiciona(dado);
 }
 
 template <typename T>
 T Fila<T>::retira() {
-    T primeiro = this->lista->pegaPrimeiro();
-    this->lista->removerPrimeiro();
-    return primeiro;
+    return this->lista->retiraDoInicio();
 }
 
 template <typename T>
@@ -50,6 +48,6 @@ int Fila<T>::getUltimo() {
 
 template <typename T>
 void Fila<T>::inicializaFila() {
-    this->lista->limpaLista();
+    this->lista->destroiLista();
 }
 #endif

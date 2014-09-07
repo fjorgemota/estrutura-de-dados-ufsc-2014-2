@@ -1,6 +1,6 @@
 #!/bin/bash
 INPUT_DIR=`pwd`
-FILES=`ls -1 $INPUT_DIR | grep \..pp`
+FILES=`find $INPUT_DIR | grep \..pp`
 ERROR=0
 for FILE in $FILES; do
 	echo "Checando $FILE"
@@ -33,31 +33,23 @@ else
 	echo "Doxygen nao encontrado. Status da documentacao nao avaliado."
 fi;
 python -c "print '-'*100"
-echo "Compilando projeto.."
-echo "Compilando no modo 'Debug' (sem otimizacoes)"
-COMPILATION_DEBUG=`make CONF=Debug build 2>&1`
-if [ $? == 0 ]; then
-	echo "Compilacao no modo Debug bem sucedida! Parabens!"
+echo "Testando projeto em modo DEBUG.."
+TEST_LOG=`make CONF=Debug test 2>&1`
+if [ "$?" == "0" ]; then
+	NUM_ERRORS=`echo $TEST_LOG | grep 'FAILED' | grep '(' | wc -l`
 else
-	echo "Compilacao falhou! Veja o relatorio:"
-	echo -e "$COMPILATION_DEBUG" | grep "\..pp" | grep -v "g++"
-	echo "Registrando erro.."
-	ERROR=1
-fi;
-python -c "print '-'*100"
-echo "Compilando no modo 'Release' (com otimizacoes)"
-COMPILATION_RELEASE=`make CONF=Release build 2>&1`
-if [ $? == 0 ]; then
-	echo "Compilacao no modo Release bem sucedida! Parabens!"
+	NUM_ERRORS=1
+fi
+if [ "$NUM_ERRORS" == "0" ]; then
+	echo "Nenhum erro encontrado, parabens!"
 else
-	echo "Compilacao falhou! Veja o relatorio:"
-	echo -e "$COMPILATION_RELEASE" | grep "\..pp" | grep -v "g++"
-	echo "Registrando erro.."
+	echo "Encontrado $NUM_ERRORS erros durante o teste. Verifique-os:"
+	echo -e "$TEST_LOG"
 	ERROR=1
-fi;
+fi
 python -c "print '-'*100"
 echo "Limpando arquivos executaveis.."
-make clobber 2>&1 1> /dev/null 
+make clobber 2>/dev/null 1>/dev/null
 echo "Tudo limpo :D"
 python -c "print '-'*100"
 if [ $ERROR == 1 ]; then
