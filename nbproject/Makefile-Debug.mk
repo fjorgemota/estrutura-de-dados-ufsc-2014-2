@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Elemento.o \
 	${OBJECTDIR}/Fila.o \
 	${OBJECTDIR}/Lista.o \
 	${OBJECTDIR}/ListaEnc.o \
@@ -74,11 +73,6 @@ LDLIBSOPTIONS=
 ${TESTDIR}/TestFiles/f2: ${OBJECTFILES}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/Elemento.o: Elemento.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Elemento.o Elemento.cpp
 
 ${OBJECTDIR}/Fila.o: Fila.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -145,19 +139,6 @@ ${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaTest.o tests/PilhaTest.cpp
 
-
-${OBJECTDIR}/Elemento_nomain.o: ${OBJECTDIR}/Elemento.o Elemento.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/Elemento.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -Wall -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Elemento_nomain.o Elemento.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/Elemento.o ${OBJECTDIR}/Elemento_nomain.o;\
-	fi
 
 ${OBJECTDIR}/Fila_nomain.o: ${OBJECTDIR}/Fila.o Fila.cpp 
 	${MKDIR} -p ${OBJECTDIR}

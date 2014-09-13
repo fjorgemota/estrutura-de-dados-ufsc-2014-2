@@ -4,16 +4,15 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Arquivos de Cabeçalho"
                    projectFiles="true">
+      <itemPath>Elemento.hpp</itemPath>
       <itemPath>Fila.hpp</itemPath>
       <itemPath>Lista.hpp</itemPath>
       <itemPath>ListaEnc.hpp</itemPath>
-      <itemPath>Nodo.hpp</itemPath>
       <itemPath>Pilha.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Arquivos de Código-Fonte"
                    projectFiles="true">
-      <itemPath>Elemento.cpp</itemPath>
       <itemPath>Fila.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
       <itemPath>ListaEnc.cpp</itemPath>
@@ -82,7 +81,7 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="Elemento.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -95,8 +94,6 @@
       <item path="ListaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ListaEnc.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Nodo.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pilha.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -207,7 +204,7 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="Elemento.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -220,8 +217,6 @@
       <item path="ListaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ListaEnc.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Nodo.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pilha.cpp" ex="false" tool="1" flavor2="0">
       </item>
