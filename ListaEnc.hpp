@@ -46,8 +46,6 @@ class ListaEnc {
      */
     void adicionaNoInicio(const T& dado);
 
-    
-
     /*!
      * Adiciona um dado valor a uma posição especificada, enquanto os dados então
      * presentes são "empurrados" para cima para a entrada do novo dado
@@ -67,8 +65,7 @@ class ListaEnc {
      * @see ListaEncadeada::insertionSort
      */
     void adicionaEmOrdem(const T& dado);
-   
-    
+
     /*!
      * Remove o último elemento inserido na lista, que é, portanto, 
      * o valor que está menos tempo presente na lista
@@ -88,7 +85,7 @@ class ListaEnc {
      * @see ListaEncadeada::retiraEspecifico
      */
     T retiraDoInicio();
-    
+
     /*!
      * Remove o primeiro valor inserido na lista, que é, portanto,
      * o valor que está mais tempo presente na lista.
@@ -116,28 +113,11 @@ class ListaEnc {
      * @param dado O dado a ser removido da lista
      */
     T retiraEspecifico(T dado);
-    
+
     /*!
      * Apaga todos os valores da lista
      */
     void destroiLista();
-
-    /*!
-     * Pega o valor do último elemento adicionado, 
-     * que está, portanto, menos tempo presente na lista
-     * 
-     * @see ListaEncadeada::pegaValor
-     */
-    T pegaUltimo();
-
-    /*!
-     * Pega o valor da posição especificada
-     * 
-     * @param A posição do qual o elemento deve ser retirado
-     * @see ListaEncadeada::pegaUltimo
-     * @see ListaEncadeada::pegaPrimeiro
-     */
-    T pegaValor(int posicao);
 
     /*!
      * Retorna um booleano indicando se a lista está vazia ou não
@@ -152,17 +132,12 @@ class ListaEnc {
     bool contem(const T& dado);
 
     /*!
-     * Retorna o valor do atributo interno topo
-     */
-    int pegaTopo();
-
-    /*!
      * Retorna a posição de um dado especificado
      * 
      * @param dado O dado cuja posiçao sera retornada
      */
     int posicao(const T& dado);
-    
+
     /*!
      * Retorna a posição da memória de um dado especificado
      * 

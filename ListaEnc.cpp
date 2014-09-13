@@ -36,14 +36,12 @@ void ListaEncadeada<T>::adicionaNoInicio(T valor) {
 template <typename T>
 void ListaEnc<T>::destroiLista() {
     Elemento<T> *atual = this->head;
-    Elemento<T> *anterior;
-    int posicao;
-    while(atual != NULL) {
-        anterior = atual;
+   
+    while (atual != NULL) {
+        Elemento<T> *anterior = atual;
         atual = atual->getProximo();
-        free(atual);
+        delete anterior;
     }
-    free(this->head);
     this->size = 0;
 }
 /*
@@ -124,7 +122,7 @@ template <typename T>
 T ListaEnc<T>::retira() {
     Elemento<T> *ult = this->head;
     if (ult == NULL) {
-       throw "A lista está vazia"; 
+       throw "A lista está vazia";
     }
     this->head = ult->getProximo();
     this->size--;
@@ -142,14 +140,13 @@ T ListaEnc<T>::retiraDoInicio() {
         this->head = NULL;
         valor = ult->getInfo();
         return valor;
-    } 
-    for(int i=0; i < this->size-2; i++) {
+    }
+    for (int i = 0; i < this->size-2; i++) {
         ult = ult->getProximo();
     }
     valor = ult->getProximo()->getInfo();
     ult->setProximo(NULL);
     return valor;
-    
 }
 
 template <typename T>
@@ -162,7 +159,7 @@ bool ListaEnc<T>::contem(const T& dado) {
         if (temporario->getInfo() == dado) {
             return true;
         }
-    } while((temporario = temporario->getProximo()) != NULL);
+    } while ((temporario = temporario->getProximo()) != NULL);
     return false;
 }
 
