@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
 
 class Objeto {};
 
-class ListaEncadeadaTest: public ::testing::Test {
+class ListaEncTest: public ::testing::Test {
  public:
     virtual void SetUp() {
         this->inteiro = ListaEnc<int>();
@@ -23,11 +23,11 @@ class ListaEncadeadaTest: public ::testing::Test {
     ListaEnc<Objeto> obj;
 };
 
-TEST_F(ListaEncadeadaTest, listaVazia) {
+TEST_F(ListaEncTest, listaVazia) {
     ASSERT_TRUE(inteiro.listaVazia());
 }
 
-TEST_F(ListaEncadeadaTest, retira) {
+TEST_F(ListaEncTest, retira) {
     inteiro.adiciona(45);
     inteiro.adiciona(75);
     inteiro.adiciona(6);
@@ -36,7 +36,7 @@ TEST_F(ListaEncadeadaTest, retira) {
     ASSERT_EQ(7, inteiro.retira());
 }
 
-TEST_F(ListaEncadeadaTest, retiraDoInicio) {
+TEST_F(ListaEncTest, retiraDoInicio) {
     inteiro.adiciona(45);
     inteiro.adiciona(75);
     inteiro.adiciona(6);
@@ -44,7 +44,7 @@ TEST_F(ListaEncadeadaTest, retiraDoInicio) {
     ASSERT_EQ(45, inteiro.retiraDoInicio());
 }
 
-TEST_F(ListaEncadeadaTest, contem) {
+TEST_F(ListaEncTest, contem) {
     inteiro.adiciona(45);
     inteiro.adiciona(75);
     inteiro.adiciona(6);
@@ -53,7 +53,7 @@ TEST_F(ListaEncadeadaTest, contem) {
     ASSERT_TRUE(inteiro.contem(75));
 }
 
-TEST_F(ListaEncadeadaTest, posicao) {
+TEST_F(ListaEncTest, posicao) {
     inteiro.adiciona(75);
     inteiro.adiciona(6);
     inteiro.adiciona(7);
@@ -61,7 +61,7 @@ TEST_F(ListaEncadeadaTest, posicao) {
     ASSERT_ANY_THROW(inteiro.posicao(1990));
 }
 
-TEST_F(ListaEncadeadaTest, igual) {
+TEST_F(ListaEncTest, igual) {
     inteiro.adiciona(75);
     inteiro.adiciona(100);
     inteiro.adiciona(53);
@@ -72,7 +72,7 @@ TEST_F(ListaEncadeadaTest, igual) {
 }
 
 /*
-TEST_F(ListaEncadeadaTest, retiraEspecifico) {
+TEST_F(ListaEncTest, retiraEspecifico) {
     inteiro.adiciona(605);
     inteiro.adiciona(123);
     inteiro.adiciona(780);
@@ -83,7 +83,7 @@ TEST_F(ListaEncadeadaTest, retiraEspecifico) {
     ASSERT_FALSE(inteiro.contem(605));
 }
 
-TEST_F(ListaEncadeadaTest, adicionaNoInicio) {
+TEST_F(ListaEncTest, adicionaNoInicio) {
     inteiro.adiciona(75);
     inteiro.adiciona(100);
     inteiro.adiciona(53);
@@ -99,7 +99,7 @@ TEST_F(ListaEncadeadaTest, adicionaNoInicio) {
     ASSERT_ANY_THROW(inteiro.adicionaNoInicio(800));
 }*/
 
-TEST_F(ListaEncadeadaTest, maior) {
+TEST_F(ListaEncTest, maior) {
     inteiro.adiciona(5100);
     inteiro.adiciona(42);
     inteiro.adiciona(6);
@@ -109,7 +109,7 @@ TEST_F(ListaEncadeadaTest, maior) {
     ASSERT_FALSE(inteiro.maior(6, 42));
 }
 
-TEST_F(ListaEncadeadaTest, menor) {
+TEST_F(ListaEncTest, menor) {
     inteiro.adiciona(5100);
     inteiro.adiciona(42);
     inteiro.adiciona(6);
@@ -120,7 +120,7 @@ TEST_F(ListaEncadeadaTest, menor) {
 }
 
 /*
-TEST_F(ListaEncadeadaTest, adicionaNaPosicao) {
+TEST_F(ListaEncTest, adicionaNaPosicao) {
     inteiro.adiciona(51);
     inteiro.adiciona(42);
     inteiro.adiciona(900);
@@ -136,7 +136,7 @@ TEST_F(ListaEncadeadaTest, adicionaNaPosicao) {
 }*/
 
 /*
-TEST_F(ListaEncadeadaTest, retiraDaPosicao) {
+TEST_F(ListaEncTest, retiraDaPosicao) {
     inteiro.adiciona(90);
     inteiro.adiciona(1977);
     inteiro.adiciona(42);
@@ -148,7 +148,7 @@ TEST_F(ListaEncadeadaTest, retiraDaPosicao) {
     ASSERT_ANY_THROW(inteiro.retiraDaPosicao(7));
 }*/
 
-TEST_F(ListaEncadeadaTest, destroiLista) {
+TEST_F(ListaEncTest, destroiLista) {
     inteiro.adiciona(90);
     inteiro.adiciona(1977);
     inteiro.adiciona(42);
@@ -164,7 +164,7 @@ TEST_F(ListaEncadeadaTest, destroiLista) {
 }
 
 /*
-TEST_F(ListaEncadeadaTest, troca) {
+TEST_F(ListaEncTest, troca) {
     inteiro.adiciona(2001);
     inteiro.adiciona(5100);
     inteiro.adiciona(54);
@@ -176,7 +176,7 @@ TEST_F(ListaEncadeadaTest, troca) {
     ASSERT_EQ(5100, inteiro.pegaValor(4));
 }
 
-TEST_F(ListaEncadeadaTest, InsertionSort) {
+TEST_F(ListaEncTest, InsertionSort) {
     inteiro.adiciona(42);
     inteiro.adiciona(7);
     inteiro.adiciona(1995);
@@ -200,7 +200,7 @@ TEST_F(ListaEncadeadaTest, InsertionSort) {
     ASSERT_EQ(5100, inteiro.pegaUltimo());
 }
 
-TEST_F(ListaEncadeadaTest, adicionaEmOrdem) {
+TEST_F(ListaEncTest, adicionaEmOrdem) {
     inteiro.adiciona(42);
     inteiro.adiciona(7);
     inteiro.adiciona(1995);
