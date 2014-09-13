@@ -36,7 +36,7 @@ void ListaEncadeada<T>::adicionaNoInicio(T valor) {
 template <typename T>
 void ListaEnc<T>::destroiLista() {
     Elemento<T> *atual = this->head;
-   
+
     while (atual != NULL) {
         Elemento<T> *anterior = atual;
         atual = atual->getProximo();
