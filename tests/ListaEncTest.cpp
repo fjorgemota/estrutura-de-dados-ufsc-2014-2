@@ -81,7 +81,7 @@ TEST_F(ListaEncTest, retiraEspecifico) {
     ASSERT_ANY_THROW(inteiro.retiraEspecifico(42));
     inteiro.retiraEspecifico(605);
     ASSERT_FALSE(inteiro.contem(605));
-}
+}*/
 
 TEST_F(ListaEncTest, adicionaNoInicio) {
     inteiro.adiciona(75);
@@ -94,10 +94,10 @@ TEST_F(ListaEncTest, adicionaNoInicio) {
     inteiro.adiciona(0);
     inteiro.adiciona(42);
     inteiro.adicionaNoInicio(1995);
-    ASSERT_EQ(1995, inteiro.pegaPrimeiro());
     ASSERT_TRUE(inteiro.contem(1995));
-    ASSERT_ANY_THROW(inteiro.adicionaNoInicio(800));
-}*/
+    ASSERT_EQ(inteiro.retiraDoInicio(), 1995);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 75);
+}
 
 TEST_F(ListaEncTest, maior) {
     inteiro.adiciona(5100);
@@ -119,7 +119,7 @@ TEST_F(ListaEncTest, menor) {
     ASSERT_FALSE(inteiro.menor(42, 6));
 }
 
-/*
+
 TEST_F(ListaEncTest, adicionaNaPosicao) {
     inteiro.adiciona(51);
     inteiro.adiciona(42);
@@ -130,10 +130,17 @@ TEST_F(ListaEncTest, adicionaNaPosicao) {
     inteiro.adiciona(2015);
     inteiro.adiciona(80363);
     inteiro.adiciona(78);
-    inteiro.adicionaNaPosicao(123, 6);
-    ASSERT_EQ(123, inteiro.pegaValor(6));
-    ASSERT_ANY_THROW(inteiro.adicionaNoInicio(321));
-}*/
+    inteiro.adicionaNaPosicao(123, 0);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 123);
+    inteiro.adicionaNaPosicao(43, 1);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 51);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 43);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 42);
+    inteiro.adicionaNaPosicao(50, 2);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 900);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 2600);
+    ASSERT_EQ(inteiro.retiraDoInicio(), 50);
+}
 
 /*
 TEST_F(ListaEncTest, retiraDaPosicao) {
