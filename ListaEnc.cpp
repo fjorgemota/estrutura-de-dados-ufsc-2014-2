@@ -12,6 +12,11 @@ ListaEnc<T>::ListaEnc() {
 }
 
 template <typename T>
+ListaEnc<T>::~ListaEnc() {
+    this->destroiLista();
+}
+
+template <typename T>
 bool ListaEnc<T>::listaVazia() const {
     return this->size == 0;
 }
@@ -35,25 +40,13 @@ void ListaEnc<T>::adicionaNoInicio(const T& valor) {
 }
 
 template <typename T>
-void ListaEnc<T>::destroiLista() {
-    Elemento<T> *atual = this->head;
-
-    while (atual != NULL) {
-        Elemento<T> *anterior = atual;
-        atual = atual->getProximo();
-        delete anterior;
-    }
-    this->size = 0;
-}
-
-template <typename T>
 void ListaEnc<T>::adicionaNaPosicao(const T& valor, int posicao) {
-    if (posicao == 0) {
+    if (posicao == 1) {
         this->adicionaNoInicio(valor);
     } else {
         Elemento<T> *temporario = this->head;
         Elemento<T> *novo;
-        posicao = this->size - posicao - 1;
+        posicao = this->size - posicao;
         int h;
         for (h = 0; h < posicao; h++) {
             temporario = temporario->getProximo();
@@ -67,44 +60,48 @@ void ListaEnc<T>::adicionaNaPosicao(const T& valor, int posicao) {
     }
 }
 
-/*
 template <typename T>
-T ListaEncadeada<T>::retiraDaPosicao(int posicao) {
-    Nodo<T> temporario = this->head;
-    Nodo<T> *temp2;
+void ListaEnc<T>::destroiLista() {
+    Elemento<T> *atual = this->head;
+
+    while (atual != NULL) {
+        Elemento<T> *anterior = atual;
+        atual = atual->getProximo();
+        delete anterior;
+    }
+    this->size = 0;
+}
+
+template <typename T>
+T ListaEnc<T>::retiraDaPosicao(int posicao) {
+    Elemento<T> *temporario = this->head;
+    Elemento<T> *temp2;
     int h;
-    for (h = 0; h < posicao - 1; h++) {
-        temporario = temporario.getProximo();
+    posicao = this->size - posicao - 2 ;
+    if(posicao < 0) {
+        throw "Posicao invalida";
+    }
+    for (h = 0; h < posicao; h++) {
+        temporario = temporario->getProximo();
         if (temporario == NULL) {
             throw "Posiçao invalida";
         }
     }
-    temp2 = temporario.getProximo();
+    temp2 = temporario->getProximo();
     if (temp2 == NULL) {
         throw "Impossível pegar o próximo";
     }
-    temporario.setProximo(temp2->getProximo());
+    temporario->setProximo(temp2->getProximo());
     this->size--;
+    return temp2->getInfo();
 }
 
 template <typename T>
-T ListaEncadeada<T>::retiraEspecifico(T dado) {
+T ListaEnc<T>::retiraEspecifico(T dado) {
     int posicao = this->posicao(dado);
     return this->retiraDaPosicao(posicao);
 }
 
-template <typename T>
-T ListaEncadeada<T>::retiraDoInicio() {
-    Nodo<T> temporario = this->head;
-    Nodo<T> temp2 = temporario.getProximo();
-    if (temp2 == NULL) {
-        throw "Não há valores para retirar";
-    }
-    temporario.setProximo(temp2);
-    this->size--;
-    return temp2;
-}
-*/
 template <typename T>
 int ListaEnc<T>::posicao(const T& dado) {
     int posicao;
@@ -128,7 +125,8 @@ T* ListaEnc<T>::posicaoMem(const T& dado) const {
     Elemento<T> *temporario = this->head;
     for (posicao = 0; posicao <= this->size; posicao++) {
         if (temporario->getInfo() == dado) {
-            return &(temporario->getInfo());
+            T* valor = &(temporario->getInfo());
+            return valor;
         }
         temporario = temporario->getProximo();
         if (temporario == NULL) {
@@ -158,18 +156,42 @@ T ListaEnc<T>::retiraDoInicio() {
     Elemento<T> *ult = this->head;
     T valor;
     if (ult->getProximo() == NULL) {
-        this->head = NULL;
         valor = ult->getInfo();
         this->size--;
+        this->head = NULL;
+        delete ult;
         return valor;
     }
     for (int i = 0; i < this->size-2; i++) {
         ult = ult->getProximo();
     }
     valor = ult->getProximo()->getInfo();
+    delete ult->getProximo();
     ult->setProximo(NULL);
     this->size--;
     return valor;
+}
+
+template <typename T>
+void ListaEnc<T>::eliminaDoInicio() {
+    if (this->listaVazia()) {
+        throw "A lista está vazia";
+    }
+    Elemento<T> *ult = this->head;
+    T valor;
+    if (ult->getProximo() == NULL) {
+        delete ult;
+        this->head = NULL;
+        valor = ult->getInfo();
+        this->size--;
+    }
+    for (int i = 0; i < this->size-2; i++) {
+        ult = ult->getProximo();
+    }
+    valor = ult->getProximo()->getInfo();
+    delete ult->getProximo();
+    ult->setProximo(NULL);
+    this->size--;
 }
 
 template <typename T>
@@ -208,6 +230,20 @@ bool ListaEnc<T>::menor(T dado1, T dado2) {
         return true;
     }
     return false;
+}
+
+template<typename T>
+void ListaEnc<T>::printaLista() {
+    Elemento<T> *ult = this->head;
+    if(ult == NULL) {
+        printf("Nao ha elementos na lista\n");
+        return;
+    }
+    int posicao = this->size - 1;
+    do {
+        printf("Valor do elemento %d: %d\n", posicao, (int) ult->getInfo());
+        posicao--; 
+    } while ((ult = ult->getProximo()) != NULL);
 }
 
 #endif

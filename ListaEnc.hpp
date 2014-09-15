@@ -24,7 +24,12 @@ class ListaEnc {
      /*!
       * Constrói uma lista vazia com o tamanho padrão (30)
       */
-     ListaEnc<T>();
+     ListaEnc();
+     
+     /*!
+      * Libera toda a memória possível da lista. Eliminando-a da memória.
+      */
+     ~ListaEnc();
 
     /*!
      * Adiciona um valor à lista
@@ -118,6 +123,8 @@ class ListaEnc {
      * Apaga todos os valores da lista
      */
     void destroiLista();
+    
+    void printaLista();
 
     /*!
      * Retorna um booleano indicando se a lista está vazia ou não
