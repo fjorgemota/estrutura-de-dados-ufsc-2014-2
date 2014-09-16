@@ -59,7 +59,7 @@ TEST_F(ListaEncTest, posicao) {
     inteiro.adiciona(7);
     ASSERT_EQ(2, inteiro.posicao(7));
     ASSERT_EQ(1, inteiro.posicao(6));
-    ASSERT_EQ(75, inteiro.posicao(0));
+    ASSERT_EQ(0, inteiro.posicao(75));
     ASSERT_ANY_THROW(inteiro.posicao(1990));
 }
 
@@ -174,7 +174,7 @@ TEST_F(ListaEncTest, retiraDaPosicao) {
     ASSERT_EQ(77, inteiro.retiraDoInicio());
 }
 
-TEST_F(ListaEncTest, destroiLista) {
+/*TEST_F(ListaEncTest, destroiLista) {
     inteiro.adiciona(90);
     inteiro.adiciona(1977);
     inteiro.adiciona(42);
@@ -187,7 +187,40 @@ TEST_F(ListaEncTest, destroiLista) {
     inteiro.adiciona(890);
     inteiro.destroiLista();
     ASSERT_TRUE(inteiro.listaVazia());
+}*/
+
+TEST_F(ListaEncTest, adicionaEmOrdem) {
+    inteiro.adiciona(42);
+    inteiro.adiciona(7);
+    inteiro.adiciona(1995);
+    inteiro.adiciona(90);
+    inteiro.adiciona(5100);
+    inteiro.adiciona(1977);
+    inteiro.adicionaEmOrdem(25);
+    ASSERT_EQ(0, inteiro.posicao(25));
+    ASSERT_EQ(1, inteiro.posicao(42));
+    ASSERT_EQ(2, inteiro.posicao(7));
+    ASSERT_EQ(3, inteiro.posicao(1995));
+    ASSERT_EQ(4, inteiro.posicao(90));
+    ASSERT_EQ(5, inteiro.posicao(5100));
+    ASSERT_EQ(6, inteiro.posicao(1977));
 }
+
+/*TEST_F(ListaEncTest, InsertionSort) {
+    inteiro.adiciona(42);
+    inteiro.adiciona(7);
+    inteiro.adiciona(1995);
+    inteiro.adiciona(90);
+    inteiro.adiciona(5100);
+    inteiro.adiciona(1977);
+    inteiro.insertionSort();
+    ASSERT_EQ(0, inteiro.posicao(7));
+    ASSERT_EQ(1, inteiro.posicao(42));
+    ASSERT_EQ(2, inteiro.posicao(90));
+    ASSERT_EQ(3, inteiro.posicao(1977));
+    ASSERT_EQ(4, inteiro.posicao(1995));
+    ASSERT_EQ(5, inteiro.posicao(5100));
+}*/
 
 /*
 TEST_F(ListaEncTest, troca) {
