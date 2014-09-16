@@ -60,6 +60,7 @@ void ListaEnc<T>::adicionaNaPosicao(const T& valor, int posicao) {
     }
 }
 
+
 template <typename T>
 void ListaEnc<T>::adicionaEmOrdem(const T& dado) {
     Elemento<T> *temporario = this->head;
@@ -69,8 +70,8 @@ void ListaEnc<T>::adicionaEmOrdem(const T& dado) {
     }
     // this->insertionSort();
     posicao = 1;
-    while (temporario->getProximo() != NULL && 
-            maior (dado, temporario->getInfo())) {
+    while (temporario->getProximo() != NULL &&
+            maior(dado, temporario->getInfo())) {
         temporario = temporario->getProximo();
         posicao++;
     }
@@ -90,6 +91,7 @@ void ListaEnc<T>::destroiLista() {
         atual = atual->getProximo();
         delete anterior;
     }
+    this->head = NULL;
     this->size = 0;
 }
 
@@ -98,8 +100,8 @@ T ListaEnc<T>::retiraDaPosicao(int posicao) {
     Elemento<T> *temporario = this->head;
     Elemento<T> *temp2;
     int h;
-    posicao = this->size - posicao - 2 ;
-    if(posicao < 0) {
+    posicao = this->size - posicao - 2;
+    if (posicao < 0) {
         throw "Posicao invalida";
     }
     for (h = 0; h < posicao; h++) {
@@ -125,35 +127,29 @@ T ListaEnc<T>::retiraEspecifico(T dado) {
 
 template <typename T>
 int ListaEnc<T>::posicao(const T& dado) {
-    int posicao;
     Elemento<T> *temporario = this->head;
-    for (posicao = 0; posicao <= this->size; posicao++) {
+    int posicao = this->size;
+    do {
+        posicao--;
         if (temporario->getInfo() == dado) {
-            return this->size - posicao - 1;
+            return posicao;
         }
-        temporario = temporario->getProximo();
-        if (temporario == NULL) {
-            throw "Impossível acessar o próximo valor";
-        }
-    }
+    } while ((temporario = temporario->getProximo()) != NULL);
     throw "O valor não pertence à lista";
 }
 
 
 template <typename T>
 T* ListaEnc<T>::posicaoMem(const T& dado) const {
-    int posicao;
     Elemento<T> *temporario = this->head;
-    for (posicao = 0; posicao <= this->size; posicao++) {
+    int posicao = this->size;
+    do {
+        posicao--;
         if (temporario->getInfo() == dado) {
-            T* valor = &(temporario->getInfo());
-            return valor;
+            T valor = temporario->getInfo();
+            return &valor;
         }
-        temporario = temporario->getProximo();
-        if (temporario == NULL) {
-            throw "Impossível acessar o próximo valor";
-        }
-    }
+    } while ((temporario = temporario->getProximo()) != NULL);
     throw "O valor não pertence à lista";
 }
 
@@ -252,41 +248,5 @@ bool ListaEnc<T>::menor(T dado1, T dado2) {
     }
     return false;
 }
-
-/*template<typename T>
-void ListaEnc<T>::printaLista() {
-    Elemento<T> *ult = this->head;
-    if(ult == NULL) {
-        printf("Nao ha elementos na lista\n");
-        return;
-    }
-    int posicao = this->size - 1;
-    do {
-        printf("Valor do elemento %d: %d\n", posicao, (int) ult->getInfo());
-        posicao--; 
-    } while ((ult = ult->getProximo()) != NULL);
-}*/
-
-
-/*template <typename T>
-void ListaEnc<T>::insertionSort() {
-    int h;
-    Elemento<T> *temporario = this->head;
-    Elemento<T> *temp2 = temporario->getProximo();
-    if (temp2 == NULL) {
-        throw "Impossível ordenar";
-    }
-    for (h = 1; h <= this->size; h++) {
-        if (temporario->getInfo() > temp2->getInfo()) {
-            this->adicionaNoInicio(temp2->getInfo());
-            this->retiraDaPosicao(h+1);
-            temp2 = temp2->getProximo()->getProximo();
-            temporario = temporario->getProximo()->getProximo();
-        } else {
-            temp2 = temp2->getProximo();
-            temporario = temporario->getProximo();
-        }
-    }
-}*/
 
 #endif

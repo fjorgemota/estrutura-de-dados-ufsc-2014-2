@@ -25,7 +25,7 @@ class ListaEnc {
       * Constrói uma lista vazia com o tamanho padrão (30)
       */
      ListaEnc();
-     
+
      /*!
       * Libera toda a memória possível da lista. Eliminando-a da memória.
       */
@@ -70,6 +70,11 @@ class ListaEnc {
      * @see ListaEncadeada::insertionSort
      */
     void adicionaEmOrdem(const T& dado);
+
+    /*!
+     * Organiza os dados de um vetor em ordem crescente
+     */
+    void insertionSort();
 
     /*!
      * Remove o último elemento inserido na lista, que é, portanto, 
@@ -123,8 +128,6 @@ class ListaEnc {
      * Apaga todos os valores da lista
      */
     void destroiLista();
-    
-    void printaLista();
 
     /*!
      * Retorna um booleano indicando se a lista está vazia ou não
@@ -175,11 +178,6 @@ class ListaEnc {
      * @param dado2 O segundo dado a ser comparado com a segundo
      */
     bool menor(T dado1, T dado2);
-
-    /*!
-     * Organiza os dados de um vetor em ordem crescente
-     */
-    void insertionSort();
 };
 #include "ListaEnc.cpp"
 #endif /* LISTA_ENCADEADA_HPP */
