@@ -74,7 +74,6 @@ void ListaEnc<T>::adicionaEmOrdem(const T& dado) {
     if (this->listaVazia()) {
         this->adicionaNoInicio(dado);
     }
-    // this->insertionSort();
     posicao = 1;
     while (temporario->getProximo() != NULL &&
             maior(dado, temporario->getInfo())) {
