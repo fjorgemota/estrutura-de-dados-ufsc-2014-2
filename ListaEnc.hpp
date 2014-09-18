@@ -67,14 +67,8 @@ class ListaEnc {
      * Adiciona o elemento à lista logo após a algum dado inferior a ele
      * 
      * @param dado O dado a ser adicionado à lista
-     * @see ListaEncadeada::insertionSort
      */
     void adicionaEmOrdem(const T& dado);
-
-    /*!
-     * Organiza os dados de um vetor em ordem crescente
-     */
-    void insertionSort();
 
     /*!
      * Remove o último elemento inserido na lista, que é, portanto, 
