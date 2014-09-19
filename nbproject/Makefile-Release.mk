@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/729564531/FilaEnc.o \
 	${OBJECTDIR}/Fila.o \
 	${OBJECTDIR}/Lista.o \
 	${OBJECTDIR}/ListaEnc.o \
@@ -46,6 +47,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f4 \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/estrutura-de-dados-ufsc-2014-2 \
@@ -75,6 +77,11 @@ LDLIBSOPTIONS=
 ${TESTDIR}/TestFiles/f2: ${OBJECTFILES}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/_ext/729564531/FilaEnc.o: /home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/729564531
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/729564531/FilaEnc.o /home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp
 
 ${OBJECTDIR}/Fila.o: Fila.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -106,6 +113,10 @@ ${OBJECTDIR}/PilhaEnc.o: PilhaEnc.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/_ext/962120059/FilaEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
 ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/FilaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
@@ -125,6 +136,12 @@ ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/PilhaEncTest.o ${OBJECTFILES:%.o=%_nom
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
+
+${TESTDIR}/_ext/962120059/FilaEncTest.o: /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp 
+	${MKDIR} -p ${TESTDIR}/_ext/962120059
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/962120059/FilaEncTest.o /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp
 
 
 ${TESTDIR}/tests/FilaTest.o: tests/FilaTest.cpp 
@@ -156,6 +173,19 @@ ${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaTest.o tests/PilhaTest.cpp
 
+
+${OBJECTDIR}/_ext/729564531/FilaEnc_nomain.o: ${OBJECTDIR}/_ext/729564531/FilaEnc.o /home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/729564531
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/729564531/FilaEnc.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/729564531/FilaEnc_nomain.o /home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/729564531/FilaEnc.o ${OBJECTDIR}/_ext/729564531/FilaEnc_nomain.o;\
+	fi
 
 ${OBJECTDIR}/Fila_nomain.o: ${OBJECTDIR}/Fila.o Fila.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -226,6 +256,7 @@ ${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/estrutura-de-dados-ufsc-2014-2 || true; \

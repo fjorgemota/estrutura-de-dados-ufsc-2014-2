@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="94">
+<configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Arquivos de Cabeçalho"
@@ -28,6 +28,12 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f5"
+                     displayName="FilaEncTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f3" displayName="FilaTest" projectFiles="true" kind="TEST">
         <itemPath>tests/FilaTest.cpp</itemPath>
       </logicalFolder>
@@ -89,6 +95,21 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
@@ -233,6 +254,21 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
