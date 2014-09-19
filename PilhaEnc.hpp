@@ -8,9 +8,9 @@
  * Classe que representa uma pilha encadeada, como tal, tem seus elementos
  * adicionados e retirados a partir do topo, no estilo first-in last-out (primeiro
  * a entrar e último a sair).
- * 
- * @see: ListaEnc::empilha()
- * @see: ListaEnc::desempilha()
+ *
+ * @see: PilhaEnc::empilha()
+ * @see: PilhaEnc::desempilha()
  */
 template <typename T>
 class PilhaEnc {
@@ -18,14 +18,14 @@ class PilhaEnc {
     ListaEnc<T> *pilhaEnc;  //!< A lista encadeada no qual os elementos
                             //!<  da pilha serão guardados
  public:
-    /*!  
+    /*!
      * Constrói uma pilha encadeada vazia
      */
     PilhaEnc();
 
     /*!
      * Adiciona ao topo da pilha um valor especificado
-     * 
+     *
      * @param: dado O dado a ser adicionado na pilha
      */
     void empilha(const T& dado);
@@ -37,7 +37,7 @@ class PilhaEnc {
 
     /*!
      * Verifica se um dado valor pertence à pilha
-     * 
+     *
      * @param dado O dado a ser verificado
      */
     bool contem(const T& dado);
