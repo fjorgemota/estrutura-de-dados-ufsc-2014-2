@@ -34,7 +34,7 @@
                      displayName="FilaEncTest"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp</itemPath>
+        <itemPath>tests/FilaEncTest.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="FilaTest" projectFiles="true" kind="TEST">
         <itemPath>tests/FilaTest.cpp</itemPath>
@@ -97,11 +97,6 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
@@ -199,10 +194,12 @@
         <cTool>
           <incDir>
             <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <incDir>
+            <pElem>.</pElem>
             <pElem>.</pElem>
           </incDir>
         </ccTool>
@@ -210,6 +207,8 @@
           <output>${TESTDIR}/TestFiles/f5</output>
         </linkerTool>
       </folder>
+      <item path="tests/FilaEncTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaEncTest.cpp" ex="false" tool="1" flavor2="0">
@@ -250,11 +249,6 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="Elemento.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
@@ -337,10 +331,12 @@
         <cTool>
           <incDir>
             <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <incDir>
+            <pElem>.</pElem>
             <pElem>.</pElem>
           </incDir>
         </ccTool>
@@ -348,6 +344,8 @@
           <output>${TESTDIR}/TestFiles/f5</output>
         </linkerTool>
       </folder>
+      <item path="tests/FilaEncTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaEncTest.cpp" ex="false" tool="1" flavor2="0">

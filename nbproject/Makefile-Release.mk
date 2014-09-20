@@ -113,7 +113,7 @@ ${OBJECTDIR}/PilhaEnc.o: PilhaEnc.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f5: ${TESTDIR}/_ext/962120059/FilaEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/FilaEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
@@ -138,10 +138,10 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
 
-${TESTDIR}/_ext/962120059/FilaEncTest.o: /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp 
-	${MKDIR} -p ${TESTDIR}/_ext/962120059
+${TESTDIR}/tests/FilaEncTest.o: tests/FilaEncTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/962120059/FilaEncTest.o /home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp
+	$(COMPILE.cc) -O2 -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/FilaEncTest.o tests/FilaEncTest.cpp
 
 
 ${TESTDIR}/tests/FilaTest.o: tests/FilaTest.cpp 
