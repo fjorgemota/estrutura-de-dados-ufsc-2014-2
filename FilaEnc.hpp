@@ -36,7 +36,7 @@ class FilaEnc {
     T retira();
 
     /*!
-     * Retira um elemento do inicio da lista
+     * Retira um elemento do inicio da fila
      */
     T retiraDoInicio();
 };
