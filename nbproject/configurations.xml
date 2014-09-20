@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Elemento.hpp</itemPath>
       <itemPath>Fila.hpp</itemPath>
+      <itemPath>FilaEnc.hpp</itemPath>
       <itemPath>Lista.hpp</itemPath>
       <itemPath>ListaEnc.hpp</itemPath>
       <itemPath>Pilha.hpp</itemPath>
@@ -15,6 +16,7 @@
                    displayName="Arquivos de Código-Fonte"
                    projectFiles="true">
       <itemPath>Fila.cpp</itemPath>
+      <itemPath>FilaEnc.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
       <itemPath>ListaEnc.cpp</itemPath>
       <itemPath>Pilha.cpp</itemPath>
@@ -95,16 +97,6 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
             ex="false"
             tool="1"
@@ -115,6 +107,10 @@
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fila.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FilaEnc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FilaEnc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Lista.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -254,16 +250,6 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/FilaEnc.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="/home/fernando/estrutura-de-dados-ufsc-2014-2/tests/FilaEncTest.cpp"
             ex="false"
             tool="1"
@@ -274,6 +260,10 @@
       <item path="Fila.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fila.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FilaEnc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FilaEnc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Lista.cpp" ex="false" tool="1" flavor2="0">
       </item>
