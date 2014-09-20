@@ -1,0 +1,118 @@
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
+
+#include "gtest/gtest.h"
+#include "ListaDupEnc.hpp"
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+class Objeto {};
+
+class ListaDupEncTest: public ::testing::Test {
+ public:
+    virtual void SetUp() {
+        this->obj = ListaDupEnc<Objeto>();
+        this->inteiros = ListaDupEnc<int>();
+    }
+
+ protected:
+     ListaDupEnc<int> inteiros;
+     ListaDupEnc<Objeto> obj;
+};
+
+TEST_F(ListaDupEncTest, listaVaziaDuplo) {
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, adicionaDuplo) {
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+    inteiros.adicionaNoInicioDuplo(5100);
+    inteiros.adicionaDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, adicionaNoInicioDuplo) {
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+    inteiros.adicionaNoInicioDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaNaPosicaoDuplo(55, 2);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, retiraDoInicioDuplo) {
+    inteiros.adicionaNoInicioDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaNaPosicaoDuplo(55, 2);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+    ASSERT_EQ(42, inteiros.retiraDoInicioDuplo());
+    ASSERT_EQ(55, inteiros.retiraDoInicioDuplo());
+    ASSERT_EQ(1995, inteiros.retiraDoInicioDuplo());
+    ASSERT_EQ(2014, inteiros.retiraDoInicioDuplo());
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, retiraDuplo) {
+    inteiros.adicionaNoInicioDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaDuplo(5100);
+    inteiros.adicionaDuplo(90);
+    inteiros.adicionaNoInicioDuplo(55);
+    inteiros.adicionaNaPosicaoDuplo(77, 2);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+    ASSERT_TRUE(inteiros.contem(42));
+    ASSERT_EQ(90, inteiros.retiraDuplo());
+    ASSERT_EQ(5100, inteiros.retiraDuplo());
+    ASSERT_EQ(2014, inteiros.retiraDuplo());
+    ASSERT_EQ(1995, inteiros.retiraDuplo());
+    ASSERT_EQ(42, inteiros.retiraDuplo());
+    ASSERT_EQ(77, inteiros.retiraDuplo());
+    ASSERT_EQ(55, inteiros.retiraDuplo());
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, posicaoDuplo) {
+    inteiros.adicionaNoInicioDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaDuplo(5100);
+    inteiros.adicionaDuplo(90);
+    inteiros.adicionaNoInicioDuplo(55);
+    // Posição imprecisa (veja teste abaixo)
+    inteiros.adicionaNaPosicaoDuplo(77, 3);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+    ASSERT_EQ(0, inteiros.posicaoDuplo(55));
+    ASSERT_EQ(1, inteiros.posicaoDuplo(42));
+    ASSERT_EQ(2, inteiros.posicaoDuplo(77));
+    ASSERT_EQ(3, inteiros.posicaoDuplo(1995));
+    ASSERT_EQ(4, inteiros.posicaoDuplo(2014));
+    ASSERT_EQ(5, inteiros.posicaoDuplo(5100));
+    ASSERT_EQ(6, inteiros.posicaoDuplo(90));
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+}
+
+TEST_F(ListaDupEncTest, contem) {
+    inteiros.adicionaNoInicioDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaDuplo(5100);
+    inteiros.adicionaDuplo(90);
+    inteiros.adicionaNoInicioDuplo(55);
+    inteiros.adicionaNaPosicaoDuplo(77, 3);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+    ASSERT_TRUE(inteiros.contem(42));
+    ASSERT_TRUE(inteiros.contem(1995));
+    ASSERT_TRUE(inteiros.contem(2014));
+    ASSERT_TRUE(inteiros.contem(5100));
+    ASSERT_TRUE(inteiros.contem(90));
+    // ASSERT_TRUE(inteiros.contem(55)); --falha
+    ASSERT_TRUE(inteiros.contem(77));
+    ASSERT_FALSE(inteiros.contem(50));
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+}
