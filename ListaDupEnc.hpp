@@ -9,8 +9,8 @@
  * podem ser adicionados, removidos e vistos a partir de uma dada direçao e pelo
  * sentido contrario, inclusive.
  * 
- * @see: ListaDupEnc::adicionaDupla
- * @see: ListaDupEnc::removeDupla
+ * @see: ListaDupEnc::adicionaDuplo
+ * @see: ListaDupEnc::retiraDuplo
  */
 template <typename T>
 class ListaDupEnc {
@@ -29,7 +29,7 @@ class ListaDupEnc {
       * Adiciona um novo elemento ao início da lista
       * 
       * @param dado O dado a ser armazenado na lista duplemente encadeada
-      * @see: ListaDupEnc::adiciona
+      * @see: ListaDupEnc::adicionaDuplo
       * @see: ListaDupEnc::adicionaNaPosicaoDuplo
       */
      void adicionaNoInicioDuplo(const T& dado);
@@ -39,7 +39,7 @@ class ListaDupEnc {
       * 
       * @param: dado O dado a ser armazenado na lista duplamente encadeada
       * @param: posicao A posicao que o dado será guardado
-      * @see: ListaDupEnc::adiciona
+      * @see: ListaDupEnc::adicionaDuplo
       * @see: ListaDupEnc::adicionaNoInicioDuplo
       */
      void adicionaNaPosicaoDuplo(const T& dado, int posicao);
@@ -56,8 +56,9 @@ class ListaDupEnc {
      /*!
       * Remove o primeiro elemento presente da lista duplamente encadeada
       * 
-      * @see: ListaEncDup::retira
-      * @see: ListaEncDup::retiraDaPosicaoDuplo
+      * @see: ListaDupEnc::retira
+      * @see: ListaDupEnc::retiraDaPosicaoDuplo
+      * @see: ListaDupEnc::retiraEspecificoDuplo
       */
      T retiraDoInicioDuplo();
 
@@ -66,8 +67,9 @@ class ListaDupEnc {
       * especificada
       * 
       * @param: posicao A posicao do dado que será removido
-      * @see: ListaEncDup::retiraDuplo
-      * @see: ListaEncDup::retiraDoInicioDuplo
+      * @see: ListaDupEnc::retiraDuplo
+      * @see: ListaDupEnc::retiraDoInicioDuplo
+      * @see: ListaDupEnc::retiraEspecificoDuplo
       */
      T retiraDaPosicaoDuplo(int posicao);
 
@@ -77,8 +79,19 @@ class ListaDupEnc {
       * 
       * @see: ListaDupEnc::retiraDoInicioDuplo
       * @see: ListaDupEnc::retiraDaPosicaoDuplo
+      * @see: ListaDupEnc::retiraEspecificoDuplo
       */
      T retiraDuplo();
+
+     /*!
+      * Remove da lista duplamente encadeada um valor especifico
+      * 
+      * @param dado O dado a ser removido da lista duplamente encadeada
+      * @see: ListaDupEnc::retiraDoInicioDuplo
+      * @see: ListaDupEnc::retiraDuplo
+      * @see: ListaDupEnc::retiraDaPosicao
+      */
+     T retiraEspecificoDuplo(const T& dado);
 
      /*!
       * Verifica se a lista duplamente encadeada esta vazia;

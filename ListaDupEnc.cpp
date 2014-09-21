@@ -12,14 +12,24 @@ ListaDupEnc<T>::ListaDupEnc() {
 }
 
 template <typename T>
+void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        return this->adicionaNoInicioDuplo(dado);
+    }
+    while (temporario->getProximo() != NULL) {
+        temporario = temporario->getProximo();
+    }
+    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
+    this->size++;
+}
+
+template <typename T>
 void ListaDupEnc<T>::adicionaNoInicioDuplo(const T& dado) {
     ElementoDuplo<T> *novo = new ElementoDuplo<T>(NULL, dado, this->head);
-    if (novo == NULL) {
-        throw "Nao e possivel adicionar mais valores a lista";
-    }
     this->head = novo;
-    if (novo->getSucessor() != NULL) {
-        novo->getSucessor()->setAnterior(novo);
+    if (novo->getProximo() != NULL) {
+        novo->getProximo()->setAnterior(novo);
     }
     this->size++;
 }
@@ -38,27 +48,16 @@ void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
         if (anterior == NULL) {
             throw "Não é possível adicionar valores";
         }
-        anterior = anterior->getSucessor();
+        anterior = anterior->getProximo();
     }
-    novo = new ElementoDuplo<T>(anterior, dado, anterior->getSucessor());
-    if (novo->getSucessor() != NULL) {
-        novo->getSucessor()->setAnterior(novo);
+    if (anterior == NULL) {
+        throw "Não é possível adicionar valores";
     }
-    anterior->setSucessor(novo);
-    this->size++;
-}
-
-template <typename T>
-void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
-        throw "Impossível adicionar";
+    novo = new ElementoDuplo<T>(anterior, dado, anterior->getProximo());
+    if (novo->getProximo() != NULL) {
+        novo->getProximo()->setAnterior(novo);
     }
-    while (temporario->getSucessor() != NULL) {
-        temporario = temporario->getSucessor();
-    }
-    temporario->setSucessor(new ElementoDuplo<T>(temporario->getAnterior(),
-                                                    dado, NULL));
+    anterior->setProximo(novo);
     this->size++;
 }
 
@@ -77,8 +76,9 @@ T ListaDupEnc<T>::retiraDoInicioDuplo() {
     if (temporario == NULL) {
         throw "Impossível remover";
     }
-    this->head = temporario->getSucessor();
+    this->head = temporario->getProximo();
     valor = temporario->getInfo();
+    delete this->head->getAnterior();
     if (this->head != NULL) {
         this->head->setAnterior(NULL);
     }
@@ -102,13 +102,16 @@ T ListaDupEnc<T>::retiraDaPosicaoDuplo(int posicao) {
         if (temporario == NULL) {
             throw "Impossível remover";
         }
-        temporario = temporario->getAnterior();
+        temporario = temporario->getProximo();
     }
-    ElementoDuplo<T> *remover = temporario->getSucessor();
+    if (temporario == NULL) {
+        throw "Impossível remover";
+    }
+    ElementoDuplo<T> *remover = temporario->getProximo();
     valor = remover->getInfo();
-    temporario->setSucessor(remover->getSucessor());
-    if (temporario->getSucessor() != NULL) {
-        remover->getSucessor()->setAnterior(temporario);
+    temporario->setProximo(remover->getProximo());
+    if (temporario->getProximo() != NULL) {
+        remover->getProximo()->setAnterior(temporario);
     }
     this->size--;
     return valor;
@@ -122,7 +125,7 @@ T ListaDupEnc<T>::retiraDuplo() {
     T valor;
     int contador;
     ElementoDuplo<T> *temporario = this->head;
-    if (temporario->getSucessor() == NULL) {
+    if (temporario->getProximo() == NULL) {
         valor = temporario->getInfo();
         this->head = NULL;
         this->size--;
@@ -130,13 +133,31 @@ T ListaDupEnc<T>::retiraDuplo() {
         return valor;
     }
     for (contador = 0; contador < this->size-2; contador++) {
-        temporario = temporario->getSucessor();
+        temporario = temporario->getProximo();
     }
-    valor = temporario->getSucessor()->getInfo();
-    delete temporario->getSucessor();
-    temporario->setSucessor(NULL);
+    valor = temporario->getProximo()->getInfo();
+    delete temporario->getProximo();
+    temporario->setProximo(NULL);
     this->size--;
     return valor;
+}
+
+template <typename T>
+T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
+    if (this->listaVaziaDuplo()) {
+        throw "A lista esta vazia";
+    }
+    int contador = 0;
+    ElementoDuplo<T> *temporario = this->head;
+    while (temporario != NULL) {
+        if (temporario->getInfo() == dado) {
+            this->size--;
+            return this->retiraDaPosicaoDuplo(contador);
+        }
+        temporario = temporario->getProximo();
+        contador++;
+    }
+    throw "O elemento não está presente na lista";
 }
 
 template <typename T>
@@ -145,12 +166,11 @@ bool ListaDupEnc<T>::contem(const T& dado) {
     if (temporario == NULL) {
         throw "A lista está vazia";
     }
-    while (temporario->getSucessor() != NULL) {
-        temporario = temporario->getSucessor();
+    do {
         if (temporario->getInfo() == dado) {
             return true;
         }
-    }
+    } while ((temporario = temporario->getProximo()) != NULL);
     return false;
 }
 
@@ -165,7 +185,7 @@ int ListaDupEnc<T>::posicaoDuplo(const T& dado) {
         if (temporario->getInfo() == dado) {
             return contador;
         }
-        temporario = temporario->getSucessor();
+        temporario = temporario->getProximo();
     }
     throw "O elemento não pertence à lista duplamente encadeada";
 }

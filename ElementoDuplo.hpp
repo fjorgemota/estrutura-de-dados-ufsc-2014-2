@@ -49,7 +49,7 @@ class ElementoDuplo {
     /*!
      * Retorna o valor que está apontando para o secessor
      */
-    ElementoDuplo<T> *getSucessor() const {
+    ElementoDuplo<T> *getProximo() const {
         return this->sucessor;
     }
 
@@ -66,7 +66,7 @@ class ElementoDuplo {
      * 
      * @param: novo O novo elemento duplo que será apontado pelo atual
      */
-    void setSucessor(ElementoDuplo<T> *novo) {
+    void setProximo(ElementoDuplo<T> *novo) {
         this->sucessor = novo;
     }
 
