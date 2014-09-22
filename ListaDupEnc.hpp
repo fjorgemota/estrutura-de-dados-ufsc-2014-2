@@ -56,7 +56,7 @@ class ListaDupEnc {
      /*!
       * Remove o primeiro elemento presente da lista duplamente encadeada
       * 
-      * @see: ListaDupEnc::retira
+      * @see: ListaDupEnc::retiraDuplo
       * @see: ListaDupEnc::retiraDaPosicaoDuplo
       * @see: ListaDupEnc::retiraEspecificoDuplo
       */
@@ -111,6 +111,30 @@ class ListaDupEnc {
       * @param: dado O dado a ser verificado
       */
      int posicaoDuplo(const T& dado);
+
+     /*!
+     * Verifica se os dois dados especificados da lista são iguais
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com o primeiro
+     */
+    bool igual(T dado1, T dado2);
+
+    /*!
+     * Verifica se o primeiro dado especificado é maior que o segundo
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com o primeiro
+     */
+    bool maior(T dado1, T dado2);
+
+    /*!
+     * Verifica se o primeiro dado especificado é menor que o segundo
+     * 
+     * @param dado1 O primeiro dado a ser comparado com o segundo
+     * @param dado2 O segundo dado a ser comparado com a segundo
+     */
+    bool menor(T dado1, T dado2);
 };
 #include "ListaDupEnc.cpp"
 #endif /* LISTADUPENC_HPP */

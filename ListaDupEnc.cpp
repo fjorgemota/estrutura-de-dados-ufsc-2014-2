@@ -42,9 +42,10 @@ void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
         throw "Posicao inválida";
     }
     int contagem;
+    posicao -= 1;
     ElementoDuplo<T> *novo;
     ElementoDuplo<T> *anterior = this->head;
-    for (contagem = 0; contagem < posicao-2; contagem++) {
+    for (contagem = 0; contagem < posicao; contagem++) {
         if (anterior == NULL) {
             throw "Não é possível adicionar valores";
         }
@@ -78,9 +79,9 @@ T ListaDupEnc<T>::retiraDoInicioDuplo() {
     }
     this->head = temporario->getProximo();
     valor = temporario->getInfo();
-    delete this->head->getAnterior();
     if (this->head != NULL) {
         this->head->setAnterior(NULL);
+        delete this->head->getAnterior();
     }
     this->size--;
     return valor;
@@ -97,8 +98,9 @@ T ListaDupEnc<T>::retiraDaPosicaoDuplo(int posicao) {
     }
     int contagem;
     T valor;
+    posicao -= 1;
     ElementoDuplo<T> *temporario = this->head;
-    for (contagem = 0; contagem < posicao-2; contagem++) {
+    for (contagem = 0; contagem < posicao; contagem++) {
         if (temporario == NULL) {
             throw "Impossível remover";
         }
@@ -151,7 +153,6 @@ T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     while (temporario != NULL) {
         if (temporario->getInfo() == dado) {
-            this->size--;
             return this->retiraDaPosicaoDuplo(contador);
         }
         temporario = temporario->getProximo();
@@ -188,6 +189,30 @@ int ListaDupEnc<T>::posicaoDuplo(const T& dado) {
         temporario = temporario->getProximo();
     }
     throw "O elemento não pertence à lista duplamente encadeada";
+}
+
+template <typename T>
+bool ListaDupEnc<T>::igual(T dado1, T dado2) {
+    if (dado1 == dado2) {
+        return true;
+    }
+    return false;
+}
+
+template <typename T>
+bool ListaDupEnc<T>::maior(T dado1, T dado2) {
+    if (dado1 > dado2) {
+        return true;
+    }
+    return false;
+}
+
+template <typename T>
+bool ListaDupEnc<T>::menor(T dado1, T dado2) {
+    if (dado1 < dado2) {
+        return true;
+    }
+    return false;
 }
 
 #endif
