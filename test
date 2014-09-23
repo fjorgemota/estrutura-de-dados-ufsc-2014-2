@@ -1,6 +1,7 @@
 #!/bin/bash
 FILES=`find . | grep \..pp\$`
 ERROR=0
+INPUT_DIR=`pwd`
 for FILE in $FILES; do
 	echo "Checando $FILE"
 	CPPLINT_ERRORS=`./cpplint.py --extensions=hpp,cpp --root=$INPUT_DIR $FILE  2>&1 >/dev/null`
