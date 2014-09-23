@@ -146,21 +146,10 @@ T ListaDupEnc<T>::retiraDuplo() {
 
 template <typename T>
 T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
-    if (this->listaVaziaDuplo()) {
-        throw "A lista esta vazia";
-    }
-    int contador = 0;
-    ElementoDuplo<T> *temporario = this->head;
-    while (temporario != NULL) {
-        if (temporario->getInfo() == dado) {
-            return this->retiraDaPosicaoDuplo(contador);
-        }
-        temporario = temporario->getProximo();
-        contador++;
-    }
-    throw "O elemento não está presente na lista";
+    int resultado = this->posicaoDuplo(dado);
+    return this->retiraDaPosicaoDuplo(resultado);
 }
-
+    
 template <typename T>
 bool ListaDupEnc<T>::contem(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
