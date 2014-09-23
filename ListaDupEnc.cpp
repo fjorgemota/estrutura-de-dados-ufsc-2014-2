@@ -149,7 +149,7 @@ T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
     int resultado = this->posicaoDuplo(dado);
     return this->retiraDaPosicaoDuplo(resultado);
 }
-    
+
 template <typename T>
 bool ListaDupEnc<T>::contem(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
