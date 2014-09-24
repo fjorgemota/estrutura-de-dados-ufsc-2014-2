@@ -59,6 +59,27 @@ TEST_F(ListaDupEncTest, adicionaNoInicioDuplo) {
     ASSERT_FALSE(inteiros.contem(2600));
 }
 
+
+TEST_F(ListaDupEncTest, adicionaEmOrdemDuplo) {
+    inteiros.adicionaEmOrdemDuplo(2);
+    inteiros.adicionaDuplo(42);
+    inteiros.adicionaDuplo(7);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(90);
+    inteiros.adicionaDuplo(5100);
+    inteiros.adicionaDuplo(1977);
+    inteiros.adicionaEmOrdemDuplo(25);
+    ASSERT_EQ(0, inteiros.posicaoDuplo(2));
+    ASSERT_EQ(1, inteiros.posicaoDuplo(25));
+    ASSERT_EQ(2, inteiros.posicaoDuplo(42));
+    ASSERT_EQ(3, inteiros.posicaoDuplo(7));
+    ASSERT_EQ(4, inteiros.posicaoDuplo(1995));
+    ASSERT_EQ(5, inteiros.posicaoDuplo(90));
+    ASSERT_EQ(6, inteiros.posicaoDuplo(5100));
+    ASSERT_EQ(7, inteiros.posicaoDuplo(1977));
+}
+
+
 TEST_F(ListaDupEncTest, retiraDoInicioDuplo) {
     inteiros.adicionaDuplo(42);
     inteiros.adicionaDuplo(1995);

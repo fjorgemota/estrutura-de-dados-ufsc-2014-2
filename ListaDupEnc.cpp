@@ -12,19 +12,6 @@ ListaDupEnc<T>::ListaDupEnc() {
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
-        return this->adicionaNoInicioDuplo(dado);
-    }
-    while (temporario->getProximo() != NULL) {
-        temporario = temporario->getProximo();
-    }
-    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
-    this->size++;
-}
-
-template <typename T>
 void ListaDupEnc<T>::adicionaNoInicioDuplo(const T& dado) {
     ElementoDuplo<T> *novo = new ElementoDuplo<T>(NULL, dado, this->head);
     this->head = novo;
@@ -59,6 +46,41 @@ void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
         novo->getProximo()->setAnterior(novo);
     }
     anterior->setProximo(novo);
+    this->size++;
+}
+
+template <typename T>
+void ListaDupEnc<T>::adicionaEmOrdemDuplo(const T& dado) {
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        return this->adicionaNoInicioDuplo(dado);
+    }
+    if (this->listaVaziaDuplo()) {
+        this->adicionaNoInicioDuplo(dado);
+    }
+    int posicao = 1;
+    while (temporario->getProximo() != NULL &&
+            this->maior(dado, temporario->getInfo())) {
+        temporario = temporario->getProximo();
+        posicao++;
+    }
+    if (this->maior(dado, temporario->getInfo())) {
+        this->adicionaNaPosicaoDuplo(dado, posicao);
+    } else {
+        this->adicionaNaPosicaoDuplo(dado, posicao-1);
+    }
+}
+
+template <typename T>
+void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        return this->adicionaNoInicioDuplo(dado);
+    }
+    while (temporario->getProximo() != NULL) {
+        temporario = temporario->getProximo();
+    }
+    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
     this->size++;
 }
 
