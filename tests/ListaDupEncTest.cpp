@@ -92,6 +92,21 @@ TEST_F(ListaDupEncTest, retiraDuplo) {
     ASSERT_TRUE(inteiros.listaVaziaDuplo());
 }
 
+TEST_F(ListaDupEncTest, destroiListaDuplo) {
+    inteiros.adicionaDuplo(42);
+    inteiros.adicionaDuplo(1995);
+    inteiros.adicionaDuplo(2014);
+    inteiros.adicionaDuplo(5100);
+    inteiros.adicionaDuplo(90);
+    inteiros.adicionaNoInicioDuplo(55);
+    inteiros.adicionaNaPosicaoDuplo(77, 2);
+    ASSERT_FALSE(inteiros.listaVaziaDuplo());
+    ASSERT_TRUE(inteiros.contem(42));
+    inteiros.destroiListaDuplo();
+    ASSERT_ANY_THROW(inteiros.contem(42));
+    ASSERT_TRUE(inteiros.listaVaziaDuplo());
+}
+
 TEST_F(ListaDupEncTest, posicaoDuplo) {
     inteiros.adicionaDuplo(42);
     inteiros.adicionaDuplo(1995);

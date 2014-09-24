@@ -63,11 +63,6 @@ void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
 }
 
 template <typename T>
-bool ListaDupEnc<T>::listaVaziaDuplo() {
-    return this->size == 0;
-}
-
-template <typename T>
 T ListaDupEnc<T>::retiraDoInicioDuplo() {
     if (this->listaVaziaDuplo()) {
         throw "A lista está vazia";
@@ -148,6 +143,24 @@ template <typename T>
 T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
     int resultado = this->posicaoDuplo(dado);
     return this->retiraDaPosicaoDuplo(resultado);
+}
+
+template <typename T>
+void ListaDupEnc<T>::destroiListaDuplo() {
+    ElementoDuplo<T> *atual = this->head;
+
+    while (atual != NULL) {
+        ElementoDuplo<T> *anterior = atual;
+        atual = atual->getProximo();
+        delete anterior;
+    }
+    this->head = NULL;
+    this->size = 0;
+}
+
+template <typename T>
+bool ListaDupEnc<T>::listaVaziaDuplo() {
+    return this->size == 0;
 }
 
 template <typename T>

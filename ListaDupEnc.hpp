@@ -92,6 +92,11 @@ class ListaDupEnc {
       * @see: ListaDupEnc::retiraDaPosicao
       */
      T retiraEspecificoDuplo(const T& dado);
+     
+    /*!
+     * Apaga todos os valores da lista
+     */
+    void destroiListaDuplo();
 
      /*!
       * Verifica se a lista duplamente encadeada esta vazia;
