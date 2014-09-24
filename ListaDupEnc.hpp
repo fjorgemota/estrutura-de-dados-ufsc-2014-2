@@ -43,14 +43,14 @@ class ListaDupEnc {
       * @see: ListaDupEnc::adicionaNoInicioDuplo
       */
      void adicionaNaPosicaoDuplo(const T& dado, int posicao);
-     
+
      /*!
      * Adiciona o elemento à lista logo após a algum dado inferior a ele
      * 
      * @param dado O dado a ser adicionado à lista
      */
      void adicionaEmOrdemDuplo(const T& dado);
-     
+
      /*!
       * Adiciona um novo elemento ao final da lista
       * 
