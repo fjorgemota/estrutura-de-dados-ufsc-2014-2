@@ -12,6 +12,24 @@ ListaDupEnc<T>::ListaDupEnc() {
 }
 
 template <typename T>
+ListaDupEnc<T>::~ListaDupEnc() {
+    this->destroiListaDuplo();
+}
+
+template <typename T>
+void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        return this->adicionaNoInicioDuplo(dado);
+    }
+    while (temporario->getProximo() != NULL) {
+        temporario = temporario->getProximo();
+    }
+    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
+    this->size++;
+}
+
+template <typename T>
 void ListaDupEnc<T>::adicionaNoInicioDuplo(const T& dado) {
     ElementoDuplo<T> *novo = new ElementoDuplo<T>(NULL, dado, this->head);
     this->head = novo;
@@ -72,16 +90,28 @@ void ListaDupEnc<T>::adicionaEmOrdemDuplo(const T& dado) {
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
-        return this->adicionaNoInicioDuplo(dado);
+T ListaDupEnc<T>::retiraDuplo() {
+    if (this->listaVaziaDuplo()) {
+        throw "A lista esta vazia";
     }
-    while (temporario->getProximo() != NULL) {
+    T valor;
+    int contador;
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario->getProximo() == NULL) {
+        valor = temporario->getInfo();
+        this->head = NULL;
+        this->size--;
+        delete temporario;
+        return valor;
+    }
+    for (contador = 0; contador < this->size-2; contador++) {
         temporario = temporario->getProximo();
     }
-    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
-    this->size++;
+    valor = temporario->getProximo()->getInfo();
+    delete temporario->getProximo();
+    temporario->setProximo(NULL);
+    this->size--;
+    return valor;
 }
 
 template <typename T>
@@ -132,31 +162,6 @@ T ListaDupEnc<T>::retiraDaPosicaoDuplo(int posicao) {
     if (temporario->getProximo() != NULL) {
         remover->getProximo()->setAnterior(temporario);
     }
-    this->size--;
-    return valor;
-}
-
-template <typename T>
-T ListaDupEnc<T>::retiraDuplo() {
-    if (this->listaVaziaDuplo()) {
-        throw "A lista esta vazia";
-    }
-    T valor;
-    int contador;
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario->getProximo() == NULL) {
-        valor = temporario->getInfo();
-        this->head = NULL;
-        this->size--;
-        delete temporario;
-        return valor;
-    }
-    for (contador = 0; contador < this->size-2; contador++) {
-        temporario = temporario->getProximo();
-    }
-    valor = temporario->getProximo()->getInfo();
-    delete temporario->getProximo();
-    temporario->setProximo(NULL);
     this->size--;
     return valor;
 }
