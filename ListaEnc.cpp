@@ -234,6 +234,15 @@ bool ListaEnc<T>::contem(const T& dado) {
 }
 
 template <typename T>
+T ListaEnc<T>::topo() {
+    Elemento<T> *temporario = this->head;
+    if (temporario == NULL) {
+        throw "A lista está vazia";
+    }
+    return temporario->getInfo();
+}
+
+template <typename T>
 bool ListaEnc<T>::igual(T dado1, T dado2) {
     if (dado1 == dado2) {
         return true;

@@ -150,6 +150,11 @@ class ListaEnc {
     T* posicaoMem(const T& dado) const;
 
     /*!
+     * Retorna o valor que está armazenado no início da lista encadeada
+     */
+    T topo();
+
+    /*!
      * Verifica se os dois dados especificados da lista são iguais
      * 
      * @param dado1 O primeiro dado a ser comparado com o segundo

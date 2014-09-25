@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Fila.o \
 	${OBJECTDIR}/Lista.o \
 	${OBJECTDIR}/ListaEnc.o \
-	${OBJECTDIR}/Pilha.o
+	${OBJECTDIR}/Pilha.o \
+	${OBJECTDIR}/PilhaEnc.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -48,6 +49,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f2 \
+	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f1
 
 # C Compiler Flags
@@ -94,6 +96,11 @@ ${OBJECTDIR}/Pilha.o: Pilha.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pilha.o Pilha.cpp
 
+${OBJECTDIR}/PilhaEnc.o: PilhaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
+
 # Subprojects
 .build-subprojects:
 
@@ -110,6 +117,10 @@ ${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/ListaEncTest.o ${OBJECTFILES:%.o=%_nom
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/ListaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/PilhaEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
@@ -132,6 +143,12 @@ ${TESTDIR}/tests/ListaTest.o: tests/ListaTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ListaTest.o tests/ListaTest.cpp
+
+
+${TESTDIR}/tests/PilhaEncTest.o: tests/PilhaEncTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaEncTest.o tests/PilhaEncTest.cpp
 
 
 ${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp 
@@ -192,6 +209,19 @@ ${OBJECTDIR}/Pilha_nomain.o: ${OBJECTDIR}/Pilha.o Pilha.cpp
 	    ${CP} ${OBJECTDIR}/Pilha.o ${OBJECTDIR}/Pilha_nomain.o;\
 	fi
 
+${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/PilhaEnc.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilhaEnc_nomain.o PilhaEnc.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/PilhaEnc.o ${OBJECTDIR}/PilhaEnc_nomain.o;\
+	fi
+
 # Run Test Targets
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
@@ -199,6 +229,7 @@ ${OBJECTDIR}/Pilha_nomain.o: ${OBJECTDIR}/Pilha.o Pilha.cpp
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
+	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	else  \
 	    ./${TEST} || true; \
