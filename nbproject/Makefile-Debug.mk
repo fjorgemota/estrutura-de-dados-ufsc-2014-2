@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Fila.o \
+	${OBJECTDIR}/FilaEnc.o \
 	${OBJECTDIR}/Lista.o \
 	${OBJECTDIR}/ListaEnc.o \
 	${OBJECTDIR}/Pilha.o \
@@ -46,6 +47,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f6 \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f2 \
@@ -81,6 +83,11 @@ ${OBJECTDIR}/Fila.o: Fila.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fila.o Fila.cpp
 
+${OBJECTDIR}/FilaEnc.o: FilaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FilaEnc.o FilaEnc.cpp
+
 ${OBJECTDIR}/Lista.o: Lista.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -106,6 +113,10 @@ ${OBJECTDIR}/PilhaEnc.o: PilhaEnc.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
+${TESTDIR}/TestFiles/f6: ${TESTDIR}/tests/FilaEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f6 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
 ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/FilaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
@@ -125,6 +136,12 @@ ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/PilhaEncTest.o ${OBJECTFILES:%.o=%_nom
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
+
+${TESTDIR}/tests/FilaEncTest.o: tests/FilaEncTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/FilaEncTest.o tests/FilaEncTest.cpp
 
 
 ${TESTDIR}/tests/FilaTest.o: tests/FilaTest.cpp 
@@ -148,7 +165,7 @@ ${TESTDIR}/tests/ListaTest.o: tests/ListaTest.cpp
 ${TESTDIR}/tests/PilhaEncTest.o: tests/PilhaEncTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaEncTest.o tests/PilhaEncTest.cpp
+	$(COMPILE.cc) -g -Wall -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaEncTest.o tests/PilhaEncTest.cpp
 
 
 ${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp 
@@ -168,6 +185,19 @@ ${OBJECTDIR}/Fila_nomain.o: ${OBJECTDIR}/Fila.o Fila.cpp
 	    $(COMPILE.cc) -g -Wall -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fila_nomain.o Fila.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/Fila.o ${OBJECTDIR}/Fila_nomain.o;\
+	fi
+
+${OBJECTDIR}/FilaEnc_nomain.o: ${OBJECTDIR}/FilaEnc.o FilaEnc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/FilaEnc.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FilaEnc_nomain.o FilaEnc.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/FilaEnc.o ${OBJECTDIR}/FilaEnc_nomain.o;\
 	fi
 
 ${OBJECTDIR}/Lista_nomain.o: ${OBJECTDIR}/Lista.o Lista.cpp 
@@ -226,6 +256,7 @@ ${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f6 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \

@@ -243,6 +243,19 @@ T ListaEnc<T>::topo() {
 }
 
 template <typename T>
+T ListaEnc<T>::ultimo() {
+    int h;
+    Elemento<T> *temporario = this->head;
+    if (temporario == NULL) {
+        throw "A lista está vazia";
+    }
+    for (h = 0; h < this->size-1; h++) {
+        temporario = temporario->getProximo();
+    }
+    return temporario->getInfo();
+}
+
+template <typename T>
 bool ListaEnc<T>::igual(T dado1, T dado2) {
     if (dado1 == dado2) {
         return true;
