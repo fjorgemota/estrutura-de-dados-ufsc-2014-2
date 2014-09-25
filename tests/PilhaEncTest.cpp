@@ -23,11 +23,11 @@ class PilhaEncTest: public ::testing::Test {
 };
 
 TEST_F(PilhaEncTest, pilhaVazia) {
-    ASSERT_TRUE(inteiro.pilhaVazia());
+    ASSERT_TRUE(inteiro.PilhaVazia());
     inteiro.empilha(42);
     inteiro.empilha(5100);
     inteiro.empilha(1995);
-    ASSERT_FALSE(inteiro.pilhaVazia());
+    ASSERT_FALSE(inteiro.PilhaVazia());
 }
 
 TEST_F(PilhaEncTest, empilha) {
@@ -67,4 +67,58 @@ TEST_F(PilhaEncTest, contem) {
     ASSERT_TRUE(inteiro.contem(1995));
     ASSERT_TRUE(inteiro.contem(77));
     ASSERT_FALSE(inteiro.contem(89));
+}
+
+TEST_F(PilhaEncTest, limparPilha) {
+    inteiro.empilha(600);
+    inteiro.empilha(42);
+    inteiro.empilha(2600);
+    inteiro.empilha(5100);
+    inteiro.empilha(42);
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    inteiro.desempilha();
+    inteiro.desempilha();
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    inteiro.limparPilha();
+    ASSERT_TRUE(inteiro.PilhaVazia());
+}
+
+TEST_F(PilhaEncTest, PilhaEnc) {
+    inteiro.empilha(600);
+    inteiro.empilha(50);
+    inteiro.empilha(2600);
+    inteiro.empilha(5100);
+    inteiro.empilha(42);
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    inteiro.desempilha();
+    inteiro.desempilha();
+    inteiro.empilha(300);
+    inteiro.empilha(80);
+    inteiro.empilha(5200);
+    inteiro.empilha(1990);
+    inteiro.empilha(42);
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    inteiro.~PilhaEnc();
+    ASSERT_TRUE(inteiro.PilhaVazia());
+}
+
+TEST_F(PilhaEncTest, topo) {
+    ASSERT_ANY_THROW(inteiro.topo());
+    inteiro.empilha(600);
+    inteiro.empilha(42);
+    inteiro.empilha(2600);
+    inteiro.empilha(5100);
+    inteiro.empilha(42);
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    ASSERT_EQ(42, inteiro.topo());
+    inteiro.limparPilha();
+    ASSERT_TRUE(inteiro.PilhaVazia());
+    ASSERT_ANY_THROW(inteiro.topo());
+    inteiro.empilha(42);
+    inteiro.empilha(1995);
+    inteiro.empilha(5200);
+    inteiro.empilha(7800);
+    inteiro.empilha(1995);
+    ASSERT_FALSE(inteiro.PilhaVazia());
+    ASSERT_EQ(1995, inteiro.topo());
 }

@@ -11,6 +11,11 @@ PilhaEnc<T>::PilhaEnc() {
 }
 
 template <typename T>
+PilhaEnc<T>::~PilhaEnc() {
+    this->limparPilha();
+}
+
+template <typename T>
 void PilhaEnc<T>::empilha(const T& dado) {
     this->pilhaEnc->adicionaNoInicio(dado);
 }
@@ -21,12 +26,22 @@ T PilhaEnc<T>::desempilha() {
 }
 
 template <typename T>
+T PilhaEnc<T>::topo() {
+    return this->pilhaEnc->topo();
+}
+
+template <typename T>
 bool PilhaEnc<T>::contem(const T& dado) {
     return this->pilhaEnc->contem(dado);
 }
 
 template <typename T>
-bool PilhaEnc<T>::pilhaVazia() {
+void PilhaEnc<T>::limparPilha() {
+    this->pilhaEnc->destroiLista();
+}
+
+template <typename T>
+bool PilhaEnc<T>::PilhaVazia() {
     return this->pilhaEnc->listaVazia();
 }
 

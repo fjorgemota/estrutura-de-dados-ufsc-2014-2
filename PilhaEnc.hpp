@@ -6,7 +6,7 @@
 
 /*!
  * Classe que representa uma pilha encadeada, como tal, tem seus elementos
- * adicionados e retirados a partir do topo, no estilo first-in last-out (primeiro
+ * adicionados e retirados a partir do topo, no estilo first-in, last-out (primeiro
  * a entrar e último a sair).
  *
  * @see: PilhaEnc::empilha()
@@ -24,6 +24,11 @@ class PilhaEnc {
     PilhaEnc();
 
     /*!
+     * Destrói a pilha encadeada, assim como todos os valores armazenados nela 
+     */
+    ~PilhaEnc();
+
+    /*!
      * Adiciona ao topo da pilha um valor especificado
      *
      * @param: dado O dado a ser adicionado na pilha
@@ -36,6 +41,11 @@ class PilhaEnc {
     T desempilha();
 
     /*!
+     * Retorna o valor presente no topo da pilha encadeada
+     */
+    T topo();
+
+    /*!
      * Verifica se um dado valor pertence à pilha
      *
      * @param dado O dado a ser verificado
@@ -43,9 +53,14 @@ class PilhaEnc {
     bool contem(const T& dado);
 
     /*!
+     * Apaga todos os valores presentes na pilha encadeada
+     */
+    void limparPilha();
+
+    /*!
      * Verifica se a pilha está vazia
      */
-    bool pilhaVazia();
+    bool PilhaVazia();
 };
 #include "PilhaEnc.cpp"
 #endif /* PILHAENC_HPP */
