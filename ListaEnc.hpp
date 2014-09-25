@@ -155,6 +155,11 @@ class ListaEnc {
     T topo();
 
     /*!
+     * Retorna o último valor presente na lista encadeada
+     */
+    T ultimo();
+
+    /*!
      * Verifica se os dois dados especificados da lista são iguais
      * 
      * @param dado1 O primeiro dado a ser comparado com o segundo
