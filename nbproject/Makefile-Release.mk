@@ -38,7 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Fila.o \
 	${OBJECTDIR}/FilaEnc.o \
 	${OBJECTDIR}/Lista.o \
-	${OBJECTDIR}/ListaDupEnc.o \
+	${OBJECTDIR}/ListaDupla.o \
 	${OBJECTDIR}/ListaEnc.o \
 	${OBJECTDIR}/Pilha.o \
 	${OBJECTDIR}/PilhaEnc.o
@@ -95,10 +95,10 @@ ${OBJECTDIR}/Lista.o: Lista.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Lista.o Lista.cpp
 
-${OBJECTDIR}/ListaDupEnc.o: ListaDupEnc.cpp 
+${OBJECTDIR}/ListaDupla.o: ListaDupla.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDupEnc.o ListaDupEnc.cpp
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDupla.o ListaDupla.cpp
 
 ${OBJECTDIR}/ListaEnc.o: ListaEnc.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -128,7 +128,7 @@ ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/FilaTest.o ${OBJECTFILES:%.o=%_nomain.
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
-${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/ListaDupEncTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/ListaDuplaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f7 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
@@ -161,10 +161,10 @@ ${TESTDIR}/tests/FilaTest.o: tests/FilaTest.cpp
 	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/FilaTest.o tests/FilaTest.cpp
 
 
-${TESTDIR}/tests/ListaDupEncTest.o: tests/ListaDupEncTest.cpp 
+${TESTDIR}/tests/ListaDuplaTest.o: tests/ListaDuplaTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ListaDupEncTest.o tests/ListaDupEncTest.cpp
+	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ListaDuplaTest.o tests/ListaDuplaTest.cpp
 
 
 ${TESTDIR}/tests/ListaEncTest.o: tests/ListaEncTest.cpp 
@@ -230,17 +230,17 @@ ${OBJECTDIR}/Lista_nomain.o: ${OBJECTDIR}/Lista.o Lista.cpp
 	    ${CP} ${OBJECTDIR}/Lista.o ${OBJECTDIR}/Lista_nomain.o;\
 	fi
 
-${OBJECTDIR}/ListaDupEnc_nomain.o: ${OBJECTDIR}/ListaDupEnc.o ListaDupEnc.cpp 
+${OBJECTDIR}/ListaDupla_nomain.o: ${OBJECTDIR}/ListaDupla.o ListaDupla.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/ListaDupEnc.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/ListaDupla.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDupEnc_nomain.o ListaDupEnc.cpp;\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDupla_nomain.o ListaDupla.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/ListaDupEnc.o ${OBJECTDIR}/ListaDupEnc_nomain.o;\
+	    ${CP} ${OBJECTDIR}/ListaDupla.o ${OBJECTDIR}/ListaDupla_nomain.o;\
 	fi
 
 ${OBJECTDIR}/ListaEnc_nomain.o: ${OBJECTDIR}/ListaEnc.o ListaEnc.cpp 

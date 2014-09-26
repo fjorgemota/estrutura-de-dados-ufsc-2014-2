@@ -1,23 +1,23 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef LISTADUPENC_CPP
-#define LISTADUPENC_CPP
-#include "ListaDupEnc.hpp"
+#ifndef LISTADUPLA_CPP
+#define LISTADUPLA_CPP
+#include "ListaDupla.hpp"
 #include <cstddef>
 
 template <typename T>
-ListaDupEnc<T>::ListaDupEnc() {
+ListaDupla<T>::ListaDupla() {
     this->head = NULL;
     this->size = 0;
 }
 
 template <typename T>
-ListaDupEnc<T>::~ListaDupEnc() {
+ListaDupla<T>::~ListaDupla() {
     this->destroiListaDuplo();
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
+void ListaDupla<T>::adicionaDuplo(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     if (temporario == NULL) {
         return this->adicionaNoInicioDuplo(dado);
@@ -30,7 +30,7 @@ void ListaDupEnc<T>::adicionaDuplo(const T& dado) {
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaNoInicioDuplo(const T& dado) {
+void ListaDupla<T>::adicionaNoInicioDuplo(const T& dado) {
     ElementoDuplo<T> *novo = new ElementoDuplo<T>(NULL, dado, this->head);
     this->head = novo;
     if (novo->getProximo() != NULL) {
@@ -40,10 +40,10 @@ void ListaDupEnc<T>::adicionaNoInicioDuplo(const T& dado) {
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
+void ListaDupla<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
     if (posicao == 0) {
         this->adicionaNoInicioDuplo(dado);
-    } else if (posicao > this->size+1 || posicao < 0) {
+    } else if (posicao >= this->size || posicao < 0) {
         throw "Posicao inválida";
     }
     int contagem;
@@ -68,12 +68,12 @@ void ListaDupEnc<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
 }
 
 template <typename T>
-void ListaDupEnc<T>::adicionaEmOrdemDuplo(const T& dado) {
+void ListaDupla<T>::adicionaEmOrdem(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     if (temporario == NULL) {
         return this->adicionaNoInicioDuplo(dado);
     }
-    if (this->listaVaziaDuplo()) {
+    if (this->listaVazia()) {
         this->adicionaNoInicioDuplo(dado);
     }
     int posicao = 1;
@@ -90,13 +90,30 @@ void ListaDupEnc<T>::adicionaEmOrdemDuplo(const T& dado) {
 }
 
 template <typename T>
-T ListaDupEnc<T>::retiraDuplo() {
-    if (this->listaVaziaDuplo()) {
+void ListaDupla<T>::eliminaDoInicioDuplo() {
+    if (this->listaVazia()) {
+        throw "A lista está vazia";
+    }
+    ElementoDuplo<T> *temporario = this->head;
+    this->head = temporario->getProximo();
+    if (this->head != NULL) {
+        this->head->setAnterior(NULL);
+        delete this->head->getAnterior();
+    }
+    this->size--;
+}
+
+template <typename T>
+T ListaDupla<T>::retiraDuplo() {
+    if (this->listaVazia()) {
         throw "A lista esta vazia";
     }
     T valor;
     int contador;
     ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        throw "Impossível remover";
+    }
     if (temporario->getProximo() == NULL) {
         valor = temporario->getInfo();
         this->head = NULL;
@@ -115,8 +132,8 @@ T ListaDupEnc<T>::retiraDuplo() {
 }
 
 template <typename T>
-T ListaDupEnc<T>::retiraDoInicioDuplo() {
-    if (this->listaVaziaDuplo()) {
+T ListaDupla<T>::retiraDoInicioDuplo() {
+    if (this->listaVazia()) {
         throw "A lista está vazia";
     }
     T valor;
@@ -135,8 +152,8 @@ T ListaDupEnc<T>::retiraDoInicioDuplo() {
 }
 
 template <typename T>
-T ListaDupEnc<T>::retiraDaPosicaoDuplo(int posicao) {
-    if (this->listaVaziaDuplo()) {
+T ListaDupla<T>::retiraDaPosicaoDuplo(int posicao) {
+    if (this->listaVazia()) {
         throw "A lista está vazia";
     } else if (posicao > this->size+1 || posicao < 0) {
         throw "Posição inválida";
@@ -167,13 +184,13 @@ T ListaDupEnc<T>::retiraDaPosicaoDuplo(int posicao) {
 }
 
 template <typename T>
-T ListaDupEnc<T>::retiraEspecificoDuplo(const T& dado) {
+T ListaDupla<T>::retiraEspecificoDuplo(const T& dado) {
     int resultado = this->posicaoDuplo(dado);
     return this->retiraDaPosicaoDuplo(resultado);
 }
 
 template <typename T>
-void ListaDupEnc<T>::destroiListaDuplo() {
+void ListaDupla<T>::destroiListaDuplo() {
     ElementoDuplo<T> *atual = this->head;
 
     while (atual != NULL) {
@@ -186,12 +203,12 @@ void ListaDupEnc<T>::destroiListaDuplo() {
 }
 
 template <typename T>
-bool ListaDupEnc<T>::listaVaziaDuplo() {
+bool ListaDupla<T>::listaVazia() const {
     return this->size == 0;
 }
 
 template <typename T>
-bool ListaDupEnc<T>::contem(const T& dado) {
+bool ListaDupla<T>::contemDuplo(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     if (temporario == NULL) {
         throw "A lista está vazia";
@@ -205,13 +222,13 @@ bool ListaDupEnc<T>::contem(const T& dado) {
 }
 
 template <typename T>
-int ListaDupEnc<T>::posicaoDuplo(const T& dado) {
+int ListaDupla<T>::posicaoDuplo(const T& dado) {
     int contador;
     ElementoDuplo<T> *temporario = this->head;
     if (temporario == NULL) {
         throw "A lista esta vazia";
     }
-    for (contador = 0; contador < this->size+1; contador++) {
+    for (contador = 0; contador < this->size; contador++) {
         if (temporario->getInfo() == dado) {
             return contador;
         }
@@ -221,7 +238,51 @@ int ListaDupEnc<T>::posicaoDuplo(const T& dado) {
 }
 
 template <typename T>
-bool ListaDupEnc<T>::igual(T dado1, T dado2) {
+T* ListaDupla<T>::posicaoMemDuplo(const T& dado) const {
+    int contador;
+    ElementoDuplo<T> *temporario = this->head;
+    if (temporario == NULL) {
+        throw "A lista esta vazia";
+    }
+    for (contador = 0; contador < this->size+1; contador++) {
+        if (temporario->getInfo() == dado) {
+            T valor = temporario->getInfo();
+            return &valor;
+        }
+        temporario = temporario->getProximo();
+    }
+    throw "O elemento não pertence à lista duplamente encadeada";
+}
+
+template <typename T>
+T ListaDupla<T>::mostra(int pos) {
+    int contagem;
+    if (pos < 0) {
+       throw "Posicao invalida";
+    }
+    ElementoDuplo<T> *temporario = this->head;
+    for (contagem = 0; contagem < pos; contagem++) {
+        if (temporario == NULL) {
+            throw "Impossível pegar valor";
+        }
+        temporario = temporario->getProximo();
+    }
+    if (temporario == NULL) {
+        throw "Impossível remover";
+    }
+    return temporario->getInfo();
+}
+
+template <typename T>
+int ListaDupla<T>::verUltimo() {
+    if (this->head == NULL) {
+        throw "A lista esta vazia";
+    }
+    return this->size-1;
+}
+
+template <typename T>
+bool ListaDupla<T>::igual(T dado1, T dado2) {
     if (dado1 == dado2) {
         return true;
     }
@@ -229,7 +290,7 @@ bool ListaDupEnc<T>::igual(T dado1, T dado2) {
 }
 
 template <typename T>
-bool ListaDupEnc<T>::maior(T dado1, T dado2) {
+bool ListaDupla<T>::maior(T dado1, T dado2) {
     if (dado1 > dado2) {
         return true;
     }
@@ -237,7 +298,7 @@ bool ListaDupEnc<T>::maior(T dado1, T dado2) {
 }
 
 template <typename T>
-bool ListaDupEnc<T>::menor(T dado1, T dado2) {
+bool ListaDupla<T>::menor(T dado1, T dado2) {
     if (dado1 < dado2) {
         return true;
     }

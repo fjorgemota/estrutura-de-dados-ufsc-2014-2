@@ -1,7 +1,7 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef LISTADUPENC_HPP
-#define LISTADUPENC_HPP
+#ifndef LISTADUPLA_HPP
+#define LISTADUPLA_HPP
 #include "ElementoDuplo.hpp"
 
 /*!
@@ -9,11 +9,11 @@
  * podem ser adicionados, removidos e vistos a partir de uma dada direçao e pelo
  * sentido contrario, inclusive.
  * 
- * @see: ListaDupEnc::adicionaDuplo
- * @see: ListaDupEnc::retiraDuplo
+ * @see ListaDupla::adicionaDuplo
+ * @see ListaDupla::retiraDuplo
  */
 template <typename T>
-class ListaDupEnc {
+class ListaDupla {
  private:
      ElementoDuplo<T> *head;  //!< Elemento duplo que representa a cabeça
                              //!< de lista
@@ -23,20 +23,20 @@ class ListaDupEnc {
     /*!
      * Constrói uma lista duplamente encadeada vazia
      */
-    ListaDupEnc();
+    ListaDupla();
 
     /*!
      * Destrói a lista duplamente encadeada, assim como todos os seus elementos 
      * são removidos da memória
      */
-    ~ListaDupEnc();
+    ~ListaDupla();
 
     /*!
      * Adiciona um novo elemento ao final da lista
      * 
-     * @param: dado O dado a ser armazenado na lista duplamente encadeada
-     * @see: ListaDupEnc::adicionaNoInicioDuplo
-     * @see: ListaDupEnc::adicionaNaPosicaoDuplo
+     * @param dado O dado a ser armazenado na lista duplamente encadeada
+     * @see ListaDupla::adicionaNoInicioDuplo
+     * @see ListaDupla::adicionaNaPosicaoDuplo
      */
     void adicionaDuplo(const T& dado);
 
@@ -44,18 +44,18 @@ class ListaDupEnc {
      * Adiciona um novo elemento ao início da lista
      * 
      * @param dado O dado a ser armazenado na lista duplemente encadeada
-     * @see: ListaDupEnc::adicionaDuplo
-     * @see: ListaDupEnc::adicionaNaPosicaoDuplo
+     * @see ListaDupla::adicionaDuplo
+     * @see ListaDupla::adicionaNaPosicaoDuplo
      */
     void adicionaNoInicioDuplo(const T& dado);
 
     /*!
      * Adiciona um novo elemento à lista em um determinada posição
      * 
-     * @param: dado O dado a ser armazenado na lista duplamente encadeada
-     * @param: posicao A posicao que o dado será guardado
-     * @see: ListaDupEnc::adicionaDuplo
-     * @see: ListaDupEnc::adicionaNoInicioDuplo
+     * @param dado O dado a ser armazenado na lista duplamente encadeada
+     * @param posicao A posicao que o dado será guardado
+     * @see ListaDupla::adicionaDuplo
+     * @see ListaDupla::adicionaNoInicioDuplo
      */
     void adicionaNaPosicaoDuplo(const T& dado, int posicao);
 
@@ -64,24 +64,29 @@ class ListaDupEnc {
      * 
      * @param dado O dado a ser adicionado à lista
      */
-    void adicionaEmOrdemDuplo(const T& dado);
+    void adicionaEmOrdem(const T& dado);
+
+    /*!
+     * Apaga o elemento localizado no inicio da lista, sem retornar seu valor
+     */
+    void eliminaDoInicioDuplo();
 
     /*!
      * Remove da lista duplamente encadeada o ultimo valor armazenado, ou seja,
      * o que esta menos presente nela
      * 
-     * @see: ListaDupEnc::retiraDoInicioDuplo
-     * @see: ListaDupEnc::retiraDaPosicaoDuplo
-     * @see: ListaDupEnc::retiraEspecificoDuplo
+     * @see ListaDupla::retiraDoInicioDuplo
+     * @see ListaDupla::retiraDaPosicaoDuplo
+     * @see ListaDupla::retiraEspecificoDuplo
      */
     T retiraDuplo();
 
     /*!
      * Remove o primeiro elemento presente da lista duplamente encadeada
      * 
-     * @see: ListaDupEnc::retiraDuplo
-     * @see: ListaDupEnc::retiraDaPosicaoDuplo
-     * @see: ListaDupEnc::retiraEspecificoDuplo
+     * @see ListaDupla::retiraDuplo
+     * @see ListaDupla::retiraDaPosicaoDuplo
+     * @see ListaDupla::retiraEspecificoDuplo
      */
     T retiraDoInicioDuplo();
 
@@ -89,10 +94,10 @@ class ListaDupEnc {
      * Remove da lista duplamente encadeada o elemento de acordo com a posição
      * especificada
      * 
-     * @param: posicao A posicao do dado que será removido
-     * @see: ListaDupEnc::retiraDuplo
-     * @see: ListaDupEnc::retiraDoInicioDuplo
-     * @see: ListaDupEnc::retiraEspecificoDuplo
+     * @param posicao A posicao do dado que será removido
+     * @see ListaDupla::retiraDuplo
+     * @see ListaDupla::retiraDoInicioDuplo
+     * @see ListaDupla::retiraEspecificoDuplo
      */
     T retiraDaPosicaoDuplo(int posicao);
 
@@ -100,9 +105,9 @@ class ListaDupEnc {
      * Remove da lista duplamente encadeada um valor especifico
      * 
      * @param dado O dado a ser removido da lista duplamente encadeada
-     * @see: ListaDupEnc::retiraDoInicioDuplo
-     * @see: ListaDupEnc::retiraDuplo
-     * @see: ListaDupEnc::retiraDaPosicao
+     * @see ListaDupla::retiraDoInicioDuplo
+     * @see ListaDupla::retiraDuplo
+     * @see ListaDupla::retiraDaPosicao
      */
     T retiraEspecificoDuplo(const T& dado);
 
@@ -114,21 +119,42 @@ class ListaDupEnc {
     /*!
      * Verifica se a lista duplamente encadeada esta vazia;
      */
-    bool listaVaziaDuplo();
+    bool listaVazia() const;
 
     /*!
      * Verifica se um dado elemento pertece à lista duplamente encadeada
      * 
      * @param dado O dado a ser verificado se está ou não presente na lista
      */
-    bool contem(const T& dado);
+    bool contemDuplo(const T& dado);
 
     /*!
      * Retorna a posição de um valor especificado
      * 
-     * @param: dado O dado a ser verificado
+     * @param dado O dado a ser verificado
      */
     int posicaoDuplo(const T& dado);
+
+    /*!
+     * Retorna a posição na memória do valor especificado conforme encontrado
+     * na lista
+     * 
+     * @param dado O dado a ter sua posicao na memoria pesquisada
+     */
+    T* posicaoMemDuplo(const T& dado) const;
+
+    /*!
+     * Retorna o valor salvo na posicao especificada
+     * 
+     * @param pos A posicao da lista do qual o elemento deve ser retirado
+     */
+    T mostra(int pos);
+
+    /*!
+     * Retorna a posicao do ultimo elemento cadastrado na lista
+     * 
+     */
+    int verUltimo();
 
     /*!
      * Verifica se os dois dados especificados da lista são iguais
@@ -154,5 +180,5 @@ class ListaDupEnc {
      */
     bool menor(T dado1, T dado2);
 };
-#include "ListaDupEnc.cpp"
-#endif /* LISTADUPENC_HPP */
+#include "ListaDupla.cpp"
+#endif /* ListaDupla_HPP */

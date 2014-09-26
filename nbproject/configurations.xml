@@ -9,7 +9,7 @@
       <itemPath>Fila.hpp</itemPath>
       <itemPath>FilaEnc.hpp</itemPath>
       <itemPath>Lista.hpp</itemPath>
-      <itemPath>ListaDupEnc.hpp</itemPath>
+      <itemPath>ListaDupla.hpp</itemPath>
       <itemPath>ListaEnc.hpp</itemPath>
       <itemPath>Pilha.hpp</itemPath>
       <itemPath>PilhaEnc.hpp</itemPath>
@@ -20,7 +20,7 @@
       <itemPath>Fila.cpp</itemPath>
       <itemPath>FilaEnc.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
-      <itemPath>ListaDupEnc.cpp</itemPath>
+      <itemPath>ListaDupla.cpp</itemPath>
       <itemPath>ListaEnc.cpp</itemPath>
       <itemPath>Pilha.cpp</itemPath>
       <itemPath>PilhaEnc.cpp</itemPath>
@@ -43,10 +43,10 @@
         <itemPath>tests/FilaTest.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7"
-                     displayName="ListaDupEncTest"
+                     displayName="ListaDuplaTest"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/ListaDupEncTest.cpp</itemPath>
+        <itemPath>tests/ListaDuplaTest.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4"
                      displayName="ListaEncTest"
@@ -122,9 +122,9 @@
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ListaDupEnc.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ListaDupla.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ListaDupEnc.hpp" ex="false" tool="3" flavor2="0">
+      <item path="ListaDupla.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -256,7 +256,7 @@
       </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/ListaDupEncTest.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/ListaDuplaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaEncTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -312,9 +312,9 @@
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ListaDupEnc.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ListaDupla.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ListaDupEnc.hpp" ex="false" tool="3" flavor2="0">
+      <item path="ListaDupla.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -416,7 +416,7 @@
       </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/ListaDupEncTest.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/ListaDuplaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaEncTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
