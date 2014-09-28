@@ -88,6 +88,12 @@
                      kind="TEST">
         <itemPath>tests/PilhaTest.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f9"
+                     displayName="TesteLista"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/TesteLista.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
@@ -324,6 +330,8 @@
       </item>
       <item path="tests/PilhaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/TesteLista.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -525,6 +533,8 @@
       <item path="tests/PilhaEncTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/PilhaTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/TesteLista.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
