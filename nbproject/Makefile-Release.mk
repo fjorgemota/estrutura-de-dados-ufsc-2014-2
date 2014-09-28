@@ -58,8 +58,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f4 \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/estrutura-de-dados-ufsc-2014-2 \
 	${TESTDIR}/TestFiles/f5 \
-	${TESTDIR}/TestFiles/f1 \
-	${TESTDIR}/TestFiles/f9
+	${TESTDIR}/TestFiles/f1
 
 # C Compiler Flags
 CFLAGS=
@@ -171,10 +170,6 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/PilhaTest.o ${OBJECTFILES:%.o=%_nomain
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
-${TESTDIR}/TestFiles/f9: ${TESTDIR}/tests/TesteLista.o ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc}   -o ${TESTDIR}/TestFiles/f9 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
-
 
 ${TESTDIR}/tests/FilaEncTest.o: tests/FilaEncTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -228,12 +223,6 @@ ${TESTDIR}/tests/PilhaTest.o: tests/PilhaTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/PilhaTest.o tests/PilhaTest.cpp
-
-
-${TESTDIR}/tests/TesteLista.o: tests/TesteLista.cpp 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/TesteLista.o tests/TesteLista.cpp
 
 
 ${OBJECTDIR}/Fila_nomain.o: ${OBJECTDIR}/Fila.o Fila.cpp 
@@ -366,7 +355,6 @@ ${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/estrutura-de-dados-ufsc-2014-2 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
-	    ${TESTDIR}/TestFiles/f9 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi
