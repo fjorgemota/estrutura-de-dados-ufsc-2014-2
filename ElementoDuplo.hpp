@@ -2,6 +2,7 @@
 
 #ifndef ELEMENTODUPLO_HPP
 #define ELEMENTODUPLO_HPP
+#include <cstddef>
 
 /*!
  * Classe que representa um elemento de uma lista duplamente encadeada, estrutura
@@ -30,6 +31,15 @@ class ElementoDuplo {
         this->antecessor = antes;
         this->info = new T(info);
         this->sucessor = proximo;
+    }
+
+    /*!
+     * Constroi um elemento duplo generico onde todos os atributos sao nulos
+     */
+    ElementoDuplo() {
+        this->antecessor = NULL;
+        this->info = NULL;
+        this->sucessor = NULL;
     }
 
     /*!
