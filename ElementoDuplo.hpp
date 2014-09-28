@@ -2,7 +2,7 @@
 
 #ifndef ELEMENTODUPLO_HPP
 #define ELEMENTODUPLO_HPP
-#include <cstddef>
+#include <cstdlib>
 
 /*!
  * Classe que representa um elemento de uma lista duplamente encadeada, estrutura
