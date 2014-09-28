@@ -2,6 +2,7 @@
 
 #ifndef ELEMENTO_HPP
 #define ELEMENTO_HPP
+#include <cstdlib>
 
 /*!
  * Representa uma elemento de uma lista simples encadeada. Estrutura no qual os
@@ -11,6 +12,14 @@
 template<typename T>
 class Elemento {
  public:
+    /*!
+     * Constrói um elemento com todos os atributos inicializados com NULL.
+     */
+    Elemento() {
+        this->info = NULL;
+        this->_next = NULL;
+    }
+
     /*!
      * Constrói um elemento guardando o valor especificao no parâmetro info
      * e apontando para um próximo elemento referenciado pelo ponteiro do
