@@ -13,13 +13,13 @@ class Objeto{};
 class ListaDuplaCircTest: public ::testing::Test {
  public:
     virtual void SetUp() {
-        this->obj = ListaDuplaCirc<Objeto>();
+        this->obj = ListaDuplaCirc<Objeto*>();
         this->inteiros = ListaDuplaCirc<int>();
     }
 
  protected:
     ListaDuplaCirc<int> inteiros;
-    ListaDuplaCirc<Objeto> obj;
+    ListaDuplaCirc<Objeto*> obj;
 };
 
 TEST_F(ListaDuplaCircTest, adicionaDuplo) {
@@ -34,7 +34,6 @@ TEST_F(ListaDuplaCircTest, adicionaDuplo) {
     ASSERT_TRUE(inteiros.contemDuplo(2500));
     ASSERT_TRUE(inteiros.contemDuplo(90));
     ASSERT_FALSE(inteiros.contemDuplo(2600));
-    // inteiros.imprimeLista();
     ASSERT_FALSE(inteiros.listaVazia());
 }
 
@@ -48,7 +47,6 @@ TEST_F(ListaDuplaCircTest, adicionaNaPosicaoDuplo) {
     inteiros.adicionaNaPosicaoDuplo(5200, 2);
     ASSERT_FALSE(inteiros.listaVazia());
     ASSERT_EQ(0, inteiros.posicaoDuplo(42));
-    // inteiros.imprimeLista();
     ASSERT_EQ(1, inteiros.posicaoDuplo(1995));
     ASSERT_EQ(2, inteiros.posicaoDuplo(5200));
     ASSERT_EQ(3, inteiros.posicaoDuplo(5100));
@@ -99,7 +97,6 @@ TEST_F(ListaDuplaCircTest, retiraDuplo) {
     ASSERT_EQ(5, inteiros.posicaoDuplo(90));
     ASSERT_EQ(6, inteiros.posicaoDuplo(80));
     ASSERT_EQ(7, inteiros.posicaoDuplo(77));
-    // inteiros.imprimeLista();
     ASSERT_EQ(77, inteiros.retiraDuplo());
     ASSERT_EQ(80, inteiros.retiraDuplo());
     ASSERT_EQ(90, inteiros.retiraDuplo());
@@ -113,7 +110,6 @@ TEST_F(ListaDuplaCircTest, retiraDuplo) {
     ASSERT_FALSE(inteiros.contemDuplo(90));
     ASSERT_FALSE(inteiros.contemDuplo(80));
     ASSERT_FALSE(inteiros.contemDuplo(77));
-    // inteiros.imprimeLista();
 }
 
 TEST_F(ListaDuplaCircTest, retiraDoInicioDuplo) {
@@ -134,7 +130,6 @@ TEST_F(ListaDuplaCircTest, retiraDoInicioDuplo) {
     ASSERT_TRUE(inteiros.contemDuplo(5100));
     ASSERT_TRUE(inteiros.contemDuplo(90));
     ASSERT_TRUE(inteiros.contemDuplo(80));
-    // inteiros.imprimeLista();
 }
 
 TEST_F(ListaDuplaCircTest, retiraDaPosicaoDuplo) {
@@ -152,7 +147,6 @@ TEST_F(ListaDuplaCircTest, retiraDaPosicaoDuplo) {
     ASSERT_EQ(80, inteiros.retiraDaPosicaoDuplo(5));
     ASSERT_FALSE(inteiros.contemDuplo(5100));
     ASSERT_FALSE(inteiros.contemDuplo(80));
-    // inteiros.imprimeLista();
 }
 
 TEST_F(ListaDuplaCircTest, retiraEspecificoDuplo) {
@@ -177,7 +171,6 @@ TEST_F(ListaDuplaCircTest, retiraEspecificoDuplo) {
     ASSERT_TRUE(inteiros.contemDuplo(77));
     ASSERT_TRUE(inteiros.contemDuplo(15));
     ASSERT_FALSE(inteiros.contemDuplo(90));
-    // inteiros.imprimeLista();
 }
 
 TEST_F(ListaDuplaCircTest, adicionaEmOrdemDuplo) {
@@ -204,7 +197,6 @@ TEST_F(ListaDuplaCircTest, adicionaEmOrdemDuplo) {
     ASSERT_FALSE(inteiros.listaVazia());
     inteiros.adicionaDuplo(51);
     ASSERT_EQ(7, inteiros.verUltimo());
-    // inteiros.imprimeLista();
 }
 
 TEST_F(ListaDuplaCircTest, mostra) {
@@ -349,8 +341,6 @@ TEST_F(ListaDuplaCircTest, destroiListaDuplo) {
     inteiros.adicionaDuplo(80);
     inteiros.adicionaDuplo(77);
     ASSERT_FALSE(inteiros.listaVazia());
-    ASSERT_NO_THROW(inteiros.~ListaDuplaCirc());
-    ASSERT_TRUE(inteiros.listaVazia());
 }
 
 TEST_F(ListaDuplaCircTest, verUltimo) {

@@ -34,15 +34,6 @@ class ElementoDuplo {
     }
 
     /*!
-     * Constroi um elemento duplo generico onde todos os atributos sao nulos
-     */
-    ElementoDuplo() {
-        this->antecessor = NULL;
-        this->info = NULL;
-        this->sucessor = NULL;
-    }
-
-    /*!
      * Remove o valor armazenado no elemento duplo
      */
     ~ElementoDuplo() {

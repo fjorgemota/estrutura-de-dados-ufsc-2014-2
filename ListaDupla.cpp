@@ -114,12 +114,8 @@ T ListaDupla<T>::retiraDuplo() {
     T valor;
     int contador;
     ElementoDuplo<T> *temporario = this->head;
-    if (temporario->getProximo() == NULL) {
-        valor = temporario->getInfo();
-        this->head = NULL;
-        this->size--;
-        delete temporario;
-        return valor;
+    if (this->size == 1) {
+        return this->retiraDoInicioDuplo();
     }
     for (contador = 0; contador < this->size-2; contador++) {
         temporario = temporario->getProximo();
@@ -192,7 +188,7 @@ void ListaDupla<T>::destroiListaDuplo() {
     int contagem, maximo;
     maximo = this->size-1;
     ElementoDuplo<T> *atual = this->head;
-    for (contagem = 0; contagem < maximo; contagem++) {
+    for (contagem = 0; contagem <= maximo; contagem++) {
         ElementoDuplo<T> *anterior = atual;
         atual = atual->getProximo();
         delete anterior;
@@ -268,7 +264,7 @@ T* ListaDupla<T>::posicaoMemDuplo(const T& dado) const {
 template <typename T>
 T ListaDupla<T>::mostra(int pos) {
     int contagem;
-    if (pos < 0) {
+    if (pos < 0 || pos >= this->size) {
        throw "Posicao invalida";
     }
     ElementoDuplo<T> *temporario = this->head;
