@@ -3,7 +3,7 @@
 #ifndef LISTA_ENCADEADA_CPP
 #define LISTA_ENCADEADA_CPP
 #include "ListaEnc.hpp"
-#include <stdlib.h>
+#include <cstdlib>
 
 template <typename T>
 ListaEnc<T>::ListaEnc() {

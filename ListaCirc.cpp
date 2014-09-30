@@ -3,14 +3,14 @@
 #ifndef LISTACIRC_CPP
 #define LISTACIRC_CPP
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "ListaCirc.hpp"
 #include "Elemento.hpp"
 
 template <typename T>
 ListaCirc<T>::ListaCirc() {
-    this->head = new Elemento<T>(NULL, NULL);
+    this->head = new Elemento<T>(0, NULL);
     this->head->setProximo(this->head);
     this->size = 0;
 }
