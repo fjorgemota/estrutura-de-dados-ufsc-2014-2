@@ -15,7 +15,7 @@
 template <typename T>
 class FilaEnc {
  private:
-    ListaEnc<T> *listaEnc;  //!< Lista encadeada no qual os leementos da fila
+    ListaEnc<T> *listaEnc;  //!< Lista encadeada no qual os elementos da fila
                             //!< sao inseridos.
  public:
     /*!

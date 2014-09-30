@@ -13,14 +13,6 @@ template<typename T>
 class Elemento {
  public:
     /*!
-     * Constrói um elemento com todos os atributos inicializados com NULL.
-     */
-    Elemento() {
-        this->info = NULL;
-        this->_next = NULL;
-    }
-
-    /*!
      * Constrói um elemento guardando o valor especificao no parâmetro info
      * e apontando para um próximo elemento referenciado pelo ponteiro do
      * parâmetro next.

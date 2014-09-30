@@ -213,8 +213,9 @@ void ListaEnc<T>::eliminaDoInicio() {
     if (this->listaVazia()) {
         throw "A lista está vazia";
     }
-    Elemento<T> *inicio = this->head->getProximo();
-    this->head->setProximo(inicio->getProximo());
+    Elemento<T> *inicio = this->head;
+    Elemento<T> *atual = inicio->getProximo();
+    this->head = atual;
     this->size--;
     delete inicio;
 }

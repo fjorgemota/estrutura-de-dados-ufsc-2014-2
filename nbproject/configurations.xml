@@ -9,6 +9,7 @@
       <itemPath>Fila.hpp</itemPath>
       <itemPath>FilaEnc.hpp</itemPath>
       <itemPath>Lista.hpp</itemPath>
+      <itemPath>ListaCirc.hpp</itemPath>
       <itemPath>ListaDupla.hpp</itemPath>
       <itemPath>ListaEnc.hpp</itemPath>
       <itemPath>Pilha.hpp</itemPath>
@@ -20,6 +21,7 @@
       <itemPath>Fila.cpp</itemPath>
       <itemPath>FilaEnc.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
+      <itemPath>ListaCirc.cpp</itemPath>
       <itemPath>ListaDupla.cpp</itemPath>
       <itemPath>ListaEnc.cpp</itemPath>
       <itemPath>Pilha.cpp</itemPath>
@@ -41,6 +43,12 @@
       </logicalFolder>
       <logicalFolder name="f3" displayName="FilaTest" projectFiles="true" kind="TEST">
         <itemPath>tests/FilaTest.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f8"
+                     displayName="ListaCircTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/ListaCircTest.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7"
                      displayName="ListaDuplaTest"
@@ -121,6 +129,10 @@
       <item path="Lista.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaCirc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ListaCirc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDupla.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -252,9 +264,26 @@
           <output>${TESTDIR}/TestFiles/f7</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f8">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f8</output>
+        </linkerTool>
+      </folder>
       <item path="tests/FilaEncTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/ListaCircTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaDuplaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -311,6 +340,10 @@
       <item path="Lista.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Lista.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaCirc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ListaCirc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDupla.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -412,9 +445,26 @@
           <output>${TESTDIR}/TestFiles/f7</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f8">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f8</output>
+        </linkerTool>
+      </folder>
       <item path="tests/FilaEncTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/FilaTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/ListaCircTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/ListaDuplaTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
