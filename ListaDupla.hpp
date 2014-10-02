@@ -14,7 +14,7 @@
  */
 template <typename T>
 class ListaDupla {
- private:
+ protected:
      ElementoDuplo<T> *head;  //!< Elemento duplo que representa a cabeça
                              //!< de lista
      int size;  //!< Variável que indica o tamanho da lista
@@ -38,7 +38,7 @@ class ListaDupla {
      * @see ListaDupla::adicionaNoInicioDuplo
      * @see ListaDupla::adicionaNaPosicaoDuplo
      */
-    void adicionaDuplo(const T& dado);
+    virtual void adicionaDuplo(const T& dado);
 
     /*!
      * Adiciona um novo elemento ao início da lista
@@ -47,7 +47,7 @@ class ListaDupla {
      * @see ListaDupla::adicionaDuplo
      * @see ListaDupla::adicionaNaPosicaoDuplo
      */
-    void adicionaNoInicioDuplo(const T& dado);
+    virtual void adicionaNoInicioDuplo(const T& dado);
 
     /*!
      * Adiciona um novo elemento à lista em um determinada posição
@@ -69,7 +69,7 @@ class ListaDupla {
     /*!
      * Apaga o elemento localizado no inicio da lista, sem retornar seu valor
      */
-    void eliminaDoInicioDuplo();
+    virtual void eliminaDoInicioDuplo();
 
     /*!
      * Remove da lista duplamente encadeada o ultimo valor armazenado, ou seja,
@@ -114,7 +114,7 @@ class ListaDupla {
     /*!
      * Apaga todos os valores da lista
      */
-    void destroiListaDuplo();
+    virtual void destroiListaDuplo();
 
     /*!
      * Verifica se a lista duplamente encadeada esta vazia;

@@ -18,14 +18,19 @@ ListaDupla<T>::~ListaDupla() {
 
 template <typename T>
 void ListaDupla<T>::adicionaDuplo(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
+    if (this->listaVazia()) {
         return this->adicionaNoInicioDuplo(dado);
     }
-    while (temporario->getProximo() != NULL) {
+    int contagem;
+    ElementoDuplo<T> *temporario = this->head;
+    for (contagem = 0; contagem < this->size-1; contagem++) {
         temporario = temporario->getProximo();
+        if (temporario == NULL) {
+            throw "O valor foi detetado como nulo na posiçao: " +contagem;
+        }
     }
-    temporario->setProximo(new ElementoDuplo<T>(temporario, dado, NULL));
+    ElementoDuplo<T> *novo = new ElementoDuplo<T>(temporario, dado, NULL);
+    temporario->setProximo(novo);
     this->size++;
 }
 
@@ -41,7 +46,7 @@ void ListaDupla<T>::adicionaNoInicioDuplo(const T& dado) {
 
 template <typename T>
 void ListaDupla<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
-    if (posicao == 0) {
+    if (posicao == 0 || this->listaVazia()) {
         this->adicionaNoInicioDuplo(dado);
     } else if (posicao >= this->size || posicao < 0) {
         throw "Posicao inválida";
@@ -69,23 +74,21 @@ void ListaDupla<T>::adicionaNaPosicaoDuplo(const T& dado, int posicao) {
 
 template <typename T>
 void ListaDupla<T>::adicionaEmOrdem(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
+    if (this->listaVazia()) {
         return this->adicionaNoInicioDuplo(dado);
     }
-    if (this->listaVazia()) {
-        this->adicionaNoInicioDuplo(dado);
-    }
-    int posicao = 1;
-    while (temporario->getProximo() != NULL &&
-            this->maior(dado, temporario->getInfo())) {
+    ElementoDuplo<T> *temporario = this->head;
+    int posicao, maximo;
+    posicao = 0;
+    maximo = this->size-1;
+    while (posicao < maximo && this->maior(dado, temporario->getInfo())) {
         temporario = temporario->getProximo();
         posicao++;
     }
     if (this->maior(dado, temporario->getInfo())) {
-        this->adicionaNaPosicaoDuplo(dado, posicao);
+        this->adicionaNaPosicaoDuplo(dado, posicao+1);
     } else {
-        this->adicionaNaPosicaoDuplo(dado, posicao-1);
+        this->adicionaNaPosicaoDuplo(dado, posicao);
     }
 }
 
@@ -111,15 +114,8 @@ T ListaDupla<T>::retiraDuplo() {
     T valor;
     int contador;
     ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
-        throw "Impossível remover";
-    }
-    if (temporario->getProximo() == NULL) {
-        valor = temporario->getInfo();
-        this->head = NULL;
-        this->size--;
-        delete temporario;
-        return valor;
+    if (this->size == 1) {
+        return this->retiraDoInicioDuplo();
     }
     for (contador = 0; contador < this->size-2; contador++) {
         temporario = temporario->getProximo();
@@ -138,11 +134,8 @@ T ListaDupla<T>::retiraDoInicioDuplo() {
     }
     T valor;
     ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
-        throw "Impossível remover";
-    }
-    this->head = temporario->getProximo();
     valor = temporario->getInfo();
+    this->head = temporario->getProximo();
     if (this->head != NULL) {
         this->head->setAnterior(NULL);
         delete this->head->getAnterior();
@@ -155,7 +148,7 @@ template <typename T>
 T ListaDupla<T>::retiraDaPosicaoDuplo(int posicao) {
     if (this->listaVazia()) {
         throw "A lista está vazia";
-    } else if (posicao > this->size+1 || posicao < 0) {
+    } else if (posicao >= this->size || posicao < 0) {
         throw "Posição inválida";
     } else if (posicao == 0) {
         return this->retiraDoInicioDuplo();
@@ -165,10 +158,10 @@ T ListaDupla<T>::retiraDaPosicaoDuplo(int posicao) {
     posicao -= 1;
     ElementoDuplo<T> *temporario = this->head;
     for (contagem = 0; contagem < posicao; contagem++) {
-        if (temporario == NULL) {
-            throw "Impossível remover";
-        }
         temporario = temporario->getProximo();
+        if (temporario == NULL) {
+            throw "O valor foi detectado como nulo na posição "+contagem;
+        }
     }
     if (temporario == NULL) {
         throw "Impossível remover";
@@ -179,6 +172,7 @@ T ListaDupla<T>::retiraDaPosicaoDuplo(int posicao) {
     if (temporario->getProximo() != NULL) {
         remover->getProximo()->setAnterior(temporario);
     }
+    delete remover;
     this->size--;
     return valor;
 }
@@ -191,9 +185,10 @@ T ListaDupla<T>::retiraEspecificoDuplo(const T& dado) {
 
 template <typename T>
 void ListaDupla<T>::destroiListaDuplo() {
+    int contagem, maximo;
+    maximo = this->size-1;
     ElementoDuplo<T> *atual = this->head;
-
-    while (atual != NULL) {
+    for (contagem = 0; contagem <= maximo; contagem++) {
         ElementoDuplo<T> *anterior = atual;
         atual = atual->getProximo();
         delete anterior;
@@ -209,47 +204,59 @@ bool ListaDupla<T>::listaVazia() const {
 
 template <typename T>
 bool ListaDupla<T>::contemDuplo(const T& dado) {
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
+    if (this->listaVazia()) {
         throw "A lista está vazia";
     }
-    do {
+    int contador, max;
+    max = this->size-1;
+    ElementoDuplo<T> *temporario = this->head;
+    for (contador = 0; contador <= max; contador++) {
+        if (temporario == NULL) {
+            throw "O temporário foi detetado como nulo na posiçao "+contador;
+        }
         if (temporario->getInfo() == dado) {
             return true;
         }
-    } while ((temporario = temporario->getProximo()) != NULL);
+        temporario = temporario->getProximo();
+    }
     return false;
 }
 
 template <typename T>
 int ListaDupla<T>::posicaoDuplo(const T& dado) {
-    int contador;
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
+    if (this->listaVazia()) {
         throw "A lista esta vazia";
     }
-    for (contador = 0; contador < this->size; contador++) {
+    int contador;
+    ElementoDuplo<T> *temporario = this->head;
+    for (contador = 0; contador <= this->size-1; contador++) {
         if (temporario->getInfo() == dado) {
             return contador;
         }
         temporario = temporario->getProximo();
+        if (temporario == NULL) {
+            throw "Temporario foi detectado como nulo na posiçao "+contador;
+        }
     }
     throw "O elemento não pertence à lista duplamente encadeada";
 }
 
 template <typename T>
 T* ListaDupla<T>::posicaoMemDuplo(const T& dado) const {
-    int contador;
-    ElementoDuplo<T> *temporario = this->head;
-    if (temporario == NULL) {
+    if (this->listaVazia()) {
         throw "A lista esta vazia";
     }
-    for (contador = 0; contador < this->size+1; contador++) {
+    int contador;
+    ElementoDuplo<T> *temporario = this->head;
+    for (contador = 0; contador <= this->size-1; contador++) {
         if (temporario->getInfo() == dado) {
             T valor = temporario->getInfo();
             return &valor;
         }
         temporario = temporario->getProximo();
+        if (temporario == NULL) {
+            throw "Temporario detectado com valor nulo na posiçao "+contador;
+        }
     }
     throw "O elemento não pertence à lista duplamente encadeada";
 }
@@ -257,7 +264,7 @@ T* ListaDupla<T>::posicaoMemDuplo(const T& dado) const {
 template <typename T>
 T ListaDupla<T>::mostra(int pos) {
     int contagem;
-    if (pos < 0) {
+    if (pos < 0 || pos >= this->size) {
        throw "Posicao invalida";
     }
     ElementoDuplo<T> *temporario = this->head;
@@ -275,7 +282,7 @@ T ListaDupla<T>::mostra(int pos) {
 
 template <typename T>
 int ListaDupla<T>::verUltimo() {
-    if (this->head == NULL) {
+    if (this->listaVazia()) {
         throw "A lista esta vazia";
     }
     return this->size-1;

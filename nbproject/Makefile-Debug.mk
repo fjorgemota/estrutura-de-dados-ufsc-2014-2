@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Lista.o \
 	${OBJECTDIR}/ListaCirc.o \
 	${OBJECTDIR}/ListaDupla.o \
+	${OBJECTDIR}/ListaDuplaCirc.o \
 	${OBJECTDIR}/ListaEnc.o \
 	${OBJECTDIR}/Pilha.o \
 	${OBJECTDIR}/PilhaEnc.o
@@ -52,6 +53,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f6 \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f8 \
+	${TESTDIR}/TestFiles/f9 \
 	${TESTDIR}/TestFiles/f7 \
 	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f2 \
@@ -107,6 +109,11 @@ ${OBJECTDIR}/ListaDupla.o: ListaDupla.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDupla.o ListaDupla.cpp
 
+${OBJECTDIR}/ListaDuplaCirc.o: ListaDuplaCirc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDuplaCirc.o ListaDuplaCirc.cpp
+
 ${OBJECTDIR}/ListaEnc.o: ListaEnc.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -138,6 +145,10 @@ ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/FilaTest.o ${OBJECTFILES:%.o=%_nomain.
 ${TESTDIR}/TestFiles/f8: ${TESTDIR}/tests/ListaCircTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f8 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
+
+${TESTDIR}/TestFiles/f9: ${TESTDIR}/tests/ListaDuplaCircTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f9 $^ ${LDLIBSOPTIONS} -lgtest -lpthread 
 
 ${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/ListaDuplaTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
@@ -176,6 +187,12 @@ ${TESTDIR}/tests/ListaCircTest.o: tests/ListaCircTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ListaCircTest.o tests/ListaCircTest.cpp
+
+
+${TESTDIR}/tests/ListaDuplaCircTest.o: tests/ListaDuplaCircTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ListaDuplaCircTest.o tests/ListaDuplaCircTest.cpp
 
 
 ${TESTDIR}/tests/ListaDuplaTest.o: tests/ListaDuplaTest.cpp 
@@ -273,6 +290,19 @@ ${OBJECTDIR}/ListaDupla_nomain.o: ${OBJECTDIR}/ListaDupla.o ListaDupla.cpp
 	    ${CP} ${OBJECTDIR}/ListaDupla.o ${OBJECTDIR}/ListaDupla_nomain.o;\
 	fi
 
+${OBJECTDIR}/ListaDuplaCirc_nomain.o: ${OBJECTDIR}/ListaDuplaCirc.o ListaDuplaCirc.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/ListaDuplaCirc.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaDuplaCirc_nomain.o ListaDuplaCirc.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/ListaDuplaCirc.o ${OBJECTDIR}/ListaDuplaCirc_nomain.o;\
+	fi
+
 ${OBJECTDIR}/ListaEnc_nomain.o: ${OBJECTDIR}/ListaEnc.o ListaEnc.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/ListaEnc.o`; \
@@ -319,6 +349,7 @@ ${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
 	    ${TESTDIR}/TestFiles/f6 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f8 || true; \
+	    ${TESTDIR}/TestFiles/f9 || true; \
 	    ${TESTDIR}/TestFiles/f7 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
