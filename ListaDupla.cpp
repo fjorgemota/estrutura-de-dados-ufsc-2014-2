@@ -3,7 +3,7 @@
 #ifndef LISTADUPLA_CPP
 #define LISTADUPLA_CPP
 #include "ListaDupla.hpp"
-#include <cstddef>
+#include <cstdlib>
 
 template <typename T>
 ListaDupla<T>::ListaDupla() {

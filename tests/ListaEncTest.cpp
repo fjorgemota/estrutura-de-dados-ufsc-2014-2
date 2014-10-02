@@ -133,7 +133,7 @@ TEST_F(ListaEncTest, adicionaNaPosicao) {
     inteiro.adiciona(2015);
     inteiro.adiciona(80363);
     inteiro.adiciona(78);
-    inteiro.adicionaNaPosicao(123, 1);
+    inteiro.adicionaNaPosicao(123, 0);
     ASSERT_EQ(123, inteiro.retiraDoInicio());
     inteiro.adicionaNaPosicao(43, 2);
     ASSERT_EQ(51, inteiro.retiraDoInicio());
@@ -143,6 +143,7 @@ TEST_F(ListaEncTest, adicionaNaPosicao) {
     ASSERT_EQ(900, inteiro.retiraDoInicio());
     ASSERT_EQ(2600, inteiro.retiraDoInicio());
     ASSERT_EQ(5100, inteiro.retiraDoInicio());
+    ASSERT_EQ(50, inteiro.retiraDoInicio());
 }
 
 

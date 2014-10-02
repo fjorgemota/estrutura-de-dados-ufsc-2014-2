@@ -16,20 +16,20 @@
  */
 template <typename T>
 class ListaEnc {
- private:
+ protected:
     Elemento<T> *head;  //!< Onde é guardado os valores salvos na lista
     int size;  //!< Tamanho máximo da lista
 
  public:
      /*!
-      * Constrói uma lista vazia com o tamanho padrão (30)
+      * Constrói uma lista encadeada vazia
       */
-     ListaEnc();
+    ListaEnc();
 
      /*!
-      * Libera toda a memória possível da lista. Eliminando-a da memória.
+      * Libera toda a memória possível da lista. Eliminando-a da memória
       */
-     ~ListaEnc();
+    ~ListaEnc();
 
     /*!
      * Adiciona um valor à lista
@@ -38,7 +38,7 @@ class ListaEnc {
      * @see ListaEncadeada::adicionaNaPosicao
      * @see ListaEncadeada::adicionaEmOrdem
      */
-    void adiciona(const T& dado);
+    virtual void adiciona(const T& dado);
 
     /*!
      * Um novo dado é adicionado à primeira posição, enquanto os então presentes
@@ -49,7 +49,7 @@ class ListaEnc {
      * @see ListaEncadeada::adicionaEmOrdem
      * @see ListaEncadeada::adicionaEspecifico
      */
-    void adicionaNoInicio(const T& dado);
+    virtual void adicionaNoInicio(const T& dado);
 
     /*!
      * Adiciona um dado valor a uma posição especificada, enquanto os dados então
@@ -82,23 +82,23 @@ class ListaEnc {
 
     /*!
      * Remove o primeiro valor inserido na lista, que é, portanto, 
-     * o valor que está mais tempo presente na lista. E retorna tal valor.
+     * o valor que está mais tempo presente na lista. E retorna tal valor
      * 
      * @see ListaEncadeada::retiraDaPosicao
      * @see ListaEncadeada::retira
      * @see ListaEncadeada::retiraEspecifico
      */
-    T retiraDoInicio();
+    virtual T retiraDoInicio();
 
     /*!
      * Remove o primeiro valor inserido na lista, que é, portanto,
-     * o valor que está mais tempo presente na lista.
+     * o valor que está mais tempo presente na lista
      *
      *  @see ListaEncadeada::retiraDaPosicao
      * @see ListaEncadeada::retira
      * @see ListaEncadeada::retiraEspecifico
      */
-    void eliminaDoInicio();
+    virtual void eliminaDoInicio();
 
     /*!
      * Remove um valor da posição especificado pelo usuário
