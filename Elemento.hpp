@@ -2,6 +2,7 @@
 
 #ifndef ELEMENTO_HPP
 #define ELEMENTO_HPP
+#include <cstdlib>
 
 /*!
  * Representa uma elemento de uma lista simples encadeada. Estrutura no qual os
