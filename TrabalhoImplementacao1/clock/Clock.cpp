@@ -1,18 +1,11 @@
-/* 
- * File:   Relogio.cpp
- * Author: fernando
- * 
- * Created on 2 de Outubro de 2014, 22:40
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
+
 #ifndef CLOCK_CPP
-#define	CLOCK_CPP
+#define CLOCK_CPP
+#include <cstdio>
 #include "Clock.hpp"
 #include "Future.cpp"
 #include "Event.cpp"
-#include <cstdio>
-#ifdef DEBUG
-#include <unistd.h>
-#endif
 Clock::Clock() {
     this->now = 0;
     this->futures = new ListaDupla<Future*>();
@@ -34,12 +27,10 @@ void Clock::schedule(Future *fut) {
 }
 
 
-void Clock::list() {
+void Clock::listFutures() {
     int i, last;
-    
-    #ifdef DEBUG
     printf("Registered futures:\n");
-    if(this->futures->listaVazia()) {
+    if (this->futures->listaVazia()) {
         printf("- No futures registered");
     } else {
         last = this->futures->verUltimo();
@@ -47,38 +38,37 @@ void Clock::list() {
             printf("\t- %s\n", this->futures->mostra(i)->getDescription());
         }
     }
-    #endif
+}
+
+void Clock::listHistoric() {
+    int i, last;
     printf("Registered events:\n");
-    if(this->historic->listaVazia()) {
+    if (this->historic->listaVazia()) {
         printf("\t- No Events registered\n");
     } else {
         last = this->historic->verUltimo();
         for (i = 0; i <= last; i++) {
             Event *ev = this->historic->mostra(i);
-            printf(
-                    "\t- [At %d][Type %d] %s\n",
-                    ev->getTime(),
-                    ev->getType(),
-                    ev->getDescription()
-            );
+            printf("\t- [At %d][Type %d] %s\n", ev->getTime(), ev->getType(),
+                    ev->getDescription());
         }
     }
 }
 
 void Clock::run() {
-    while(1) {
-        if(this->futures->listaVazia()) {
+    while (1) {
+        if (this->futures->listaVazia()) {
             break;
         }
         int cont, last;
         last = this->futures->verUltimo();
         cont = 0;
-        while(cont <= last) {
+        while (cont <= last) {
             Future *event = this->futures->mostra(cont);
-            if(event->canRun(this->now)) {
+            if (event->canRun(this->now)) {
                 event->run();
             }
-            if(event->canRemove()) {
+            if (event->canRemove()) {
                 this->futures->retiraDaPosicaoDuplo(cont);
                 last--;
                 continue;
@@ -86,9 +76,6 @@ void Clock::run() {
             cont++;
         }
         this->now++;
-        #ifdef DEBUG
-        sleep(1);
-        #endif
     }
 }
 #endif

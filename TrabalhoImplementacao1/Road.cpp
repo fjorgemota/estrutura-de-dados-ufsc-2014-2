@@ -1,5 +1,7 @@
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
+
 #ifndef ROAD_CPP
-#define	ROAD_CPP
+#define ROAD_CPP
 #include "Road.hpp"
 
 template <typename T>
@@ -18,4 +20,4 @@ int Road<T>::getSpeed() {
     return this->speed;
 }
 
-#endif	/* ROAD_CPP */
+#endif /* ROAD_CPP */

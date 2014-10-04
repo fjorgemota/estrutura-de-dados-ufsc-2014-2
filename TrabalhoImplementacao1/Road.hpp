@@ -1,7 +1,7 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
 #ifndef ROAD_HPP
-#define	ROAD_HPP
+#define ROAD_HPP
 #include "FilaEnc.hpp"
 
 template <typename T>
@@ -16,5 +16,4 @@ class Road: public FilaEnc<T> {
     int getSpeed();
 };
 
-#endif	/* ROAD_HPP */
-
+#endif /* ROAD_HPP */

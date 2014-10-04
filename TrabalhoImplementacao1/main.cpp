@@ -1,55 +1,41 @@
-/* 
- * File:   main.cpp
- * Author: fernando
- *
- * Created on 4 de Outubro de 2014, 00:20
- */
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
+#ifndef MAIN_CPP
+#define MAIN_CPP
 #include <cstdlib>
-#include <stdio.h>
+#include <cstdio>
 #include "clock/Clock.cpp"
 #include "clock/PeriodicFuture.cpp"
 
-using namespace std;
-
 class Hi : public PeriodicFuture {
-private:
+ private:
     Clock *clock;
-public:    
-    Hi(Clock *clock) : PeriodicFuture(1) { 
+ public:
+    explicit Hi(Clock *clock):PeriodicFuture(1, const_cast<char*>("Hi Loop")) {
         this->clock = clock;
-    };
-    virtual char* getDescription() {
-        return (char *) "Test";
     }
 
     virtual void run() {
         printf("Hey\n");
-        this->clock->add(new Event((char*)"Said 'hey'"));
+        this->clock->add(new Event(const_cast<char*>("Said 'hey'")));
     }
-
 };
 
 class Bye : public Future {
-private:
+ private:
     Clock *clock;
-public:
-    Bye(Clock *clock) : Future(5) {
+ public:
+    explicit Bye(Clock *clock) : Future(5, const_cast<char*>("Bye Future")) {
         this->clock = clock;
-    };
-    virtual char* getDescription() {
-        return (char *) "Test 2";
     }
 
     virtual void run() {
         printf("Bye\n");
-        this->clock->list();
+        this->clock->listFutures();
+        this->clock->listHistoric();
     }
-
 };
-/*
- * 
- */
+
 int main(int argc, char** argv) {
     Clock clock = Clock();
     clock.schedule(new Hi(&clock));
@@ -57,4 +43,4 @@ int main(int argc, char** argv) {
     clock.run();
     return 0;
 }
-
+#endif
