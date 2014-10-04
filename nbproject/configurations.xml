@@ -19,36 +19,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Arquivos de Código-Fonte"
                    projectFiles="true">
-      <logicalFolder name="TrabalhoImplementacao1"
-                     displayName="TrabalhoImplementacao1"
-                     projectFiles="true">
-        <logicalFolder name="f2" displayName="car" projectFiles="true">
-          <itemPath>TrabalhoImplementacao1/Car.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/Car.hpp</itemPath>
-        </logicalFolder>
-        <logicalFolder name="clock" displayName="clock" projectFiles="true">
-          <itemPath>TrabalhoImplementacao1/clock/Callback.hpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Clock.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Clock.hpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Event.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Event.hpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Future.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/Future.hpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/PeriodicFuture.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/clock/PeriodicFuture.hpp</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f1" displayName="road" projectFiles="true">
-          <itemPath>TrabalhoImplementacao1/Road.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/Road.hpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/SourceRoad.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/SourceRoad.hpp</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f3" displayName="semaphore" projectFiles="true">
-          <itemPath>TrabalhoImplementacao1/Semaphore.cpp</itemPath>
-          <itemPath>TrabalhoImplementacao1/Semaphore.hpp</itemPath>
-        </logicalFolder>
-        <itemPath>TrabalhoImplementacao1/main.cpp</itemPath>
-      </logicalFolder>
       <itemPath>Fila.cpp</itemPath>
       <itemPath>FilaEnc.cpp</itemPath>
       <itemPath>Lista.cpp</itemPath>
@@ -194,81 +164,6 @@
       <item path="PilhaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PilhaEnc.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Car.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Car.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Road.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Road.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Semaphore.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Semaphore.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/SourceRoad.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/SourceRoad.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Callback.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Clock.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Clock.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Event.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Event.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Future.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Future.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/PeriodicFuture.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/PeriodicFuture.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <folder path="TestFiles">
         <linkerTool>
@@ -501,81 +396,6 @@
       <item path="PilhaEnc.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PilhaEnc.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Car.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Car.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Road.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Road.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Semaphore.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/Semaphore.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/SourceRoad.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/SourceRoad.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Callback.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Clock.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Clock.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Event.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Event.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Future.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/Future.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/PeriodicFuture.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/clock/PeriodicFuture.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TrabalhoImplementacao1/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <folder path="TestFiles">
         <linkerTool>
