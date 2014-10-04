@@ -43,7 +43,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/ListaDuplaCirc.o \
 	${OBJECTDIR}/ListaEnc.o \
 	${OBJECTDIR}/Pilha.o \
-	${OBJECTDIR}/PilhaEnc.o
+	${OBJECTDIR}/PilhaEnc.o \
+	${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o \
+	${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o \
+	${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o \
+	${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o \
+	${OBJECTDIR}/TrabalhoImplementacao1/main.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -128,6 +133,31 @@ ${OBJECTDIR}/PilhaEnc.o: PilhaEnc.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o: TrabalhoImplementacao1/clock/Clock.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o TrabalhoImplementacao1/clock/Clock.cpp
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o: TrabalhoImplementacao1/clock/Event.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o TrabalhoImplementacao1/clock/Event.cpp
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o: TrabalhoImplementacao1/clock/Future.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o TrabalhoImplementacao1/clock/Future.cpp
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o: TrabalhoImplementacao1/clock/PeriodicFuture.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o TrabalhoImplementacao1/clock/PeriodicFuture.cpp
+
+${OBJECTDIR}/TrabalhoImplementacao1/main.o: TrabalhoImplementacao1/main.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/main.o TrabalhoImplementacao1/main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -340,6 +370,71 @@ ${OBJECTDIR}/PilhaEnc_nomain.o: ${OBJECTDIR}/PilhaEnc.o PilhaEnc.cpp
 	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilhaEnc_nomain.o PilhaEnc.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/PilhaEnc.o ${OBJECTDIR}/PilhaEnc_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock_nomain.o: ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o TrabalhoImplementacao1/clock/Clock.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock_nomain.o TrabalhoImplementacao1/clock/Clock.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock.o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Clock_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Event_nomain.o: ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o TrabalhoImplementacao1/clock/Event.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event_nomain.o TrabalhoImplementacao1/clock/Event.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event.o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Event_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/Future_nomain.o: ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o TrabalhoImplementacao1/clock/Future.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future_nomain.o TrabalhoImplementacao1/clock/Future.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future.o ${OBJECTDIR}/TrabalhoImplementacao1/clock/Future_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture_nomain.o: ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o TrabalhoImplementacao1/clock/PeriodicFuture.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1/clock
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture_nomain.o TrabalhoImplementacao1/clock/PeriodicFuture.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture.o ${OBJECTDIR}/TrabalhoImplementacao1/clock/PeriodicFuture_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrabalhoImplementacao1/main_nomain.o: ${OBJECTDIR}/TrabalhoImplementacao1/main.o TrabalhoImplementacao1/main.cpp 
+	${MKDIR} -p ${OBJECTDIR}/TrabalhoImplementacao1
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrabalhoImplementacao1/main.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrabalhoImplementacao1/main_nomain.o TrabalhoImplementacao1/main.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrabalhoImplementacao1/main.o ${OBJECTDIR}/TrabalhoImplementacao1/main_nomain.o;\
 	fi
 
 # Run Test Targets
