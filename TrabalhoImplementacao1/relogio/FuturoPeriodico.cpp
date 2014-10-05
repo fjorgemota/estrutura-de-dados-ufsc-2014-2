@@ -7,13 +7,16 @@
 FuturoPeriodico::FuturoPeriodico(int interv, char* desc) : Futuro(
     interv, desc) {}
 
-FuturoPeriodico::FuturoPeriodico(int interval) : Futuro(interval) {}
+FuturoPeriodico::FuturoPeriodico(int intervalo) : Futuro(intervalo) {}
 
-bool FuturoPeriodico::podeExecutar(int now) {
-    return (now % this->pegaHora()) == 0;
+FuturoPeriodico::FuturoPeriodico() : Futuro() {}
+
+bool FuturoPeriodico::podeExecutar(int agora) {
+    return (agora % this->pegaHora()) == 0;
 }
 
 bool FuturoPeriodico::podeRemover() {
     return false;
 }
+
 #endif /* FUTURO_PERIODICO_CPP */

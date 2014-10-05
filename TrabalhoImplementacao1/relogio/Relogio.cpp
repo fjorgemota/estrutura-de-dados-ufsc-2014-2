@@ -17,6 +17,10 @@ Relogio::~Relogio() {
     this->historico->destroiListaDuplo();
 }
 
+int Relogio::pegaHoraAtual() {
+    return this->horaAtual;
+}
+
 void Relogio::registra(Evento *ev) {
     ev->configuraHora(this->horaAtual);
     this->historico->adicionaDuplo(ev);
@@ -26,8 +30,8 @@ void Relogio::agenda(Futuro *fut) {
     this->futuros->adicionaDuplo(fut);
 }
 
-void Relogio::agendaDaquiA(Futuro *fut, int horaAtual) {
-    fut->configuraHora(fut->pegaHora() + horaAtual);
+void Relogio::agendaDaquiA(Futuro *fut, int intervaloFuturo) {
+    fut->configuraHora(this->pegaHoraAtual() + intervaloFuturo);
     this->futuros->adicionaDuplo(fut);
 }
 
@@ -75,6 +79,7 @@ void Relogio::executa() {
             if (evento->podeRemover()) {
                 this->futuros->retiraDaPosicaoDuplo(contador);
                 ultimo--;
+                delete evento;
                 continue;
             }
             contador++;

@@ -14,6 +14,7 @@ class Relogio {
  public:
     Relogio();
     ~Relogio();
+    int pegaHoraAtual();
     void registra(Evento *ev);
     void agenda(Futuro *fut);
     void agendaDaquiA(Futuro *fut, int horaAtual);
