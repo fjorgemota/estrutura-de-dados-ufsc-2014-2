@@ -2,17 +2,22 @@
 
 #ifndef SEMAFORO_HPP
 #define SEMAFORO_HPP
-#include "../pista/Pista.cpp"
 #include "../util/ListaEnc.cpp"
+
+#define SEMAFORO_ABERTO true
+#define SEMAFORO_FECHADO false
 
 class Semaforo {
  private:
     int intervalo;
-    ListaEnc<Road*> entrada;
-    ListaEnc<Road*> saida;
+    bool aberto;
  public:
     explicit Semaforo(int intervalo);
-    int getInterval();
+    int pegaIntervalo();
+    bool estaAberto();
+    bool estaFechado();
+    void abre();
+    void fecha();
 };
 
 #endif /* SEMAFORO_HPP */
