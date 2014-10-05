@@ -16,6 +16,7 @@ class Relogio {
     ~Relogio();
     void registra(Evento *ev);
     void agenda(Futuro *fut);
+    void agendaDaquiA(Futuro *fut, int horaAtual);
     void listaFuturos();
     void listaHistorico();
     void executa();
