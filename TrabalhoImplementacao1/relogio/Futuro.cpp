@@ -1,7 +1,7 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef FUTURE_CPP
-#define FUTURE_CPP
+#ifndef FUTURO_CPP
+#define FUTURO_CPP
 #include "Futuro.hpp"
 
 Futuro::Futuro(int intervalo, char* desc) : Evento(

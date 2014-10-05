@@ -1,9 +1,9 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef ROAD_HPP
-#define ROAD_HPP
-#include "util/FilaEnc.cpp"
-#include "Carro/Carro.cpp"
+#ifndef PISTA_HPP
+#define PISTA_HPP
+#include "../util/FilaEnc.cpp"
+#include "../carro/Carro.cpp"
 
 class Pista: private FilaEnc<Carro*> {
  private:
@@ -16,4 +16,4 @@ class Pista: private FilaEnc<Carro*> {
     int pegaVelocidade();
 };
 
-#endif /* ROAD_HPP */
+#endif /* PISTA_HPP */
