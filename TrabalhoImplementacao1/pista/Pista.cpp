@@ -21,12 +21,12 @@ int Pista::pegaVelocidade() {
 
 bool Pista::adiciona(Carro* carro) {
 	int temporario = this->tamanhoDisponivel - car->pegaTamanho();
-	if (temporario < 0) {
-		return false;
-	} else {
+	if (temporario > 0) {
 		this->inclui(carro);
 		this->tamanhoDisponivel = temporario;
 		return true;
+	} else {
+		return false;
 	}
 }
 
