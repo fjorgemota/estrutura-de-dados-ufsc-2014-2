@@ -4,10 +4,6 @@
 #define SOURCEROAD_CPP
 #include "SourceRoad.hpp"
 
-template <typename T>
-SourceRoad<T>::SourceRoad(int size, int speed) {
-    this->size = size;
-    this->speed = speed;
-}
+SourceRoad<T>::SourceRoad(int size, int speed) : Road(size, speed) {}
 
 #endif

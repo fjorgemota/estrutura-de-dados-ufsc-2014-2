@@ -4,8 +4,7 @@
 #define SOURCEROAD_HPP
 #include "Road.hpp"
 
-template <typename T>
-class SourceRoad: public Road<T> {
+class SourceRoad: public Road {
  public:
      SourceRoad(int size, int speed);
 };

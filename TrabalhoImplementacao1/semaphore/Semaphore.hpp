@@ -5,14 +5,14 @@
 #include "Road.hpp"
 #include "ListaEnc.hpp"
 
-template <typename T>
 class Semaphore {
  private:
-    ListaEnc<Road*> imput;
-    ListaEnc<Road*> exit;
-
+    int interval;
+    ListaEnc<Road*> input;
+    ListaEnc<Road*> output;
  public:
-    Semaphore();
+    explicit Semaphore(int interval);
+    int getInterval();
 };
 
 #endif /* SEMAPHORE_HPP */

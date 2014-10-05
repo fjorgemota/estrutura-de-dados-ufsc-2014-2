@@ -2,11 +2,11 @@
 
 #ifndef ROAD_HPP
 #define ROAD_HPP
-#include "FilaEnc.hpp"
+#include "FilaEnc.cpp"
+#include "car/Car.cpp"
 
-template <typename T>
-class Road: public FilaEnc<T> {
- protected:
+class Road: public FilaEnc<Car> {
+ private:
     int size;
     int speed;
 

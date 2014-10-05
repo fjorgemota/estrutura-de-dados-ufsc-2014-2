@@ -11,7 +11,7 @@ Car<T>::Car(int size) {
 
 template <typename T>
 int Car<T>::getSize() {
-    return this->size + 3;
+    return 1 + this->size + 2;
 }
 
 #endif /* CAR_CPP */
