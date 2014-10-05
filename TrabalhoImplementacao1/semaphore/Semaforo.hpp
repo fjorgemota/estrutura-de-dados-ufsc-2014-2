@@ -2,8 +2,8 @@
 
 #ifndef SEMAPHORE_HPP
 #define SEMAPHORE_HPP
-#include "Road.hpp"
-#include "ListaEnc.hpp"
+#include "road/Road.hpp"
+#include "util/ListaEnc.hpp"
 
 class Semaphore {
  private:
