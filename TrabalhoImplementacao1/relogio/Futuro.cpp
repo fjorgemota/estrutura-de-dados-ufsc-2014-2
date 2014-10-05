@@ -26,4 +26,4 @@ bool Futuro::podeExecutar(int now) {
 bool Futuro::podeRemover() {
     return this->remover;
 }
-#endif
+#endif /* FUTURO_CPP */

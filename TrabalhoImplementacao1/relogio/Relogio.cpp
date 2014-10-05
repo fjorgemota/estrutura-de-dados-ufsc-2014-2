@@ -82,4 +82,4 @@ void Relogio::executa() {
         this->horaAtual++;
     }
 }
-#endif
+#endif /* RELOGIO_CPP */
