@@ -8,6 +8,7 @@
 Pista::Pista(int tamanho, int velocidade) {
     this->tamanho = tamanho;
     this->velocidade = velocidade;
+    this->tamanhoDisponivel = velocidade;
 }
 
 int Pista::pegaTamanho() {
@@ -16,6 +17,17 @@ int Pista::pegaTamanho() {
 
 int Pista::pegaVelocidade() {
     return this->velocidade;
+}
+
+bool Pista::adiciona(Carro* carro) {
+	int temporario = this->tamanhoDisponivel - car->pegaTamanho();
+	if (temporario < 0) {
+		return false;
+	} else {
+		this->inclui(carro);
+		this->tamanhoDisponivel = temporario;
+		return true;
+	}
 }
 
 #endif /* PISTA_CPP */

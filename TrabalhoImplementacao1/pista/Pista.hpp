@@ -9,11 +9,13 @@ class Pista: private FilaEnc<Carro*> {
  private:
     int tamanhoMaximo;
     int velocidade;
+    int tamanhoDisponivel;
 
  public:
     Pista(int tamanhoMaximo, int velocidade);
     int pegaTamanhoMaximo();
     int pegaVelocidade();
+    bool adiciona(Carro* carro);
 };
 
 #endif /* PISTA_HPP */
