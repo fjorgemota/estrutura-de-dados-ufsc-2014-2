@@ -26,6 +26,10 @@ void Relogio::agenda(Futuro *fut) {
     this->futuros->adicionaDuplo(fut);
 }
 
+void Relogio::agendaDaquiA(Futuro *fut, int horaAtual) {
+    fut->configuraHora(fut->pegaHora() + horaAtual);
+    this->futuros->adicionaDuplo(fut);
+}
 
 void Relogio::listaFuturos() {
     int i, ultimo;
