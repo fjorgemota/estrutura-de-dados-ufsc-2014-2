@@ -28,4 +28,4 @@ void Semaforo::abre() {
 void Semaforo::fecha() {
     this->aberto = SEMAFORO_FECHADO;
 }
-#endif
+#endif /* SEMAFORO_CPP */

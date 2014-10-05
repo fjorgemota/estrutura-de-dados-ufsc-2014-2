@@ -43,4 +43,4 @@ int Evento::pegaTipo() {
 char* Evento::pegaDescricao() {
     return this->descricao;
 }
-#endif
+#endif /* EVENTO_CPP */

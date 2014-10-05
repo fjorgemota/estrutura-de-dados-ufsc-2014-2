@@ -5,7 +5,7 @@
 #include "Pista.hpp"
 #include "../util/FilaEnc.cpp"
 
-Pista::Pista(int tamanho, int velocidade) {
+Pista::Pista(int tamanho, int velocidade) : FilaEnc() {
     this->tamanho = tamanho;
     this->velocidade = velocidade;
     this->tamanhoDisponivel = velocidade;

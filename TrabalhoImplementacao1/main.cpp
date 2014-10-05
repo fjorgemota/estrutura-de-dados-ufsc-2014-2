@@ -12,4 +12,4 @@ int main(int argc, char** argv) {
     relogio.executa();
     return 0;
 }
-#endif
+#endif /* MAIN_CPP */

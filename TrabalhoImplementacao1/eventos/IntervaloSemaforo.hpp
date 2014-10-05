@@ -13,4 +13,4 @@ class IntervaloSemaforo : public FuturoPeriodico {
     virtual void executa();
 };
 
-#endif
+#endif /* INTERVALO_SEMAFORO_HPP */

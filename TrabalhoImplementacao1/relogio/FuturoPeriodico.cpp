@@ -16,4 +16,4 @@ bool FuturoPeriodico::podeExecutar(int now) {
 bool FuturoPeriodico::podeRemover() {
     return false;
 }
-#endif
+#endif /* FUTURO_PERIODICO_CPP */

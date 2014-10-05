@@ -8,4 +8,4 @@ PistaFonte<T>::PistaFonte(int tamanhoMaximo, int velocidade) : Pista(
     tamanhoMaximo,
     velocidade) {}
 
-#endif
+#endif /* PISTA_FONTE_CPP */
