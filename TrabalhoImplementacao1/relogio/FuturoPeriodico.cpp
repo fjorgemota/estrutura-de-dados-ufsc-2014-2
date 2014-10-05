@@ -4,7 +4,8 @@
 #define FUTURO_PERIODICO_CPP
 #include "FuturoPeriodico.hpp"
 
-FuturoPeriodico::FuturoPeriodico(int interv, char* desc) : Futuro(interv, desc) {}
+FuturoPeriodico::FuturoPeriodico(int interv, char* desc) : Futuro(
+    interv, desc) {}
 
 FuturoPeriodico::FuturoPeriodico(int interval) : Futuro(interval) {}
 

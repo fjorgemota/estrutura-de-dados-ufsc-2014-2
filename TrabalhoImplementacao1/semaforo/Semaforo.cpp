@@ -6,12 +6,26 @@
 
 Semaforo::Semaforo(int intervalo) {
     this->intervalo = intervalo;
-    this->entrada = ListaEnc<Estrada*>();
-    this->saida = ListaEnc<Estrada*>();
+    this->aberto = SEMAFORO_LIBERADO;
 }
 
 int Semaforo::pegaIntervalo() {
     return this->intervalo;
 }
 
+bool Semaforo::estaAberto() {
+    return this->aberto == SEMAFORO_ABERTO;
+}
+
+bool Semaforo::estaFechado() {
+    return this->aberto == SEMAFORO_FECHADO;
+}
+
+void Semaforo::abre() {
+    this->aberto = SEMAFORO_ABERTO;
+}
+
+void Semaforo::fecha() {
+    this->aberto = SEMAFORO_FECHADO;
+}
 #endif
