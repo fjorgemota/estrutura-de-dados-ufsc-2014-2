@@ -2,7 +2,7 @@
 
 #ifndef CARRO_CPP
 #define CARRO_CPP
-#include "util/NumeroAleatorio.hpp"
+#include "../util/NumeroAleatorio.hpp"
 #include "Carro.hpp"
 #define CARRO_TAMANHO_MINIMO 2
 #define CARRO_TAMANHO_MAXIMO 6
