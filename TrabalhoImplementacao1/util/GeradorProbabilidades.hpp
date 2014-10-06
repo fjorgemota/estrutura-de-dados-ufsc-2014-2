@@ -7,10 +7,10 @@
 template <typename T>
 class GeradorProbabilidades {
  private:
- 	ListaDupla<T> *lista;
+    ListaDupla<T> *lista;
  public:
-	GeradorProbabilidades();
-	void adiciona(T dado, int porcentagem);
-	ListaDupla<T> pegaLista();
+    GeradorProbabilidades();
+    void adiciona(T dado, int porcentagem);
+    ListaDupla<T> pegaLista();
 };
 #endif /* GERADOR_PROBABILIDADES_HPP */
