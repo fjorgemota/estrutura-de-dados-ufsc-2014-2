@@ -5,20 +5,16 @@
 #include <cstdlib>
 #include "Pista.hpp"
 #include "../util/FilaEnc.cpp"
-#include "../util/ListaDupla.cpp"
 #include "../util/NumeroAleatorio.hpp"
-#include "../eventos/FuturoTransfereCarro.cpp"
-#include "../semaforo/Semaforo.cpp"
-#include "../relogio/Relogio.cpp"
+#include "../eventos/IntervaloTransfereCarro.cpp"
 
 Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade, ListaDupla<Pista*> pistas) : FilaEnc() {
+    int velocidade) : FilaEnc() {
     this->relogio = relogio;
-    this->semaforo = semaforo;
     this->tamanho = tamanho;
-    this->tamanhoDisponivel = tamanho;
     this->velocidade = velocidade;
-    this->pistasSaida = pistas;
+    this->tamanhoDisponivel = velocidade;
+    this->pistasSaida = ListaDupla<Pista>();
 }
 
 int Pista::pegaTamanho() {
@@ -32,12 +28,12 @@ int Pista::pegaVelocidade() {
 void Pista::agendaNovoCarro() {
     int veloc = this->velocidade/3.6;
     int intervalo = this->tamanho / veloc;
-    this->relogio->agendaDaquiA(new FuturoTransfereCarro(
+    this->relogio->agendaDaquiA(new IntervaloTransfereCarro(
         this, this->semaforo, intervalo));
 }
 
 bool Pista::adiciona(Carro* carro) {
-    if (this->estaCheia(carro)) {
+    if (!this->estaCheia(carro)) {
         return false;
     }
     this->inclui(carro);
@@ -60,6 +56,10 @@ Pista Pista::sorteiaPista() {
 bool Pista::estaCheia(Carro* carro) {
     int temporario = this->tamanhoDisponivel - carro->pegaTamanho();
     return temporario >= 0;
+}
+
+void Pista::adicionaPistaSaida(Pista* pista) {
+    this->pistasSaida->adicionaDuplo(pista);
 }
 
 #endif /* PISTA_CPP */
