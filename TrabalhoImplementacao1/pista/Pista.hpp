@@ -9,11 +9,11 @@
 class Pista: private FilaEnc<Carro*> {
  private:
     int tamanhoMaximo;  //!< O tamanho maximo da pista, definida em metros
-    int velocidade;  //!< A velocidade limite que a pista possui, os carros andarao nesta velocidade
-    int tamanhoDisponivel;   //!< O tamanho que esta disponivel, ou seja, 
-    						// definira se ela suportara mais carros
+    int velocidade;  //!< A velocidade limite que a pista possui,
+                     // os carros andarao nesta velocidade
+    int tamanhoDisponivel;   //!< O tamanho que esta disponivel, ou seja,
+                             // definira se ela suportara mais carros
     ListaDupla<Pista> pistasSaida;
-    FilaEnc<Carro*> carrosbloqueados;
 
  public:
     Pista(int tamanhoMaximo, int velocidade, ListaDupla<T> pistas);
@@ -21,7 +21,6 @@ class Pista: private FilaEnc<Carro*> {
     int pegaVelocidade();
     bool adiciona(Carro* carro);
     Carro sairDaPista();
-    void transfere();
     Pista sorteiaPista();
     bool estaCheia(Carro* carro);
 };

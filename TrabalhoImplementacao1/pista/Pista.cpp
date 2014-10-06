@@ -2,8 +2,10 @@
 
 #ifndef PISTA_CPP
 #define PISTA_CPP
+#include <cstdlib>
 #include "Pista.hpp"
 #include "../util/FilaEnc.cpp"
+#include "../util/NumeroAleatorio.hpp"
 
 Pista::Pista(int tamanho, int velocidade, ListaDupla<T> pistas) : FilaEnc() {
     this->tamanho = tamanho;
@@ -24,7 +26,8 @@ bool Pista::adiciona(Carro* carro) {
     if (this->estaCheia(carro)) {
         return false;
     }
-    int tempo = this->tamanho / this->velocidade;
+    int veloc = this->velocidade/3.6;
+    int tempo = this->tamanho / veloc;
     this->inclui(carro);
     this->tamanhoDisponivel -= carro->pegaTamanho();
     return true;
@@ -36,17 +39,8 @@ Carro Pista::sairDaPista() {
     return carro;
 }
 
-void Pista::transfere() {
-    Carro* ultimo = this->ultimo();
-    Pista destino = this->sorteiaPista();
-    if (destino->estaCheia(ultimo)) {
-        ultimo = this->sairDaPista();
-        destino->adiciona(ultimo);
-    }
-}
-
 Pista Pista::sorteiaPista() {
-    int sorteio = rand() % 100;
+    int sorteio = SORTEIA(0, 99);
     return this->pistasSaida->mostra(sorteio);
 }
 
