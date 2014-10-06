@@ -6,7 +6,8 @@
 #include "../semaforo/Semaforo.cpp"
 #include "FuturoPeriodicoSemaforo.hpp"
 
-FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(Semaforo *semaforo) : FuturoPeriodico(
+FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(
+    Semaforo *semaforo) : FuturoPeriodico(
     semaforo->pegaIntervalo()) {
     this->semaforo = semaforo;
 }

@@ -7,8 +7,9 @@
 #include "../relogio/Relogio.cpp"
 #include "../carro/Carro.cpp"
 
-FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,  Relogio *relogio,
-    int intervaloMinimo, int intervaloMaximo) : FuturoPeriodico() {
+FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,
+    Relogio *relogio, int intervaloMinimo,
+    int intervaloMaximo) : FuturoPeriodico() {
     this->pista = pista;
     this->relogio = relogio;
     this->intervaloMinimo = intervaloMinimo;
