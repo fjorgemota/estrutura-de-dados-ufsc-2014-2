@@ -14,7 +14,8 @@ class IntervaloPistaFonte : public Futuro {
     int intervaloMaximo;
 
  public:
-    IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio, int intervaloMinimo, int intervaloMaximo);
+    IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio,
+        int intervaloMinimo, int intervaloMaximo);
     void agenda();
     void executa();
     virtual bool podeRemover();

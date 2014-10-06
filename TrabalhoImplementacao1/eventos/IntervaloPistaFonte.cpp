@@ -8,15 +8,16 @@
 #include "../relogio/Relogio.cpp"
 #include "../carro/Carro.cpp"
 
-IntervaloPistaFonte::IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio, int intervaloMinimo, int intervaloMaximo) : FuturoPeriodico() {
+IntervaloPistaFonte::IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio,
+    int intervaloMinimo, int intervaloMaximo) : FuturoPeriodico() {
     this->pista = pista;
     this->relogio = relogio;
     this->intervaloMinimo = intervaloMinimo;
     this->intervaloMaximo = intervaloMaximo;
 }
 
-void IntervaloPistaFonte::agenda(){
-    int intervalo = (int) this->intervaloMinimo + (rand(NULL)*(this->intervaloMaximo - this->intervaloMinimo));
+void IntervaloPistaFonte::agenda() {
+    int intervalo = SORTEIA(this->intervaloMinimo, this->intervaloMaximo);
     this->configuraHora(this->relogio->pegaHoraAtual() + intervalo);
 }
 
