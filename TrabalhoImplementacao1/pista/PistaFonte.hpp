@@ -2,11 +2,12 @@
 
 #ifndef PISTA_FONTE_HPP
 #define PISTA_FONTE_HPP
-#include "pista/Pista.hpp"
+#include "Pista.cpp"
 
 class PistaFonte: public Pista {
  public:
-     PistaFonte(int tamanhoMaximo, int velocidade);
+    PistaFonte(Relogio *relogio, Semaforo *semaforo, int tamanho,
+        int velocidade, ListaDupla<T> pistas);
 };
 
 #endif /* PISTA_FONTE_HPP */

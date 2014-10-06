@@ -5,12 +5,19 @@
 #include <cstdlib>
 #include "Pista.hpp"
 #include "../util/FilaEnc.cpp"
+#include "../util/ListaDupla.cpp"
 #include "../util/NumeroAleatorio.hpp"
+#include "../eventos/FuturoTransfereCarro.cpp"
+#include "../semaforo/Semaforo.cpp"
+#include "../relogio/Relogio.cpp"
 
-Pista::Pista(int tamanho, int velocidade, ListaDupla<T> pistas) : FilaEnc() {
+Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanho,
+    int velocidade, ListaDupla<Pista*> pistas) : FilaEnc() {
+    this->relogio = relogio;
+    this->semaforo = semaforo;
     this->tamanho = tamanho;
+    this->tamanhoDisponivel = tamanho;
     this->velocidade = velocidade;
-    this->tamanhoDisponivel = velocidade;
     this->pistasSaida = pistas;
 }
 
@@ -22,13 +29,19 @@ int Pista::pegaVelocidade() {
     return this->velocidade;
 }
 
+void Pista::agendaNovoCarro() {
+    int veloc = this->velocidade/3.6;
+    int intervalo = this->tamanho / veloc;
+    this->relogio->agendaDaquiA(new FuturoTransfereCarro(
+        this, this->semaforo, intervalo));
+}
+
 bool Pista::adiciona(Carro* carro) {
     if (this->estaCheia(carro)) {
         return false;
     }
-    int veloc = this->velocidade/3.6;
-    int tempo = this->tamanho / veloc;
     this->inclui(carro);
+    this->agendaNovoCarro();
     this->tamanhoDisponivel -= carro->pegaTamanho();
     return true;
 }
