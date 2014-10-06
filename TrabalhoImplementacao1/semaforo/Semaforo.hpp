@@ -11,9 +11,13 @@ class Semaforo {
  private:
     int intervalo;
     bool aberto;
+    int contador;
+
  public:
     explicit Semaforo(int intervalo);
     int pegaIntervalo();
+    int pegaContador();
+    void acrescentaContador();
     bool estaAberto();
     bool estaFechado();
     void abre();
