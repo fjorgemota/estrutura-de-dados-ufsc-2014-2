@@ -15,6 +15,7 @@ class Evento {
     Evento(int hora, int tipo);
     Evento(int hora, char *descricao);
     explicit Evento(char *descricao);
+    virtual ~Evento();
     int pegaHora();
     void configuraHora(int hora);
     int pegaTipo();

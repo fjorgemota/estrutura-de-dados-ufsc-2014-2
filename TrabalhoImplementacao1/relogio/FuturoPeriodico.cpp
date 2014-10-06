@@ -11,6 +11,8 @@ FuturoPeriodico::FuturoPeriodico(int intervalo) : Futuro(intervalo) {}
 
 FuturoPeriodico::FuturoPeriodico() : Futuro() {}
 
+FuturoPeriodico::~FuturoPeriodico() {}
+
 bool FuturoPeriodico::podeExecutar(int agora) {
     return (agora % this->pegaHora()) == 0;
 }

@@ -19,6 +19,8 @@ Futuro::Futuro() : Evento(-1, EVENTO_FUTURO) {
     this->remover = false;
 }
 
+Futuro::~Futuro() {}
+
 bool Futuro::podeExecutar(int now) {
     bool resultado = this->pegaHora() == now;
     if (resultado) {

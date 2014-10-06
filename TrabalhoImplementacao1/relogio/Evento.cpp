@@ -28,6 +28,8 @@ Evento::Evento(char* descricao) {
     this->descricao = descricao;
 }
 
+Evento::~Evento() {}
+
 int Evento::pegaHora() {
     return this->hora;
 }
