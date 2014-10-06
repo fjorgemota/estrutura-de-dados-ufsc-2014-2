@@ -1,14 +1,13 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef INTERVALO_PISTA_FONTE_CPP
-#define INTERVALO_PISTA_FONTE_CPP
-#include <cstdlib>
+#ifndef FUTURO_PERIODICO_PISTA_FONTE_CPP
+#define FUTURO_PERIODICO_PISTA_FONTE_CPP
 #include "./pista/PistaFonte.cpp"
 #include "../relogio/Futuro.cpp"
 #include "../relogio/Relogio.cpp"
 #include "../carro/Carro.cpp"
 
-IntervaloPistaFonte::IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio,
+FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,  Relogio *relogio,
     int intervaloMinimo, int intervaloMaximo) : FuturoPeriodico() {
     this->pista = pista;
     this->relogio = relogio;
@@ -16,15 +15,15 @@ IntervaloPistaFonte::IntervaloPistaFonte(PistaFonte *pista,  Relogio *relogio,
     this->intervaloMaximo = intervaloMaximo;
 }
 
-void IntervaloPistaFonte::agenda() {
+void FuturoPeriodicoPistaFonte::agenda() {
     int intervalo = SORTEIA(this->intervaloMinimo, this->intervaloMaximo);
     this->configuraHora(this->relogio->pegaHoraAtual() + intervalo);
 }
 
-void IntervaloPistaFonte::executa() {
+void FuturoPeriodicoPistaFonte::executa() {
     Carro *carro = new Carro();
     this->pista->adiciona(carro);
     this->agenda();
 }
 
-#endif /* INTERVALO_PISTA_FONTE_CPP */
+#endif /* FUTURO_PERIODICO_PISTA_FONTE_CPP */

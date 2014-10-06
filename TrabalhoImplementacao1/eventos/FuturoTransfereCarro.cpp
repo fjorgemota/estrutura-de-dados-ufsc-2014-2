@@ -1,16 +1,19 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
-#ifndef INTERVALO_TRANSFERE_CARRO_CPP
-#define INTERVALO_TRANSFERE_CARRO_CPP
-#include "TrabalhoImplementacao1/eventos/IntervaloTransfereCarro.hpp"
+#ifndef FUTURO_TRANSFERE_CARRO_CPP
+#define FUTURO_TRANSFERE_CARRO_CPP
+#include "../pista/Pista.cpp"
+#include "../carro/Carro.cpp"
+#include "../semaforo/Semaforo.cpp"
+#include "FuturoTransfereCarro.cpp"
 
-IntervaloTransfereCarro::IntervaloTransfereCarro(Pista* pista,
-    Semaforo* semaforo) {
+FuturoTransfereCarro::FuturoTransfereCarro(Pista* pista,
+    Semaforo* semaforo, int intervalo) : Futuro(intervalo) {
     this->pista = pista;
     this->semaforo = semaforo;
 }
 
-void IntervaloTransfereCarro::executa() {
+void FuturoTransfereCarro::executa() {
     Pista* destino = this->pista->sorteiaPista();
     Carro* ultimo = this->pista->ultimo();
     if (destino->estaCheia(ultimo) && this->semaforo->estaAberto()) {
@@ -20,4 +23,4 @@ void IntervaloTransfereCarro::executa() {
     }
 }
 
-#endif
+#endif /* FUTURO_TRANSFERE_CARRO_CPP */
