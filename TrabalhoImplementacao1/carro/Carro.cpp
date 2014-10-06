@@ -2,10 +2,13 @@
 
 #ifndef CARRO_CPP
 #define CARRO_CPP
-#include "Car.hpp"
+#include "util/NumeroAleatorio.hpp"
+#include "Carro.hpp"
+#define CARRO_TAMANHO_MINIMO 2
+#define CARRO_TAMANHO_MAXIMO 6
 
-Carro::Carro(int tamanho) {
-    this->tamanho = tamanho;
+Carro::Carro() {
+    this->tamanho = SORTEIA(CARRO_TAMANHO_MINIMO, CARRO_TAMANHO_MAXIMO);
 }
 
 int Carro::pegaTamanho() {

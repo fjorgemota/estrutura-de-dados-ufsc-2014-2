@@ -8,7 +8,7 @@ class Carro {
     int tamanho;
 
  public:
-     explicit Carro(int tamanho);
+     Carro();
      int pegaTamanho();
 };
 
