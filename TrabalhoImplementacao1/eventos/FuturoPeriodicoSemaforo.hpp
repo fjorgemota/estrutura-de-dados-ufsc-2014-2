@@ -4,12 +4,14 @@
 #define FUTURO_PERIODICO_SEMAFORO_HPP
 #include "../relogio/FuturoPeriodico.cpp"
 #include "../semaforo/Semaforo.cpp"
+#include "../util/ListaDupla.cpp"
 
 class FuturoPeriodicoSemaforo : public FuturoPeriodico {
  private:
-    Semaforo *semaforo;
+    ListaDupla<Semaforo*> *semaforo;
+    int semaforoEscolhido;
  public:
-    explicit FuturoPeriodicoSemaforo(Semaforo *semaforo);
+    explicit FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo);
     virtual void executa();
 };
 

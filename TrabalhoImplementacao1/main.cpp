@@ -7,6 +7,7 @@
 #include "relogio/Relogio.cpp"
 #include "relogio/FuturoPeriodico.cpp"
 
+
 int main(int argc, char** argv) {
     INICIALIZA_NUMEROS_ALEATORIOS();
     Relogio relogio = Relogio();

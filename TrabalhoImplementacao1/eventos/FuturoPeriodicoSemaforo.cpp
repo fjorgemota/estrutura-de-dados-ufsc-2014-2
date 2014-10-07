@@ -4,20 +4,26 @@
 #define FUTURO_PERIODICO_SEMAFORO_CPP
 #include "../relogio/FuturoPeriodico.cpp"
 #include "../semaforo/Semaforo.cpp"
+#include "../util/ListaDupla.cpp"
 #include "FuturoPeriodicoSemaforo.hpp"
 
 FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(
-    Semaforo *semaforo) : FuturoPeriodico(
-    semaforo->pegaIntervalo()) {
+    ListaDupla<Semaforo*> *semaforo, int intervalo) : FuturoPeriodico(
+        intervalo) {
+    this->semaforoEscolhido = semaforo->verUltimo();
     this->semaforo = semaforo;
 }
 
 void FuturoPeriodicoSemaforo::executa() {
-    if (this->semaforo->estaAberto()) {
-        this->semaforo->fecha();
-    } else {
-        this->semaforo->abre();
+    Semaforo *semaforoAtual, semaforoAnterior;
+    semaforoAnterior = this->semaforo->mostra(this->semaforoEscolhido);
+    this->semaforoEscolhido++;
+    if(this->semaforoEscolhido > this->semaforo->verUltimo()) {
+        this->semaforoEscolhido = 0;
     }
+    semaforoAtual = this->semaforo->mostra(this->semaforoEscolhido);
+    semaforoAnterior->fecha();
+    semaforoAtual->abre();
 }
 
 #endif /* FUTURO_PERIODICO_SEMAFORO_CPP */

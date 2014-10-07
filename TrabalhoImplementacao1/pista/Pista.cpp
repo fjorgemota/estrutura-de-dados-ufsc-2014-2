@@ -29,7 +29,7 @@ void Pista::agendaNovoCarro() {
     int veloc = this->velocidade/3.6;
     int intervalo = this->tamanho / veloc;
     this->relogio->agendaDaquiA(new IntervaloTransfereCarro(
-        this, this->semaforo, intervalo));
+        this, this->semaforo), intervalo);
 }
 
 bool Pista::adiciona(Carro* carro) {

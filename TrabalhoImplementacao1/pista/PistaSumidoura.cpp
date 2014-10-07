@@ -7,14 +7,14 @@
 #include "PistaSumidoura.hpp"
 
 PistaSumidoura::PistaSumidoura(Relogio *relogio, Semaforo *semaforo,
-    int tamanho, int velocidade, ListaDupla<T> pistas) : Pista(
-    relogio, semaforo, tamanho, velocidade, pistas) {}
+    int tamanho, int velocidade) : Pista(
+    relogio, NULL, tamanho, velocidade, NULL) {}
 
 void PistaSumidoura::agendaCarro() {
     int veloc = this->velocidade/3.6;
     int tempo = this->tamanho / veloc;
-    this->relogio->agendaDaquiA(new IntervaloPistaSumidoura(
-        this, this->semaforo, intervalo));
+    this->relogio->agendaDaquiA(new FuturoPistaSumidoura(
+        this), intervalo);
 }
 
 #endif /* PISTA_SUMIDOURA_CPP */

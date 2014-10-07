@@ -14,6 +14,9 @@ class GeradorPistas {
     PistaSumidoura geraViaN1Norte(Relogio* relogio);
     PistaSumidoura geraViaN2Norte(Relogio* relogio);
     
+    Pista geraViaC1Oeste(Relogio* relogio, Semaforo* semaforo);
+    Pista geraViaC1Leste(Relogio* relogio, Semaforo* semaforo);
+    
     PistaFonte geraViaO1Leste(Relogio* relogio, Semaforo* semaforo);
     PistaFonte geraViaL1Oeste(Relogio* relogio, Semaforo* semaforo);
     PistaFonte geraViaN1Sul(Relogio* relogio, Semaforo* semaforo);
@@ -21,8 +24,6 @@ class GeradorPistas {
     PistaFonte geraViaS1Norte(Relogio* relogio, Semaforo* semaforo);
     PistaFonte geraViaS2Norte(Relogio* relogio, Semaforo* semaforo);
     
-    Pista geraViaC1Oeste(Relogio* relogio, Semaforo* semaforo);
-    Pista geraViaC1Leste(Relogio* relogio, Semaforo* semaforo);
     
  public:
     ListaDupla geraPista();

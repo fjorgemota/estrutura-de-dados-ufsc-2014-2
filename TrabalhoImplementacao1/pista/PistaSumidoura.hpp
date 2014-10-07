@@ -10,7 +10,7 @@ class PistaSumidoura: public Pista {
 
  public:
     PistaSumidoura(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade, ListaDupla<T> pistas);
+    int velocidade);
 }
 
 #endif /* PISTA_SUMIDOURA_HPP */
