@@ -10,7 +10,7 @@ FuturoPistaSumidoura::FuturoPistaSumidoura(PistaSumidoura* pista) {
     this->pista = pista;
 }
 
-void FuturoPistaSumidoura::executa() {
+void FuturoPistaSumidoura::executar() {
     Carro* ultimo = this->pista->sairDaPista();
     delete ultimo;
 }

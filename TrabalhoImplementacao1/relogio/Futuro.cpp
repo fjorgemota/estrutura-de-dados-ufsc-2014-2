@@ -15,6 +15,11 @@ Futuro::Futuro(int intervalo) : Evento(intervalo, EVENTO_FUTURO) {
     this->remover = false;
 }
 
+Futuro::Futuro(char* desc) : Evento(-1, EVENTO_FUTURO, desc) {
+    this->remover = false;
+}
+
+
 Futuro::Futuro() : Evento(-1, EVENTO_FUTURO) {
     this->remover = false;
 }

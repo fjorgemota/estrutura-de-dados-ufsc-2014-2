@@ -10,9 +10,10 @@ class FuturoPeriodicoSemaforo : public FuturoPeriodico {
  private:
     ListaDupla<Semaforo*> *semaforo;
     int semaforoEscolhido;
+    bool fechaTodos;
  public:
     explicit FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo);
-    virtual void executa();
+    virtual void executar();
 };
 
 #endif /* FUTURO_PERIODICO_SEMAFORO_HPP */

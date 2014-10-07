@@ -8,6 +8,7 @@
 #include "Evento.cpp"
 Relogio::Relogio() {
     this->horaAtual = 0;
+    this->paraExecucao = false;
     this->futuros = new ListaDupla<Futuro*>();
     this->historico = new ListaDupla<Evento*>();
 }
@@ -33,6 +34,10 @@ void Relogio::agenda(Futuro *fut) {
 void Relogio::agendaDaquiA(Futuro *fut, int intervaloFuturo) {
     fut->configuraHora(this->pegaHoraAtual() + intervaloFuturo);
     this->futuros->adicionaDuplo(fut);
+}
+
+void Relogio::parar() {
+    this->paraExecucao = true;
 }
 
 void Relogio::listaFuturos() {
@@ -63,8 +68,8 @@ void Relogio::listaHistorico() {
     }
 }
 
-void Relogio::executa() {
-    while (1) {
+void Relogio::executar() {
+    while (this->paraExecucao == false) {
         if (this->futuros->listaVazia()) {
             break;
         }

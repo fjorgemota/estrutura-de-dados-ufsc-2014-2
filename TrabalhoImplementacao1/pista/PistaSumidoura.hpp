@@ -6,11 +6,10 @@
 
 class PistaSumidoura: public Pista {
  protected:
-    virtual void agendaCarro();
+    virtual void agendaNovoCarro();
 
  public:
-    PistaSumidoura(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade);
+    PistaSumidoura(Relogio *relogio, int tamanho, int velocidade);
 }
 
 #endif /* PISTA_SUMIDOURA_HPP */

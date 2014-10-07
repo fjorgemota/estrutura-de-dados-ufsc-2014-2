@@ -16,8 +16,8 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
  public:
     FuturoPeriodicoPistaFonte(PistaFonte *pista,  Relogio *relogio,
         int intervaloMinimo, int intervaloMaximo);
-    void agenda();
-    void executa();
+    void agendar();
+    void executar();
 };
 
 #endif /* FUTURO_PERIODICO_PISTA_FONTE_HPP */

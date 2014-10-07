@@ -11,7 +11,8 @@ class Futuro: public Evento, public Retorno {
     bool remover;
  public:
     Futuro(int intervalo, char *descricao);
-    explicit Futuro(int descricao);
+    explicit Futuro(int intervalo);
+    explicit Futuro(char* descricao);
     Futuro();
     ~Futuro();
     virtual bool podeExecutar(int horaAtual);

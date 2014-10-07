@@ -5,7 +5,7 @@
 
 class Retorno {
  public:
-    virtual void executa() {}
+    virtual void executar() {}
 };
 
 #endif /* RETORNO_HPP */

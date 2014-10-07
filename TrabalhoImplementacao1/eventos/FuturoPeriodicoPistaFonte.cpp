@@ -16,15 +16,15 @@ FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,
     this->intervaloMaximo = intervaloMaximo;
 }
 
-void FuturoPeriodicoPistaFonte::agenda() {
+void FuturoPeriodicoPistaFonte::agendar() {
     int intervalo = SORTEIA(this->intervaloMinimo, this->intervaloMaximo);
     this->configuraHora(this->relogio->pegaHoraAtual() + intervalo);
 }
 
-void FuturoPeriodicoPistaFonte::executa() {
+void FuturoPeriodicoPistaFonte::executar() {
     Carro *carro = new Carro();
     this->pista->adiciona(carro);
-    this->agenda();
+    this->agendar();
 }
 
 #endif /* FUTURO_PERIODICO_PISTA_FONTE_CPP */

@@ -9,159 +9,190 @@
 #include "../relogio/Relogio.cpp"
 #include "../semaforo/Semaforo.cpp"
 #include "../util/GeradorProbabilidades.cpp"
+#include "../eventos/FuturoPeriodicoPistaFonte.cpp"
 
-PistaSumidoura GeradorPistas::geraViaO1Oeste(Relogio* relogio) {
-    PistaSumidoura* viaO1Oeste = PistaSumidoura(relogio, 2000, 80);
-    return viaO1Oeste;
+GeradorPistas::GeradorPistas(Relogio *relogio, GeradorSemaforo *geradorSemaforo) {
+    this->relogio = relogio;
+    this->geradorSemaforo = geradorSemaforo;
 }
 
-PistaSumidoura GeradorPistas::geraViaL1Leste(Relogio* relogio) {
-    PistaSumidoura* viaL1Leste = PistaSumidoura(relogio, 400, 30);
-    return viaL1Leste;
+/** Pistas Sumidouras */
+Pista* GeradorPistas::geraPistaO1Oeste(Relogio* relogio) {
+    if(this->pistaO1Oeste == NULL) {
+        this->pistaO1Oeste = new PistaSumidoura(relogio, 2000, 80);
+    }
+    return this->pistaO1Oeste;
 }
 
-PistaSumidoura GeradorPistas::geraViaS1Sul(Relogio* relogio) {
-    PistaSumidoura* viaS1Sul = PistaSumidoura(relogio, 500, 60);
-    return viaS1Sul;
+Pista* GeradorPistas::geraPistaL1Leste(Relogio* relogio) {
+    if(this->pistaL1Leste == NULL) {
+        this->pistaL1Leste = new PistaSumidoura(relogio, 400, 30);
+    }
+    return this->pistaL1Leste;
 }
 
-PistaSumidoura GeradorPistas::geraViaS2Sul(Relogio* relogio) {
-    PistaSumidoura* viaS2Sul = PistaSumidoura(relogio, 500, 40);
-    return viaS2Sul;
+Pista* GeradorPistas::geraPistaS1Sul(Relogio* relogio) {
+    if(this->pistaS1Sul == NULL) {
+        this->pistaS1Sul = new PistaSumidoura(relogio, 500, 60);
+    }
+    return this->pistaS1Sul;
 }
 
-PistaSumidoura GeradorPistas::geraViaN1Norte(Relogio* relogio) {
-    PistaSumidoura* viaN1Norte = PistaSumidoura(relogio, 500, 60);
-    return viaN1Norte;
+Pista* GeradorPistas::geraPistaS2Sul(Relogio* relogio) {
+    if(this->pistaS2Sul == NULL) {
+        this->pistaS2Sul = new PistaSumidoura(relogio, 500, 40);
+    } 
+    return this->pistaS2Sul;
 }
 
-PistaSumidoura GeradorPistas::geraViaN2Norte(Relogio* relogio) {
-    PistaSumidoura* viaN2Norte = PistaSumidoura(relogio, 500, 40);
-    return viaN2Norte;
+Pista* GeradorPistas::geraPistaN1Norte(Relogio* relogio) {
+    if(this->pistaN1Norte == NULL) {
+        this->pistaN1Norte = new PistaSumidoura(relogio, 500, 60);
+    }
+    return this->pistaN1Norte;
 }
 
-PistaFonte GeradorPistas::geraViaO1Leste(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaO1Leste = PistaFonte(relogio, semaforo, 2000, 80);
-    return viaO1Leste;
+Pista* GeradorPistas::geraPistaN2Norte(Relogio* relogio) {
+    if(this->pistaN2Norte == NULL) {
+        this->pistaN2Norte = new PistaSumidoura(relogio, 500, 40);
+    }
+    return this->pistaN2Norte;
 }
 
-PistaFonte GeradorPistas::geraViaN1Sul(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaN1Sul = PistaFonte(relogio, semaforo, 500, 60);
-    return viaN1Sul;
+
+/* Pista Normal */ 
+
+Pista* GeradorPistas::geraPistaC1Oeste(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaC1Oeste == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaN1Norte(), 30);
+        saidas->adiciona(this->geraPistaO1Oeste(), 40);
+        saidas->adiciona(this->geraPistaS1Sul(), 30);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemC1oeste();
+        this->pistaC1Oeste = new Pista(relogio, semaforo, 300, 60, saidas->pegaLista());
+    }
+    return this->pistaC1Oeste;
 }
 
-PistaFonte GeradorPistas::geraViaN2Sul(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaN2Sul = PistaFonte(relogio, semaforo, 500, 40);
-    return viaN2Sul;
+Pista* GeradorPistas::geraPistaC1Leste(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaC1Leste == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaN2Norte(), 30);
+        saidas->adiciona(this->geraPistaL1Leste(), 40);
+        saidas->adiciona(this->geraPistaS2Sul(), 30);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemC1leste();
+        this->pistaC1Leste = new Pista(relogio, semaforo, 300, 60, saidas->pegaLista());
+    }
+    return this->pistaC1Leste;
 }
 
-PistaFonte GeradorPistas::geraViaS1Norte(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaS1Norte = PistaFonte(relogio, semaforo, 500, 60);
-    return viaS1Norte;
+/** Pista Fonte */
+Pista* GeradorPistas::geraPistaO1Leste(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaO1Leste == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaN1Norte(), 10);
+        saidas->adiciona(this->geraPistaC1Leste(), 80);
+        saida->adiciona(this->geraPistaS1Sul(), 10);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemO1leste();
+        this->pistaO1Leste = new PistaFonte(relogio, semaforo, 2000, 80, saidas->pegaLista());
+        FuturoPeriodicoPistaFonte *futuro;
+        futuro = new FuturoPeriodicoPistaFonte(this->pistaO1Leste, this->relogio, 8, 12);
+        this->relogio->agenda(futuro);
+        futuro->agendar();
+    }
+    return this->pistaO1Leste;
 }
 
-PistaFonte GeradorPistas::geraViaS2Norte(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaS2Norte = PistaFonte(relogio, semaforo, 500, 40);
-    return viaS2Norte;
+Pista* GeradorPistas::geraPistaN1Sul(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaN1Sul == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaO1Oeste(), 10);
+        saidas->adiciona(this->geraPistaS1Sul(), 10);
+        saidas->adiciona(this->geraPistaC1Leste(), 80);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemN1sul();
+        this->pistaN1Sul = new PistaFonte(relogio, semaforo, 500, 60, saidas->pegaLista());
+        FuturoPeriodicoPistaFonte *futuro;
+        futuro = new FuturoPeriodicoPistaFonte(this->pistaN1Sul, this->relogio, 15, 25);
+        this->relogio->agenda(futuro);
+        futuro->agendar();
+    }
+    return this->pistaN1Sul;
 }
 
-PistaFonte GeradorPistas::geraViaL1Oeste(Relogio* relogio, Semaforo* semaforo) {
-    PistaFonte* viaO1Oeste = PistaFonte(relogio, semaforo, 400, 30);
-    return viaO1Oeste;
+Pista* GeradorPistas::geraPistaN2Sul(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaN2Sul == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaC1Oeste(), 30);
+        saidas->adiciona(this->geraPistaN2Sul(), 30);
+        saidas->adiciona(this->geraPistaL1Leste(), 40);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemN2sul();
+        this->pistaN2Sul = new PistaFonte(relogio, semaforo, 500, 40, saidas->pegaLista());
+        FuturoPeriodicoPistaFonte *futuro;
+        futuro = new FuturoPeriodicoPistaFonte(this->pistaN2Sul, this->relogio, 15, 25);
+        this->relogio->agenda(futuro);
+        futuro->agendar();
+    }
+    return this->pistaN2Sul;
 }
 
-Pista GeradorPistas::geraViaC1Oeste(Relogio* relogio, Semaforo* semaforo) {
-    Pista* viaC1Oeste = PistaFonte(relogio, semaforo, 300, 60);
-    return viaC1Oeste;
+Pista* GeradorPistas::geraPistaS1Norte(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaS1Norte == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaO1Oeste(), 10);
+        saidas->adiciona(this->geraPistaN1Norte(), 10);
+        saidas->adiciona(this->geraPistaC1Leste, 80);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemS1norte();
+        this->pistaS1Norte = new PistaFonte(relogio, semaforo, 500, 60, saidas->pegaLista());
+        FuturoPeriodicoPistaFonte *futuro;
+        futuro = new FuturoPeriodicoPistaFonte(this->pistaS1Norte, this->relogio, 23, 37);
+        this->relogio->agenda(futuro);
+        futuro->agendar();
+    }
+    return this->pistaS1Norte;
 }
 
-Pista GeradorPistas::geraViaC1Leste(Relogio* relogio, Semaforo* semaforo) {
-    Pista* viaC1Leste = PistaFonte(relogio, semaforo, 300, 60);
-    return viaC1Leste;
+Pista* GeradorPistas::geraPistaS2Norte(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaS2Norte == NULL) {
+        GeradorProbabilidades<Pista*> saidas = new GeradorProbabilidades<Pista*>();
+        saidas->adiciona(this->geraPistaC1Oeste(), 30);
+        saidas->adiciona(this->geraPistaN2Norte(), 30);
+        saidas->adiciona(this->geraPistaL1Leste(), 40);
+        Semaforo* semaforo = this->geradorSemaforo->pegaSemS2norte();
+        this->pistaS2Norte = new PistaFonte(relogio, semaforo, 500, 40, saidas->pegaLista());
+        FuturoPeriodicoPistaFonte *futuro;
+        futuro = new FuturoPeriodicoPistaFonte(this->pistaS2Norte, this->relogio, 45, 75);
+        this->relogio->agenda(futuro);
+        futuro->agendar();
+    }
+    return this->pistaS2Norte;
 }
 
-GeradorPistas::geraPista(Relogio* relogio, int intervalo) {
+Pista* GeradorPistas::geraPistaL1Oeste(Relogio* relogio, Semaforo* semaforo) {
+    if(this->pistaL1Oeste == NULL) {
+        this->pistal1Oeste = new PistaFonte(relogio, semaforo, 400, 30);
+    }
+    return this->pistaL1Oeste;
+}
+
+ListaDupla<Pista*> GeradorPistas::geraPistas() {
     ListaDupla<Pista*> pistas = ListaDupla<Pista*>();
-    GeradorSemaforo semaforo = new GeradorSemaforo(intervalo);
     
-    // Pistas Sumidouras:
-    Pista* o1oeste, l1leste, s1sul, s2sul, n1norte, n2norte;
+    pistas->adicionaDuplo(this->geraPistaO1Oeste());
+    pistas->adicionaDuplo(this->geraPistaL1Leste());
+    pistas->adicionaDuplo(this->geraPistaS1Sul());
+    pistas->adicionaDuplo(this->geraPistaS2Sul());
+    pistas->adicionaDuplo(this->geraPistaN1Norte());
+    pistas->adicionaDuplo(this->geraPistaN2Norte());
     
-    o1oeste = this->geraViaO1Oeste(relogio, sem);
-    pistas->adicionaDuplo(o1oeste);
+    pistas->adicionaDuplo(this->geraPistaC1Oeste());
+    pistas->adicionaDuplo(this->geraPistaC1Leste());
     
-    l1leste = this->geraViaL1Leste(relogio, sem);
-    pistas->adicionaDuplo(l1leste);
-    
-    s1sul = this->geraViaS1Sul(relogio, sem);
-    pistas->adicionaDuplo(s1sul);
-    
-    s2sul = this->geraViaS2Sul(relogio, sem);
-    pistas->adicionaDuplo(s21sul);
-    
-    n1norte = this->geraViaN1Norte(relogio, sem);
-    pistas->adicionaDuplo(n1norte);
-    
-    n2norte = this->geraViaN2Norte(relogio, sem);
-    pistas->adicionaDuplo(n2norte);
-    
-    
-    // Pistas Normais
-    Pista* c1oeste, c1leste;
-    Semaforo* semC1oeste, semC1leste;
-    
-    c1oeste = this->geraViaC1Oeste(relogio, sem);
-    c1oeste->adicionaPistaSaida(n1norte);
-    c1oeste->adicionaPistaSaida(o1oeste);
-    c1oeste->adicionaPistaSaida(s1sul);
-    pistas->adicionaDuplo(c1oeste);
-    
-    c1leste = this->geraViaC1Leste(relogio, sem);
-    c1leste->adicionaPistaSaida(n2norte);
-    c1leste->adicionaPistaSaida(l1leste);
-    c1leste->adicionaPistaSaida(s2sul);
-    pistas->adicionaDuplo(c1leste);
-    
-    // Pistas Fontes:
-    Pista* o1leste, l1oeste, n1sul, n2sul, s1norte, s2norte;
-    Semaforo* semO1leste, semL1oeste, semN1sul, semN2sul, semS1norte, semS2norte;
-    
-    o1leste = this->geraViaO1Oeste(relogio, sem);
-    o1leste->adicionaPistaSaida(n1norte);
-    o1leste->adicionaPistaSaida(c1leste);
-    o1leste->adicionaPistaSaida(s1sul);
-    pistas->adicionaDuplo(o1leste);
-    
-    l1oeste = this->geraViaL1Oeste(relogio, sem);
-    l1oeste->adicionaPistaSaida(n2norte);
-    l1oeste->adicionaPistaSaida(c1oeste);
-    l1oeste->adicionaPistaSaida(s2sul);
-    pistas->adicionaDuplo(l1oeste);
-    
-    
-    n1sul = this->geraViaN1Sul(relogio, sem);
-    n1sul->adicionaPistaSaida(o1oeste);
-    n1sul->adicionaPistaSaida(s1sul);
-    n1sul->adicionaPistaSaida(c1leste);
-    pistas->adicionaDuplo(n1sul);
-    
-    n2sul = this->geraViaN2Sul(relogio, sem);
-    n2sul->adicionaPistaSaida(c1oeste);
-    n2sul->adicionaPistaSaida(s2sul);
-    n2sul->adicionaPistaSaida(l1leste);
-    pistas->adicionaDuplo(n2sul);
-    
-    s1norte = this->geraViaS2Norte(relogio, sem);
-    s1norte->adicionaPistaSaida(o1oeste);
-    s1norte->adicionaPistaSaida(n1norte);
-    s1norte->adicionaPistaSaida(c1leste);
-    pistas->adicionaDuplo(s1norte);
-    
-    s2norte = this->geraViaS2Norte(relogio, sem);
-    s2norte->adicionaPistaSaida(c1oeste);
-    s2norte->adicionaPistaSaida(n2norte);
-    s2norte->adicionaPistaSaida(l1leste);
-    pistas->adicionaDuplo(s2norte);
+    pistas->adicionaDuplo(this->geraPistaO1Leste());
+    pistas->adicionaDuplo(this->geraPistaL1Oeste());
+    pistas->adicionaDuplo(this->geraPistaN1Sul());
+    pistas->adicionaDuplo(this->geraPistaN2Sul());
+    pistas->adicionaDuplo(this->geraPistaS1Norte());
+    pistas->adicionaDuplo(this->geraPistaS2Norte());
     
     return pistas;
 }

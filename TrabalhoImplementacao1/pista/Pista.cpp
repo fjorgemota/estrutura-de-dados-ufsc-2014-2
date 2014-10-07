@@ -9,12 +9,12 @@
 #include "../eventos/IntervaloTransfereCarro.cpp"
 
 Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade) : FilaEnc() {
+    int velocidade, ListaDupla<Pista*> pistasSaida) : FilaEnc() {
     this->relogio = relogio;
     this->tamanho = tamanho;
     this->velocidade = velocidade;
-    this->tamanhoDisponivel = velocidade;
-    this->pistasSaida = ListaDupla<Pista>();
+    this->tamanhoDisponivel = tamanho;
+    this->pistasSaida = pistasSaida;
 }
 
 int Pista::pegaTamanho() {
@@ -48,7 +48,7 @@ Carro Pista::sairDaPista() {
     return carro;
 }
 
-Pista Pista::sorteiaPista() {
+Pista* Pista::sorteiaPista() {
     int sorteio = SORTEIA(0, 99);
     return this->pistasSaida->mostra(sorteio);
 }
@@ -56,10 +56,6 @@ Pista Pista::sorteiaPista() {
 bool Pista::estaCheia(Carro* carro) {
     int temporario = this->tamanhoDisponivel - carro->pegaTamanho();
     return temporario >= 0;
-}
-
-void Pista::adicionaPistaSaida(Pista* pista) {
-    this->pistasSaida->adicionaDuplo(pista);
 }
 
 #endif /* PISTA_CPP */

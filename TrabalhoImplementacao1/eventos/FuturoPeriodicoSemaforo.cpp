@@ -8,22 +8,26 @@
 #include "FuturoPeriodicoSemaforo.hpp"
 
 FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(
-    ListaDupla<Semaforo*> *semaforo, int intervalo) : FuturoPeriodico(
-        intervalo) {
-    this->semaforoEscolhido = semaforo->verUltimo();
-    this->semaforo = semaforo;
+    ListaDupla<Semaforo*> *semaforos, int intervalo) : FuturoPeriodico(
+        intervalo, (char*) "Futuro Periodico Semaforo") {
+    this->semaforoEscolhido = semaforos->verUltimo();
+    this->fechaTodos = false;
+    this->semaforos = semaforos;
 }
 
-void FuturoPeriodicoSemaforo::executa() {
+void FuturoPeriodicoSemaforo::executar() {
     Semaforo *semaforoAtual, semaforoAnterior;
-    semaforoAnterior = this->semaforo->mostra(this->semaforoEscolhido);
+    semaforoAnterior = this->semaforos->mostra(this->semaforoEscolhido);
     this->semaforoEscolhido++;
-    if(this->semaforoEscolhido > this->semaforo->verUltimo()) {
+    if(this->semaforoEscolhido > this->semaforos->verUltimo()) {
         this->semaforoEscolhido = 0;
     }
-    semaforoAtual = this->semaforo->mostra(this->semaforoEscolhido);
+    semaforoAtual = this->semaforos->mostra(this->semaforoEscolhido);
     semaforoAnterior->fecha();
-    semaforoAtual->abre();
+    if(this->fechaTodos == false) {
+        semaforoAtual->abre();
+    }
+    this->fechaTodos = this->fechaTodos == false;
 }
 
 #endif /* FUTURO_PERIODICO_SEMAFORO_CPP */

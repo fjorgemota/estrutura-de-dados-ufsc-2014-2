@@ -2,22 +2,33 @@
 
 #ifndef GERADOR_SEMAFORO_HPP
 #define GERADOR_SEMAFORO_HPP
-#include "../semaforo/Semaforo.hpp"
+#include "../semaforo/Semaforo.cpp"
+#include "../util/ListaDupla.cpp"
+#include "../relogio/Relogio.cpp"
 
 class GeradorSemaforo {
  private:
-    int intervalo;
+    Semaforo* semO1leste;
+    Semaforo* semN1sul;
+    Semaforo* semN2sul;
+    Semaforo* semS1norte;
+    Semaforo* semS2norte;
+    Semaforo* semC1oeste;
+    Semaforo* semC1leste;
+    Semaforo* semL1oeste;
+    void agendaSemaforosS1();
+    void agendaSemaforosS2();
 
  public:
-    GeradorSemaforo(int intervalo);
-    Semaforo* geraSemO1leste();
-    Semaforo* geraSemN1sul();
-    Semaforo* geraSemN2sul();
-    Semaforo* geraSemS1norte();
-    Semaforo* geraSemS2norte();
-    Semaforo* geraSemC1oeste();
-    Semaforo* geraSemC1leste();
-    Semaforo* geraSemL1oeste();
+    explicit GeradorSemaforo(Relogio *relogio, int intervalo);
+    Semaforo* pegaSemO1leste();
+    Semaforo* pegaSemN1sul();
+    Semaforo* pegaSemN2sul();
+    Semaforo* pegaSemS1norte();
+    Semaforo* pegaSemS2norte();
+    Semaforo* pegaSemC1oeste();
+    Semaforo* pegaSemC1leste();
+    Semaforo* pegaSemL1oeste();
 };
 
 #endif /* GERADOR_SEMAFORO_HPP */

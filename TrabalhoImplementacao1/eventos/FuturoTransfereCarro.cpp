@@ -13,7 +13,7 @@ FuturoTransfereCarro::FuturoTransfereCarro(Pista* pista,
     this->semaforo = semaforo;
 }
 
-void FuturoTransfereCarro::executa() {
+void FuturoTransfereCarro::executar() {
     Pista* destino = this->pista->sorteiaPista();
     Carro* ultimo = this->pista->ultimo();
     if (destino->estaCheia(ultimo) && this->semaforo->estaAberto()) {

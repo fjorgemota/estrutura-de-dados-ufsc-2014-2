@@ -11,7 +11,7 @@ class FuturoPistaSumidoura : public Futuro {
 
  public:
     explicit FuturoPistaSumidoura(PistaSumidoura* pista);
-    virtual void executa();
+    virtual void executar();
 };
 
 #endif /* FUTURO_PISTA_SUMIDOURA_HPP */

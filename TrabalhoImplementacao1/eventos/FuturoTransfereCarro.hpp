@@ -13,7 +13,7 @@ class FuturoTransfereCarro : public Futuro {
 
  public:
     FuturoTransfereCarro(Pista* pista, Semaforo* semaforo, int intervalo);
-    virtual void executa();
+    virtual void executar();
 };
 #include "TrabalhoImplementacao1/relogio/IntervaloTransfereCarro.cpp"
 #endif /* FUTURO_TRANSFERE_CARRO_HPP */

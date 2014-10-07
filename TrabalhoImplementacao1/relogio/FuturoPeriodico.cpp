@@ -9,12 +9,15 @@ FuturoPeriodico::FuturoPeriodico(int interv, char* desc) : Futuro(
 
 FuturoPeriodico::FuturoPeriodico(int intervalo) : Futuro(intervalo) {}
 
+FuturoPeriodico::FuturoPeriodico(char* descricao) : Futuro(descricao) {}
+
 FuturoPeriodico::FuturoPeriodico() : Futuro() {}
 
 FuturoPeriodico::~FuturoPeriodico() {}
 
 bool FuturoPeriodico::podeExecutar(int agora) {
-    return (agora % this->pegaHora()) == 0;
+    int horaEvento = this->pegaHora();
+    return horaEvento != -1 && (agora % horaEvento) == 0;
 }
 
 bool FuturoPeriodico::podeRemover() {

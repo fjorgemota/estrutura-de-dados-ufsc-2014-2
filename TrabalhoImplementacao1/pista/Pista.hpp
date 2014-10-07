@@ -6,7 +6,7 @@
 #include "../carro/Carro.cpp"
 #include "../relogio/Relogio.cpp"
 #include "../semaforo/Semaforo.cpp"
-#include "ListaDupla.hpp"
+#include "../util/ListaDupla.hpp"
 
 class Pista: private FilaEnc<Carro*> {
  private:
@@ -16,7 +16,7 @@ class Pista: private FilaEnc<Carro*> {
                      // os carros andarao nesta velocidade
     int tamanhoDisponivel;   //!< O tamanho que esta disponivel, ou seja,
                              // definira se ela suportara mais carros
-    ListaDupla<Pista> pistasSaida;
+    ListaDupla<Pista*> pistasSaida;
 
  protected:
     Relogio *relogio;  //!< Relogio a ser usado pela pista para sincronização
@@ -24,14 +24,13 @@ class Pista: private FilaEnc<Carro*> {
 
  public:
     Pista(Relogio *relogio, Semaforo *semaforo, int tamanhoMaximo,
-        int velocidade);
+        int velocidade, ListaDupla<Pista> pistasSaida);
     int pegaTamanhoMaximo();
     int pegaVelocidade();
     bool adiciona(Carro* carro);
     Carro sairDaPista();
-    Pista sorteiaPista();
+    Pista* sorteiaPista();
     bool estaCheia(Carro* carro);
-    void adicionaPistaSaida(Pista* pista);
 };
 
 #endif /* PISTA_HPP */

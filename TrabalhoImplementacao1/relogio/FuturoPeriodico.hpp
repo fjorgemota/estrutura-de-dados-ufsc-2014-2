@@ -9,6 +9,7 @@ class FuturoPeriodico : public Futuro {
  public:
     FuturoPeriodico(int intervalo, char* description);
     explicit FuturoPeriodico(int intervalo);
+    explicit FuturoPeriodico(char* description);
     FuturoPeriodico();
     ~FuturoPeriodico();
     virtual bool podeExecutar(int agora);

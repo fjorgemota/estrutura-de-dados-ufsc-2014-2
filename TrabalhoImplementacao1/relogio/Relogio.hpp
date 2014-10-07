@@ -11,6 +11,7 @@ class Relogio {
     ListaDupla<Evento*> *historico;
     ListaDupla<Futuro*> *futuros;
     int horaAtual;
+    bool paraExecucao;
  public:
     Relogio();
     ~Relogio();
@@ -18,9 +19,10 @@ class Relogio {
     void registra(Evento *ev);
     void agenda(Futuro *fut);
     void agendaDaquiA(Futuro *fut, int horaAtual);
+    void parar();
     void listaFuturos();
     void listaHistorico();
-    void executa();
+    void executar();
 };
 
 #endif /* RELOGIO_HPP */

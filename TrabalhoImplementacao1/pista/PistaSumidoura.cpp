@@ -3,14 +3,14 @@
 #ifndef PISTA_SUMIDOURA_CPP
 #define PISTA_SUMIDOURA_CPP
 #include "Pista.cpp"
-#include "../eventos/FuturoPistaSumidoura.cpp"
 #include "PistaSumidoura.hpp"
+#include "../eventos/FuturoPistaSumidoura.cpp"
 
-PistaSumidoura::PistaSumidoura(Relogio *relogio, Semaforo *semaforo,
+PistaSumidoura::PistaSumidoura(Relogio *relogio,
     int tamanho, int velocidade) : Pista(
     relogio, NULL, tamanho, velocidade, NULL) {}
 
-void PistaSumidoura::agendaCarro() {
+void PistaSumidoura::agendaNovoCarro() {
     int veloc = this->velocidade/3.6;
     int tempo = this->tamanho / veloc;
     this->relogio->agendaDaquiA(new FuturoPistaSumidoura(
