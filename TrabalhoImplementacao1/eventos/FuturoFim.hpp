@@ -5,16 +5,36 @@
 
 #include "../relogio/Futuro.cpp"
 #include "../relogio/Relogio.cpp"
+#include "../semaforo/Semaforo.cpp"
 #include "../util/ListaDupla.cpp"
 
+/*
+ * Classe que realiza as estatísticas finais do programa, dentre eles, as informações
+ * do semáforo, do carro e do sistema
+ */
 class FuturoFim : public Futuro {
  private:
-    Relogio *relogio;
-    ListaDupla<Semaforo*> semaforos;
+    Relogio *relogio;  //!< O relógio para sincronização
+    ListaDupla<Semaforo*> *semaforosS1, *semaforosS2;
+        //!< As listas duplamente encadeadas que contém
+        //!< os semáforos dos cruzamentos S1 e S2
 
  public:
-    FuturoFim(Relogio *relogio, ListaDupla<Semaforo*> semaforos, int pararEm);
+    /*
+     * Construtor do evento FuturoFim
+     *
+     *@param: relogio O relógio para a sincronização do evento
+     *@param: semaforosS1 A lista de semáforos do cruzamento S1
+     *@param: semaforosS2 A lista de semáforos do cruzamento S2
+     *@param: pararEm 
+     */
+    FuturoFim(Relogio *relogio, ListaDupla<Semaforo*> *semaforosS1,
+        ListaDupla<Semaforo*> *semaforosS2, int pararEm);
+
+    /*
+     * Método que executará as estatísticas finais do programa
+     */
     virtual void executar();
-}
+};
 
 #endif /* FUTURO_FIM_HPP */

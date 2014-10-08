@@ -2,21 +2,25 @@
 
 #ifndef FUTURO_PERIODICO_CPP
 #define FUTURO_PERIODICO_CPP
+
+#include <string>
 #include "FuturoPeriodico.hpp"
 
-FuturoPeriodico::FuturoPeriodico(int interv, char* desc) : Futuro(
+using std::string;
+
+FuturoPeriodico::FuturoPeriodico(int interv, string desc) : Futuro(
     interv, desc) {}
 
 FuturoPeriodico::FuturoPeriodico(int intervalo) : Futuro(intervalo) {}
 
-FuturoPeriodico::FuturoPeriodico(char* descricao) : Futuro(descricao) {}
+FuturoPeriodico::FuturoPeriodico(string descricao) : Futuro(descricao) {}
 
 FuturoPeriodico::FuturoPeriodico() : Futuro() {}
 
 FuturoPeriodico::~FuturoPeriodico() {}
 
 bool FuturoPeriodico::podeExecutar(int agora) {
-    int horaEvento = this->pegaHora();
+    int horaEvento = this->pegaSegundo();
     return horaEvento != -1 && (agora % horaEvento) == 0;
 }
 

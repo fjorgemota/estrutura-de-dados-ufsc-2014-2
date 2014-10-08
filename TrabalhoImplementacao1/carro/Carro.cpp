@@ -11,6 +11,8 @@ Carro::Carro() {
     this->tamanho = SORTEIA(CARRO_TAMANHO_MINIMO, CARRO_TAMANHO_MAXIMO);
 }
 
+Carro::~Carro() {}
+
 int Carro::pegaTamanho() {
     return 1 + this->tamanho + 2;
 }

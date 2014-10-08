@@ -3,6 +3,9 @@
 #ifndef RETORNO_HPP
 #define RETORNO_HPP
 
+/*
+ * Classe de retorno, onde ocorre uma das realizações de callbacks
+ */
 class Retorno {
  public:
     virtual void executar() {}

@@ -6,19 +6,20 @@
 #include "Pista.hpp"
 #include "../util/FilaEnc.cpp"
 #include "../util/NumeroAleatorio.hpp"
-#include "../eventos/IntervaloTransfereCarro.cpp"
+#include "../eventos/FuturoTransfereCarro.cpp"
 
-Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade, ListaDupla<Pista*> pistasSaida) : FilaEnc() {
+Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanhoMaximo,
+    int velocidade, ListaDupla<Pista*> *pistasSaida) : FilaEnc() {
     this->relogio = relogio;
-    this->tamanho = tamanho;
+    this->semaforo = semaforo;
+    this->tamanhoMaximo = tamanhoMaximo;
     this->velocidade = velocidade;
-    this->tamanhoDisponivel = tamanho;
+    this->tamanhoDisponivel = tamanhoMaximo;
     this->pistasSaida = pistasSaida;
 }
 
-int Pista::pegaTamanho() {
-    return this->tamanho;
+int Pista::pegaTamanhoMaximo() {
+    return this->tamanhoMaximo;
 }
 
 int Pista::pegaVelocidade() {
@@ -27,9 +28,9 @@ int Pista::pegaVelocidade() {
 
 void Pista::agendaNovoCarro() {
     int veloc = this->velocidade/3.6;
-    int intervalo = this->tamanho / veloc;
-    this->relogio->agendaDaquiA(new IntervaloTransfereCarro(
-        this, this->semaforo), intervalo);
+    int intervalo = this->tamanhoMaximo / veloc;
+    this->relogio->agendaDaquiA(new FuturoTransfereCarro(
+        this, this->semaforo, this->relogio), intervalo);
 }
 
 bool Pista::adiciona(Carro* carro) {
@@ -42,14 +43,18 @@ bool Pista::adiciona(Carro* carro) {
     return true;
 }
 
-Carro Pista::sairDaPista() {
+Carro* Pista::sairDaPista() {
     Carro* carro = this->retira();
     this->tamanhoDisponivel += carro->pegaTamanho();
     return carro;
 }
 
+Carro* Pista::ultimoCarro() {
+    return this->ultimo();
+}
+
 Pista* Pista::sorteiaPista() {
-    int sorteio = SORTEIA(0, 99);
+    int sorteio = SORTEIA(0, this->pistasSaida->verUltimo());
     return this->pistasSaida->mostra(sorteio);
 }
 

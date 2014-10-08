@@ -2,16 +2,17 @@
 
 #ifndef MAIN_CPP
 #define MAIN_CPP
-#include <cstdio>
+#include <iostream>
 #include "util/NumeroAleatorio.hpp"
 #include "relogio/Relogio.cpp"
-#include "relogio/FuturoPeriodico.cpp"
-
+#include "programa/Programa.cpp"
 
 int main(int argc, char** argv) {
     INICIALIZA_NUMEROS_ALEATORIOS();
-    Relogio relogio = Relogio();
-    relogio.executa();
+    Relogio* relogio = new Relogio();
+    Programa* programa = new Programa(relogio);
+    programa->executar();
+    relogio->executar();
     return 0;
 }
 #endif /* MAIN_CPP */

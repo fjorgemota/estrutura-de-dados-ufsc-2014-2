@@ -5,11 +5,17 @@
 #include "../pista/Pista.hpp"
 #include "../pista/PistaSumidoura.hpp"
 #include "../util/ListaDupla.cpp"
+#include "../programa/GeradorSemaforo.cpp"
 
+/*
+ * Classe que gerará as pistas de dois cruzamentos, associando-os aos seus respectivos semáforos
+ */
 class GeradorPistas {
  private:
-    Relogio *relogio;
-    GeradorSemaforo *geradorSemaforo;
+    Relogio *relogio;  //!< Relógio usado para sincronizar os cruzamentos
+    GeradorSemaforo *geradorSemaforo;  //!< Os semáforos que
+                    //!< serão adicionados às respectivas pistas
+
     Pista* pistaO1Oeste;
     Pista* pistaL1Leste;
     Pista* pistaS1Sul;
@@ -24,30 +30,38 @@ class GeradorPistas {
     Pista* pistaL1Oeste;
     Pista* pistaC1Oeste;
     Pista* pistaC1Leste;
-    
-    
-    Pista* geraPistaO1Oeste(Relogio* relogio);
-    Pista* geraPistaL1Leste(Relogio* relogio);
-    Pista* geraPistaS1Sul(Relogio* relogio);
-    Pista* geraPistaS2Sul(Relogio* relogio);
-    Pista* geraPistaN1Norte(Relogio* relogio);
-    Pista* geraPistaN2Norte(Relogio* relogio);
-    
-    Pista* geraPistaC1Oeste(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaC1Leste(Relogio* relogio, Semaforo* semaforo);
-    
-    Pista* geraPistaO1Leste(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaL1Oeste(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaN1Sul(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaN2Sul(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaS1Norte(Relogio* relogio, Semaforo* semaforo);
-    Pista* geraPistaS2Norte(Relogio* relogio, Semaforo* semaforo);
-    
-    
- public:
-    GeradorPistas(Relogio *relogio, GeradorSemaforo *geradorSemaforo);
-    ListaDupla<Pista*> geraPistas();
-    
-};
 
+    Pista* geraPistaO1Oeste();
+    Pista* geraPistaL1Leste();
+    Pista* geraPistaS1Sul();
+    Pista* geraPistaS2Sul();
+    Pista* geraPistaN1Norte();
+    Pista* geraPistaN2Norte();
+
+    Pista* geraPistaC1Oeste();
+    Pista* geraPistaC1Leste();
+
+    Pista* geraPistaO1Leste();
+    Pista* geraPistaL1Oeste();
+    Pista* geraPistaN1Sul();
+    Pista* geraPistaN2Sul();
+    Pista* geraPistaS1Norte();
+    Pista* geraPistaS2Norte();
+
+
+ public:
+    /*
+     * Constrói um gerador de pistas
+     *
+     *@param: relogio O relógio que manterá a sincronização das pistas
+     *@param: geradorSemaforo Os semáforos que serão associados às respectivas pistas
+     */
+    GeradorPistas(Relogio *relogio, GeradorSemaforo *geradorSemaforo);
+
+    /*
+     * Método que irá chamar os construtores de todas as pistas dos dois cruzamentos
+     */
+    void geraPistas();
+};
+#include "GeradorPistas.cpp"
 #endif

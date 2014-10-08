@@ -6,13 +6,28 @@
 #include "../semaforo/Semaforo.cpp"
 #include "../util/ListaDupla.cpp"
 
+/*
+ * Classe que representa os eventos referente aos semáforos,
+ * isto é, as sinalizações e quais carros passaram pelo sinalizador
+ */
 class FuturoPeriodicoSemaforo : public FuturoPeriodico {
  private:
-    ListaDupla<Semaforo*> *semaforo;
-    int semaforoEscolhido;
-    bool fechaTodos;
+    ListaDupla<Semaforo*> *semaforos;  //!< Lista de todos os
+                                    //!< semáforos do sistema
+    int semaforoEscolhido;  //!< Verifica a posição do último semáforo da lista
+    bool fechaTodos;  //!< Fecha todos os semáforos
  public:
-    explicit FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo);
+    /*
+     * Constrói o evento para a administração dos semáforos
+     *
+     *@param: semaforo A lista duplamente encadeada com todos os semáforos
+     *@param: intervalo O intervalo de alternância dos semáforos
+     */
+    FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo, int intervalo);
+
+    /*
+     * Método que executa/administra a sincronização dos semáforos
+     */
     virtual void executar();
 };
 

@@ -12,7 +12,7 @@ PistaSumidoura::PistaSumidoura(Relogio *relogio,
 
 void PistaSumidoura::agendaNovoCarro() {
     int veloc = this->velocidade/3.6;
-    int tempo = this->tamanho / veloc;
+    int intervalo = this->tamanhoMaximo / veloc;
     this->relogio->agendaDaquiA(new FuturoPistaSumidoura(
         this), intervalo);
 }

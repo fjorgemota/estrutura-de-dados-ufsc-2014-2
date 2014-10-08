@@ -5,8 +5,8 @@
 #include "Pista.cpp"
 #include "PistaFonte.hpp"
 
-PistaFonte<T>::PistaFonte(Relogio *relogio, Semaforo *semaforo, int tamanho,
-    int velocidade, ListaDupla<T> pistas) : Pista(
+PistaFonte::PistaFonte(Relogio *relogio, Semaforo *semaforo, int tamanho,
+    int velocidade, ListaDupla<Pista*> *pistas) : Pista(
     relogio, semaforo, tamanho, velocidade, pistas) {}
 
 #endif /* PISTA_FONTE_CPP */

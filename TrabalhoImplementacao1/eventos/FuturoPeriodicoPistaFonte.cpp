@@ -2,10 +2,11 @@
 
 #ifndef FUTURO_PERIODICO_PISTA_FONTE_CPP
 #define FUTURO_PERIODICO_PISTA_FONTE_CPP
-#include "./pista/PistaFonte.cpp"
+#include "../pista/PistaFonte.cpp"
 #include "../relogio/Futuro.cpp"
 #include "../relogio/Relogio.cpp"
 #include "../carro/Carro.cpp"
+#include "FuturoPeriodicoPistaFonte.hpp"
 
 FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,
     Relogio *relogio, int intervaloMinimo,
@@ -18,13 +19,22 @@ FuturoPeriodicoPistaFonte::FuturoPeriodicoPistaFonte(PistaFonte *pista,
 
 void FuturoPeriodicoPistaFonte::agendar() {
     int intervalo = SORTEIA(this->intervaloMinimo, this->intervaloMaximo);
-    this->configuraHora(this->relogio->pegaHoraAtual() + intervalo);
+    this->configuraSegundo(this->relogio->pegaSegundoAtual() + intervalo);
 }
 
 void FuturoPeriodicoPistaFonte::executar() {
     Carro *carro = new Carro();
-    this->pista->adiciona(carro);
+    bool sucesso = this->pista->adiciona(carro);
+    if (sucesso == true) {
+        Evento *evento = new Evento(EVENTO_CARRO_ENTRA_PISTA,
+                                    "Um novo carro foi adicionado à pista");
+        this->relogio->registra(evento);
+    }
     this->agendar();
+}
+
+bool FuturoPeriodicoPistaFonte::podeExecutar(int segundoAtual) {
+    return segundoAtual == this->pegaSegundo();
 }
 
 #endif /* FUTURO_PERIODICO_PISTA_FONTE_CPP */

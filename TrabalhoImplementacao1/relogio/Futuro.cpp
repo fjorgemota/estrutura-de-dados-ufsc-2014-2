@@ -2,9 +2,12 @@
 
 #ifndef FUTURO_CPP
 #define FUTURO_CPP
+#include <string>
 #include "Futuro.hpp"
 
-Futuro::Futuro(int intervalo, char* desc) : Evento(
+using std::string;
+
+Futuro::Futuro(int intervalo, string desc) : Evento(
     intervalo,
     EVENTO_FUTURO,
     desc) {
@@ -15,7 +18,7 @@ Futuro::Futuro(int intervalo) : Evento(intervalo, EVENTO_FUTURO) {
     this->remover = false;
 }
 
-Futuro::Futuro(char* desc) : Evento(-1, EVENTO_FUTURO, desc) {
+Futuro::Futuro(string desc) : Evento(-1, EVENTO_FUTURO, desc) {
     this->remover = false;
 }
 
@@ -26,8 +29,8 @@ Futuro::Futuro() : Evento(-1, EVENTO_FUTURO) {
 
 Futuro::~Futuro() {}
 
-bool Futuro::podeExecutar(int now) {
-    bool resultado = this->pegaHora() == now;
+bool Futuro::podeExecutar(int segundoAtual) {
+    bool resultado = this->pegaSegundo() == segundoAtual;
     if (resultado) {
         this->remover = true;
     }

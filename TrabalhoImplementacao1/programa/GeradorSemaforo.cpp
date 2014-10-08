@@ -6,19 +6,18 @@
 #include "../util/ListaDupla.cpp"
 #include "../semaforo/Semaforo.cpp"
 #include "../eventos/FuturoPeriodicoSemaforo.cpp"
-#inlude "../relogio/Relogio.cpp"
+#include "../relogio/Relogio.cpp"
 
-GeradorSemaforo::GeradorSemaforo(Relogio *relogio, int intervalo) {
-    this->semO1leste = new Semaforo();
-    this->semN1sul = new Semaforo();
-    this->semN2sul = new Semaforo();
-    this->semS1norte = new Semaforo();
-    this->semS2norte = new Semaforo();
-    this->semC1oeste = new Semaforo();
-    this->semC1leste = new Semaforo();
-    this->semL1oeste = new Semaforo();
-    this->agendaSemaforosS1(relogio, intervalo);
-    this->agendaSemaforosS2(relogio, intervalo);
+GeradorSemaforo::GeradorSemaforo(Relogio *relogio) {
+    this->relogio = relogio;
+    this->semO1leste = new Semaforo("O1Leste", relogio);
+    this->semN1sul = new Semaforo("N1Sul", relogio);
+    this->semN2sul = new Semaforo("N2Sul", relogio);
+    this->semS1norte = new Semaforo("S1Norte", relogio);
+    this->semS2norte = new Semaforo("S2Norte", relogio);
+    this->semC1oeste = new Semaforo("C1Oeste", relogio);
+    this->semC1leste = new Semaforo("C1Leste", relogio);
+    this->semL1oeste = new Semaforo("L1Oeste", relogio);
 }
 
 Semaforo* GeradorSemaforo::pegaSemO1leste() {
@@ -53,23 +52,32 @@ Semaforo* GeradorSemaforo::pegaSemL1oeste() {
     return this->semL1oeste;
 }
 
-void GeradorSemaforo::agendaSemaforosS1(Relogio *relogio, int intervalo) {
+void GeradorSemaforo::agendaSemaforosS1(int intervalo) {
+    ListaDupla<Semaforo*> *semaforos = this->pegaSemaforosS1();
+    this->relogio->agenda(new FuturoPeriodicoSemaforo(semaforos, intervalo));
+}
+
+
+void GeradorSemaforo::agendaSemaforosS2(int intervalo) {
+    ListaDupla<Semaforo*> *semaforos = this->pegaSemaforosS2();
+    this->relogio->agenda(new FuturoPeriodicoSemaforo(semaforos, intervalo));
+}
+
+ListaDupla<Semaforo*>* GeradorSemaforo::pegaSemaforosS1() {
     ListaDupla<Semaforo*> *semaforos = new ListaDupla<Semaforo*>();
     semaforos->adicionaDuplo(this->pegaSemN1sul());
     semaforos->adicionaDuplo(this->pegaSemC1oeste());
     semaforos->adicionaDuplo(this->pegaSemS1norte());
     semaforos->adicionaDuplo(this->pegaSemO1leste());
-    relogio->agenda(new FuturoPeriodicoSemaforo(semaforos, intervalo));
+    return semaforos;
 }
 
-
-void GeradorSemaforo::agendaSemaforosS2(Relogio *relogio, int intervalo) {
+ListaDupla<Semaforo*>* GeradorSemaforo::pegaSemaforosS2() {
     ListaDupla<Semaforo*> *semaforos = new ListaDupla<Semaforo*>();
     semaforos->adicionaDuplo(this->pegaSemN2sul());
     semaforos->adicionaDuplo(this->pegaSemL1oeste());
     semaforos->adicionaDuplo(this->pegaSemS2norte());
     semaforos->adicionaDuplo(this->pegaSemC1leste());
-    relogio->agenda(new FuturoPeriodicoSemaforo(semaforos, intervalo));
+    return semaforos;
 }
-
 #endif /* GERADOR_SEMAFORO_CPP */

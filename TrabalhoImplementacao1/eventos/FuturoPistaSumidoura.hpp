@@ -3,15 +3,31 @@
 #ifndef FUTURO_PISTA_SUMIDOURA_HPP
 #define FUTURO_PISTA_SUMIDOURA_HPP
 #include "../relogio/Futuro.cpp"
-#include "../pistas/PistaSumidoura.cpp"
+#include "../pista/PistaSumidoura.cpp"
 
+/*
+ * Evento que leva o carro ao percurso de uma pista 
+ * sumidoura, ou seja, o fim do trajeto apresentado pela
+ * simulação
+ */
 class FuturoPistaSumidoura : public Futuro {
  private:
-    PistaSumidoura *pista;
+    PistaSumidoura *pista;  //!< A pista em que o carro
+                        //!< percorerrá o trajeto final da viagem
 
  public:
+    /*
+     * Constrói o evento para o trajeto do carro na pista sumidoura
+     *
+     *@param: pista A pista sumidoura onde o carro irá
+     */
     explicit FuturoPistaSumidoura(PistaSumidoura* pista);
+
+    /*
+     * Executa o evento para o trajeto do carro numa pista sumidoura
+     */
     virtual void executar();
 };
 
+#include "FuturoPistaSumidoura.cpp"
 #endif /* FUTURO_PISTA_SUMIDOURA_HPP */

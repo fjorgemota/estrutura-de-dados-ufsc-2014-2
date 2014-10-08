@@ -2,20 +2,27 @@
 
 #ifndef SEMAFORO_CPP
 #define SEMAFORO_CPP
+
+#include <string>
 #include "Semaforo.hpp"
+#include "../relogio/Relogio.cpp"
+#include "../relogio/Evento.cpp"
 
-Semaforo::Semaforo(int intervalo) {
-    this->intervalo = intervalo;
-    this->aberto = SEMAFORO_LIBERADO;
+using std::string;
+
+Semaforo::Semaforo(string descricao, Relogio *relogio) {
+    this->descricao = descricao;
+    this->relogio = relogio;
+    this->aberto = SEMAFORO_FECHADO;
     this->contador = 0;
-}
-
-int Semaforo::pegaIntervalo() {
-    return this->intervalo;
 }
 
 int Semaforo::pegaContador() {
     return this->contador;
+}
+
+string Semaforo::pegaDescricao() {
+    return this->descricao;
 }
 
 void Semaforo::acrescentaContador() {
@@ -31,10 +38,23 @@ bool Semaforo::estaFechado() {
 }
 
 void Semaforo::abre() {
+    if (this->estaAberto()) {
+        return;
+    }
     this->aberto = SEMAFORO_ABERTO;
+    string desc = "O semáforo " + this->pegaDescricao() + " está aberto";
+    Evento *evento = new Evento(EVENTO_TROCA_ESTADO_SEMAFORO, desc);
+    this->relogio->registra(evento);
 }
 
 void Semaforo::fecha() {
+    if (this->estaFechado()) {
+        return;
+    }
     this->aberto = SEMAFORO_FECHADO;
+    string desc = "O semáforo " + this->pegaDescricao() + " está fechado";
+    Evento *evento = new Evento(EVENTO_TROCA_ESTADO_SEMAFORO, desc);
+    this->relogio->registra(evento);
 }
+
 #endif /* SEMAFORO_CPP */

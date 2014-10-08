@@ -28,7 +28,7 @@ void GeradorProbabilidades<T>::adiciona(T dado, int porcentagem) {
 }
 
 template <typename T>
-ListaDupla<T> GeradorProbabilidades<T>::pegaLista() {
+ListaDupla<T>* GeradorProbabilidades<T>::pegaLista() {
     if (this->lista->verUltimo() != 99) {
         throw "A lista não completa cem porcento como deveria";
     }

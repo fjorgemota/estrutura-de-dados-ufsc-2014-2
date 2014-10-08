@@ -9,25 +9,28 @@
 
 FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(
     ListaDupla<Semaforo*> *semaforos, int intervalo) : FuturoPeriodico(
-        intervalo, (char*) "Futuro Periodico Semaforo") {
+        intervalo, "Futuro Periodico Semaforo") {
     this->semaforoEscolhido = semaforos->verUltimo();
-    this->fechaTodos = false;
+    this->fechaTodos = true;
     this->semaforos = semaforos;
 }
 
 void FuturoPeriodicoSemaforo::executar() {
-    Semaforo *semaforoAtual, semaforoAnterior;
+    Semaforo *semaforoAtual, *semaforoAnterior;
     semaforoAnterior = this->semaforos->mostra(this->semaforoEscolhido);
+    semaforoAnterior->fecha();
+    this->fechaTodos = this->fechaTodos == false;
+    if (this->fechaTodos == true) {
+        return;
+    }
     this->semaforoEscolhido++;
-    if(this->semaforoEscolhido > this->semaforos->verUltimo()) {
+    if (this->semaforoEscolhido > this->semaforos->verUltimo()) {
         this->semaforoEscolhido = 0;
     }
     semaforoAtual = this->semaforos->mostra(this->semaforoEscolhido);
-    semaforoAnterior->fecha();
-    if(this->fechaTodos == false) {
+    if (this->fechaTodos == false) {
         semaforoAtual->abre();
     }
-    this->fechaTodos = this->fechaTodos == false;
 }
 
 #endif /* FUTURO_PERIODICO_SEMAFORO_CPP */

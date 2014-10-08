@@ -11,6 +11,6 @@ class GeradorProbabilidades {
  public:
     GeradorProbabilidades();
     void adiciona(T dado, int porcentagem);
-    ListaDupla<T> pegaLista();
+    ListaDupla<T>* pegaLista();
 };
 #endif /* GERADOR_PROBABILIDADES_HPP */

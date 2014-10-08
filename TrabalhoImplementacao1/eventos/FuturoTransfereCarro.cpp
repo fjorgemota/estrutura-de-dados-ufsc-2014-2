@@ -4,23 +4,47 @@
 #define FUTURO_TRANSFERE_CARRO_CPP
 #include "../pista/Pista.cpp"
 #include "../carro/Carro.cpp"
+#include "../relogio/Evento.cpp"
 #include "../semaforo/Semaforo.cpp"
-#include "FuturoTransfereCarro.cpp"
+#include "FuturoTransfereCarro.hpp"
+
+
+FuturoTransfereCarro::FuturoTransfereCarro(FuturoTransfereCarro *futuro) {
+    this->pista = futuro->pista;
+    this->semaforo = futuro->semaforo;
+    this->relogio = futuro->relogio;
+    this->tentativa = true;
+}
+
 
 FuturoTransfereCarro::FuturoTransfereCarro(Pista* pista,
-    Semaforo* semaforo, int intervalo) : Futuro(intervalo) {
+    Semaforo* semaforo, Relogio *relogio) : Futuro() {
     this->pista = pista;
     this->semaforo = semaforo;
+    this->relogio = relogio;
+    this->tentativa = false;
 }
 
 void FuturoTransfereCarro::executar() {
     Pista* destino = this->pista->sorteiaPista();
-    Carro* ultimo = this->pista->ultimo();
+    Carro* ultimo = this->pista->ultimoCarro();
+    if(this->tentativa == false) {
+        Evento *evento = new Evento(EVENTO_CARRO_CHEGA_SEMAFORO,
+                                        "O carro chegou ao semáforo");
+        this->relogio->registra(evento);
+    }
     if (destino->estaCheia(ultimo) && this->semaforo->estaAberto()) {
         ultimo = this->pista->sairDaPista();
         destino->adiciona(ultimo);
         this->semaforo->acrescentaContador();
+        Evento *evento1 = new Evento(EVENTO_TROCA_PISTA,
+                                    "O carro trocou de pista");
+        this->relogio->registra(evento1);
+    } else {
+        this->relogio->agendaDaquiA(new FuturoTransfereCarro(
+            this), 1);
     }
+    
 }
 
 #endif /* FUTURO_TRANSFERE_CARRO_CPP */
