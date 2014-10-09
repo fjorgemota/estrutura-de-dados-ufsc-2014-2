@@ -5,6 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 #define INICIALIZA_NUMEROS_ALEATORIOS() srand(time(NULL))
-#define SORTEIA(min, max) static_cast<int>(min + (rand() % (max-min)))
+#define SORTEIA(min, max) static_cast<int>(min + (rand() % (1+(max-min))))
 
 #endif
