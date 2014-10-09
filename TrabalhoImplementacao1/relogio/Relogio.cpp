@@ -69,7 +69,7 @@ void Relogio::listaFuturos() {
     if (this->futuros->listaVazia()) {
         cout << INDENTACAO << "- Nenhum futuro registrado" << endl;
     } else {
-        for (ultimo = this->futuros->verUltimo(); i >= 0; i++) {
+        for (i = this->futuros->verUltimo(); i >= 0; i++) {
             cout << INDENTACAO << "- " << this->futuros->mostra(i)->pegaDescricao() << endl;
         }
     }
