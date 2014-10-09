@@ -19,7 +19,7 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
 
  public:
     /*
-     * Constrói o evento que levará o carro à pista fonte
+     * Constrói um evento periódico que adicionará carros na pista fonte
      *
      *@param: pista A pista fonte em que o carro irá percorrer
      *@param: relogio O relógio usado para sincronização
@@ -30,7 +30,7 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
         int intervaloMinimo, int intervaloMaximo);
 
     /*
-     * Define os intervalos máximo e mínimo
+     * Sorteia um determinado intervalo para que o carro seja adicionado
      */
     void agendar();
 
@@ -40,7 +40,7 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
     virtual void executar();
 
     /*
-     * Método que indica a execução de um evento
+     * Método que indica se o evento pode ser executado ou não
      *
      *@param: segundoAtual O segundo em que o evento ocorrerá
      */

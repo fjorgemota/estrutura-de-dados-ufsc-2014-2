@@ -13,6 +13,8 @@ int main(int argc, char** argv) {
     Programa* programa = new Programa(relogio);
     programa->executar();
     relogio->executar();
+    delete relogio;
+    delete programa;
     return 0;
 }
 #endif /* MAIN_CPP */

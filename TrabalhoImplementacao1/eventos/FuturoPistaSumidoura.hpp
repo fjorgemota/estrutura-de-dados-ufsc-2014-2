@@ -24,7 +24,7 @@ class FuturoPistaSumidoura : public Futuro {
     explicit FuturoPistaSumidoura(PistaSumidoura* pista);
 
     /*
-     * Executa o evento para o trajeto do carro numa pista sumidoura
+     * Retira o carro da pista assim que ele chega no final da pista sumidoura
      */
     virtual void executar();
 };

@@ -20,6 +20,17 @@ GeradorSemaforo::GeradorSemaforo(Relogio *relogio) {
     this->semL1oeste = new Semaforo("L1Oeste", relogio);
 }
 
+GeradorSemaforo::~GeradorSemaforo() {
+    delete this->semO1leste;
+    delete this->semN1sul;
+    delete this->semN2sul;
+    delete this->semS1norte;
+    delete this->semS2norte;
+    delete this->semC1oeste;
+    delete this->semC1leste;
+    delete this->semL1oeste;
+}
+
 Semaforo* GeradorSemaforo::pegaSemO1leste() {
     return this->semO1leste;
 }

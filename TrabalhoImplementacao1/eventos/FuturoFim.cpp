@@ -16,6 +16,8 @@ using std::cout;
 using std::endl;
 using std::string;
 
+#define INDENTACAO "    "
+
 FuturoFim::FuturoFim(Relogio *relogio, ListaDupla<Semaforo*> *semaforosS1,
     ListaDupla<Semaforo*> *semaforosS2, int pararEm) : Futuro(pararEm) {
     this->relogio = relogio;
@@ -38,7 +40,7 @@ void FuturoFim::executar() {
         semaforo = this->semaforosS1->mostra(i);
         totalCarrosPorSemaforo = semaforo->pegaContador();
         descricao = semaforo->pegaDescricao();
-        cout << "\t- " << totalCarrosPorSemaforo <<
+        cout << INDENTACAO << "- " << totalCarrosPorSemaforo <<
                         " carros passaram pelo semaforo " << descricao << endl;
         totalCarrosSemaforo += totalCarrosPorSemaforo;
     }
@@ -48,24 +50,24 @@ void FuturoFim::executar() {
         semaforo = this->semaforosS2->mostra(i);
         totalCarrosPorSemaforo = semaforo->pegaContador();
         descricao = semaforo->pegaDescricao();
-        cout << "\t- " << totalCarrosPorSemaforo
+        cout << INDENTACAO << "- " << totalCarrosPorSemaforo
                         << " carros passaram pelo semaforo "
                             << descricao << endl;
         totalCarrosSemaforo += totalCarrosPorSemaforo;
     }
     cout << "- Algumas outras informações importantes:" << endl;
-    cout << "\t- " << totalCarrosSemaforo
+    cout << INDENTACAO << "- " << totalCarrosSemaforo
                     << " carros passaram pelos semaforos dos dois cruzamentos."
                                 << endl;
     totalCarrosPistaFonte = this->
                     relogio->contaEventosDoTipo(EVENTO_CARRO_ENTRA_PISTA);
-    cout << "\t- " << totalCarrosPistaFonte
+    cout << "\r" << INDENTACAO <<  "- " << totalCarrosPistaFonte
                     << " carros entraram no sistema através de uma das pistas fontes"
                                 << endl;
 
     totalCarrosChegaramSemaforo = this->
                     relogio->contaEventosDoTipo(EVENTO_CARRO_CHEGA_SEMAFORO);
-    cout << "\t- " << totalCarrosChegaramSemaforo
+    cout << "\r" << INDENTACAO <<  "- " << totalCarrosChegaramSemaforo
                     << " carros chegaram nos semáforos dos dois cruzamentos"
                                 << endl;
 }

@@ -21,6 +21,9 @@ FuturoPeriodico::~FuturoPeriodico() {}
 
 bool FuturoPeriodico::podeExecutar(int agora) {
     int horaEvento = this->pegaSegundo();
+    if (horaEvento == 0) {
+        throw "O intervalo periódico não pode ser zero";
+    }
     return horaEvento != -1 && (agora % horaEvento) == 0;
 }
 

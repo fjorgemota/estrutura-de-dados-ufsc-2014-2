@@ -57,6 +57,11 @@ class GeradorPistas {
      *@param: geradorSemaforo Os semáforos que serão associados às respectivas pistas
      */
     GeradorPistas(Relogio *relogio, GeradorSemaforo *geradorSemaforo);
+    
+    /*
+     * Destrói o gerador de pistas
+     */
+    ~GeradorPistas();
 
     /*
      * Método que irá chamar os construtores de todas as pistas dos dois cruzamentos

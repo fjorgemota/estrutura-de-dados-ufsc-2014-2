@@ -21,7 +21,8 @@ class FuturoFim : public Futuro {
 
  public:
     /*
-     * Construtor do evento FuturoFim
+     * Construtor do evento responsável por terminar o programa 
+     * e mostrar estatísticas relacionadas à sua execução
      *
      *@param: relogio O relógio para a sincronização do evento
      *@param: semaforosS1 A lista de semáforos do cruzamento S1
@@ -32,7 +33,7 @@ class FuturoFim : public Futuro {
         ListaDupla<Semaforo*> *semaforosS2, int pararEm);
 
     /*
-     * Método que executará as estatísticas finais do programa
+     * Método que terminará o programa e mostrará suas estatísticas finais
      */
     virtual void executar();
 };

@@ -42,7 +42,12 @@ class Pista: private FilaEnc<Carro*> {
      */
     Pista(Relogio *relogio, Semaforo *semaforo, int tamanhoMaximo,
         int velocidade, ListaDupla<Pista*> *pistasSaida);
-
+    
+    /*
+     * Destrói a pista
+     */
+    ~Pista();
+        
     /*
      * Retorna o tamanho total da pista
      */

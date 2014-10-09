@@ -28,6 +28,11 @@ class GeradorSemaforo {
      *@param: relogio O relógio usado para sincronizar os semáforos
      */
     explicit GeradorSemaforo(Relogio *relogio);
+    
+    /*
+     * Destrói o gerador de semáforos
+     */
+    ~GeradorSemaforo();
 
     /*
      * Método que irá atualizar os intervalos de alternância dos semáforos

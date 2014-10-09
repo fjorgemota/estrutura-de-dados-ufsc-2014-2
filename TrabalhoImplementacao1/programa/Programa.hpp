@@ -35,6 +35,11 @@ class Programa {
      * são incializados
      */
     explicit Programa(Relogio *relogio);
+    
+    /*
+     * Destrói o programa, apagando o gerador de pista e o gerador de semáforos.
+     */
+    ~Programa();
 
     /*
      * Método onde o programa é realizado.

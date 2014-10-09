@@ -10,6 +10,8 @@
 using std::cout;
 using std::endl;
 
+#define INDENTACAO "    "
+
 Relogio::Relogio() {
     this->segundoAtual = 0;
     this->paraExecucao = false;
@@ -18,8 +20,8 @@ Relogio::Relogio() {
 }
 
 Relogio::~Relogio() {
-    this->futuros->destroiListaDuplo();
-    this->historico->destroiListaDuplo();
+    delete this->futuros;
+    delete this->historico;
 }
 
 int Relogio::pegaSegundoAtual() {
@@ -34,6 +36,7 @@ int Relogio::contaEventosDoTipo(int tipo) {
     ultimo = this->historico->verUltimo();
     total = 0;
     for (i = 0; i <= ultimo; i++) {
+        cout << "\rProcessando evento " << i << " de " << ultimo;
         Evento *ev = this->historico->mostra(i);
         if (ev->pegaTipo() == tipo) {
             total++;
@@ -62,28 +65,28 @@ void Relogio::parar() {
 
 void Relogio::listaFuturos() {
     int i, ultimo;
-    cout << "Eventos futuros:\n" << endl;
+    cout << endl << "- Eventos futuros:" << endl;
     if (this->futuros->listaVazia()) {
-        cout << "- Nenhum futuro registrado" << endl;
+        cout << INDENTACAO << "- Nenhum futuro registrado" << endl;
     } else {
         ultimo = this->futuros->verUltimo();
         for (i = 0; i <= ultimo; i++) {
-            cout << "\t- " << this->futuros->mostra(i)->pegaDescricao() << endl;
+            cout << INDENTACAO << "- " << this->futuros->mostra(i)->pegaDescricao() << endl;
         }
     }
 }
 
 void Relogio::listaHistorico() {
     int i, ultimo;
-    cout << "Eventos registrados:" << endl;
+    cout << endl << "- Eventos registrados:" << endl;
     if (this->historico->listaVazia()) {
-        cout << "\t- Nenhum evento registrado\n";
+        cout << INDENTACAO << "- Nenhum evento registrado\n";
     } else {
         ultimo = this->historico->verUltimo();
         for (i = 0; i <= ultimo; i++) {
             Evento *ev = this->historico->mostra(i);
-            cout <<
-                "\t- [Segundo " << ev->pegaSegundo() << "][Tipo "
+            cout << INDENTACAO <<
+                "- [Segundo " << ev->pegaSegundo() << "][Tipo "
                     << ev->pegaTipo() << "] ";
             cout << ev->pegaDescricao() << endl;
         }

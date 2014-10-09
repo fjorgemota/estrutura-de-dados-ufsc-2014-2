@@ -16,6 +16,66 @@ GeradorPistas::GeradorPistas(Relogio *relogio,
                     GeradorSemaforo *geradorSemaforo) {
     this->relogio = relogio;
     this->geradorSemaforo = geradorSemaforo;
+    this->pistaO1Oeste = NULL;
+    this->pistaL1Leste = NULL;
+    this->pistaS1Sul = NULL;
+    this->pistaS2Sul = NULL;
+    this->pistaN1Norte = NULL;
+    this->pistaN2Norte = NULL;
+    this->pistaO1Leste = NULL;
+    this->pistaN1Sul = NULL;
+    this->pistaN2Sul = NULL;
+    this->pistaS1Norte = NULL;
+    this->pistaS2Norte = NULL;
+    this->pistaL1Oeste = NULL;
+    this->pistaC1Oeste = NULL;
+    this->pistaC1Leste = NULL;
+}
+
+
+GeradorPistas::~GeradorPistas() {
+    if (this->pistaO1Oeste != NULL) {
+        delete this->pistaO1Oeste;
+    }
+    if (this->pistaL1Leste != NULL) {
+        delete this->pistaL1Leste;
+    }
+    if (this->pistaS1Sul != NULL) {
+        delete this->pistaS1Sul;
+    }
+    if (this->pistaS2Sul != NULL) {
+        delete this->pistaS2Sul;
+    }
+    if (this->pistaN1Norte != NULL) {
+        delete this->pistaN1Norte;
+    }
+    if (this->pistaN2Norte != NULL) {
+        delete this->pistaN2Norte;
+    }
+    if (this->pistaO1Leste != NULL) {
+        delete this->pistaO1Leste;
+    }
+    if (this->pistaN1Sul != NULL) {
+        delete this->pistaN1Sul;
+    }
+    if (this->pistaN2Sul != NULL) {
+        delete this->pistaN2Sul;
+    }
+    if (this->pistaS1Norte != NULL) {
+        delete this->pistaS1Norte;
+    }
+    if (this->pistaS2Norte != NULL) {
+        delete this->pistaS2Norte;
+    }
+    if (this->pistaL1Oeste != NULL) {
+        delete this->pistaL1Oeste;
+    }
+    if (this->pistaC1Oeste != NULL) {
+        delete this->pistaC1Oeste;
+    }
+    if (this->pistaC1Leste != NULL) {
+        delete this->pistaC1Leste;
+    }
 }
 
 /** Pistas Sumidouras */

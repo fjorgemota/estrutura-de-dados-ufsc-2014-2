@@ -41,6 +41,7 @@ void FuturoTransfereCarro::executar() {
                                     "O carro trocou de pista");
         this->relogio->registra(evento1);
     } else {
+        // Tenta executar de novo no próximo loop
         this->relogio->agendaDaquiA(new FuturoTransfereCarro(
             this), 1);
     }

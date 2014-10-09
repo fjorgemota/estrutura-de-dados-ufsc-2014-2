@@ -15,6 +15,10 @@ FuturoPeriodicoSemaforo::FuturoPeriodicoSemaforo(
     this->semaforos = semaforos;
 }
 
+FuturoPeriodicoSemaforo::~FuturoPeriodicoSemaforo() {
+    delete this->semaforos;
+}
+
 void FuturoPeriodicoSemaforo::executar() {
     Semaforo *semaforoAtual, *semaforoAnterior;
     semaforoAnterior = this->semaforos->mostra(this->semaforoEscolhido);

@@ -18,15 +18,20 @@ class FuturoPeriodicoSemaforo : public FuturoPeriodico {
     bool fechaTodos;  //!< Fecha todos os semáforos
  public:
     /*
-     * Constrói o evento para a administração dos semáforos
+     * Constrói o evento para a administração dos semáforos de um cruzamento
      *
      *@param: semaforo A lista duplamente encadeada com todos os semáforos
      *@param: intervalo O intervalo de alternância dos semáforos
      */
     FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo, int intervalo);
+    
+    /*
+     * Destrói o evento que administra os semáforos de um cruzamento
+     */
+    ~FuturoPeriodicoSemaforo();
 
     /*
-     * Método que executa/administra a sincronização dos semáforos
+     * Método que executa/administra a sincronização dos semáforos de um cruzamento
      */
     virtual void executar();
 };

@@ -18,6 +18,13 @@ Pista::Pista(Relogio *relogio, Semaforo *semaforo, int tamanhoMaximo,
     this->pistasSaida = pistasSaida;
 }
 
+Pista::~Pista() {
+    this->limparFila();
+    if (this->pistasSaida != NULL) {
+        delete this->pistasSaida;
+    }
+}
+
 int Pista::pegaTamanhoMaximo() {
     return this->tamanhoMaximo;
 }
