@@ -58,7 +58,7 @@ bool Programa::perguntaMostraEventos() {
         << endl;
     cin >> resposta;
     cout << SEPARADOR_PERGUNTA << endl;
-    return resposta == "S" || resposta == 's';
+    return resposta == "S" || resposta == "s";
 }
 
 void Programa::executar() {
