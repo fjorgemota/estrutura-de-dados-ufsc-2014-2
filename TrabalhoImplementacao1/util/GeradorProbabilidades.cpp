@@ -14,7 +14,7 @@ template <typename T>
 void GeradorProbabilidades<T>::adiciona(T dado, int porcentagem) {
     int ultimo;
     if (this->lista->listaVazia()) {
-        ultimo = 0;
+        ultimo = -1; // Não há elementos
     } else {
         ultimo = this->lista->verUltimo();
     }
