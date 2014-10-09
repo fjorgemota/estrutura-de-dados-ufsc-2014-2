@@ -47,11 +47,11 @@ int Relogio::contaEventosDoTipo(int tipo) {
 
 void Relogio::registra(Evento *ev) {
     ev->configuraSegundo(this->segundoAtual);
-    this->historico->adicionaDuplo(ev);
+    this->historico->adicionaNoInicioDuplo(ev);
 }
 
 void Relogio::agenda(Futuro *fut) {
-    this->futuros->adicionaDuplo(fut);
+    this->futuros->adicionaNoInicioDuplo(fut);
 }
 
 void Relogio::agendaDaquiA(Futuro *fut, int intervaloFuturo) {
@@ -64,26 +64,25 @@ void Relogio::parar() {
 }
 
 void Relogio::listaFuturos() {
-    int i, ultimo;
+    int i;
     cout << endl << "- Eventos futuros:" << endl;
     if (this->futuros->listaVazia()) {
         cout << INDENTACAO << "- Nenhum futuro registrado" << endl;
     } else {
-        ultimo = this->futuros->verUltimo();
-        for (i = 0; i <= ultimo; i++) {
+        for (ultimo = this->futuros->verUltimo(); i >= 0; i++) {
             cout << INDENTACAO << "- " << this->futuros->mostra(i)->pegaDescricao() << endl;
         }
     }
 }
 
 void Relogio::listaHistorico() {
-    int i, ultimo;
+    int i;
     cout << endl << "- Eventos registrados:" << endl;
     if (this->historico->listaVazia()) {
         cout << INDENTACAO << "- Nenhum evento registrado\n";
     } else {
-        ultimo = this->historico->verUltimo();
-        for (i = 0; i <= ultimo; i++) {
+        ;
+        for (i = this->historico->verUltimo(); i >= 0; i--) {
             Evento *ev = this->historico->mostra(i);
             cout << INDENTACAO <<
                 "- [Segundo " << ev->pegaSegundo() << "][Tipo "
