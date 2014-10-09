@@ -41,7 +41,7 @@ void Pista::agendaNovoCarro() {
 }
 
 bool Pista::adiciona(Carro* carro) {
-    if (!this->estaCheia(carro)) {
+    if (this->estaCheia(carro)) {
         return false;
     }
     this->inclui(carro);
@@ -67,7 +67,7 @@ Pista* Pista::sorteiaPista() {
 
 bool Pista::estaCheia(Carro* carro) {
     int temporario = this->tamanhoDisponivel - carro->pegaTamanho();
-    return temporario >= 0;
+    return temporario < 0;
 }
 
 #endif /* PISTA_CPP */

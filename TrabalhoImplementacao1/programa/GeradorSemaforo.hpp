@@ -25,7 +25,7 @@ class GeradorSemaforo {
     /*
      * Constrói um gerador de semáforos
      *
-     *@param: relogio O relógio usado para sincronizar os semáforos
+     * @param relogio O relógio usado para sincronizar os semáforos
      */
     explicit GeradorSemaforo(Relogio *relogio);
     
@@ -38,7 +38,7 @@ class GeradorSemaforo {
      * Método que irá atualizar os intervalos de alternância dos semáforos
      * dos primeiro e segundo cruzamentos, respectivamente
      *
-     *@param: intervalo O intervalo de alternância entre os estados dos semáforos (em segundos)
+     * @param intervalo O intervalo de alternância entre os estados dos semáforos (em segundos)
      */
     void agendaSemaforosS1(int intervalo);
     void agendaSemaforosS2(int intervalo);

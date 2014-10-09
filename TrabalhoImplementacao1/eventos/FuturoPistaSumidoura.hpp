@@ -19,7 +19,7 @@ class FuturoPistaSumidoura : public Futuro {
     /*
      * Constrói o evento para o trajeto do carro na pista sumidoura
      *
-     *@param: pista A pista sumidoura onde o carro irá
+     * @param pista A pista sumidoura onde o carro irá
      */
     explicit FuturoPistaSumidoura(PistaSumidoura* pista);
 

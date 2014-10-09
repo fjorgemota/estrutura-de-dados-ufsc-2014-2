@@ -21,22 +21,22 @@ class Futuro: public Evento, public Retorno {
     /*
      * Constrói um evento futuro
      *
-     *@param: intervalo Quanto tempo durará o evento
-     *@param: descricao Descrição do evento futuro
+     * @param intervalo Quanto tempo durará o evento
+     * @param descricao Descrição do evento futuro
      */
     Futuro(int intervalo, string descricao);
 
     /*
      * Constrói um evento futuro
      *
-     *@param: intervalo Quanto tempo durará o evento
+     * @param intervalo Quanto tempo durará o evento
      */
     explicit Futuro(int intervalo);
 
     /*
      * Constrói um evento futuro
      *
-     *@param: descricao Descrição do evento futuro
+     * @param descricao Descrição do evento futuro
      */
     explicit Futuro(string descricao);
 
@@ -53,7 +53,7 @@ class Futuro: public Evento, public Retorno {
     /*
      * Configura a execução de um evento futuro, a partir do atual momento
      *
-     *@param: segundoAtual O segundo que inicializará o evento
+     * @param segundoAtual O segundo que inicializará o evento
      */
     virtual bool podeExecutar(int segundoAtual);
 

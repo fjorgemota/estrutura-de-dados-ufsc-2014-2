@@ -28,6 +28,12 @@ class Programa {
      * dos semáforos
      */
     void perguntaIntervaloSemaforo();
+    
+    /*
+     * Método que pergunta ao usuário se ele deseja exibir a lista de eventos que
+     * ocorreram no sistema após o fim do programa
+     */
+    bool perguntaMostraEventos();
 
  public:
     /*

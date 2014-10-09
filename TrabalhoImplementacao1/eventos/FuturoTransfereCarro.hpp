@@ -22,16 +22,16 @@ class FuturoTransfereCarro : public Futuro {
     /*
      * Constrói um evento para uma nova tentativa de transferência do carro a outra pista
      *
-     *@param: futuro O objeto FuturoTransfereCarro anterior
+     * @param futuro O objeto FuturoTransfereCarro anterior
      */
     FuturoTransfereCarro(FuturoTransfereCarro *futuro);
  public:
     /*
      * Constrói um evento para a transferência do carro a outra pista
      *
-     *@param: pista A pista que o carro sairá
-     *@param: semaforo O semáforo da pista em que o carro sairá
-     *@param: relogio O relógio para sincronizar o tempo
+     * @param pista A pista que o carro sairá
+     * @param semaforo O semáforo da pista em que o carro sairá
+     * @param relogio O relógio para sincronizar o tempo
      */
     FuturoTransfereCarro(Pista* pista, Semaforo* semaforo, Relogio *relogio);
 

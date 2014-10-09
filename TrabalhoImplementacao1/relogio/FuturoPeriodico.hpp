@@ -17,22 +17,22 @@ class FuturoPeriodico : public Futuro {
     /*
      * Constrói um evento de futuro periódico
      *
-     *@param: intervalo Quanto tempo durará o evento
-     *@param description A descrição do evento
+     * @param intervalo Quanto tempo durará o evento
+     * @param description A descrição do evento
      */
     FuturoPeriodico(int intervalo, string description);
 
     /*
      * Constrói um evento de futuro periódico
      *
-     *@param: intervalo Quanto tempo durará o evento
+     * @param intervalo Quanto tempo durará o evento
      */
     explicit FuturoPeriodico(int intervalo);
 
     /*
      * Constrói um evento de futuro periódico
      *
-     *@param description A descrição do evento
+     * @param description A descrição do evento
      */
     explicit FuturoPeriodico(string description);
 
@@ -50,7 +50,7 @@ class FuturoPeriodico : public Futuro {
      * Configura a excução de um evento futuro periódico a partir
      * do segundo pré-estabelecido
      *
-     *@param: agora O segundo a ser contabilizado para realização do evento
+     * @param agora O segundo a ser contabilizado para realização do evento
      */
     virtual bool podeExecutar(int agora);
 

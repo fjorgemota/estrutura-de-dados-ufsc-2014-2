@@ -34,11 +34,11 @@ class Pista: private FilaEnc<Carro*> {
     /*
      * Constrói uma pista
      *
-     *@param: relogio O relógio para sincronização das pistas 
-     *@param: semaforo O semáforo que será conectado à saída da pista 
-     *@param: tamanhoMaximo O tamanho total da pista, em metros
-     *@param: velocidade A velocidade em que os carros percorerrão ao andar na pista
-     *@param: pistasSaida Uma lista com as pistas de saída de cada uma
+     * @param relogio O relógio para sincronização das pistas 
+     * @param semaforo O semáforo que será conectado à saída da pista 
+     * @param tamanhoMaximo O tamanho total da pista, em metros
+     * @param velocidade A velocidade em que os carros percorerrão ao andar na pista
+     * @param pistasSaida Uma lista com as pistas de saída de cada uma
      */
     Pista(Relogio *relogio, Semaforo *semaforo, int tamanhoMaximo,
         int velocidade, ListaDupla<Pista*> *pistasSaida);
@@ -61,7 +61,7 @@ class Pista: private FilaEnc<Carro*> {
     /*
      * Adiciona um carro à pista, se estiver cheia, ela será bloqueada e nenhum novo carro poderá entrar
      *
-     *@param: carro O carro a ser adicionado na pista
+     * @param carro O carro a ser adicionado na pista
      */
     bool adiciona(Carro* carro);
 

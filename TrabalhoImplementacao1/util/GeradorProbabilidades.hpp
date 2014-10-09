@@ -25,8 +25,8 @@ class GeradorProbabilidades {
      * Adiciona um dado ao gerador de probabilidade, juntamente com
      * a porcentagem indicando a possibilidade de ocorrencia
 	 * 
-	 * @param: dado O dado a ser armazenado na lista
-	 * @param: porcentagem A porcentagem, indicando a possibilidade de ocorrencia
+	 * @param dado O dado a ser armazenado na lista
+	 * @param porcentagem A porcentagem, indicando a possibilidade de ocorrencia
      */
     void adiciona(T dado, int porcentagem);
 

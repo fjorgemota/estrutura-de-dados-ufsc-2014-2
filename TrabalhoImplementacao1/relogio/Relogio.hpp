@@ -39,29 +39,29 @@ class Relogio {
     /*
      * Conta quantos eventos de um determinado tipo estão presentes no histórico
      *
-     * @param: tipo O tipo de evento que será contabilizado
+     * @param tipo O tipo de evento que será contabilizado
      */
     int contaEventosDoTipo(int tipo);
 
     /*
      * Adiciona um evento à lista de histórico
      *
-     * @param: ev Evento que será adicionado à lista
+     * @param ev Evento que será adicionado à lista
      */
     void registra(Evento *ev);
 
     /*
      * Adiciona um evento futuro à lista de eventos futuros
      *
-     * @param: fut O evento futuro que será registrado na lista
+     * @param fut O evento futuro que será registrado na lista
      */
     void agenda(Futuro *fut);
 
     /*
      * Adiciona um evento logo após a passagem de um tempo determinado
      *
-     * @param: fut O evento futuro a ser adicionado na lista
-     * @param: horaAtual O intervalo até o evento futuro acontecer
+     * @param fut O evento futuro a ser adicionado na lista
+     * @param horaAtual O intervalo até o evento futuro acontecer
      */
     void agendaDaquiA(Futuro *fut, int horaAtual);
 

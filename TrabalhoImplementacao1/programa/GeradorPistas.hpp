@@ -53,8 +53,8 @@ class GeradorPistas {
     /*
      * Constrói um gerador de pistas
      *
-     *@param: relogio O relógio que manterá a sincronização das pistas
-     *@param: geradorSemaforo Os semáforos que serão associados às respectivas pistas
+     * @param relogio O relógio que manterá a sincronização das pistas
+     * @param geradorSemaforo Os semáforos que serão associados às respectivas pistas
      */
     GeradorPistas(Relogio *relogio, GeradorSemaforo *geradorSemaforo);
     

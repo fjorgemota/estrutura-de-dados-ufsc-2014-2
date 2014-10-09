@@ -33,7 +33,7 @@ void FuturoTransfereCarro::executar() {
                                         "O carro chegou ao semáforo");
         this->relogio->registra(evento);
     }
-    if (destino->estaCheia(ultimo) && this->semaforo->estaAberto()) {
+    if (destino->estaCheia(ultimo) == false && this->semaforo->estaAberto()) {
         ultimo = this->pista->sairDaPista();
         destino->adiciona(ultimo);
         this->semaforo->acrescentaContador();

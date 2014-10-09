@@ -30,8 +30,8 @@ class Semaforo {
     /*
      * Constrói um semáforo
      *
-     *@param: descricao A descrição que será acompanhada ao semáforo
-     *@param: relogio Relógio usado para sincronizar o semáforo
+     * @param descricao A descrição que será acompanhada ao semáforo
+     * @param relogio Relógio usado para sincronizar o semáforo
      */
     Semaforo(string descricao, Relogio *relogio);
 

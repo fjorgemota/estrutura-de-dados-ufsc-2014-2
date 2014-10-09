@@ -3,6 +3,7 @@
 #ifndef PROGRAMA_CPP
 #define PROGRAMA_CPP
 #include <iostream>
+#include <string>
 #include "../eventos/FuturoFim.cpp"
 #include "../relogio/Futuro.cpp"
 #include "Programa.hpp"
@@ -10,6 +11,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 
 #define SEPARADOR_PERGUNTA "------------------------------------------------"
 
@@ -35,7 +37,9 @@ void Programa::perguntaTempoDuracao() {
     cout << SEPARADOR_PERGUNTA << endl;
     Futuro *fim = new FuturoFim(this->relogio,
         this->geradorSemaforos->pegaSemaforosS1(),
-        this->geradorSemaforos->pegaSemaforosS2(), duracao);
+        this->geradorSemaforos->pegaSemaforosS2(),
+        this->perguntaMostraEventos(),
+        duracao);
     this->relogio->agenda(fim);
 }
 
@@ -46,6 +50,15 @@ void Programa::perguntaIntervaloSemaforo() {
     cout << SEPARADOR_PERGUNTA << endl;
     this->geradorSemaforos->agendaSemaforosS1(intervalo);
     this->geradorSemaforos->agendaSemaforosS2(intervalo);
+}
+
+bool Programa::perguntaMostraEventos() {
+    string resposta;
+    cout << "Você deseja mostrar os eventos ocorridos no fim da execução? (S/N)"
+        << endl;
+    cin >> resposta;
+    cout << SEPARADOR_PERGUNTA << endl;
+    return resposta == "S" || resposta == 's';
 }
 
 void Programa::executar() {

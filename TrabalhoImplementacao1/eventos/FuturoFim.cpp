@@ -19,16 +19,20 @@ using std::string;
 #define INDENTACAO "    "
 
 FuturoFim::FuturoFim(Relogio *relogio, ListaDupla<Semaforo*> *semaforosS1,
-    ListaDupla<Semaforo*> *semaforosS2, int pararEm) : Futuro(pararEm) {
+    ListaDupla<Semaforo*> *semaforosS2, bool mostraEventos,
+    int pararEm) : Futuro(pararEm) {
     this->relogio = relogio;
     this->semaforosS1 = semaforosS1;
     this->semaforosS2 = semaforosS2;
+    this->mostraEventos = mostraEventos;
 }
 
 void FuturoFim::executar() {
     this->relogio->parar();
-    this->relogio->listaHistorico();
-    cout << "- Estatisticas dos semáforos do cruzamento S1:" << endl;
+    if (this->mostraEventos) {
+        this->relogio->listaHistorico();
+    }
+    cout << endl << "- Estatisticas dos semáforos do cruzamento S1:" << endl;
     int i, ultimo, totalCarrosPorSemaforo,
                         totalCarrosSemaforo, totalCarrosPistaFonte;
     int totalCarrosChegaramSemaforo;

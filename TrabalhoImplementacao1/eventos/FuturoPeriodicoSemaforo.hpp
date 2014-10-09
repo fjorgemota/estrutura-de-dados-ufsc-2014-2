@@ -20,8 +20,8 @@ class FuturoPeriodicoSemaforo : public FuturoPeriodico {
     /*
      * Constrói o evento para a administração dos semáforos de um cruzamento
      *
-     *@param: semaforo A lista duplamente encadeada com todos os semáforos
-     *@param: intervalo O intervalo de alternância dos semáforos
+     * @param semaforo A lista duplamente encadeada com todos os semáforos
+     * @param intervalo O intervalo de alternância dos semáforos
      */
     FuturoPeriodicoSemaforo(ListaDupla<Semaforo*> *semaforo, int intervalo);
     

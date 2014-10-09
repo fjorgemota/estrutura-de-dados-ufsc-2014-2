@@ -27,32 +27,32 @@ class Evento {
     /*
      * Constrói um evento
      *
-     *@param: segundo Os segundos que durarão o evento
-     *@param: tipo O tipo de evento a ser marcado
-     *@param: descricao A descrição do evento
+     * @param segundo Os segundos que durarão o evento
+     * @param tipo O tipo de evento a ser marcado
+     * @param descricao A descrição do evento
      */
     Evento(int segundo, int tipo, string descricao);
 
     /*
      * Constrói um evento
      *
-     *@param: segundo Os segundos que durarão o evento
-     *@param: tipo O tipo de evento a ser marcado
+     * @param segundo Os segundos que durarão o evento
+     * @param tipo O tipo de evento a ser marcado
      */
     Evento(int segundo, int tipo);
 
     /*
      * Constrói um evento
      *
-     *@param: segundo Os segundos que durarão o evento
-     *@param: descricao A descrição do evento
+     * @param segundo Os segundos que durarão o evento
+     * @param descricao A descrição do evento
      */
     Evento(int segundo, string descricao);
 
     /*
      * Constrói um evento
      *
-     *@param: descricao A descrição do evento
+     * @param descricao A descrição do evento
      */
     explicit Evento(string descricao);
 
@@ -69,7 +69,7 @@ class Evento {
     /*
      * Ajusta os segundos da duração do evento
      *
-     *@param: segundo Os segundos que derará o evento
+     * @param segundo Os segundos que derará o evento
      */
     void configuraSegundo(int segundo);
 

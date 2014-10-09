@@ -20,9 +20,9 @@ class PistaSumidoura: public Pista {
     /*
      * Constrói uma pista sumidoura
      *
-     *@param: relogio O relógio para sincronizar as pistas
-     *@param: tamanho O tamanho total da pista sumidoura
-     *@param: velocidade A velocidade máxima permitida pela pista
+     * @param relogio O relógio para sincronizar as pistas
+     * @param tamanho O tamanho total da pista sumidoura
+     * @param velocidade A velocidade máxima permitida pela pista
      */
     PistaSumidoura(Relogio *relogio, int tamanho, int velocidade);
 };

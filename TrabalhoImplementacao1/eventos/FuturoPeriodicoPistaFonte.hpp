@@ -21,10 +21,10 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
     /*
      * Constrói um evento periódico que adicionará carros na pista fonte
      *
-     *@param: pista A pista fonte em que o carro irá percorrer
-     *@param: relogio O relógio usado para sincronização
-     *@param: intervaloMinimo O menor tempo de percurso do veículo na pista
-     *@param: intervaloMaximo O maior tempo de percurso do veículo na pista
+     * @param pista A pista fonte em que o carro irá percorrer
+     * @param relogio O relógio usado para sincronização
+     * @param intervaloMinimo O menor tempo de percurso do veículo na pista
+     * @param intervaloMaximo O maior tempo de percurso do veículo na pista
      */
     FuturoPeriodicoPistaFonte(PistaFonte *pista,  Relogio *relogio,
         int intervaloMinimo, int intervaloMaximo);
@@ -42,7 +42,7 @@ class FuturoPeriodicoPistaFonte : public FuturoPeriodico {
     /*
      * Método que indica se o evento pode ser executado ou não
      *
-     *@param: segundoAtual O segundo em que o evento ocorrerá
+     * @param segundoAtual O segundo em que o evento ocorrerá
      */
     virtual bool podeExecutar(int segundoAtual);
 };
