@@ -1,5 +1,5 @@
 #!/bin/bash
-FILES=`find . | grep \..pp\$`
+FILES=`find . | grep \..pp\$ | grep -v TrabalhoImplementacao`
 ERROR=0
 INPUT_DIR=`pwd`
 for FILE in $FILES; do
