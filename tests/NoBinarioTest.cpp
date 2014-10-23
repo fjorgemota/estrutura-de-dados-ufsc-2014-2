@@ -27,9 +27,7 @@ TEST_F(NoBinarioTest, getDado) {
     ASSERT_EQ(5, *(inteiro->getDado()));
     inteiro = new NoBinario<int>(15);
     ASSERT_EQ(15, *(inteiro->getDado()));
-
 }
-
 
 TEST_F(NoBinarioTest, busca) {
     ASSERT_EQ(10, *(inteiro->busca(10, inteiro)));
@@ -46,15 +44,16 @@ TEST_F(NoBinarioTest, busca) {
 
 TEST_F(NoBinarioTest, inserir) {
     int i;
-    for(i=0; i<10; i++) {
+    for (i = 0; i < 10; i++) {
         ASSERT_NO_THROW(inteiro->inserir(i, inteiro));
     }
-    for(i=11; i<20; i++) {
+    for (i = 11; i < 20; i++) {
         ASSERT_NO_THROW(inteiro->inserir(i, inteiro));
-    }for(i=0; i<10; i++) {
+    }
+    for (i = 0; i < 10; i++) {
         ASSERT_EQ(i, *(inteiro->busca(i, inteiro)));
     }
-    for(i=11; i<20; i++) {
+    for (i = 11; i < 20; i++) {
         ASSERT_EQ(i, *(inteiro->busca(i, inteiro)));
     }
 }
@@ -91,7 +90,7 @@ TEST_F(NoBinarioTest, remover) {
 TEST_F(NoBinarioTest, minimo) {
     int i;
     ASSERT_EQ(10, *(inteiro->minimo(inteiro)->getDado()));
-    for (i=9; i>=0; i--) {
+    for (i = 9;  i >= 0; i--) {
         ASSERT_NO_THROW(inteiro->inserir(i, inteiro));
         ASSERT_EQ(i, *(inteiro->minimo(inteiro)->getDado()));
     }
