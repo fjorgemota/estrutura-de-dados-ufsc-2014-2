@@ -72,7 +72,7 @@ NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
             return this->inserir(dado, arv->direita);
         }
     }
-    return this->balanco_insere(arv);;
+    return this->balanco_insere(arv);
 }
 
 template <typename T>
