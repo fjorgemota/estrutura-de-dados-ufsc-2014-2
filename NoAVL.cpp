@@ -69,13 +69,13 @@ NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
 	    balanceamentoFD = this->pegaBalanceamento(raiz->direita);
 	    // Se a raiz possuir desbalanceamento a direita
     	if (balanceamentoFD == -1) {
-    		return rotacaoSimplesEsquerda(raiz);
+    		return this->rotacaoSimplesEsquerda(raiz);
     	}
     	// Ha um desbalanceamento no filho a direita e, apos resolver,
     	// rotaciona a raiz para a esquerda para manter o equilibrio
     	if (balanceamentoFD == 1) {
-    		raiz->direita = rotacaoSimplesDireita(raiz->direita);
-    		return rotacaoSimplesEsquerda(raiz);
+    		raiz->direita = this->rotacaoSimplesDireita(raiz->direita);
+    		return this->rotacaoSimplesEsquerda(raiz);
     	}
 	}
 
@@ -83,14 +83,14 @@ NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
         balanceamentoFE = this->pegaBalanceamento(raiz->esquerda);
     	// Se a raiz possuir desbalanceamento a esquerda
     	if (balanceamentoFE == 1) {
-    		return rotacaoSimplesDireita(raiz);
+    		return this->rotacaoSimplesDireita(raiz);
     	}
     	
     	// Ha um desbalanceamento no filho a esquerda e, apos resolver,
     	// rotaciona a raiz para a direita para manter o equilibrio
     	if (balanceamentoFE == -1) {
-    		raiz->esquerda = rotacaoSimplesEsquerda(raiz->esquerda);
-    		return rotacaoSimplesDireita(raiz);
+    		raiz->esquerda = this->rotacaoSimplesEsquerda(raiz->esquerda);
+    		return this->rotacaoSimplesDireita(raiz);
     	}
     }
 	return raiz;
