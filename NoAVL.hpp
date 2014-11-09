@@ -69,6 +69,24 @@ class NoAVL : public NoBinario<T> {
  	 * @param raiz Nó cuja altura será atualizada
  	 */
  	void atualizaAltura(NoAVL<T>* raiz);
+
+    /*
+     * Realiza uma rotação simples à esquerda. 
+     * Se houver um desbalanceamento à direita, uma
+     * rotação simples à esquerda resolve o problema
+     * 
+     * @param raiz A árvore a ser rotacionada
+     */
+    NoAVL<T>* rotacaoSimplesEsquerda(NoAVL<T>* raiz);
+    
+    /*
+     * Realiza uma rotação simples à direita. 
+     * Se houver um desbalanceamento à esquerda, uma
+     * rotação simples à direita resolve o problema
+     * 
+     * @param raiz A árvore a ser rotacionada
+     */
+    NoAVL<T>* rotacaoSimplesDireita(NoAVL<T>* raiz);
  	
  	/*
  	 * Método que verifica o balanceamento e qual rotação 
@@ -93,24 +111,6 @@ class NoAVL : public NoBinario<T> {
  	 * Retorna a altura do nó AVL
  	 */
  	int getAltura();
- 	
- 	/*
- 	 * Realiza uma rotação simples à esquerda. 
- 	 * Se houver um desbalanceamento à direita, uma
- 	 * rotação simples à esquerda resolve o problema
- 	 * 
- 	 * @param raiz A árvore a ser rotacionada
- 	 */
- 	NoAVL<T>* rotacaoSimplesEsquerda(NoAVL<T>* raiz);
- 	
- 	/*
- 	 * Realiza uma rotação simples à direita. 
- 	 * Se houver um desbalanceamento à esquerda, uma
- 	 * rotação simples à direita resolve o problema
- 	 * 
- 	 * @param raiz A árvore a ser rotacionada
- 	 */
- 	NoAVL<T>* rotacaoSimplesDireita(NoAVL<T>* raiz);
  	
  	/*
  	 * Retorna a altura máxima entre dois nós
