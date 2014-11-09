@@ -103,10 +103,6 @@ class NoAVL : public NoBinario<T> {
      * @param no2 Nó cuja altura será comparada com o primeiro nó
      */
     int max(NoAVL<T>* no1, NoAVL<T>* no2);
-
-    //std::vector<NoAVL<T> > elementos;  //!< Elementos acessados durante
-                                            // o percurso realizado
- 
  public:
  	/*
  	 * Constrói um nó AVL
