@@ -97,14 +97,16 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
     }
     if (dado < *(arv->getDado())) {
         // Elemento deve estar à esquerda
-        arv->esquerda = this->remover(arv->esquerda, dado);
+        arv->esquerda = this->balanco_remove(this->remover(arv->esquerda, dado));
+        this->balanco_remove(arv->esquerda);
         return arv;
     }
     if (dado > *(arv->getDado())) {
         // Elemento deve estar à direita
-        arv->direita = this->remover(arv->direita, dado);
+        arv->direita = this->balanco_remove(this->remover(arv->direita, dado));
         return arv;
     }
+    arv = this->balanco_remove(arv);
     // Encontrado elemento que queremos remover
     if (arv->direita != NULL && arv->esquerda != NULL) {
         // Dois filhos
