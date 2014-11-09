@@ -16,15 +16,17 @@ build-tests:
 run-tests:
 	for TEST_EXEC in $(FILES); do\
 		$(BUILD_DIR)/$$TEST_EXEC; \
-		if [ "$$?" != "0" ]; then \
-		    exit "$$?"; \
+		EXIT_CODE="$$?";\
+		if [ "$$EXIT_CODE" != "0" ]; then \
+		    exit "$$EXIT_CODE"; \
 		fi; \
 	done;
 debug-tests:
 	for TEST_EXEC in $(FILES); do\
 		gdb --batch -ex 'run' -ex 'bt' -ex 'quit' --return-child-result --args $(BUILD_DIR)/$$TEST_EXEC --gtest_catch_exceptions=0; \
-		if [ "$$?" != "0" ]; then \
-		    exit "$$?"; \
+		EXIT_CODE="$$?";\
+		if [ "$$EXIT_CODE" != "0" ]; then \
+		    exit "$$EXIT_CODE"; \
 		fi; \
 	done;
 interactive-debug-test:
