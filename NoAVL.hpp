@@ -144,7 +144,7 @@ class NoAVL : public NoBinario<T> {
      * @param dado Dado a ser buscado na árvore
      * @param arv Árvore no qual o dado deve ser buscado
      */
-    NoAVL<T>* inserir(const T& dado, NoBinario<T>* arv);
+    NoAVL<T>* inserir(const T& dado, NoAVL<T>* arv);
 
     /*!
      * Remove um determinado dado da árvore representada
@@ -153,7 +153,7 @@ class NoAVL : public NoBinario<T> {
      * @param dado Dado a ser removido da árvore
      * @param arv Árvore no qual o dado deve ser removido
      */
-    NoAVL<T>* remover(NoBinario<T>* arv, const T& dado);
+    NoAVL<T>* remover(NoAVL<T>* arv, const T& dado);
 
     /*!
      * Retorna o valor mínimo guardado na árvore representada
@@ -161,7 +161,7 @@ class NoAVL : public NoBinario<T> {
      *
      * @param arv Árvore do qual o valor mínimo deve ser buscado
      */
-    NoAVL<T>* minimo(NoBinario<T>* nodo);
+    NoAVL<T>* minimo(NoAVL<T>* nodo);
 };
 
 #include "NoAVL.cpp"

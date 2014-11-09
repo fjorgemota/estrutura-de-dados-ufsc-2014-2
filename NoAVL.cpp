@@ -189,17 +189,17 @@ NoAVL<T>* NoAVL<T>::getDireita() {
 }
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::inserir(const T& dado, NoBinario<T>* arv) {
+NoAVL<T>* NoAVL<T>::inserir(const T& dado, NoAVL<T>* arv) {
     return this->binarioParaAVL(NoBinario<T>::inserir(dado, arv));
 }
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::remover(NoBinario<T>* arv, const T& dado) {
+NoAVL<T>* NoAVL<T>::remover(NoAVL<T>* arv, const T& dado) {
     return this->binarioParaAVL(NoBinario<T>::remover(arv, dado));
 }
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::minimo(NoBinario<T>* nodo) {
+NoAVL<T>* NoAVL<T>::minimo(NoAVL<T>* nodo) {
     return this->binarioParaAVL(NoBinario<T>::minimo(nodo));
 }
 
