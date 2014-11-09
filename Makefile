@@ -22,10 +22,16 @@ run-tests:
 	done;
 debug-tests:
 	for TEST_EXEC in $(FILES); do\
-		gdb --batch -ex 'run' -ex 'bt' -ex 'quit' --return-child-result $(BUILD_DIR)/$$TEST_EXEC; \
+		gdb --batch -ex 'run' -ex 'bt' -ex 'quit' --return-child-result --args $(BUILD_DIR)/$$TEST_EXEC --gtest_catch_exceptions=0; \
 		if [ "$$?" != "0" ]; then \
 		    exit "$$?"; \
 		fi; \
 	done;
+interactive-debug-test:
+	if [ -z "$(FILE)" ]; then\
+	    echo "make interactive-debug-test FILE=<NAME OF THE TEST TO DEBUG>";\
+	else\
+	    gdb --return-child-result --args $(BUILD_DIR)/$(FILE) --gtest_catch_exceptions=0;\
+	fi;
 clean-tests:
 	rm -Rf $(BUILD_DIR)
