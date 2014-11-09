@@ -37,7 +37,22 @@ T* NoBinario<T>::getDado() {
 
 template <typename T>
 NoBinario<T>* NoBinario<T>::getElementos() {
-    return &this->elementos[0];
+    return &(*this->elementos.begin());
+}
+
+template <typename T>
+NoBinario<T>* NoBinario<T>::getDireita() {
+    return this->direita;
+}
+
+template <typename T>
+NoBinario<T>* NoBinario<T>::getEsquerda() {
+    return this->esquerda;
+}
+
+template <typename T>
+NoBinario<T>* NoBinario<T>::pegaNovoNo(const T& dado) {
+    return new NoBinario<T>(dado);
 }
 
 template <typename T>
@@ -59,14 +74,16 @@ template <typename T>
 NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
     if (dado < *(arv->getDado())) {
         if (arv->esquerda == NULL) {
-            NoBinario<T>* oNovo = new NoBinario(dado);
+            //NoBinario<T>* oNovo = new NoBinario(dado);
+            NoBinario<T>* oNovo = this->pegaNovoNo(dado);
             arv->esquerda = oNovo;
         } else {
             return this->inserir(dado, arv->esquerda);
         }
     } else {
         if (arv->direita == NULL) {
-            NoBinario<T>* oNovo = new NoBinario(dado);
+            //NoBinario<T>* oNovo = new NoBinario(dado);
+            NoBinario<T>* oNovo = this->pegaNovoNo(dado);
             arv->direita = oNovo;
         } else {
             return this->inserir(dado, arv->direita);
