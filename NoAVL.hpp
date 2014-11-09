@@ -30,7 +30,7 @@ class NoAVL : public NoBinario<T> {
 	 *
 	 * @param dado O dado a ser incluído no novo nó
 	 */
- 	virtual NoBinario<T>* pegaNovoNo(const T& dado);
+ 	virtual NoAVL<T>* pegaNovoNo(const T& dado);
     
     /*
      * Método que balanceia a árvore a medida que os valores

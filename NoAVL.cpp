@@ -4,7 +4,6 @@
 #define NO_AVL_CPP
 #include "NoBinario.hpp"
 #include "NoAVL.hpp"
-#include <cstdio>
 #include <vector>
 
 template <typename T>
@@ -13,7 +12,7 @@ NoAVL<T>::NoAVL (const T& dado): NoBinario<T>(dado) {
 }
 
 template <typename T>
-NoBinario<T>* NoAVL<T>::pegaNovoNo(const T& dado) {
+NoAVL<T>* NoAVL<T>::pegaNovoNo(const T& dado) {
     return new NoAVL<T>(dado);
 }
 
