@@ -125,7 +125,7 @@ class NoAVL : public NoBinario<T> {
  	/*!
      * Retorna os elementos percorridos pelos métodos de percurso
      */
-    NoAVL<T>* getElementos();
+    std::vector<NoAVL<T>* > getElementos();
     
     /*!
      * Retorna o filho da esquerda da raiz

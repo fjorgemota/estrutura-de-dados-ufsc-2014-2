@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include "NoAVL.hpp"
 #include <cstdlib>
+#include <vector>
 
 int main (int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
@@ -43,12 +44,12 @@ TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
     //Rotação simples à esquerda
     inteiro->emOrdem(inteiro);
     
-    NoAVL<int> *elementos = inteiro->getElementos();
+    std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
     ASSERT_EQ(1, inteiro->getAltura());
-    ASSERT_EQ(10, *(elementos[0].getDado()));
-    ASSERT_EQ(11, *(elementos[1].getDado()));
-    ASSERT_EQ(12, *(elementos[2].getDado()));
+    ASSERT_EQ(10, *(elementos[0]->getDado()));
+    ASSERT_EQ(11, *(elementos[1]->getDado()));
+    ASSERT_EQ(12, *(elementos[2]->getDado()));
 }
 
 TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
@@ -57,12 +58,12 @@ TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
     // Rotação simples à direita
     inteiro->emOrdem(inteiro);
     
-    NoAVL<int> *elementos = inteiro->getElementos();
+    std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
     ASSERT_EQ(1, inteiro->getAltura());
-    ASSERT_EQ(8, *(elementos[0].getDado()));
-    ASSERT_EQ(9, *(elementos[1].getDado()));
-    ASSERT_EQ(10, *(elementos[2].getDado()));
+    ASSERT_EQ(8, *(elementos[0]->getDado()));
+    ASSERT_EQ(9, *(elementos[1]->getDado()));
+    ASSERT_EQ(10, *(elementos[2]->getDado()));
 }
 
 TEST_F(NoAVLTest, insereRotacaoDuplaDireita) {
@@ -71,11 +72,11 @@ TEST_F(NoAVLTest, insereRotacaoDuplaDireita) {
     // Rotação dupla à direita
     inteiro->emOrdem(inteiro);
     
-    NoAVL<int> *elementos = inteiro->getElementos();
+    std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(7, *(elementos[0].getDado()));
-    ASSERT_EQ(8, *(elementos[1].getDado()));
-    ASSERT_EQ(10, *(elementos[2].getDado()));
+    ASSERT_EQ(7, *(elementos[0]->getDado()));
+    ASSERT_EQ(8, *(elementos[1]->getDado()));
+    ASSERT_EQ(10, *(elementos[2]->getDado()));
 }
 
 TEST_F(NoAVLTest, insereRotacaoDuplaEsquerda) {
@@ -84,11 +85,11 @@ TEST_F(NoAVLTest, insereRotacaoDuplaEsquerda) {
     // Rotação dupla à esquerda
     inteiro->emOrdem(inteiro);
     
-    NoAVL<int> *elementos = inteiro->getElementos();
+    std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(10, *(elementos[0].getDado()));
-    ASSERT_EQ(11, *(elementos[1].getDado()));
-    ASSERT_EQ(12, *(elementos[2].getDado()));
+    ASSERT_EQ(10, *(elementos[0]->getDado()));
+    ASSERT_EQ(11, *(elementos[1]->getDado()));
+    ASSERT_EQ(12, *(elementos[2]->getDado()));
 }
 
 TEST_F(NoAVLTest, remover) {

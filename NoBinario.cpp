@@ -36,8 +36,8 @@ T* NoBinario<T>::getDado() {
 }
 
 template <typename T>
-NoBinario<T>* NoBinario<T>::getElementos() {
-    return &(*this->elementos.begin());
+std::vector<NoBinario<T>* > NoBinario<T>::getElementos() {
+    return this->elementos;
 }
 
 template <typename T>
@@ -138,7 +138,7 @@ void NoBinario<T>::preOrdem(NoBinario<T>* nodo) {
     if (nodo == NULL) {
         return;
     }
-    elementos.push_back(*nodo);
+    elementos.push_back(nodo);
     this->preOrdem(nodo->esquerda);
     this->preOrdem(nodo->direita);
 }
@@ -149,7 +149,7 @@ void NoBinario<T>::emOrdem(NoBinario<T>* nodo) {
         return;
     }
     this->emOrdem(nodo->esquerda);
-    this->elementos.push_back(*nodo);
+    this->elementos.push_back(nodo);
     this->emOrdem(nodo->direita);
 }
 
@@ -160,7 +160,7 @@ void NoBinario<T>::posOrdem(NoBinario<T>* nodo) {
     }
     this->posOrdem(nodo->esquerda);
     this->posOrdem(nodo->direita);
-    this->elementos.push_back(*nodo);
+    this->elementos.push_back(nodo);
 }
 
 #endif /* NO_BINARIO_CPP */

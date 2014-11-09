@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <NoBinario.hpp>
+#include <vector>
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
@@ -102,12 +103,12 @@ TEST_F(NoBinarioTest, preOrdem) {
     ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(12, inteiro));
     ASSERT_NO_THROW(inteiro->preOrdem(inteiro));
-    NoBinario<int> *elementos = inteiro->getElementos();
-    ASSERT_EQ(10, *(elementos[0].getDado()));
-    ASSERT_EQ(8, *(elementos[1].getDado()));
-    ASSERT_EQ(9, *(elementos[2].getDado()));
-    ASSERT_EQ(11, *(elementos[3].getDado()));
-    ASSERT_EQ(12, *(elementos[4].getDado()));
+    std::vector<NoBinario<int>* > elementos = inteiro->getElementos();
+    ASSERT_EQ(10, *(elementos[0]->getDado()));
+    ASSERT_EQ(8, *(elementos[1]->getDado()));
+    ASSERT_EQ(9, *(elementos[2]->getDado()));
+    ASSERT_EQ(11, *(elementos[3]->getDado()));
+    ASSERT_EQ(12, *(elementos[4]->getDado()));
 }
 
 TEST_F(NoBinarioTest, emOrdem) {
@@ -116,12 +117,12 @@ TEST_F(NoBinarioTest, emOrdem) {
     ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(12, inteiro));
     ASSERT_NO_THROW(inteiro->emOrdem(inteiro));
-    NoBinario<int> *elementos = inteiro->getElementos();
-    ASSERT_EQ(8, *(elementos[0].getDado()));
-    ASSERT_EQ(9, *(elementos[1].getDado()));
-    ASSERT_EQ(10, *(elementos[2].getDado()));
-    ASSERT_EQ(11, *(elementos[3].getDado()));
-    ASSERT_EQ(12, *(elementos[4].getDado()));
+    std::vector<NoBinario<int>* > elementos = inteiro->getElementos();
+    ASSERT_EQ(8, *(elementos[0]->getDado()));
+    ASSERT_EQ(9, *(elementos[1]->getDado()));
+    ASSERT_EQ(10, *(elementos[2]->getDado()));
+    ASSERT_EQ(11, *(elementos[3]->getDado()));
+    ASSERT_EQ(12, *(elementos[4]->getDado()));
 }
 
 TEST_F(NoBinarioTest, posOrdem) {
@@ -130,10 +131,10 @@ TEST_F(NoBinarioTest, posOrdem) {
     ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(12, inteiro));
     ASSERT_NO_THROW(inteiro->posOrdem(inteiro));
-    NoBinario<int> *elementos = inteiro->getElementos();
-    ASSERT_EQ(9, *(elementos[0].getDado()));
-    ASSERT_EQ(8, *(elementos[1].getDado()));
-    ASSERT_EQ(12, *(elementos[2].getDado()));
-    ASSERT_EQ(11, *(elementos[3].getDado()));
-    ASSERT_EQ(10, *(elementos[4].getDado()));
+    std::vector<NoBinario<int>* > elementos = inteiro->getElementos();
+    ASSERT_EQ(9, *(elementos[0]->getDado()));
+    ASSERT_EQ(8, *(elementos[1]->getDado()));
+    ASSERT_EQ(12, *(elementos[2]->getDado()));
+    ASSERT_EQ(11, *(elementos[3]->getDado()));
+    ASSERT_EQ(10, *(elementos[4]->getDado()));
 }

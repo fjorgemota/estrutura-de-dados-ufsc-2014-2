@@ -16,7 +16,7 @@ class NoRB {
     bool cor;
  public:
     explicit NoRB(const T& dado);
-}
 
+};
 
 #endif /* NO_RB_HPP */

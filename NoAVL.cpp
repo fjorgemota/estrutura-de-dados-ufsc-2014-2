@@ -158,7 +158,7 @@ int NoAVL<T>::max(NoAVL<T>* no1, NoAVL<T>* no2) {
 /** Métodos sobrescritos */
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::getElementos() {
+std::vector<NoAVL<T>* > NoAVL<T>::getElementos() {
     /*std::vector<NoAVL<T> > resultado;
     int i, l;
     l = this->elementos.size();
@@ -168,7 +168,13 @@ NoAVL<T>* NoAVL<T>::getElementos() {
         resultado.push_back(*this->binarioParaAVL(new NoBinario<T>(array[i])));
     }
     return &resultado[0];*/
-    return this->binarioParaAVL(NoBinario<T>::getElementos());
+    std::vector<NoAVL<T>* > resultado;
+    unsigned int i;
+    std::vector<NoBinario<T>* > elementos = NoBinario<T>::getElementos();
+    for(i=0; i < elementos.size(); i++) {
+        resultado.push_back(this->binarioParaAVL(elementos[i]));
+    }
+    return resultado;
 }
 
 template <typename T>

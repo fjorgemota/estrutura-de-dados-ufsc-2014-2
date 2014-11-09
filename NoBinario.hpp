@@ -43,7 +43,7 @@ class NoBinario {
      */
     virtual NoBinario<T>* balanco_remove(NoBinario<T>* arv);
     
-    std::vector<NoBinario<T> > elementos;  //!< Elementos acessados durante
+    std::vector<NoBinario<T>* > elementos;  //!< Elementos acessados durante
                                             // o percurso realizado
     
     /*
@@ -72,7 +72,7 @@ class NoBinario {
     /*!
      * Retorna os elementos percorridos pelos métodos de percurso
      */
-    NoBinario<T>* getElementos();
+    std::vector<NoBinario<T>* > getElementos();
     
     /*!
      * Retorna o filho da esquerda da raiz
