@@ -23,7 +23,7 @@
  */
 template <typename T>
 class NoBinario {
- protected:
+ private:
     T* dado;  //!< Atributo onde é guardado o valor representado pelo nó
     NoBinario<T>* esquerda;  //!< Atributo que aponta para menor nó descendente
     NoBinario<T>* direita;  //!< Atributo que aponta para maior nó descendente
