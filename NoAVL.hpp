@@ -96,6 +96,14 @@ class NoAVL : public NoBinario<T> {
  	 */
  	NoAVL<T>* balancear(NoAVL<T>* raiz);
 
+    /*
+     * Retorna a altura máxima entre dois nós
+     *
+     * @param no1 Nó cuja altura será comparada com o segundo nó
+     * @param no2 Nó cuja altura será comparada com o primeiro nó
+     */
+    int max(NoAVL<T>* no1, NoAVL<T>* no2);
+
     //std::vector<NoAVL<T> > elementos;  //!< Elementos acessados durante
                                             // o percurso realizado
  
@@ -111,14 +119,6 @@ class NoAVL : public NoBinario<T> {
  	 * Retorna a altura do nó AVL
  	 */
  	int getAltura();
- 	
- 	/*
- 	 * Retorna a altura máxima entre dois nós
- 	 *
- 	 * @param no1 Nó cuja altura será comparada com o segundo nó
- 	 * @param no2 Nó cuja altura será comparada com o primeiro nó
- 	 */
- 	int max(NoAVL<T>* no1, NoAVL<T>* no2);
  	
  	/** Métodos sobrescritos */
  	
