@@ -9,6 +9,27 @@
 #define RB_RUBRO true
 #define RB_NEGRO false
 
+/*!
+ * Representa um no rubro-negro, sendo assim podendo representar uma arvore
+ * rubro-negra, que tambem e uma binaria, tendo as mesmas funçoes basicas. A
+ * exclusividade esta na adiçao do atributo booleano cor, garantindo que nenhum
+ * caminho de uma direçao seja duas vezes maior que a da outra, portanto, um no 
+ * rubro-negro tem seguintes as propriedades:
+ *
+ * 1) Cada no e vermelho (rubro) ou preto (negro);
+ * 2) A raiz e a folha da arvore sao negros;
+ * 3) Cada no rubro possui um pai negro;
+ * 4) Para um no, todos os caminhos ate uma folha contem o mesmo numero de
+ * nos negros.
+ *
+ * Quando uma propriedade e violada, a correçao e feita atraves de relocoloraçoes
+ * e/ou rotaçoes simples na arvore
+ *
+ * @see NoRB<T>::rotacaoSimplesEsquerda()
+ * @see NoRB<T>::rotacaoSimplesDireita()
+ * @see NoRB<T>::correcaoEsquerda()
+ * @see NoRB<T>::correcaoDireita()
+ */
 template <typename T>
 class NoRB : public NoBinario<T> {
  private:
@@ -18,14 +39,14 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* pai;  //!< Atributo que aponta para nó ascendente
     bool cor; //!< Atributo que indica a cor do nó
 
-    /*
-	 * Retorna um novo nó AVL
+    /*!
+	 * Retorna um novo nó Rubro-Negro
 	 *
 	 * @param dado O dado a ser incluído no novo nó
 	 */
  	virtual NoRB<T>* pegaNovoNo(const T& dado);
     
-    /*
+    /*!
      * Método que balanceia a árvore a medida que os valores
      * são adicionados
      *
@@ -33,7 +54,7 @@ class NoRB : public NoBinario<T> {
      */
     virtual NoRB<T>* balanco_insere(NoBinario<T>* arv);
     
-    /*
+    /*!
      * Método que balanceia a árvore a medida que os valores
      * são removidos
      *
@@ -41,21 +62,58 @@ class NoRB : public NoBinario<T> {
      */
     virtual NoRB<T>* balanco_remover(NoBinario<T>* arv);
  	
- 	/*
+ 	/*!
  	 * Método que converte nós de árvore binária para nós de
- 	 * AVL, isto é, incluindo um atributo altura neles
+ 	 * Rubro-Negro, isto é, incluindo um atributo cor neles
  	 *
  	 * @param binario A árvore binária que será convertida
  	 */
  	NoRB<T>* binarioParaRB(NoBinario<T> *binario);
 
  public:
+    /*!
+     * Constroi um no Rubro-Negro
+     */
     explicit NoRB(const T& dado);
 
-    /*
- 	 * Retorna a altura do nó AVL
- 	 */
- 	int getAltura();
+    /*!
+     * Retorna o pai do nodo
+     */
+    NoRB<T>* getPai();
+
+    /*!
+     * Realiza uma rotaçao simples a esquerda
+     *
+     * @param raiz A raiz da subarvore que sera rotacionada
+     */
+    NoRB<T>* rotacaoSimplesDireita(NoRB<T>* raiz);
+
+    /*!
+     * Realiza uma rotaçao simples a direita
+     *
+     * @param raiz A raiz da subarvore que sera rotacionada
+     */
+    NoRB<T>* rotacaoSimplesEsquerda(NoRB<T>* raiz);
+
+    /*!
+     * Corrige os problamas quanto as definiçoes ocorridos
+     * a esquerda 
+     *
+     * @param arv O no atual que esta sendo avaliado
+     * @param pai O no ascendente a arv
+     * @param avo O no ascendente ao pai de arv
+     */
+    NoRB<T>* correcaoEsquerda(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
+
+    /*!
+     * Corrige os problamas quanto as definiçoes ocorridos
+     * a direita
+     *
+     * @param arv O no atual que esta sendo avaliado
+     * @param pai O no ascendente a arv
+     * @param avo O no ascendente ao pai de arv
+     */
+    NoRB<T>* correcaoDireita(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
  	
  	/** Métodos sobrescritos */
  	
