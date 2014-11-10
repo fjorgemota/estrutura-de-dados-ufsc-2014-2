@@ -15,12 +15,10 @@ template <typename T>
 NoRB<T>* NoRB<T>::balanco_insere(NoRB<T>* arv) {
     NoRB<T>* pai, avo;
     arv->cor = RB_RUBRO;
-    while (arv->pai != NULL && !arv->pai->cor) {
+    while (arv->pai != NULL && arv->pai->cor == RB_RUBRO) {
         pai = arv->pai;
         avo = pai->pai;
-        // Se avo for rubro e pai negro,
-        // propriedade 4 ferida!
-        if (!avo->cor && !pai->cor) {
+        if (pai != NULL && avo != NULL) {
             if (avo->direita->getDado() == pai->getDado()) {
                 return this->correcaoDireita(arv, pai, avo);
             } else {
@@ -37,7 +35,7 @@ NoRB<T>* NoRB<T>*::correcaoEsquerda(NoRB<T>* arv,
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->direita;
-    if (!tio->cor) {
+    if (tio->cor == RB_RUBRO) {
         tio->cor = RB_NEGRO;
         pai->cor = RB_NEGRO;
         avo->cor = RB_RUBRO;
@@ -57,7 +55,7 @@ NoRB<T>* NoRB<T>*::correcaoDireita(NoRB<T>* arv,
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->esquerda;
-    if (!tio->cor) {
+    if (tio->cor == RB_RUBRO) {
         tio->cor = RB_NEGRO;
         pai->cor = RB_NEGRO;
         avo->cor = RB_RUBRO;

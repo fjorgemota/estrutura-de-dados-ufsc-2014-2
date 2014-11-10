@@ -96,7 +96,7 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* rotacaoSimplesEsquerda(NoRB<T>* raiz);
 
     /*!
-     * Corrige os problamas quanto as definiçoes ocorridos
+     * Corrige os problemas quanto as definiçoes ocorridos
      * a esquerda 
      *
      * @param arv O no atual que esta sendo avaliado
@@ -106,7 +106,7 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* correcaoEsquerda(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
 
     /*!
-     * Corrige os problamas quanto as definiçoes ocorridos
+     * Corrige os problemas quanto as definiçoes ocorridos
      * a direita
      *
      * @param arv O no atual que esta sendo avaliado
