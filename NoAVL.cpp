@@ -33,11 +33,13 @@ int NoAVL<T>::getAltura() {
 
 template <typename T>
 void NoAVL<T>::atualizaAltura(NoAVL<T>* raiz) {
-    if (raiz->esquerda == NULL && raiz->direita == NULL) {
-        raiz->altura = 0;
-    } else {
-        raiz->altura = this->max(raiz->esquerda, raiz->direita) + 1;
+    if (raiz->esquerda != NULL) {
+        this->atualizaAltura(raiz->esquerda);
     }
+    if (raiz->direita != NULL) {
+        this->atualizaAltura(raiz->direita);
+    }
+    raiz->altura = this->max(raiz->esquerda, raiz->direita) + 1;
 }
 
 template <typename T>
@@ -62,38 +64,37 @@ int NoAVL<T>::pegaBalanceamento(NoAVL<T>* raiz) {
 template <typename T>
 NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
     int balanceamentoPai, balanceamentoFE, balanceamentoFD;
-	this->atualizaAltura(raiz);
+    this->atualizaAltura(this);
 	balanceamentoPai = this->pegaBalanceamento(raiz);
-	
+	NoAVL<T> *resultado = raiz;
 	if (raiz->direita != NULL && balanceamentoPai < -1) {
 	    balanceamentoFD = this->pegaBalanceamento(raiz->direita);
 	    // Se a raiz possuir desbalanceamento a direita
     	if (balanceamentoFD == -1) {
-    		return this->rotacaoSimplesEsquerda(raiz);
+    		resultado = this->rotacaoSimplesEsquerda(raiz);
     	}
     	// Ha um desbalanceamento no filho a direita e, apos resolver,
     	// rotaciona a raiz para a esquerda para manter o equilibrio
     	if (balanceamentoFD == 1) {
     		raiz->direita = this->rotacaoSimplesDireita(raiz->direita);
-    		return this->rotacaoSimplesEsquerda(raiz);
+    		resultado = this->rotacaoSimplesEsquerda(raiz);
     	}
-	}
-
-    if (raiz->esquerda != NULL && balanceamentoPai > 1) {
+	} else if (raiz->esquerda != NULL && balanceamentoPai > 1) {
         balanceamentoFE = this->pegaBalanceamento(raiz->esquerda);
     	// Se a raiz possuir desbalanceamento a esquerda
     	if (balanceamentoFE == 1) {
-    		return this->rotacaoSimplesDireita(raiz);
+    		resultado = this->rotacaoSimplesDireita(raiz);
     	}
     	
     	// Ha um desbalanceamento no filho a esquerda e, apos resolver,
     	// rotaciona a raiz para a direita para manter o equilibrio
     	if (balanceamentoFE == -1) {
     		raiz->esquerda = this->rotacaoSimplesEsquerda(raiz->esquerda);
-    		return this->rotacaoSimplesDireita(raiz);
+    		resultado = this->rotacaoSimplesDireita(raiz);
     	}
     }
-	return raiz;
+    this->atualizaAltura(resultado);
+	return resultado;
 }
 
 template<typename T>
@@ -113,7 +114,6 @@ NoAVL<T>* NoAVL<T>::rotacaoSimplesDireita(NoAVL<T>* X) {
 template<typename T>
 NoAVL<T>* NoAVL<T>::rotacaoSimplesEsquerda(NoAVL<T>* X) {
 	NoAVL<T>* Y;
-	
 	Y = X->direita;
 	X->direita = Y->esquerda;
 	Y->esquerda = X;
@@ -131,7 +131,7 @@ NoAVL<T>* NoAVL<T>::balanco_insere(NoBinario<T>* arv) {
 }
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::balanco_remover(NoBinario<T>* arv) {
+NoAVL<T>* NoAVL<T>::balanco_remove(NoBinario<T>* arv) {
 	NoAVL<T>* raiz = this->binarioParaAVL(arv);
 	return this->balancear(raiz);
 }

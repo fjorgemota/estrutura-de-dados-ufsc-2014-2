@@ -46,7 +46,7 @@ class NoAVL : public NoBinario<T> {
      *
      * @param arv A árvore que será balanceada
      */
-    virtual NoAVL<T>* balanco_remover(NoBinario<T>* arv);
+    virtual NoAVL<T>* balanco_remove(NoBinario<T>* arv);
  	
  	/*
  	 * Método que converte nós de árvore binária para nós de

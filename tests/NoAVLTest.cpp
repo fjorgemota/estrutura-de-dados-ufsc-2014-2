@@ -39,7 +39,7 @@ TEST_F(NoAVLTest, inserir) {
 }
 
 TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
-    ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
+    NoAVL<int> *nodoRaiz = inteiro->inserir(11, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(12, inteiro));
 
     //Rotação simples à esquerda
@@ -47,21 +47,21 @@ TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(1, nodoRaiz->getAltura());
     ASSERT_EQ(10, *(elementos[0]->getDado()));
     ASSERT_EQ(11, *(elementos[1]->getDado()));
     ASSERT_EQ(12, *(elementos[2]->getDado()));
 }
 
 TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
-    ASSERT_NO_THROW(inteiro->inserir(9, inteiro));
+    NoAVL<int> *nodoRaiz = inteiro->inserir(9, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(8, inteiro));
     // Rotação simples à direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(1, nodoRaiz->getAltura());
     ASSERT_EQ(8, *(elementos[0]->getDado()));
     ASSERT_EQ(9, *(elementos[1]->getDado()));
     ASSERT_EQ(10, *(elementos[2]->getDado()));
@@ -107,13 +107,12 @@ TEST_F(NoAVLTest, removerRotacaoSimplesEsquerda) {
     ASSERT_NO_THROW(inteiro->inserir(3, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(19, inteiro));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 15));
-    
     //Rotação simples à esquerda
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(3, inteiro->getAltura());
     ASSERT_EQ(3, *(elementos[0]->getDado()));
     ASSERT_EQ(5, *(elementos[1]->getDado()));
     ASSERT_EQ(6, *(elementos[2]->getDado()));
@@ -272,9 +271,9 @@ TEST_F(NoAVLTest, getAltura) {
     
     ASSERT_NO_THROW(inteiro->inserir(9, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(2, inteiro->getAltura());
     
     ASSERT_NO_THROW(inteiro->inserir(7, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(13, inteiro));
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(2, inteiro->getAltura());
 }

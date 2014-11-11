@@ -119,10 +119,10 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
         return arv;
     }
     if (arv->direita != NULL) {
-        return arv->direita;
+        return this->balanco_remove(arv->direita);
     }
     if (arv->esquerda != NULL) {
-        return arv->esquerda;
+        return this->balanco_remove(arv->esquerda);
     }
     delete arv;
     return NULL;
