@@ -72,22 +72,24 @@ T* NoBinario<T>::busca(const T& info, NoBinario<T> *arv) {
 
 template <typename T>
 NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
+    NoBinario<T> *resultado = arv;
     if (dado < *(arv->getDado())) {
         if (arv->esquerda == NULL) {
-            NoBinario<T>* oNovo = this->pegaNovoNo(dado);
-            arv->esquerda = oNovo;
+            resultado = this->pegaNovoNo(dado);
+            arv->esquerda = resultado;
         } else {
-            return this->inserir(dado, arv->esquerda);
+            resultado = this->inserir(dado, arv->esquerda);
         }
     } else {
         if (arv->direita == NULL) {
-            NoBinario<T>* oNovo = this->pegaNovoNo(dado);
-            arv->direita = oNovo;
+            resultado = this->pegaNovoNo(dado);
+            arv->direita = resultado;
         } else {
-            return this->inserir(dado, arv->direita);
+            resultado = this->inserir(dado, arv->direita);
         }
     }
-    return this->balanco_insere(arv);
+    this->balanco_insere(arv);
+    return resultado;
 }
 
 template <typename T>
@@ -97,22 +99,23 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
     }
     if (dado < *(arv->getDado())) {
         // Elemento deve estar à esquerda
-        arv->esquerda = this->balanco_remove(this->remover(arv->esquerda, dado));
-        this->balanco_remove(arv->esquerda);
+        arv->esquerda = this->remover(arv->esquerda, dado);
+        this->balanco_remove(arv);
         return arv;
     }
     if (dado > *(arv->getDado())) {
         // Elemento deve estar à direita
-        arv->direita = this->balanco_remove(this->remover(arv->direita, dado));
+        arv->direita = this->remover(arv->direita, dado);
+        this->balanco_remove(arv);
         return arv;
     }
-    arv = this->balanco_remove(arv);
     // Encontrado elemento que queremos remover
     if (arv->direita != NULL && arv->esquerda != NULL) {
         // Dois filhos
         NoBinario<T> *tmp = this->minimo(arv->direita);
         arv->dado = tmp->getDado();
         arv->direita = this->remover(arv->direita, *(arv->getDado()));
+        this->balanco_remove(arv);
         return arv;
     }
     if (arv->direita != NULL) {
