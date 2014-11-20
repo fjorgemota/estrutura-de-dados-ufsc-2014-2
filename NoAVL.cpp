@@ -63,6 +63,12 @@ int NoAVL<T>::pegaBalanceamento(NoAVL<T>* raiz) {
 
 template <typename T>
 NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
+    if (raiz->esquerda != NULL) {
+        this->balancear(raiz->esquerda);
+    }
+    if (raiz->direita != NULL) {
+        this->balancear(raiz->direita);
+    }
     int balanceamentoPai, balanceamentoFE, balanceamentoFD;
     this->atualizaAltura(this);
 	balanceamentoPai = this->pegaBalanceamento(raiz);

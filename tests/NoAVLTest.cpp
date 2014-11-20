@@ -140,7 +140,7 @@ TEST_F(NoAVLTest, removerRotacaoSimplesDireita) {
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
     
-    ASSERT_EQ(1, inteiro->getAltura());
+    ASSERT_EQ(2, inteiro->getAltura());
     ASSERT_EQ(5, *(elementos[0]->getDado()));
     ASSERT_EQ(6, *(elementos[1]->getDado()));
     ASSERT_EQ(10, *(elementos[2]->getDado()));
