@@ -77,26 +77,26 @@ NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
 	    balanceamentoFD = this->pegaBalanceamento(raiz->direita);
 	    // Se a raiz possuir desbalanceamento a direita
     	if (balanceamentoFD == -1) {
-    		resultado = this->rotacaoSimplesEsquerda(raiz);
+    		resultado = this->rotacaoSimplesDireita(raiz);
     	}
     	// Ha um desbalanceamento no filho a direita e, apos resolver,
     	// rotaciona a raiz para a esquerda para manter o equilibrio
     	if (balanceamentoFD == 1) {
-    		raiz->direita = this->rotacaoSimplesDireita(raiz->direita);
-    		resultado = this->rotacaoSimplesEsquerda(raiz);
+    		raiz->direita = this->rotacaoSimplesEsquerda(raiz->direita);
+    		resultado = this->rotacaoSimplesDireita(raiz);
     	}
 	} else if (raiz->esquerda != NULL && balanceamentoPai > 1) {
         balanceamentoFE = this->pegaBalanceamento(raiz->esquerda);
     	// Se a raiz possuir desbalanceamento a esquerda
     	if (balanceamentoFE == 1) {
-    		resultado = this->rotacaoSimplesDireita(raiz);
+    		resultado = this->rotacaoSimplesEsquerda(raiz);
     	}
     	
     	// Ha um desbalanceamento no filho a esquerda e, apos resolver,
     	// rotaciona a raiz para a direita para manter o equilibrio
     	if (balanceamentoFE == -1) {
-    		raiz->esquerda = this->rotacaoSimplesEsquerda(raiz->esquerda);
-    		resultado = this->rotacaoSimplesDireita(raiz);
+    		raiz->esquerda = this->rotacaoSimplesDireita(raiz->esquerda);
+    		resultado = this->rotacaoSimplesEsquerda(raiz);
     	}
     }
     this->atualizaAltura(resultado);
@@ -104,7 +104,7 @@ NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
 }
 
 template<typename T>
-NoAVL<T>* NoAVL<T>::rotacaoSimplesDireita(NoAVL<T>* X) {
+NoAVL<T>* NoAVL<T>::rotacaoSimplesEsquerda(NoAVL<T>* X) {
 	NoAVL<T>* Y;
 	
 	Y = X->esquerda;
@@ -118,7 +118,7 @@ NoAVL<T>* NoAVL<T>::rotacaoSimplesDireita(NoAVL<T>* X) {
 }
 
 template<typename T>
-NoAVL<T>* NoAVL<T>::rotacaoSimplesEsquerda(NoAVL<T>* X) {
+NoAVL<T>* NoAVL<T>::rotacaoSimplesDireita(NoAVL<T>* X) {
 	NoAVL<T>* Y;
 	Y = X->direita;
 	X->direita = Y->esquerda;

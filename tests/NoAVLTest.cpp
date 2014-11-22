@@ -26,7 +26,7 @@ class NoAVLTest: public ::testing::Test {
 
 TEST_F(NoAVLTest, inserir) {
     int h;
-    // Rotações à esquerda
+    // Rotações à Direita
     for (h = 1; h < 10; h++) {
         ASSERT_NO_THROW(inteiro->inserir(h, inteiro));
     }
@@ -38,11 +38,11 @@ TEST_F(NoAVLTest, inserir) {
     }
 }
 
-TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
+TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
     NoAVL<int> *nodoRaiz = inteiro->inserir(11, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(12, inteiro));
 
-    //Rotação simples à esquerda
+    //Rotação simples à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -53,10 +53,10 @@ TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
     ASSERT_EQ(12, *(elementos[2]->getDado()));
 }
 
-TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
+TEST_F(NoAVLTest, insereRotacaoSimplesEsquerda) {
     NoAVL<int> *nodoRaiz = inteiro->inserir(9, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(8, inteiro));
-    // Rotação simples à direita
+    // Rotação simples à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -67,10 +67,10 @@ TEST_F(NoAVLTest, insereRotacaoSimplesDireita) {
     ASSERT_EQ(10, *(elementos[2]->getDado()));
 }
 
-TEST_F(NoAVLTest, insereRotacaoDuplaDireita) {
+TEST_F(NoAVLTest, insereRotacaoDuplaEsquerda) {
     NoAVL<int> *noRaiz = inteiro->inserir(7, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(8, inteiro));
-    // Rotação dupla à direita
+    // Rotação dupla à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -81,10 +81,10 @@ TEST_F(NoAVLTest, insereRotacaoDuplaDireita) {
     ASSERT_EQ(10, *(elementos[2]->getDado()));
 }
 
-TEST_F(NoAVLTest, insereRotacaoDuplaEsquerda) {
+TEST_F(NoAVLTest, insereRotacaoDuplaDireita) {
     NoAVL<int> *noRaiz = inteiro->inserir(12, inteiro);
     ASSERT_NO_THROW(inteiro->inserir(11, inteiro));
-    // Rotação dupla à esquerda
+    // Rotação dupla à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -95,7 +95,7 @@ TEST_F(NoAVLTest, insereRotacaoDuplaEsquerda) {
     ASSERT_EQ(12, *(elementos[2]->getDado()));
 }
 
-TEST_F(NoAVLTest, removerRotacaoSimplesEsquerda) {
+TEST_F(NoAVLTest, removerRotacaoSimplesDireita) {
     ASSERT_NO_THROW(inteiro->inserir(5, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(15, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(14, inteiro));
@@ -109,7 +109,7 @@ TEST_F(NoAVLTest, removerRotacaoSimplesEsquerda) {
     ASSERT_NO_THROW(inteiro->inserir(3, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(19, inteiro));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 15));
-    //Rotação simples à esquerda
+    //Rotação simples à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -129,7 +129,7 @@ TEST_F(NoAVLTest, removerRotacaoSimplesEsquerda) {
     ASSERT_EQ(19, *(elementos[11]->getDado()));
 }
 
-TEST_F(NoAVLTest, removerRotacaoSimplesDireita) {
+TEST_F(NoAVLTest, removerRotacaoSimplesEsquerda) {
     ASSERT_NO_THROW(inteiro->inserir(5, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(15, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(14, inteiro));
@@ -137,7 +137,7 @@ TEST_F(NoAVLTest, removerRotacaoSimplesDireita) {
     ASSERT_NO_THROW(inteiro->inserir(6, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(13, inteiro));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 15));
-    // Rotação simples à direita
+    // Rotação simples à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -151,7 +151,7 @@ TEST_F(NoAVLTest, removerRotacaoSimplesDireita) {
     ASSERT_EQ(16, *(elementos[5]->getDado()));
 }
 
-TEST_F(NoAVLTest, removerRotacaoDuplaDireita) {
+TEST_F(NoAVLTest, removerRotacaoDuplaEsquerda) {
     ASSERT_NO_THROW(inteiro->inserir(4, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(15, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(14, inteiro));
@@ -167,7 +167,7 @@ TEST_F(NoAVLTest, removerRotacaoDuplaDireita) {
     ASSERT_NO_THROW(inteiro->inserir(18, inteiro));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 26));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 25));
-    // Rotação dupla à direita
+    // Rotação dupla à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
@@ -187,7 +187,7 @@ TEST_F(NoAVLTest, removerRotacaoDuplaDireita) {
     ASSERT_EQ(20, *(elementos[11]->getDado()));
 }
 
-TEST_F(NoAVLTest, removerRotacaoDuplaEsquerda) {
+TEST_F(NoAVLTest, removerRotacaoDuplaDireita) {
     ASSERT_NO_THROW(inteiro->inserir(4, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(15, inteiro));
     ASSERT_NO_THROW(inteiro->inserir(14, inteiro));
@@ -203,7 +203,7 @@ TEST_F(NoAVLTest, removerRotacaoDuplaEsquerda) {
     ASSERT_NO_THROW(inteiro->inserir(16, inteiro));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 14));
     ASSERT_NO_THROW(inteiro->remover(inteiro, 13));
-    // Rotação dupla à esquerda
+    // Rotação dupla à Direita
     inteiro->emOrdem(inteiro);
     
     std::vector<NoAVL<int>* > elementos = inteiro->getElementos();
