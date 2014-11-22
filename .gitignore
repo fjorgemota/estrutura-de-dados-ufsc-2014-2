@@ -35,3 +35,6 @@ docs/
 
 # Hide cpplint.py file
 cpplint.py
+
+# Hides Man Pages files
+TrabalhoImplementacao2/ManPages
