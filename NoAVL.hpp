@@ -2,9 +2,10 @@
 
 #ifndef NO_AVL_HPP
 #define NO_AVL_HPP
+#include <vector>
 #include "NoBinario.hpp"
 
-/*
+/*!
  * Representa um nó AVL, sendo assim podendo representar uma árvore AVL,
  * que é também uma binária, tendo as mesmas funções básicas. A exclusividade 
  * da árvore AVL é o atributo altura, que mantém o balanceamento e evita
@@ -20,18 +21,17 @@
 template <typename T>
 class NoAVL : public NoBinario<T> {
  private:
-
     NoAVL<T>* esquerda;  //!< Representa o nó descendete à esquerda
     NoAVL<T>* direita;  //!< Representa o nó descendete à direita
-	int altura;  //!< Representa a altura do nó AVL
-	
-	/*
-	 * Retorna um novo nó AVL
-	 *
-	 * @param dado O dado a ser incluído no novo nó
-	 */
- 	virtual NoAVL<T>* pegaNovoNo(const T& dado);
-    
+    int altura;  //!< Representa a altura do nó AVL
+
+    /*
+     * Retorna um novo nó AVL
+     *
+     * @param dado O dado a ser incluído no novo nó
+     */
+    virtual NoAVL<T>* pegaNovoNo(const T& dado);
+
     /*
      * Método que balanceia a árvore a medida que os valores
      * são adicionados
@@ -39,7 +39,7 @@ class NoAVL : public NoBinario<T> {
      * @param arv A árvore que será balanceada
      */
     virtual NoAVL<T>* balanco_insere(NoBinario<T>* arv);
-    
+
     /*
      * Método que balanceia a árvore a medida que os valores
      * são removidos
@@ -47,28 +47,28 @@ class NoAVL : public NoBinario<T> {
      * @param arv A árvore que será balanceada
      */
     virtual NoAVL<T>* balanco_remove(NoBinario<T>* arv);
- 	
- 	/*
- 	 * Método que converte nós de árvore binária para nós de
- 	 * AVL, isto é, incluindo um atributo altura neles
- 	 *
- 	 * @param binario A árvore binária que será convertida
- 	 */
- 	NoAVL<T>* binarioParaAVL(NoBinario<T> *binario);
 
- 	/*
- 	 * Verifica e retorna a subtração de dois nós descendentes
- 	 *
- 	 * @param raiz Nó cujo balanceamento será feito
- 	 */
- 	int pegaBalanceamento(NoAVL<T>* raiz);
- 	
- 	/*
- 	 * Atualiza a altura de um nó
- 	 *
- 	 * @param raiz Nó cuja altura será atualizada
- 	 */
- 	void atualizaAltura(NoAVL<T>* raiz);
+     /*
+      * Método que converte nós de árvore binária para nós de
+      * AVL, isto é, incluindo um atributo altura neles
+      *
+      * @param binario A árvore binária que será convertida
+      */
+    NoAVL<T>* binarioParaAVL(NoBinario<T> *binario);
+
+     /*
+      * Verifica e retorna a subtração de dois nós descendentes
+      *
+      * @param raiz Nó cujo balanceamento será feito
+      */
+    int pegaBalanceamento(NoAVL<T>* raiz);
+
+     /*
+      * Atualiza a altura de um nó
+      *
+      * @param raiz Nó cuja altura será atualizada
+      */
+    void atualizaAltura(NoAVL<T>* raiz);
 
     /*
      * Realiza uma rotação simples à esquerda. 
@@ -78,7 +78,7 @@ class NoAVL : public NoBinario<T> {
      * @param raiz A árvore a ser rotacionada
      */
     NoAVL<T>* rotacaoSimplesEsquerda(NoAVL<T>* raiz);
-    
+
     /*
      * Realiza uma rotação simples à direita. 
      * Se houver um desbalanceamento à esquerda, uma
@@ -87,14 +87,14 @@ class NoAVL : public NoBinario<T> {
      * @param raiz A árvore a ser rotacionada
      */
     NoAVL<T>* rotacaoSimplesDireita(NoAVL<T>* raiz);
- 	
- 	/*
- 	 * Método que verifica o balanceamento e qual rotação 
- 	 * necessária realizar após a adição/remoção de um nó
- 	 *
- 	 * @param raiz Árvore que será balanceada e/ou rotacionada
- 	 */
- 	NoAVL<T>* balancear(NoAVL<T>* raiz);
+
+    /*
+    * Método que verifica o balanceamento e qual rotação 
+    * necessária realizar após a adição/remoção de um nó
+    *
+    * @param raiz Árvore que será balanceada e/ou rotacionada
+    */
+    NoAVL<T>* balancear(NoAVL<T>* raiz);
 
     /*
      * Retorna a altura máxima entre dois nós
@@ -102,32 +102,38 @@ class NoAVL : public NoBinario<T> {
      * @param no1 Nó cuja altura será comparada com o segundo nó
      * @param no2 Nó cuja altura será comparada com o primeiro nó
      */
-    int max(NoAVL<T>* no1, NoAVL<T>* no2);
+    int maximo(NoAVL<T>* no1, NoAVL<T>* no2);
+
  public:
- 	/*
- 	 * Constrói um nó AVL
- 	 *
- 	 * @param dado O dado a ser adicionado ao nó
- 	 */
- 	explicit NoAVL(const T& dado);
- 	
- 	/*
- 	 * Retorna a altura do nó AVL
- 	 */
- 	int getAltura();
- 	
- 	/** Métodos sobrescritos */
- 	
- 	/*!
-     * Retorna os elementos percorridos pelos métodos de percurso
+    /*!
+    * Constrói um nó AVL
+    *
+    * @param dado O dado a ser adicionado ao nó
+    */
+    explicit NoAVL(const T& dado);
+
+    /*!
+     * Libera a memória relacionada ao nó AVL
      */
+    virtual ~NoAVL();
+
+    /*!
+    * Retorna a altura do nó AVL
+    */
+    int getAltura();
+
+    /** Métodos sobrescritos */
+
+    /*!
+    * Retorna os elementos percorridos pelos métodos de percurso
+    */
     std::vector<NoAVL<T>* > getElementos();
-    
+
     /*!
      * Retorna o filho da esquerda da raiz
      */
     NoAVL<T>* getEsquerda();
-    
+
     /*!
      * Retorna o filho da direita da raiz
      */

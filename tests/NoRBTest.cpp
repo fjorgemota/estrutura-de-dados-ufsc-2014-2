@@ -1,11 +1,10 @@
 // Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
 
+#include <vector>
 #include "gtest/gtest.h"
 #include "NoRB.hpp"
-#include <cstdlib>
-#include <vector>
 
-int main (int argc, char **argv) {
+int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
@@ -18,7 +17,7 @@ class NoRBTest: public ::testing::Test {
         this->inteiro = new NoRB<int>(10);
         this->obj = new NoRB<Objeto>(Objeto());
     }
-    
+
  protected:
     NoRB<int> *inteiro;
     NoRB<Objeto> *obj;

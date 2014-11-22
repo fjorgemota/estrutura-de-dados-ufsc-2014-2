@@ -3,8 +3,8 @@
 #ifndef NO_RB_HPP
 #define NO_RB_HPP
 
-#include "NoBinario.hpp"
 #include <vector>
+#include "NoBinario.hpp"
 
 #define RB_RUBRO true
 #define RB_NEGRO false
@@ -39,15 +39,15 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* esquerda;  //!< Atributo que aponta para menor nó descendente
     NoRB<T>* direita;  //!< Atributo que aponta para maior nó descendente
     NoRB<T>* pai;  //!< Atributo que aponta para nó ascendente
-    bool cor; //!< Atributo que indica a cor do nó
+    bool cor;  //!< Atributo que indica a cor do nó
 
     /*!
-	 * Retorna um novo nó Rubro-Negro
-	 *
-	 * @param dado O dado a ser incluído no novo nó
-	 */
- 	virtual NoRB<T>* pegaNovoNo(const T& dado);
-    
+     * Retorna um novo nó Rubro-Negro
+     *
+     * @param dado O dado a ser incluído no novo nó
+     */
+    virtual NoRB<T>* pegaNovoNo(const T& dado);
+
     /*!
      * Método que balanceia a árvore a medida que os valores
      * são adicionados
@@ -55,28 +55,33 @@ class NoRB : public NoBinario<T> {
      * @param arv A árvore que será balanceada
      */
     virtual NoRB<T>* balanco_insere(NoBinario<T>* arv);
-    
+
     /*!
      * Método que balanceia a árvore a medida que os valores
      * são removidos
      *
      * @param arv A árvore que será balanceada
      */
-    virtual NoRB<T>* balanco_remover(NoBinario<T>* arv);
- 	
- 	/*!
- 	 * Método que converte nós de árvore binária para nós de
- 	 * Rubro-Negro, isto é, incluindo um atributo cor neles
- 	 *
- 	 * @param binario A árvore binária que será convertida
- 	 */
- 	NoRB<T>* binarioParaRB(NoBinario<T> *binario);
+    virtual NoRB<T>* balanco_remove(NoBinario<T>* arv);
+
+    /*!
+    * Método que converte nós de árvore binária para nós de
+    * Rubro-Negro, isto é, incluindo um atributo cor neles
+    *
+    * @param binario A árvore binária que será convertida
+    */
+    NoRB<T>* binarioParaRB(NoBinario<T> *binario);
 
  public:
     /*!
      * Constroi um no Rubro-Negro
      */
     explicit NoRB(const T& dado);
+
+    /*!
+     * Libera a memória relacionada ao nó RB
+     */
+    virtual ~NoRB();
 
     /*!
      * Retorna o pai do nodo
@@ -136,20 +141,20 @@ class NoRB : public NoBinario<T> {
      *
      * @param raiz O sucessor inordem do no removido
      */
-    NoRB<T>* correcaoDireitaRemocao(NoRB<T>* raiz)
- 	
- 	/** Métodos sobrescritos */
- 	
- 	/*!
-     * Retorna os elementos percorridos pelos métodos de percurso
-     */
+    NoRB<T>* correcaoDireitaRemocao(NoRB<T>* raiz);
+
+    /** Métodos sobrescritos */
+
+    /*!
+    * Retorna os elementos percorridos pelos métodos de percurso
+    */
     std::vector<NoRB<T>* > getElementos();
-    
+
     /*!
      * Retorna o filho da esquerda da raiz
      */
     NoRB<T>* getEsquerda();
-    
+
     /*!
      * Retorna o filho da direita da raiz
      */
@@ -180,7 +185,6 @@ class NoRB : public NoBinario<T> {
      * @param arv Árvore do qual o valor mínimo deve ser buscado
      */
     NoRB<T>* minimo(NoRB<T>* nodo);
-
 };
 
 #include "NoRB.cpp"

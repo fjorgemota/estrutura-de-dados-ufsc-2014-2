@@ -3,17 +3,25 @@
 #ifndef NO_RB_CPP
 #define NO_RB_CPP
 #include "NoRB.hpp"
-#include <cstdlib>
 #include <vector>
+#include <cstdlib>
+#include "NoBinario.hpp"
 
 template <typename T>
 NoRB<T>::NoRB(const T& dado) : NoBinario<T>(dado)  {
     this->pai = NULL;
 }
 
+
 template <typename T>
-NoRB<T>* NoRB<T>::balanco_insere(NoRB<T>* arv) {
-    NoRB<T>* pai, avo;
+NoRB<T>::~NoRB() {
+    delete this->pai;
+}
+
+template <typename T>
+NoRB<T>* NoRB<T>::balanco_insere(NoBinario<T>* arv_b) {
+    NoRB<T> *pai, *avo;
+    NoRB<T> *arv = this->binarioParaRB(arv_b);
     arv->cor = RB_RUBRO;
     while (arv->pai != NULL && arv->pai->cor == RB_RUBRO) {
         pai = arv->pai;
@@ -31,7 +39,7 @@ NoRB<T>* NoRB<T>::balanco_insere(NoRB<T>* arv) {
 }
 
 template <typename T>
-NoRB<T>* NoRB<T>*::correcaoEsquerdaInsercao(NoRB<T>* arv, 
+NoRB<T>* NoRB<T>::correcaoEsquerdaInsercao(NoRB<T>* arv,
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->direita;
@@ -51,7 +59,7 @@ NoRB<T>* NoRB<T>*::correcaoEsquerdaInsercao(NoRB<T>* arv,
 }
 
 template <typename T>
-NoRB<T>* NoRB<T>*::correcaoDireitaInsercao(NoRB<T>* arv, 
+NoRB<T>* NoRB<T>::correcaoDireitaInsercao(NoRB<T>* arv,
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->esquerda;
@@ -71,20 +79,22 @@ NoRB<T>* NoRB<T>*::correcaoDireitaInsercao(NoRB<T>* arv,
 }
 
 template <typename T>
-NoRB<T>* NoRB<T>::balanco_remove(NoRB<T>* arv) {
+NoRB<T>* NoRB<T>::balanco_remove(NoBinario<T>* arv_b) {
     NoRB<T> *novo;
+    NoRB<T> *arv = this->binarioParaRB(arv_b);
     novo = this->minimo(arv->direita);
     novo->cor = arv->cor;
-    if (novo->cor == RB_NEGRO && 
-            (novo->direita->cor == RB_RUBRO || novo->esquerda->cor == RB_RUBRO)) {
+    if (novo->cor == RB_NEGRO &&
+            (novo->direita->cor == RB_RUBRO
+                || novo->esquerda->cor == RB_RUBRO)) {
         novo->cor = RB_RUBRO;
         novo->direita->cor = RB_NEGRO;
         novo->esquerda->cor = RB_NEGRO;
     }
-    if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO) 
+    if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO)
                     && novo->direita->cor == RB_NEGRO) {
         this->correcaoDireitaRemocao(novo);
-    } else if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO) 
+    } else if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO)
                     && novo->esquerda->cor == RB_NEGRO) {
         this->correcaoEsquerdaRemocao(novo);
     }
@@ -97,20 +107,22 @@ NoRB<T>* NoRB<T>::correcaoEsquerdaRemocao(NoRB<T>* raiz) {
     NoRB<T> *irmao = raiz->pai->direita;
     NoRB<T> *pai = raiz->pai;
     if (irmao->cor == RB_RUBRO) {
-        pai = RB_NEGRO;
-        irmao = RB_RUBRO;
+        pai->cor = RB_NEGRO;
+        irmao->cor = RB_RUBRO;
         this->rotacaoSimplesEsquerda(pai);
     }
-    if (irmao->direita == RB_NEGRO && irmao->esquerda == RB_NEGRO) {
+    if (irmao->direita->cor == RB_NEGRO
+        && irmao->esquerda->cor == RB_NEGRO) {
         irmao->cor = RB_RUBRO;
         raiz = pai;
-    } else if (irmao->direita == RB_NEGRO && irmao->esquerda == RB_RUBRO) {
-        irmao = RB_RUBRO;
+    } else if (irmao->direita->cor == RB_NEGRO
+        && irmao->esquerda->cor == RB_RUBRO) {
+        irmao->cor = RB_RUBRO;
         irmao->esquerda = RB_NEGRO;
         this->rotacaoSimplesDireita(irmao);
     }
-    if (irmao->direita == RB_RUBRO) {
-        irmao->direita = RB_NEGRO;
+    if (irmao->direita->cor == RB_RUBRO) {
+        irmao->direita->cor = RB_NEGRO;
         irmao->cor = pai->cor;
         pai = RB_NEGRO;
         this->rotacaoSimplesEsquerda(pai);
@@ -123,22 +135,23 @@ NoRB<T>* NoRB<T>::correcaoDireitaRemocao(NoRB<T>* raiz) {
     NoRB<T> *irmao = raiz->pai->esquerda;
     NoRB<T> *pai = raiz->pai;
     if (irmao->cor == RB_RUBRO) {
-        pai = RB_NEGRO;
-        irmao = RB_RUBRO;
+        pai->cor = RB_NEGRO;
+        irmao->cor = RB_RUBRO;
         this->rotacaoSimplesDireita(pai);
     }
-    if (irmao->esquerda == RB_NEGRO && irmao->direita == RB_NEGRO) {
+    if (irmao->esquerda->cor == RB_NEGRO && irmao->direita->cor == RB_NEGRO) {
         irmao->cor = RB_RUBRO;
         raiz = pai;
-    } else if (irmao->esquerda == RB_NEGRO && irmao->direita == RB_RUBRO) {
-        irmao = RB_RUBRO;
-        irmao->direita = RB_NEGRO;
+    } else if (irmao->esquerda->cor == RB_NEGRO
+        && irmao->direita->cor == RB_RUBRO) {
+        irmao->cor = RB_RUBRO;
+        irmao->direita->cor = RB_NEGRO;
         this->rotacaoSimplesEsquerda(irmao);
     }
-    if (irmao->esquerda == RB_RUBRO) {
-        irmao->esquerda = RB_NEGRO;
+    if (irmao->esquerda->cor == RB_RUBRO) {
+        irmao->esquerda->cor = RB_NEGRO;
         irmao->cor = pai->cor;
-        pai = RB_NEGRO;
+        pai->cor = RB_NEGRO;
         this->rotacaoSimplesDireita(pai);
     }
     return raiz;
@@ -159,17 +172,9 @@ NoRB<T>* NoRB<T>::binarioParaRB(NoBinario<T> *binario) {
     return raiz;
 }
 
-
-template <typename T>
-NoRB<T>::~NoRB() {
-    // delete this->esquerda;
-    // delete this->dado;
-    // delete this->direita;
-}
-
 template <typename T>
 NoRB<T>* NoRB<T>::rotacaoSimplesDireita(NoRB<T>* raiz) {
-    NoRB<T>* pai, nodo;
+    NoRB<T> *pai, *nodo;
     bool lado;
 
     pai = raiz->getPai();
@@ -196,7 +201,7 @@ NoRB<T>* NoRB<T>::rotacaoSimplesDireita(NoRB<T>* raiz) {
 
 template <typename T>
 NoRB<T>* NoRB<T>::rotacaoSimplesEsquerda(NoRB<T>* raiz) {
-    NoRB<T>* pai, nodo;
+    NoRB<T> *pai, *nodo;
     bool lado;
 
     pai = raiz->getPai();
@@ -238,7 +243,7 @@ std::vector<NoRB<T>* > NoRB<T>::getElementos() {
     std::vector<NoRB<T>* > resultado;
     unsigned int i;
     std::vector<NoBinario<T>* > elementos = NoBinario<T>::getElementos();
-    for(i=0; i < elementos.size(); i++) {
+    for (i = 0; i < elementos.size(); i++) {
         resultado.push_back(this->binarioParaRB(elementos[i]));
     }
     return resultado;
@@ -252,7 +257,6 @@ NoRB<T>* NoRB<T>::getEsquerda() {
 template <typename T>
 NoRB<T>* NoRB<T>::getDireita() {
     return this->binarioParaRB(NoBinario<T>::getDireita());
-    
 }
 
 template <typename T>

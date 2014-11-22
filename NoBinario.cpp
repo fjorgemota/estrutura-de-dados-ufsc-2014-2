@@ -25,9 +25,9 @@ NoBinario<T>::NoBinario(const T& dado) {
 
 template <typename T>
 NoBinario<T>::~NoBinario() {
-    // delete this->esquerda;
-    // delete this->dado;
-    // delete this->direita;
+    delete this->esquerda;
+    delete this->direita;
+    delete this->dado;
 }
 
 template <typename T>
@@ -113,10 +113,9 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
     if (arv->direita != NULL && arv->esquerda != NULL) {
         // Dois filhos
         NoBinario<T> *tmp = this->minimo(arv->direita);
-        arv->dado = tmp->getDado();
-        arv->direita = this->remover(arv->direita, *(arv->getDado()));
-        this->balanco_remove(arv);
-        return arv;
+        arv->dado = new T(static_cast<T const&>(*(tmp->getDado())));
+        arv->direita = this->remover(arv->direita, *(tmp->getDado()));
+        return this->balanco_remove(arv);
     }
     if (arv->direita != NULL) {
         return this->balanco_remove(arv->direita);

@@ -34,7 +34,7 @@ class NoBinario {
      * @param arv Árvore no qual os valores devem ser balanceados
      */
     virtual NoBinario<T>* balanco_insere(NoBinario<T>* arv);
-    
+
     /*!
      * Método que deve balancear os valores da árvore assim que eles forem
      * removidos da mesma.
@@ -42,10 +42,10 @@ class NoBinario {
      * @param arv Árvore no qual os valores devem ser balanceados
      */
     virtual NoBinario<T>* balanco_remove(NoBinario<T>* arv);
-    
+
     std::vector<NoBinario<T>* > elementos;  //!< Elementos acessados durante
                                             // o percurso realizado
-    
+
     /*
      * Retorna um novo nó para a árvore binária
      *
@@ -62,7 +62,7 @@ class NoBinario {
     /*!
      * Libera a memória relacionada ao nó binário
      */
-    virtual ~NoBinario<T>();
+    virtual ~NoBinario();
 
     /*!
      * Retorna o dado representado pelo nó binário
@@ -73,12 +73,12 @@ class NoBinario {
      * Retorna os elementos percorridos pelos métodos de percurso
      */
     std::vector<NoBinario<T>* > getElementos();
-    
+
     /*!
      * Retorna o filho da esquerda da raiz
      */
     NoBinario<T>* getEsquerda();
-    
+
     /*!
      * Retorna o filho da direita da raiz
      */
