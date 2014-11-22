@@ -20,9 +20,9 @@ NoRB<T>* NoRB<T>::balanco_insere(NoRB<T>* arv) {
         avo = pai->pai;
         if (pai != NULL && avo != NULL) {
             if (avo->direita->getDado() == pai->getDado()) {
-                return this->correcaoDireita(arv, pai, avo);
+                return this->correcaoDireitaInsercao(arv, pai, avo);
             } else {
-                return this->correcaoEsquerda(arv, pai, avo);
+                return this->correcaoEsquerdaInsercao(arv, pai, avo);
             }
         }
     }
@@ -31,7 +31,7 @@ NoRB<T>* NoRB<T>::balanco_insere(NoRB<T>* arv) {
 }
 
 template <typename T>
-NoRB<T>* NoRB<T>*::correcaoEsquerda(NoRB<T>* arv, 
+NoRB<T>* NoRB<T>*::correcaoEsquerdaInsercao(NoRB<T>* arv, 
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->direita;
@@ -51,7 +51,7 @@ NoRB<T>* NoRB<T>*::correcaoEsquerda(NoRB<T>* arv,
 }
 
 template <typename T>
-NoRB<T>* NoRB<T>*::correcaoDireita(NoRB<T>* arv, 
+NoRB<T>* NoRB<T>*::correcaoDireitaInsercao(NoRB<T>* arv, 
                         NoRB<T>* pai, NoRB<T>* avo) {
     NoRB<T>* tio;
     tio = avo->esquerda;
@@ -72,7 +72,76 @@ NoRB<T>* NoRB<T>*::correcaoDireita(NoRB<T>* arv,
 
 template <typename T>
 NoRB<T>* NoRB<T>::balanco_remove(NoRB<T>* arv) {
-    return arv;
+    NoRB<T> *novo;
+    novo = this->minimo(arv->direita);
+    novo->cor = arv->cor;
+    if (novo->cor == RB_NEGRO && 
+            (novo->direita->cor == RB_RUBRO || novo->esquerda->cor == RB_RUBRO)) {
+        novo->cor = RB_RUBRO;
+        novo->direita->cor = RB_NEGRO;
+        novo->esquerda->cor = RB_NEGRO;
+    }
+    if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO) 
+                    && novo->direita->cor == RB_NEGRO) {
+        this->correcaoDireitaRemocao(novo);
+    } else if ((novo->cor == RB_NEGRO || novo->cor == RB_RUBRO) 
+                    && novo->esquerda->cor == RB_NEGRO) {
+        this->correcaoEsquerdaRemocao(novo);
+    }
+
+    return novo;
+}
+
+template <typename T>
+NoRB<T>* NoRB<T>::correcaoEsquerdaRemocao(NoRB<T>* raiz) {
+    NoRB<T> *irmao = raiz->pai->direita;
+    NoRB<T> *pai = raiz->pai;
+    if (irmao->cor == RB_RUBRO) {
+        pai = RB_NEGRO;
+        irmao = RB_RUBRO;
+        this->rotacaoSimplesEsquerda(pai);
+    }
+    if (irmao->direita == RB_NEGRO && irmao->esquerda == RB_NEGRO) {
+        irmao->cor = RB_RUBRO;
+        raiz = pai;
+    } else if (irmao->direita == RB_NEGRO && irmao->esquerda == RB_RUBRO) {
+        irmao = RB_RUBRO;
+        irmao->esquerda = RB_NEGRO;
+        this->rotacaoSimplesDireita(irmao);
+    }
+    if (irmao->direita == RB_RUBRO) {
+        irmao->direita = RB_NEGRO;
+        irmao->cor = pai->cor;
+        pai = RB_NEGRO;
+        this->rotacaoSimplesEsquerda(pai);
+    }
+    return raiz;
+}
+
+template <typename T>
+NoRB<T>* NoRB<T>::correcaoDireitaRemocao(NoRB<T>* raiz) {
+    NoRB<T> *irmao = raiz->pai->esquerda;
+    NoRB<T> *pai = raiz->pai;
+    if (irmao->cor == RB_RUBRO) {
+        pai = RB_NEGRO;
+        irmao = RB_RUBRO;
+        this->rotacaoSimplesDireita(pai);
+    }
+    if (irmao->esquerda == RB_NEGRO && irmao->direita == RB_NEGRO) {
+        irmao->cor = RB_RUBRO;
+        raiz = pai;
+    } else if (irmao->esquerda == RB_NEGRO && irmao->direita == RB_RUBRO) {
+        irmao = RB_RUBRO;
+        irmao->direita = RB_NEGRO;
+        this->rotacaoSimplesEsquerda(irmao);
+    }
+    if (irmao->esquerda == RB_RUBRO) {
+        irmao->esquerda = RB_NEGRO;
+        irmao->cor = pai->cor;
+        pai = RB_NEGRO;
+        this->rotacaoSimplesDireita(pai);
+    }
+    return raiz;
 }
 
 template <typename T>
@@ -155,6 +224,11 @@ NoRB<T>* NoRB<T>::rotacaoSimplesEsquerda(NoRB<T>* raiz) {
 template <typename T>
 NoRB<T>* NoRB<T>::getPai() {
     return this->pai;
+}
+
+template <typename T>
+bool NoRB<T>::getCor() {
+    return this->cor;
 }
 
 /** Métodos sobrescritos */

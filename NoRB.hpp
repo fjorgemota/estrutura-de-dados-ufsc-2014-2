@@ -27,8 +27,10 @@
  *
  * @see NoRB<T>::rotacaoSimplesEsquerda()
  * @see NoRB<T>::rotacaoSimplesDireita()
- * @see NoRB<T>::correcaoEsquerda()
- * @see NoRB<T>::correcaoDireita()
+ * @see NoRB<T>::correcaoEsquerdaInsercao()
+ * @see NoRB<T>::correcaoDireitaInsercao()
+ * @see NoRB<T>::correcaoEsquerdaRemocao()
+ * @see NoRB<T>::correcaoDireitaRemocao()
  */
 template <typename T>
 class NoRB : public NoBinario<T> {
@@ -82,6 +84,11 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* getPai();
 
     /*!
+     * Retorna a cor do no
+     */
+    bool getCor();
+
+    /*!
      * Realiza uma rotaçao simples a esquerda
      *
      * @param raiz A raiz da subarvore que sera rotacionada
@@ -96,24 +103,40 @@ class NoRB : public NoBinario<T> {
     NoRB<T>* rotacaoSimplesEsquerda(NoRB<T>* raiz);
 
     /*!
-     * Corrige os problemas quanto as definiçoes ocorridos
-     * a esquerda 
+     * Corrige as violaçoes das definiçoes apos uma inserçao
+     * ocorrida a esquerda 
      *
      * @param arv O no atual que esta sendo avaliado
      * @param pai O no ascendente a arv
      * @param avo O no ascendente ao pai de arv
      */
-    NoRB<T>* correcaoEsquerda(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
+    NoRB<T>* correcaoEsquerdaInsercao(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
 
     /*!
-     * Corrige os problemas quanto as definiçoes ocorridos
-     * a direita
+     * Corrige as violaçoes das definiçoes apos uma inserçao
+     * ocorrida a direita
      *
      * @param arv O no atual que esta sendo avaliado
      * @param pai O no ascendente a arv
      * @param avo O no ascendente ao pai de arv
      */
-    NoRB<T>* correcaoDireita(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
+    NoRB<T>* correcaoDireitaInsercao(NoRB<T>* arv, NoRB<T>* pai, NoRB<T>* avo);
+
+    /*!
+     * Corrige as violaçoes das definiçoes apos uma remoçao
+     * ocorrida a esquerda
+     *
+     * @param raiz O sucessor inordem do no removido
+     */
+    NoRB<T>* correcaoEsquerdaRemocao(NoRB<T>* raiz);
+
+    /*!
+     * Corrige as violaçoes das definiçoes apos uma remoçao
+     * ocorrida a direita
+     *
+     * @param raiz O sucessor inordem do no removido
+     */
+    NoRB<T>* correcaoDireitaRemocao(NoRB<T>* raiz)
  	
  	/** Métodos sobrescritos */
  	
