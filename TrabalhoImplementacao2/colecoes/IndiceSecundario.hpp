@@ -4,10 +4,16 @@
 #include "Indice.hpp"
 #include "../modelos/Word.hpp"
 
+/*!
+ * Estrutura temporaria que armazena as palavras de
+ * busca no disco
+ *
+ * @see IndiceSecundario::breadth_first()
+ */
 class IndiceSecundario : public Indice<Word> {
  protected:
  	/*!
-     * Retorna um novo IndiceSecundario
+     * Retorna um novo no IndiceSecundario
      *
      * @param dado O dado a ser incluído no novo nó
      */
@@ -23,19 +29,19 @@ class IndiceSecundario : public Indice<Word> {
 
  public:
     /*!
-    * Constrói um nó AVL
+    * Constrói um nó IndiceSecundario
     *
     * @param dado O dado a ser adicionado ao nó
     */
     explicit IndiceSecundario(const Word& dado);
 
     /*!
-     * Libera a memória relacionada ao nó AVL
+     * Libera a memória relacionada ao nó IndiceSecundario
      */
     virtual ~IndiceSecundario();
 
     /*!
-    * Retorna a altura do nó AVL
+    * Retorna a altura do nó IndiceSecundario
     */
     int getAltura();
 
@@ -57,31 +63,35 @@ class IndiceSecundario : public Indice<Word> {
     IndiceSecundario* getDireita();
 
     /*!
-     * Insere um determimado dado na árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Insere um determimado dado no IndiceSecundario passado
+     * no parâmetro arv
      * 
-     * @param dado Dado a ser buscado na árvore
-     * @param arv Árvore no qual o dado deve ser buscado
+     * @param dado Dado a ser buscado no indiceSecundario
+     * @param arv IndiceSecundario no qual o dado deve ser buscado
      */
     IndiceSecundario* inserir(const Word& dado, IndiceSecundario* arv);
 
     /*!
-     * Remove um determinado dado da árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Remove um determinado dado do IndiceSecundario passado
+     * no parâmetro arv
      * 
-     * @param dado Dado a ser removido da árvore
-     * @param arv Árvore no qual o dado deve ser removido
+     * @param dado Dado a ser removido do indiceSecundario
+     * @param arv IndiceSecundario no qual o dado deve ser removido
      */
     IndiceSecundario* remover(IndiceSecundario* arv, const Word& dado);
 
     /*!
-     * Retorna o valor mínimo guardado na árvore representada
-     * pelo nó binário passado no parãmetro arv
+     * Retorna o valor mínimo do IndiceSecundario passado
+     * no parametro nodo
      *
-     * @param arv Árvore do qual o valor mínimo deve ser buscado
+     * @param arv IndiceSecundario do qual o valor mínimo deve ser buscado
      */
     IndiceSecundario* minimo(IndiceSecundario* nodo);
 
+    /*!
+     * Metodo que armazena os conteudos da arvore de indices
+     * no disco
+     */
  	ListaDupla<Word > breadth_first();
 };
 

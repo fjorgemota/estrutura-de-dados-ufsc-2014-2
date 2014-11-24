@@ -4,10 +4,16 @@
 #include "Indice.hpp"
 #include "../modelos/ManPage.hpp"
 
+/*!
+ * Estrutura temporaria que armazena as ManPages (paginas
+ * de usuario) em disco.
+ *
+ * @see IndiceSecundario::breadth_first()
+ */
 class IndicePrimario : public Indice<ManPage> {
  protected:
  	/*!
-     * Retorna um novo IndicePrimario
+     * Retorna um novo no IndicePrimario
      *
      * @param dado O dado a ser incluído no novo nó
      */
@@ -23,19 +29,19 @@ class IndicePrimario : public Indice<ManPage> {
 
  public:
     /*!
-    * Constrói um nó AVL
+    * Constrói um nó IndicePrimario
     *
     * @param dado O dado a ser adicionado ao nó
     */
     explicit IndicePrimario(const ManPage& dado);
 
     /*!
-     * Libera a memória relacionada ao nó AVL
+     * Libera a memória relacionada ao nó IndicePrimario
      */
     virtual ~IndicePrimario();
 
     /*!
-    * Retorna a altura do nó AVL
+    * Retorna a altura do nó IndicePrimario
     */
     int getAltura();
 
@@ -57,31 +63,35 @@ class IndicePrimario : public Indice<ManPage> {
     IndicePrimario* getDireita();
 
     /*!
-     * Insere um determimado dado na árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Insere um determimado dado no IndicePrimario 
+     * passado no parâmetro arv
      * 
-     * @param dado Dado a ser buscado na árvore
-     * @param arv Árvore no qual o dado deve ser buscado
+     * @param dado Dado a ser buscado no indicePrimario
+     * @param arv IndicePrimario no qual o dado deve ser buscado
      */
     IndicePrimario* inserir(const ManPage& dado, IndicePrimario* arv);
 
     /*!
-     * Remove um determinado dado da árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Remove um determinado dado do IndicePrimario
+     * passado no parâmetro arv
      * 
-     * @param dado Dado a ser removido da árvore
-     * @param arv Árvore no qual o dado deve ser removido
+     * @param dado Dado a ser removido do indicePrimario
+     * @param arv IndicePrimario no qual o dado deve ser removido
      */
     IndicePrimario* remover(IndicePrimario* arv, const ManPage& dado);
 
     /*!
-     * Retorna o valor mínimo guardado na árvore representada
-     * pelo nó binário passado no parãmetro arv
+     * Retorna o valor mínimo do IndicePrimario
+     * passado no parametro nodo
      *
-     * @param arv Árvore do qual o valor mínimo deve ser buscado
+     * @param arv IndicePrimario do qual o valor mínimo deve ser buscado
      */
     IndicePrimario* minimo(IndicePrimario* nodo);
 
+    /*!
+     * Metodo que armazena os conteudos da arvore de indices
+     * no disco
+     */
  	ListaDupla<ManPage > breadth_first();
 };
 

@@ -3,13 +3,20 @@
 #include "../util/NoAVL.hpp"
 #include "../util/ListaDupla.hpp"
 
+/*!
+ * Estrutura temporaria com a principal funçao de salvar
+ * os conteudos de uma arvore AVL em disco, na ordem em que
+ * foram referenciados
+ *
+ * @see: Indice::breadth_fist()
+ */
 template <typename T>
 class Indice : public NoAVL<T> {
  protected:
  	/*!
      * Retorna um novo Indice
      *
-     * @param dado O dado a ser incluído no novo nó
+     * @param dado O dado a ser incluído no novo Indice
      */
     virtual Indice<T>* pegaNovoNo(const T& dado);
 
@@ -22,19 +29,19 @@ class Indice : public NoAVL<T> {
     Indice<T>* AVLParaIndice(NoAVL<T> *avl);
  public:
  	/*!
-    * Constrói um nó AVL
+    * Constrói um nó de Indice
     *
     * @param dado O dado a ser adicionado ao nó
     */
     explicit Indice(const T& dado);
 
     /*!
-     * Libera a memória relacionada ao nó AVL
+     * Libera a memória relacionada ao Indice
      */
     virtual ~Indice();
 
     /*!
-    * Retorna a altura do nó AVL
+    * Retorna a altura do nó do Indice
     */
     int getAltura();
 
@@ -56,31 +63,35 @@ class Indice : public NoAVL<T> {
     Indice<T>* getDireita();
 
     /*!
-     * Insere um determimado dado na árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Insere um determimado dado no Indice passado
+     * no parâmetro arv
      * 
-     * @param dado Dado a ser buscado na árvore
-     * @param arv Árvore no qual o dado deve ser buscado
+     * @param dado Dado a ser buscado pelo indice
+     * @param arv Indice no qual o dado deve ser buscado
      */
     Indice<T>* inserir(const T& dado, Indice<T>* arv);
 
     /*!
-     * Remove um determinado dado da árvore representada
-     * pelo nó binário passado no parâmetro arv
+     * Remove um determinado dado no Indice passado no
+     * parâmetro arv
      * 
-     * @param dado Dado a ser removido da árvore
-     * @param arv Árvore no qual o dado deve ser removido
+     * @param dado Dado a ser removido do Indice
+     * @param arv Indice no qual o dado deve ser removido
      */
     Indice<T>* remover(Indice<T>* arv, const T& dado);
 
     /*!
-     * Retorna o valor mínimo guardado na árvore representada
-     * pelo nó binário passado no parãmetro arv
+     * Retorna o valor mínimo do Indice passado no
+     * parametro nodo
      *
-     * @param arv Árvore do qual o valor mínimo deve ser buscado
+     * @param arv Indice do qual o valor mínimo deve ser buscado
      */
     Indice<T>* minimo(Indice<T>* nodo);
 
+    /*!
+     * Metodo que armazena os conteudos da arvore de indices
+     * no disco
+     */
  	ListaDupla<T > breadth_first();
 };
 
