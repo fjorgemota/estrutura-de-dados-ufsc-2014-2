@@ -176,47 +176,6 @@ TEST_F(NoAVLTest, removerRotacaoDuplaEsquerda) {
                                 ->getDireita()->getDado()));
 }
 
-
-TEST_F(NoAVLTest, insercao1) {
-    inteiro = inteiro->inserir(1, inteiro);
-    inteiro = inteiro->inserir(2, inteiro);
-
-    ASSERT_EQ(2,  *(inteiro->getDado()));
-    ASSERT_EQ(1,  *(inteiro->getEsquerda()->getDado()));
-    ASSERT_EQ(10, *(inteiro->getDireita()->getDado()));
-}
-
-
-TEST_F(NoAVLTest, insercao) {
-    inteiro = inteiro->inserir(1, inteiro);
-    inteiro = inteiro->inserir(2, inteiro);
-    inteiro = inteiro->inserir(3, inteiro);
-    inteiro = inteiro->inserir(4, inteiro);
-    inteiro = inteiro->inserir(5, inteiro);
-    inteiro = inteiro->inserir(6, inteiro);
-    inteiro = inteiro->inserir(7, inteiro);
-    inteiro = inteiro->inserir(8, inteiro);
-    inteiro = inteiro->inserir(9, inteiro);
-
-    ASSERT_EQ(4, *(inteiro->getDado()));
-    ASSERT_EQ(2, *(inteiro->getEsquerda()->getDado()));
-    ASSERT_EQ(1, *(inteiro->getEsquerda()->getEsquerda()->getDado()));
-    ASSERT_EQ(3, *(inteiro->getEsquerda()->getDireita()
-                                    ->getDado()));
-
-    ASSERT_EQ(8, *(inteiro->getDireita()->getDado()));
-    ASSERT_EQ(6, *(inteiro->getDireita()->getEsquerda()
-                                    ->getDado()));
-    ASSERT_EQ(5, *(inteiro->getDireita()->getEsquerda()
-                                    ->getEsquerda()->getDado()));
-    ASSERT_EQ(7, *(inteiro->getDireita()->getEsquerda()
-                                    ->getDireita()->getDado()));
-
-    ASSERT_EQ(10, *(inteiro->getDireita()->getDireita()->getDado()));
-    ASSERT_EQ(9,  *(inteiro->getDireita()->getDireita()
-                                    ->getEsquerda()->getDado()));
-}
-
 TEST_F(NoAVLTest, removerRotacaoDuplaDireita) {
     inteiro = inteiro->inserir(4, inteiro);
     inteiro = inteiro->inserir(15, inteiro);
