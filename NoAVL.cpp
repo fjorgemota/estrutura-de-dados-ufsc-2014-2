@@ -36,101 +36,95 @@ int NoAVL<T>::getAltura() {
 
 template <typename T>
 void NoAVL<T>::atualizaAltura(NoAVL<T>* raiz) {
-    if (raiz->esquerda != NULL) {
-        this->atualizaAltura(raiz->esquerda);
+    if (raiz->getEsquerda() != NULL) {
+        this->atualizaAltura(raiz->getEsquerda());
     }
-    if (raiz->direita != NULL) {
-        this->atualizaAltura(raiz->direita);
+    if (raiz->getDireita() != NULL) {
+        this->atualizaAltura(raiz->getDireita());
     }
-    raiz->altura = this->maximo(raiz->esquerda, raiz->direita) + 1;
+    raiz->altura = this->maximo(raiz->getEsquerda(), raiz->getDireita()) + 1;
 }
 
 template <typename T>
 int NoAVL<T>::pegaBalanceamento(NoAVL<T>* raiz) {
-    if (raiz->esquerda == NULL && raiz->direita == NULL) {
+    if (raiz->getEsquerda() == NULL && raiz->getDireita() == NULL) {
         return -1;
-    } else if (raiz->esquerda != NULL && raiz->direita != NULL) {
+    } else if (raiz->getEsquerda() != NULL && raiz->getDireita() != NULL) {
         // Se altura > 0, o lado esquerdo e maior, caso contrario, direito.
-        this->atualizaAltura(raiz->esquerda);
-        this->atualizaAltura(raiz->direita);
-        return (raiz->esquerda->getAltura() - raiz->direita->getAltura());
-    } else if (raiz->esquerda != NULL) {
-        this->atualizaAltura(raiz->esquerda);
-        return (raiz->esquerda->getAltura() + 1);
+        this->atualizaAltura(raiz->getEsquerda());
+        this->atualizaAltura(raiz->getDireita());
+        return (raiz->getEsquerda()->getAltura() -
+                    raiz->getDireita()->getAltura());
+    } else if (raiz->getEsquerda() != NULL) {
+        this->atualizaAltura(raiz->getEsquerda());
+        return (raiz->getEsquerda()->getAltura() + 1);
     } else {
-        this->atualizaAltura(raiz->direita);
-        return (-1 - raiz->direita->getAltura());
+        this->atualizaAltura(raiz->getDireita());
+        return (-1 - raiz->getDireita()->getAltura());
     }
 }
 
 
 template <typename T>
 NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
-    if (raiz->esquerda != NULL) {
-        this->balancear(raiz->esquerda);
+    if (raiz->getEsquerda() != NULL) {
+        raiz->esquerda = this->balancear(raiz->getEsquerda());
     }
-    if (raiz->direita != NULL) {
-        this->balancear(raiz->direita);
+    if (raiz->getDireita() != NULL) {
+        raiz->direita = this->balancear(raiz->getDireita());
     }
     int balanceamentoPai, balanceamentoFE, balanceamentoFD;
-    this->atualizaAltura(this);
+    this->atualizaAltura(raiz);
     balanceamentoPai = this->pegaBalanceamento(raiz);
-    NoAVL<T> *resultado = raiz;
-    if (raiz->direita != NULL && balanceamentoPai < -1) {
-        balanceamentoFD = this->pegaBalanceamento(raiz->direita);
-        // Se a raiz possuir desbalanceamento a direita
-        if (balanceamentoFD == -1) {
-            resultado = this->rotacaoSimplesDireita(raiz);
-        }
+    if (raiz->getDireita() != NULL && balanceamentoPai < -1) {
+        balanceamentoFD = this->pegaBalanceamento(raiz->getDireita());
         // Ha um desbalanceamento no filho a direita e, apos resolver,
         // rotaciona a raiz para a esquerda para manter o equilibrio
         if (balanceamentoFD == 1) {
-            raiz->direita = this->rotacaoSimplesEsquerda(raiz->direita);
-            resultado = this->rotacaoSimplesDireita(raiz);
+            raiz->direita = this->rotacaoSimplesEsquerda(raiz->getDireita());
         }
-    } else if (raiz->esquerda != NULL && balanceamentoPai > 1) {
-        balanceamentoFE = this->pegaBalanceamento(raiz->esquerda);
-        // Se a raiz possuir desbalanceamento a esquerda
-        if (balanceamentoFE == 1) {
-            resultado = this->rotacaoSimplesEsquerda(raiz);
-        }
-
+        // Se a raiz possuir desbalanceamento a direita
+        raiz = this->rotacaoSimplesDireita(raiz);
+    } else if (raiz->getEsquerda() != NULL && balanceamentoPai > 1) {
+        balanceamentoFE = this->pegaBalanceamento(raiz->getEsquerda());
         // Ha um desbalanceamento no filho a esquerda e, apos resolver,
         // rotaciona a raiz para a direita para manter o equilibrio
         if (balanceamentoFE == -1) {
-            raiz->esquerda = this->rotacaoSimplesDireita(raiz->esquerda);
-            resultado = this->rotacaoSimplesEsquerda(raiz);
+            raiz->esquerda = this->rotacaoSimplesDireita(raiz->getEsquerda());
         }
+        // Se a raiz possuir desbalanceamento a esquerda
+        raiz = this->rotacaoSimplesEsquerda(raiz);
     }
-    this->atualizaAltura(resultado);
-    return resultado;
+    this->atualizaAltura(raiz);
+    return raiz;
 }
 
 template<typename T>
 NoAVL<T>* NoAVL<T>::rotacaoSimplesEsquerda(NoAVL<T>* X) {
     NoAVL<T>* Y;
 
-    Y = X->esquerda;
-    X->esquerda = Y->direita;
+    Y = X->getEsquerda();
+    X->esquerda = Y->getDireita();
     Y->direita = X;
 
     this->atualizaAltura(Y);
     this->atualizaAltura(X);
 
-    return X;
+    return Y;
 }
 
 template<typename T>
 NoAVL<T>* NoAVL<T>::rotacaoSimplesDireita(NoAVL<T>* X) {
     NoAVL<T>* Y;
-    Y = X->direita;
-    X->direita = Y->esquerda;
+
+    Y = X->getDireita();
+    X->direita = Y->getEsquerda();
     Y->esquerda = X;
 
     this->atualizaAltura(Y);
     this->atualizaAltura(X);
 
-    return X;
+    return Y;
 }
 
 template <typename T>

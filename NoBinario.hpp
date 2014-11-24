@@ -23,7 +23,7 @@
  */
 template <typename T>
 class NoBinario {
- private:
+ protected:
     T* dado;  //!< Atributo onde é guardado o valor representado pelo nó
     NoBinario<T>* esquerda;  //!< Atributo que aponta para menor nó descendente
     NoBinario<T>* direita;  //!< Atributo que aponta para maior nó descendente
@@ -46,7 +46,7 @@ class NoBinario {
     std::vector<NoBinario<T>* > elementos;  //!< Elementos acessados durante
                                             // o percurso realizado
 
-    /*
+    /*!
      * Retorna um novo nó para a árvore binária
      *
      * @param: dado O dado a ser inserido no nó binário

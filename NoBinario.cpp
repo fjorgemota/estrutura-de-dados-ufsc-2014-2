@@ -25,7 +25,7 @@ NoBinario<T>::NoBinario(const T& dado) {
 
 template <typename T>
 NoBinario<T>::~NoBinario() {
-    delete this->esquerda;
+    delete this->getEsquerda();
     delete this->direita;
     delete this->dado;
 }
@@ -59,9 +59,9 @@ template <typename T>
 T* NoBinario<T>::busca(const T& info, NoBinario<T> *arv) {
     while (arv != NULL && *(arv->getDado()) != info) {
         if (*(arv->getDado()) < info) {
-            arv = arv->direita;
+            arv = arv->getDireita();
         } else {
-            arv = arv->esquerda;
+            arv = arv->getEsquerda();
         }
     }
     if (arv == NULL) {
@@ -72,24 +72,20 @@ T* NoBinario<T>::busca(const T& info, NoBinario<T> *arv) {
 
 template <typename T>
 NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
-    NoBinario<T> *resultado = arv;
     if (dado < *(arv->getDado())) {
-        if (arv->esquerda == NULL) {
-            resultado = this->pegaNovoNo(dado);
-            arv->esquerda = resultado;
+        if (arv->getEsquerda() == NULL) {
+            arv->esquerda = this->pegaNovoNo(dado);
         } else {
-            resultado = this->inserir(dado, arv->esquerda);
+            arv->esquerda = this->inserir(dado, arv->getEsquerda());
         }
-    } else {
-        if (arv->direita == NULL) {
-            resultado = this->pegaNovoNo(dado);
-            arv->direita = resultado;
+    } else if (dado) {
+        if (arv->getDireita() == NULL) {
+            arv->direita = this->pegaNovoNo(dado);
         } else {
-            resultado = this->inserir(dado, arv->direita);
+            arv->direita = this->inserir(dado, arv->getDireita());
         }
     }
-    this->balanco_insere(arv);
-    return resultado;
+    return this->balanco_insere(arv);
 }
 
 template <typename T>
@@ -99,29 +95,27 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
     }
     if (dado < *(arv->getDado())) {
         // Elemento deve estar à esquerda
-        arv->esquerda = this->remover(arv->esquerda, dado);
-        this->balanco_remove(arv);
-        return arv;
+        arv->esquerda = this->remover(arv->getEsquerda(), dado);
+        return this->balanco_remove(arv);
     }
     if (dado > *(arv->getDado())) {
         // Elemento deve estar à direita
-        arv->direita = this->remover(arv->direita, dado);
-        this->balanco_remove(arv);
-        return arv;
-    }
-    // Encontrado elemento que queremos remover
-    if (arv->direita != NULL && arv->esquerda != NULL) {
-        // Dois filhos
-        NoBinario<T> *tmp = this->minimo(arv->direita);
-        arv->dado = new T(static_cast<T const&>(*(tmp->getDado())));
-        arv->direita = this->remover(arv->direita, *(tmp->getDado()));
+        arv->direita = this->remover(arv->getDireita(), dado);
         return this->balanco_remove(arv);
     }
-    if (arv->direita != NULL) {
-        return this->balanco_remove(arv->direita);
+    // Encontrado elemento que queremos remover
+    if (arv->getDireita() != NULL && arv->getEsquerda() != NULL) {
+        // Dois filhos
+        NoBinario<T> *tmp = this->minimo(arv->getDireita());
+        arv->dado = new T(static_cast<T const&>(*(tmp->getDado())));
+        arv->direita = this->remover(arv->getDireita(), *(tmp->getDado()));
+        return this->balanco_remove(arv);
     }
-    if (arv->esquerda != NULL) {
-        return this->balanco_remove(arv->esquerda);
+    if (arv->getDireita() != NULL) {
+        return this->balanco_remove(arv->getDireita());
+    }
+    if (arv->getEsquerda() != NULL) {
+        return this->balanco_remove(arv->getEsquerda());
     }
     delete arv;
     return NULL;
@@ -129,10 +123,10 @@ NoBinario<T>* NoBinario<T>::remover(NoBinario<T>* arv, const T& dado) {
 
 template <typename T>
 NoBinario<T>* NoBinario<T>::minimo(NoBinario<T>* nodo) {
-    if (nodo->esquerda == NULL) {
+    if (nodo->getEsquerda() == NULL) {
         return nodo;
     }
-    return this->minimo(nodo->esquerda);
+    return this->minimo(nodo->getEsquerda());
 }
 
 template <typename T>
@@ -141,8 +135,8 @@ void NoBinario<T>::preOrdem(NoBinario<T>* nodo) {
         return;
     }
     elementos.push_back(nodo);
-    this->preOrdem(nodo->esquerda);
-    this->preOrdem(nodo->direita);
+    this->preOrdem(nodo->getEsquerda());
+    this->preOrdem(nodo->getDireita());
 }
 
 template <typename T>
@@ -150,9 +144,9 @@ void NoBinario<T>::emOrdem(NoBinario<T>* nodo) {
     if (nodo == NULL) {
         return;
     }
-    this->emOrdem(nodo->esquerda);
+    this->emOrdem(nodo->getEsquerda());
     this->elementos.push_back(nodo);
-    this->emOrdem(nodo->direita);
+    this->emOrdem(nodo->getDireita());
 }
 
 template <typename T>
@@ -160,8 +154,8 @@ void NoBinario<T>::posOrdem(NoBinario<T>* nodo) {
     if (nodo == NULL) {
         return;
     }
-    this->posOrdem(nodo->esquerda);
-    this->posOrdem(nodo->direita);
+    this->posOrdem(nodo->getEsquerda());
+    this->posOrdem(nodo->getDireita());
     this->elementos.push_back(nodo);
 }
 
