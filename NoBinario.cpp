@@ -78,12 +78,14 @@ NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
         } else {
             arv->esquerda = this->inserir(dado, arv->getEsquerda());
         }
-    } else if (dado) {
+    } else if (dado > *(arv->getDado())) {
         if (arv->getDireita() == NULL) {
             arv->direita = this->pegaNovoNo(dado);
         } else {
             arv->direita = this->inserir(dado, arv->getDireita());
         }
+    } else {
+        throw "Proibido colocar dados iguais";
     }
     return this->balanco_insere(arv);
 }
