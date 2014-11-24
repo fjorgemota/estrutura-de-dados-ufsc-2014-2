@@ -1,31 +1,62 @@
 #ifndef INDICE_PRIMARIO_CPP
 #define INDICE_PRIMARIO_CPP
-
 #include "IndicePrimario.hpp"
-#include "../util/FilaEnc.hpp"
-#include "../util/NoAVL.hpp"
+#include "Indice.hpp"
 #include "../util/ListaDupla.hpp"
-#include <stdio.h>
-IndicePrimario::IndicePrimario(const int& dado) : NoAVL(dado) {}
 
-ListaDupla<int > IndicePrimario::breadth_first()  {
-	FilaEnc<NoAVL<int>* > *itens = new FilaEnc<NoAVL<int>* >();
-	ListaDupla<int > *man_pages = new ListaDupla<int >();
-	itens->inclui(this);
-	while(itens->filaVazia() == false) {
-		NoAVL<int > *man_page = itens->retira();
-		printf("Processando nodo %d\n", *(man_page->getDado()));
-		if (man_page->getEsquerda() != NULL) {
-			printf("Incluindo nó à esquerda\n");
-			itens->inclui(man_page->getEsquerda());
-		}
-		if (man_page->getDireita() != NULL) {
-			printf("Incluindo nó à direita\n");
-			itens->inclui(man_page->getDireita());
-		}
-		man_pages->adicionaDuplo(*(man_page->getDado()));
-	}
-	return *man_pages;
+IndicePrimario::IndicePrimario(const ManPage& dado) : Indice(dado) {}
+
+IndicePrimario::~IndicePrimario() {}
+
+/** Métodos sobrescritos */
+
+std::vector<IndicePrimario* > IndicePrimario::getElementos() {
+    std::vector<IndicePrimario* > resultado;
+    unsigned int i;
+    std::vector<Indice* > elementos = Indice<ManPage>::getElementos();
+    for (i = 0; i < elementos.size(); i++) {
+        resultado.push_back(this->IndiceParaIndicePrimario(elementos[i]));
+    }
+    return resultado;
 }
 
-#endif
+IndicePrimario* IndicePrimario::getEsquerda() {
+    return this->IndiceParaIndicePrimario(Indice<ManPage>::getEsquerda());
+}
+
+IndicePrimario* IndicePrimario::getDireita() {
+    return this->IndiceParaIndicePrimario(Indice<ManPage>::getDireita());
+}
+
+IndicePrimario* IndicePrimario::inserir(const ManPage& dado, IndicePrimario* arv) {
+    return this->IndiceParaIndicePrimario(Indice<ManPage>::inserir(dado, arv));
+}
+
+IndicePrimario* IndicePrimario::remover(IndicePrimario* arv, const ManPage& dado) {
+    return this->IndiceParaIndicePrimario(Indice<ManPage>::remover(arv, dado));
+}
+
+IndicePrimario* IndicePrimario::minimo(IndicePrimario* nodo) {
+    return this->IndiceParaIndicePrimario(Indice<ManPage>::minimo(nodo));
+}
+
+/** Métodos IndicePrimario */
+
+IndicePrimario* IndicePrimario::pegaNovoNo(const ManPage& dado) {
+	return new IndicePrimario(dado);
+}
+
+IndicePrimario* IndicePrimario::IndiceParaIndicePrimario(Indice<ManPage> *avl) {
+	IndicePrimario *raiz = static_cast<IndicePrimario*>(avl);
+    if (raiz != NULL) {
+        raiz->esquerda = this->IndiceParaIndicePrimario(avl->getEsquerda());
+        raiz->direita = this->IndiceParaIndicePrimario(avl->getDireita());
+    }
+    return raiz;
+}
+
+ListaDupla<ManPage > IndicePrimario::breadth_first()  {
+	return Indice<ManPage>::breadth_first();
+}
+
+#endif	
