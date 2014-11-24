@@ -1,14 +1,10 @@
-#ifdef REMOVEDOR_LEXICO_HPP
+#ifndef REMOVEDOR_LEXICO_HPP
 #define REMOVEDOR_LEXICO_HPP
 
-#include <iostream> //cout
-#include <fstream> //fstream
-#include <cstring> //strcpy
-#include <vector>
-#include <strings.h>
-#include "../util/ListaDupla.hpp"
+#include <string>
+#include "ListaDupla.hpp"
 
-using namespace std;
+using std::string;
 
 /*!
  * Classe que representa uma lista de conectivos que nao serao
@@ -54,12 +50,16 @@ class RemovedorLexico {
  	/*!
  	 * 
  	 */
- 	string remover_conectivo_unica_palavra(string palavra);
-
+ 	bool e_conectivo(string palavra);
+	
+	/*!
+ 	 * 
+ 	 */
+ 	ListaDupla<string>* separa_em_palavras(string busca);
  	/*!
  	 * 
  	 */
- 	vector<string> separar_em_palavras(string busca);
+ 	ListaDupla<string>* remove_conectivos(ListaDupla<string> *palavras);
 };
 
 #include "RemovedorLexico.cpp"
