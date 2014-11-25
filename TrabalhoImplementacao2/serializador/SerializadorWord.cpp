@@ -49,7 +49,7 @@ void SerializadorWord::escreve(ofstream *arquivo, Word* dado, int tamanho) {
 void SerializadorWord::proximaPosicao(ifstream *arquivo) {
 	Serializador<char> *serializadorChar = new Serializador<char>();
 	serializadorChar->proximaPosicao(arquivo);
-	this->pulaTitulos(arquivo);
+	this->pulaComandos(arquivo);
 }
 
 string* SerializadorWord::leWord(ifstream *arquivo) {
@@ -59,7 +59,7 @@ string* SerializadorWord::leWord(ifstream *arquivo) {
 	return palavraString;
 }
 
-void SerializadorWord::pulaTitulos(ifstream *arquivo) {
+void SerializadorWord::pulaComandos(ifstream *arquivo) {
 	Serializador<char> *serializadorChar = new Serializador<char>();
 	Serializador<int> *serializadorInt = new Serializador<int>();
 	int tamanho = *(serializadorInt->le(arquivo));

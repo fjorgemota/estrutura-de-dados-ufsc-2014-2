@@ -16,7 +16,7 @@ class SerializadorWord {
  	void escreve(ofstream *arquivo, Word* dado, int tamanho);
  	void proximaPosicao(ifstream *arquivo);
  	string* leWord(ifstream *arquivo);
- 	void pulaTitulos(ifstream *arquivo);
+ 	void pulaComandos(ifstream *arquivo);
 };
 
 #include "SerializadorWord.cpp"

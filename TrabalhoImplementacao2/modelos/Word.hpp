@@ -13,6 +13,8 @@ class Word {
  	bool operator < (const Word& word) const;
 
  	bool operator > (const Word& word) const;
+
+ 	bool operator != (const Word& word) const;
 };
 
 #include "Word.cpp"
