@@ -53,4 +53,12 @@ void SerializadorManPage::pulaConteudo(ifstream *arquivo) {
 	delete serializadorChar;
 }
 
+string* SerializadorManPage::leConteudo(ifstream *arquivo) {
+	Serializador<char> SerializadorChar = new Serializador<char>();
+	char *conteudo = serializadorChar->le(arquivo);
+	string *palavra = new string(conteudo);
+	delete SerializadorChar;
+	return palavra;
+}
+
 #endif /** SERIALIZADOR_MAN_PAGE_CPP */

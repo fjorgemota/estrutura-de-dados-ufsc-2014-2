@@ -18,6 +18,7 @@ class SerializadorManPage {
  	void proximaPosicao(ifstream *arquivo);
  	string* leComando(ifstream *arquivo);
  	void pulaConteudo(ifstream *arquivo);
+ 	string* leConteudo(ifstream *arquivo);
 };
 
 #include "SerializadorManPage.cpp"
