@@ -1,9 +1,9 @@
 #ifndef SERIALIZADOR_HPP
 #define SERIALIZADOR_HPP
+
+#include "../util/ListaDupla.hpp"
 #include <iostream> //cout
 #include <fstream> //fstream
-#include <cstring> //strcpy
-#include "../util/ListaDupla.hpp"
 
 using std::ofstream;
 using std::ifstream;
@@ -13,7 +13,7 @@ class Serializador {
  public:
  	virtual T* le(ifstream *arquivo);
  	virtual void escreve(ofstream *arquivo, T* dado, int tamanho);
- 	int proximaPosicao(ifstream *arquivo);
+ 	virtual void proximaPosicao(ifstream *arquivo);
 };
 
 #include "Serializador.cpp"

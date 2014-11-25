@@ -1,9 +1,14 @@
 #ifndef WORD_HPP
 #define WORD_HPP
 
+#include <string>
+
+using std::string;
+
 class Word {
  public:
- 	char word[256];
+ 	string *word;
+ 	ListaDupla<string* > *comandos;
 
  	bool operator < (const Word& word) const;
 
@@ -12,4 +17,4 @@ class Word {
 
 #include "Word.cpp"
 
-#endif
+#endif /** WORD_HPP */

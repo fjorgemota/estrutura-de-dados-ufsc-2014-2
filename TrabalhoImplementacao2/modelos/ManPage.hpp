@@ -1,10 +1,14 @@
 #ifndef MAN_PAGE_HPP
 #define MAN_PAGE_HPP
 
+#include <string>
+
+using std::string;
+
 class ManPage {
  public:
-	char comando[512];
-	char conteudo[1024576];
+	string *comando;
+	string *conteudo;
 
  	bool operator < (const ManPage& manpage)const;
 

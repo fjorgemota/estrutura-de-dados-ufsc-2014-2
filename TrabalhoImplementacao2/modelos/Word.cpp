@@ -2,12 +2,12 @@
 #define WORD_CPP
 #include "Word.hpp"
 
-bool Word::operator < (const Word& word) const {
-	return this;
+bool Word::operator < (const Word& other) const {
+	return this->word < other.word;
 }
 
-bool Word::operator > (const Word& word) const {
-	return this;
+bool Word::operator > (const Word& other) const {
+	return this->word > other.word;
 }
 
-#endif
+#endif /** WORD_CPP */
