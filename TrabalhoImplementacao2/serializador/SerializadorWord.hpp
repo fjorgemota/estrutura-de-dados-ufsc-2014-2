@@ -17,6 +17,7 @@ class SerializadorWord {
  	void proximaPosicao(ifstream *arquivo);
  	string* leWord(ifstream *arquivo);
  	void pulaComandos(ifstream *arquivo);
+ 	ListaDupla<string>* leComandos(ifstream *arquivo);
 };
 
 #include "SerializadorWord.cpp"
