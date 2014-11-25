@@ -2,21 +2,27 @@
 #define INDEXADOR_HPP
 
 #include "../colecoes/IndicePrimario.hpp"
-#include "../colecoes/indiceSecundario.hpp"
+#include "../colecoes/IndiceSecundario.hpp"
+#include "../util/RemovedorLexico.hpp"
 
 class Indexador {
  private:
- 	IndicePrimario indicePrimario;
- 	indiceSecundario indiceSecundario;
+ 	IndicePrimario *indicePrimario;
+ 	IndiceSecundario *indiceSecundario;
+ 	RemovedorLexico *removedor;
 
- 	void listaArquivos();
+ 	char* retiraExtensao(char *nome);
 
- 	void indexaArquivo(char *filename);
-
+ 	string* leConteudo(char *nome);
 
  public:
- 	explicit Indexador(char *filename, IndicePrimario indicePrimario,
- 		IndicePrimario indiceSecundario);
+ 	explicit Indexador(RemovedorLexico *removedor);
+
+ 	void indexaArquivo(char *nome);
+
+ 	void salvaIndicePrimario(char *nome);
+
+ 	void salvaIndiceSecundario(char *nome);
 
  	void executa();
 };
