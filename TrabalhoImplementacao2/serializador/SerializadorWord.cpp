@@ -68,4 +68,16 @@ void SerializadorWord::pulaComandos(ifstream *arquivo) {
 	}
 }
 
+ListaDupla<string>* SerializadorWord::leComandos(ifstream *arquivo) {
+	int tamanho, a;
+	Serializador<int> *serializadorInt = new Serializador<int>();
+	Serializador<char> *serializadorChar = new Serializador<char>();
+	tamanho = *(serializadorInt->le(arquivo));
+	ListaDupla<string>* comandos = new ListaDupla<string>();
+	for (a = 0; a <= tamanho; a++) {
+		comandos->adicionaNoInicioDuplo(string(serializadorChar->le(arquivo)));
+	}
+	return comandos;
+}
+
 #endif /** SERIALIZADOR_WORD_CPP */

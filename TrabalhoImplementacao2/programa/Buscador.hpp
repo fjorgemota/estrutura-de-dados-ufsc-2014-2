@@ -3,7 +3,7 @@
 
 #include "../colecoes/Resultado.hpp"
 #include "../modelos/ManPage.hpp"
-#include <string>
+#include <string.h>
 #include <fstream>
 
 using std::string;
