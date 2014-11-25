@@ -312,4 +312,16 @@ bool ListaDupla<T>::menor(T dado1, T dado2) {
     return false;
 }
 
+template <typename T>
+T* ListaDupla<T>::paraVetor() {
+    int tamanho = this->verUltimo() + 1;
+    T* resultado = new T[tamanho];
+    ElementoDuplo<T> *temporario = this->head;
+    for(int i=0; i < tamanho; i++) {
+        resultado[i] = temporario->getInfo();
+        temporario = temporario->getProximo();
+    }
+    return resultado;
+}
+
 #endif

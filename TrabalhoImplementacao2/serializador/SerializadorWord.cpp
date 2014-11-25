@@ -12,20 +12,22 @@ using std::ifstream;
 using std::string;
 
 Word* SerializadorWord::le(ifstream *arquivo) {
-	int i;
+	int i, i2;
 	Serializador<char> *serializadorChar = new Serializador<char>();
 	Serializador<int> *serializadorInt = new Serializador<int>();
-
-	char *word = serializadorChar->le(arquivo);
-	int nTitulos = *(serializadorInt->le(arquivo));
-	ListaDupla<string* > *comandos = new ListaDupla<string* >(); 
-	Word *resultado = new Word();
-	for(i=0; i <= nTitulos; i++) {
-		char *comando = serializadorChar->le(arquivo);
-		comandos->adicionaDuplo(new string(comando));
+	int tamanho = *(serializadorInt->le(arquivo));
+	Word *resultado = new Word[tamanho];
+	for(i=0; i<tamanho; i++) {
+		char *word = serializadorChar->le(arquivo);
+		int nTitulos = *(serializadorInt->le(arquivo));
+		ListaDupla<string* > *comandos = new ListaDupla<string* >(); 
+		for(i2=0; i2 <= nTitulos; i2++) {
+			char *comando = serializadorChar->le(arquivo);
+			comandos->adicionaDuplo(new string(comando));
+		}
+		resultado[i].word = new string(word);
+		resultado[i].comandos = comandos;
 	}
-	resultado->word = new string(word);
-	resultado->comandos = comandos;
 
 	return resultado;
 }
@@ -33,13 +35,15 @@ Word* SerializadorWord::le(ifstream *arquivo) {
 void SerializadorWord::escreve(ofstream *arquivo, Word* dado, int tamanho) {
 	Serializador<char> *serializadorChar = new Serializador<char>();
 	Serializador<int> *serializadorInt = new Serializador<int>();
-
+	serializadorInt->escreve(arquivo, &tamanho, 1);
 	for (int i=0; i<tamanho; i++) {
 		Word palavra = dado[i];
 		serializadorChar->escreve(arquivo, (char *)palavra.word->c_str(), palavra.word->size());
 		serializadorInt->escreve(arquivo, new int(palavra.comandos->verUltimo()), 1);
-		for(int i2=0; i2 <= palavra.comandos->verUltimo(); i2++) {
-			string *comando = palavra.comandos->mostra(i2);
+		int l = palavra.comandos->verUltimo();
+		string **comandos = palavra.comandos->paraVetor();
+		for(int i2=0; i2 <= l; i2++) {
+			string *comando = comandos[i2];
 			serializadorChar->escreve(arquivo, (char *)comando->c_str(), comando->size());
 		}
 	}

@@ -5,6 +5,7 @@
 #include "../modelos/Word.hpp"
 #include "../util/ListaDupla.hpp"
 
+
 IndiceSecundario::IndiceSecundario(const Word& dado) : Indice<Word>(dado) {}
 
 IndiceSecundario::~IndiceSecundario() {}
@@ -49,15 +50,11 @@ IndiceSecundario* IndiceSecundario::pegaNovoNo(const Word& dado) {
 
 IndiceSecundario* IndiceSecundario::IndiceParaIndiceSecundario(Indice<Word> *avl) {
 	IndiceSecundario *raiz = static_cast<IndiceSecundario*>(avl);
-    if (raiz != NULL) {
-        raiz->esquerda = this->IndiceParaIndiceSecundario(avl->getEsquerda());
-        raiz->direita = this->IndiceParaIndiceSecundario(avl->getDireita());
-    }
     return raiz;
 }
 
-ListaDupla<Word > IndiceSecundario::breadth_first()  {
-	return Indice<Word>::breadth_first();
+ListaDupla<Word* >* IndiceSecundario::reversed_breadth_first()  {
+	return Indice<Word>::reversed_breadth_first();
 }
 
 #endif /** INDICE_SECUNDARIO_CPP */

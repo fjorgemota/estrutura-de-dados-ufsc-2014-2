@@ -179,6 +179,12 @@ class ListaDupla {
      * @param dado2 O segundo dado a ser comparado com a segundo
      */
     bool menor(T dado1, T dado2);
+
+    /*!
+     * Converte a lista para um array pointer e retorna, que é mais rápido de 
+     * nas operações de leitura. 
+     */
+    T* paraVetor();
 };
 #include "ListaDupla.cpp"
 #endif /* ListaDupla_HPP */

@@ -3,6 +3,7 @@
 
 #include "Indice.hpp"
 #include "../modelos/Word.hpp"
+#include "../util/ListaDupla.hpp"
 
 /*!
  * Estrutura temporaria que armazena as palavras de
@@ -92,7 +93,7 @@ class IndiceSecundario : public Indice<Word> {
      * Metodo que armazena os conteudos da arvore de indices
      * no disco
      */
- 	ListaDupla<Word > breadth_first();
+ 	ListaDupla<Word* >* reversed_breadth_first();
 };
 
 #include "IndiceSecundario.cpp"

@@ -48,6 +48,11 @@ class RemovedorLexico {
  	RemovedorLexico();
 
  	/*!
+ 	 * Destrói lista de conectivos proibidos, liberando memória
+ 	 */
+ 	~RemovedorLexico();
+
+ 	/*!
  	 * 
  	 */
  	bool e_conectivo(string palavra);

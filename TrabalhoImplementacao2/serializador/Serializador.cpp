@@ -4,22 +4,17 @@
 
 template <typename T>
 T* Serializador<T>::le(ifstream *arquivo) {
-	int tamanho, contador;
+	int tamanho;
 	arquivo->read((char*)&tamanho, sizeof(int));
 	T* dados = new T[tamanho];
-	for (contador = 0; contador <= tamanho; contador++) {
-		arquivo->read((char*) &dados[contador], sizeof(T));
-	}
+	arquivo->read((char*) &dados, sizeof(T)*tamanho);
 	return dados;
 }
 
 template <typename T>
 void Serializador<T>::escreve(ofstream *arquivo, T* dado, int tamanho) {
-	int contador;
 	arquivo->write((char*)&tamanho, sizeof(int));
-	for (contador = 0; contador <= tamanho; contador++) {
-		arquivo->write((char*)&dado[contador], sizeof(T));
-	}
+	arquivo->write((char*)&dado, sizeof(T)*tamanho);
 }
 
 template <typename T>

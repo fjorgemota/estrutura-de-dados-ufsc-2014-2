@@ -11,7 +11,7 @@ class Indexador {
  	IndiceSecundario *indiceSecundario;
  	RemovedorLexico *removedor;
 
- 	char* retiraExtensao(char *nome);
+ 	string* retiraExtensao(char *nome);
 
  	string* leConteudo(char *nome);
 

@@ -92,7 +92,7 @@ class Indice : public NoAVL<T> {
      * Metodo que armazena os conteudos da arvore de indices
      * no disco
      */
- 	ListaDupla<T > breadth_first();
+ 	ListaDupla<T* >* reversed_breadth_first();
 };
 
 #include "Indice.cpp"

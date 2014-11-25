@@ -22,10 +22,6 @@ NoAVL<T>* NoAVL<T>::pegaNovoNo(const T& dado) {
 template <typename T>
 NoAVL<T>* NoAVL<T>::binarioParaAVL(NoBinario<T> *binario) {
     NoAVL<T> *raiz = static_cast<NoAVL<T>*>(binario);
-    if (raiz != NULL) {
-        raiz->esquerda = this->binarioParaAVL(binario->getEsquerda());
-        raiz->direita = this->binarioParaAVL(binario->getDireita());
-    }
     return raiz;
 }
 
@@ -36,12 +32,6 @@ int NoAVL<T>::getAltura() {
 
 template <typename T>
 void NoAVL<T>::atualizaAltura(NoAVL<T>* raiz) {
-    if (raiz->getEsquerda() != NULL) {
-        this->atualizaAltura(raiz->getEsquerda());
-    }
-    if (raiz->getDireita() != NULL) {
-        this->atualizaAltura(raiz->getDireita());
-    }
     raiz->altura = this->maximo(raiz->getEsquerda(), raiz->getDireita()) + 1;
 }
 
@@ -67,14 +57,7 @@ int NoAVL<T>::pegaBalanceamento(NoAVL<T>* raiz) {
 
 template <typename T>
 NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
-    if (raiz->getEsquerda() != NULL) {
-        raiz->esquerda = this->balancear(raiz->getEsquerda());
-    }
-    if (raiz->getDireita() != NULL) {
-        raiz->direita = this->balancear(raiz->getDireita());
-    }
     int balanceamentoPai, balanceamentoFE, balanceamentoFD;
-    this->atualizaAltura(raiz);
     balanceamentoPai = this->pegaBalanceamento(raiz);
     if (raiz->getDireita() != NULL && balanceamentoPai < -1) {
         balanceamentoFD = this->pegaBalanceamento(raiz->getDireita());

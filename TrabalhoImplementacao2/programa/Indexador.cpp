@@ -18,12 +18,15 @@ using std::ifstream;
 using std::ofstream;
 using std::ios;
 
-char* Indexador::retiraExtensao(char *nome) {
-	string nomeString(nome);
-	if (nomeString.substr(nomeString.size()-4) == string(".txt")) {
-		return (char*) nomeString.substr(0, nomeString.size()-4).c_str();
+string* Indexador::retiraExtensao(char *nome) {
+	string *nomeString = new string(nome);
+	int pos = nomeString->size()-4;
+	if (nomeString->substr(pos) == string(".txt")) {
+		string *nomeSemExtensao = new string(nomeString->substr(0, pos));
+		delete nomeString;
+		return nomeSemExtensao;
 	}
-	return nome;
+	return new string(nome);
 }
 
 string* Indexador::leConteudo(char *nome) {
@@ -37,7 +40,11 @@ string* Indexador::leConteudo(char *nome) {
 	}
 	char *conteudo = new char[propriedades.st_size];
 	input->read(conteudo, propriedades.st_size);
-	return new string(conteudo);
+	input->close();
+	string *resultado = new string(conteudo);
+	delete input;
+	delete conteudo;
+	return resultado;
 }
 
 Indexador::Indexador(RemovedorLexico *removedor) {
@@ -47,9 +54,8 @@ Indexador::Indexador(RemovedorLexico *removedor) {
 }
 
 void Indexador::indexaArquivo(char *nome) {
-	char *comando = this->retiraExtensao(nome);
 	ManPage *manpage = new ManPage();
-	manpage->comando = new string(comando);
+	manpage->comando = this->retiraExtensao(nome);
 	manpage->conteudo = this->leConteudo(nome);
 	if (this->indicePrimario == NULL) {
 		this->indicePrimario = new IndicePrimario(*manpage);
@@ -58,34 +64,34 @@ void Indexador::indexaArquivo(char *nome) {
 	}
 	ListaDupla<string> *palavras = this->removedor->separa_em_palavras(*(manpage->conteudo));
 	palavras = this->removedor->remove_conectivos(palavras);
-	for (int i = 0; i <= palavras->verUltimo(); i++) {
-		Word *palavra;
-		string palavraString = palavras->mostra(i);
+	string *palavrasVetor = palavras->paraVetor();
+	int l = palavras->verUltimo();
+	for (int i = 0; i <= l; i++) {
+		Word *palavra  = new Word();
+		string palavraString = palavrasVetor[i];
+		palavra->word = new string(palavraString);
+
 		if (this->indiceSecundario == NULL) {
-			palavra = new Word();
-			palavra->word = &palavraString;
 			palavra->comandos = new ListaDupla<string* >();
+			palavra->comandos->adicionaNoInicioDuplo(manpage->comando);
 			this->indiceSecundario = new IndiceSecundario(*palavra);
+			continue;
 		}
-		bool localizado;
+		Word *palavraResultado;
 		try {
-			palavra = this->indiceSecundario->busca(*palavra, this->indiceSecundario);
-			localizado = true;
-		} catch(char *e){
-			palavra = new Word();
-			palavra->word = &palavraString;
+			palavraResultado = this->indiceSecundario->busca(*palavra, this->indiceSecundario);
+			palavraResultado->comandos->adicionaNoInicioDuplo(manpage->comando);
+			delete palavra;
+		} catch(const char *e){
 			palavra->comandos = new ListaDupla<string* >();
-			localizado = false;
-		}
-		if (palavra->comandos == NULL) {}
-		palavra->comandos->adicionaDuplo(new string(comando));
-		if (!localizado) {
+			palavra->comandos->adicionaNoInicioDuplo(manpage->comando);
 			this->indiceSecundario = this->indiceSecundario->inserir(
 				*palavra,
 				this->indiceSecundario
 			);
 		}
 	}
+	delete palavras;
 }
 
 void Indexador::salvaIndicePrimario(char *nome) {
@@ -98,14 +104,23 @@ void Indexador::salvaIndicePrimario(char *nome) {
 		| ios::binary //arquivo binario.
 	);
 	SerializadorManPage *serializador = new SerializadorManPage();
-	Serializador<int> *serializadorInt = new Serializador<int>();
-	ListaDupla<ManPage > man_pages = this->indicePrimario->breadth_first();
-	serializadorInt->escreve(output, new int(man_pages.verUltimo()), 1);
-	for(int i = 0; i <= man_pages.verUltimo(); i++) {
-		ManPage man_page = man_pages.mostra(i);
-		serializador->escreve(output, &man_page, 1);
+	printf("Gerando indice primario breadth first..\n");
+	ListaDupla<ManPage* > *man_pages = this->indicePrimario->reversed_breadth_first();
+	int i, l;
+	l = man_pages->verUltimo();
+	ManPage **vetor = man_pages->paraVetor();
+	printf("Indice primario breadth first GERADOOOO..\n");
+	ManPage *arr = new ManPage[l+1];
+	for(i = 0; i <= l; i++) {
+		arr[i] = *(vetor[l-i]);
 	}
+	printf("Escrevendo arquivos, rs..\n");
+	serializador->escreve(output, arr, l);
 	output->close();
+	delete arr;
+	delete vetor;
+	delete serializador;
+	delete output;
 }
 
 void Indexador::salvaIndiceSecundario(char *nome) {
@@ -118,14 +133,23 @@ void Indexador::salvaIndiceSecundario(char *nome) {
 		| ios::binary //arquivo binario.
 	);
 	SerializadorWord *serializador = new SerializadorWord();
-	Serializador<int> *serializadorInt = new Serializador<int>();
-	ListaDupla<Word > palavras = this->indiceSecundario->breadth_first();
-	serializadorInt->escreve(output, new int(palavras.verUltimo()), 1);
-	for(int i = 0; i <= palavras.verUltimo(); i++) {
-		Word palavra = palavras.mostra(i);
-		serializador->escreve(output, &palavra, 1);
+	printf("Gerando indice secundario breadth first..\n");
+	ListaDupla<Word* > *palavras = this->indiceSecundario->reversed_breadth_first();
+	printf("Indice secundario breadth first GERADOOOO..\n");
+	int i, l;
+	l = palavras->verUltimo();
+	Word **vetor = palavras->paraVetor();
+	Word *arr = new Word[l+1];
+	for(i = 0; i <= l; i++) {
+		arr[i] = *(vetor[l-i]);
 	}
+	printf("Escrevendo arquivos, rs..\n");
+	serializador->escreve(output, arr, l);
 	output->close();
+	delete arr;
+	delete vetor;
+	delete serializador;
+	delete output;
 }
 
 

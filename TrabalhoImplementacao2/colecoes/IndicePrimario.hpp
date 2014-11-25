@@ -3,6 +3,7 @@
 
 #include "Indice.hpp"
 #include "../modelos/ManPage.hpp"
+#include "../util/ListaDupla.hpp"
 
 /*!
  * Estrutura temporaria que armazena as ManPages (paginas
@@ -92,7 +93,7 @@ class IndicePrimario : public Indice<ManPage> {
      * Metodo que armazena os conteudos da arvore de indices
      * no disco
      */
- 	ListaDupla<ManPage > breadth_first();
+ 	ListaDupla<ManPage* >* reversed_breadth_first();
 };
 
 #include "IndicePrimario.cpp"

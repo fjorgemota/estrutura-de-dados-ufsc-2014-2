@@ -48,15 +48,11 @@ IndicePrimario* IndicePrimario::pegaNovoNo(const ManPage& dado) {
 
 IndicePrimario* IndicePrimario::IndiceParaIndicePrimario(Indice<ManPage> *avl) {
 	IndicePrimario *raiz = static_cast<IndicePrimario*>(avl);
-    if (raiz != NULL) {
-        raiz->esquerda = this->IndiceParaIndicePrimario(avl->getEsquerda());
-        raiz->direita = this->IndiceParaIndicePrimario(avl->getDireita());
-    }
     return raiz;
 }
 
-ListaDupla<ManPage > IndicePrimario::breadth_first()  {
-	return Indice<ManPage>::breadth_first();
+ListaDupla<ManPage* >* IndicePrimario::reversed_breadth_first()  {
+	return Indice<ManPage>::reversed_breadth_first();
 }
 
 #endif	

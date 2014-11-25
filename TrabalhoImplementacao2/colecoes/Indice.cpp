@@ -4,6 +4,7 @@
 #include "../util/NoAVL.hpp"
 #include "../util/ListaDupla.hpp"
 #include "../util/FilaEnc.hpp"
+#include <stdio.h>
 
 template <typename T>
 Indice<T>::Indice(const T& dado) : NoAVL<T>(dado) {}
@@ -59,19 +60,15 @@ Indice<T>* Indice<T>::pegaNovoNo(const T& dado) {
 template <typename T>
 Indice<T>* Indice<T>::AVLParaIndice(NoAVL<T> *avl) {
 	Indice<T> *raiz = static_cast<Indice<T>*>(avl);
-    if (raiz != NULL) {
-        raiz->esquerda = this->AVLParaIndice(avl->getEsquerda());
-        raiz->direita = this->AVLParaIndice(avl->getDireita());
-    }
     return raiz;
 }
 
 template <typename T>
-ListaDupla<T > Indice<T>::breadth_first()  {
+ListaDupla<T* >* Indice<T>::reversed_breadth_first()  {
 	FilaEnc<Indice<T>* > *itens = new FilaEnc<Indice<T>* >();
-	ListaDupla<T > *dados = new ListaDupla<T >();
+	ListaDupla<T* > *dados = new ListaDupla<T* >();
 	itens->inclui(this);
-	while(itens->filaVazia() == false) {
+	while(!itens->filaVazia()) {
 		Indice<T > *nodo = itens->retira();
 		if (nodo->getEsquerda() != NULL) {
 			itens->inclui(nodo->getEsquerda());
@@ -79,9 +76,9 @@ ListaDupla<T > Indice<T>::breadth_first()  {
 		if (nodo->getDireita() != NULL) {
 			itens->inclui(nodo->getDireita());
 		}
-		dados->adicionaDuplo(*(nodo->getDado()));
+		dados->adicionaNoInicioDuplo(nodo->getDado());
 	}
-	return *dados;
+	return dados;
 }
 
 #endif	

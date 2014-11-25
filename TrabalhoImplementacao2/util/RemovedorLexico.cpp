@@ -16,6 +16,10 @@ RemovedorLexico::RemovedorLexico() {
 	this->criar_lista_pronomes();
 }
 
+RemovedorLexico::~RemovedorLexico() {
+	delete this->conectivosProibidos;
+}
+
 bool RemovedorLexico::e_conectivo(string palavra) {
 	return (palavra.size() > 2 && !(this->conectivosProibidos->contemDuplo(palavra)));
 }
@@ -25,7 +29,7 @@ ListaDupla<string>* RemovedorLexico::separa_em_palavras(string busca) {
 	string palavra;
 	stringstream stream(busca);
 	while (stream >> palavra) {
-		termos->adicionaDuplo(palavra);	
+		termos->adicionaNoInicioDuplo(palavra);	
 	}
 	return termos;
 }
@@ -33,9 +37,11 @@ ListaDupla<string>* RemovedorLexico::separa_em_palavras(string busca) {
 ListaDupla<string>* RemovedorLexico::remove_conectivos(ListaDupla<string> *palavras) {
 	ListaDupla<string> *resultado = new ListaDupla<string>();	
 	int i = 0;
-	for(i = 0; i <= palavras->verUltimo(); i++) {
-		if (this->e_conectivo(palavras->mostra(i))) {
-			resultado->adicionaDuplo(palavras->mostra(i));
+	int l = palavras->verUltimo();
+	string *vetor = palavras->paraVetor();
+	for(i = 0; i <= l; i++) {
+		if (this->e_conectivo(vetor[i])) {
+			resultado->adicionaNoInicioDuplo(vetor[i]);
 		}
 	}
 	return resultado;

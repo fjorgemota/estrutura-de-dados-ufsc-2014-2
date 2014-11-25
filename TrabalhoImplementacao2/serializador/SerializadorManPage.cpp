@@ -11,19 +11,27 @@ using std::string;
 
 ManPage* SerializadorManPage::le(ifstream *arquivo) {
 	Serializador<char> *serializadorChar = new Serializador<char>();
+	Serializador<int> *serializadorInt = new Serializador<int>();
 
-	char *comando = serializadorChar->le(arquivo);
-	char *conteudo = serializadorChar->le(arquivo);
-	ManPage *resultado = new ManPage();
-	resultado->comando = new string(comando);
-	resultado->conteudo = new string(conteudo);
+	int tamanho = *(serializadorInt->le(arquivo));
+
+	ManPage *resultado = new ManPage[tamanho];
+	for(int i=0; i <= tamanho; i++) {
+		char *comando = serializadorChar->le(arquivo);
+		char *conteudo = serializadorChar->le(arquivo);
+		resultado[i].comando = new string(comando);
+		resultado[i].conteudo = new string(conteudo);
+	}
 	return resultado;
 }
 
 void SerializadorManPage::escreve(ofstream *arquivo, ManPage* dado, int tamanho) {
 	Serializador<char> *serializadorChar = new Serializador<char>();
+	Serializador<int> *serializadorInt = new Serializador<int>();
 
-	for (int i=0; i<tamanho; i++) {
+	serializadorInt->escreve(arquivo, &tamanho, 1);
+
+	for (int i=0; i <= tamanho; i++) {
 		ManPage manpage = dado[i];
 		serializadorChar->escreve(arquivo, (char*) manpage.comando->c_str(), manpage.comando->size());
 		serializadorChar->escreve(arquivo, (char*) manpage.conteudo->c_str(), manpage.conteudo->size());
@@ -54,10 +62,10 @@ void SerializadorManPage::pulaConteudo(ifstream *arquivo) {
 }
 
 string* SerializadorManPage::leConteudo(ifstream *arquivo) {
-	Serializador<char> SerializadorChar = new Serializador<char>();
+	Serializador<char> *serializadorChar = new Serializador<char>();
 	char *conteudo = serializadorChar->le(arquivo);
 	string *palavra = new string(conteudo);
-	delete SerializadorChar;
+	delete serializadorChar;
 	return palavra;
 }
 
