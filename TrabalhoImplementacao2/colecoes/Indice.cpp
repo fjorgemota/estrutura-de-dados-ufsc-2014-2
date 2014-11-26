@@ -3,7 +3,7 @@
 #include "Indice.hpp"
 #include "../util/NoAVL.hpp"
 #include "../util/ListaDupla.hpp"
-#include "../util/FilaEnc.hpp"
+#include "../util/Fila.hpp"
 #include <stdio.h>
 
 template <typename T>
@@ -65,7 +65,7 @@ Indice<T>* Indice<T>::AVLParaIndice(NoAVL<T> *avl) {
 
 template <typename T>
 ListaDupla<T* >* Indice<T>::reversed_breadth_first()  {
-	FilaEnc<Indice<T>* > *itens = new FilaEnc<Indice<T>* >();
+	Fila<Indice<T>* > *itens = new Fila<Indice<T>* >((1 << NoAVL<T>::getAltura()) + 1);
 	ListaDupla<T* > *dados = new ListaDupla<T* >();
 	itens->inclui(this);
 	while(!itens->filaVazia()) {
@@ -78,6 +78,7 @@ ListaDupla<T* >* Indice<T>::reversed_breadth_first()  {
 		}
 		dados->adicionaNoInicioDuplo(nodo->getDado());
 	}
+	delete itens;
 	return dados;
 }
 
