@@ -1,19 +1,20 @@
 #ifndef BUSCADOR_CPP
 #define BUSCADOR_CPP
+
 #include "Buscador.hpp"
+#include <string>
 
-using namespace std;
-using namespace std::string;
+using std::string;
 
-Buscador::Buscador(string indicePrimario, string indiceSecundario) {
+Buscador::Buscador(string *indicePrimario, string *indiceSecundario) {
 	this->indicePrimario = indicePrimario;
 	this->indiceSecundario = indiceSecundario;
 }
 
-Resultado<ManPage>* Buscador::buscaNoIndicePrimario(string termo) {
+Resultado<ManPage>* Buscador::buscaNoIndicePrimario(string *termo) {
 	int contador;
 	string *comparar, *resposta;
-	ifstream *arquivo;
+	ifstream *arquivo = new ifstream(this->indicePrimario->c_str());
 	SerializadorManPage *manpage = new SerializadorManPage();
 	Serializador<int> *serializadorInt = new Serializador<int>();
 	int tamanho = *(serializadorInt->le(arquivo));
@@ -37,11 +38,11 @@ Resultado<ManPage>* Buscador::buscaNoIndicePrimario(string termo) {
 }
 
 template <typename T>
-Resultado<string>* Buscador::buscaNoIndiceSecundario(ListaDupla<string>* termos) {
+Resultado<string>* Buscador::buscaNoIndiceSecundario(ListaDupla<string* > *termos) {
 	int tamanho, contador1, contador2, contador3, tamanho_termos;
 	string valores;
 	ListaDupla<T> *resposta = new ListaDupla<T>();
-	ifstream *arquivo;
+	ifstream *arquivo = new ifstream(this->indiceSecundario->c_str());
 	bool primeira_palavra = true;
 	tamanho_termos = termos->verUltimo();
 	Resultado<string> *palavras = new Resultado<string>();

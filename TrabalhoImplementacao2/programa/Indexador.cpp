@@ -18,23 +18,21 @@ using std::ifstream;
 using std::ofstream;
 using std::ios;
 
-string* Indexador::retiraExtensao(char *nome) {
-	string *nomeString = new string(nome);
-	int pos = nomeString->size()-4;
-	if (nomeString->substr(pos) == string(".txt")) {
-		string *nomeSemExtensao = new string(nomeString->substr(0, pos));
-		delete nomeString;
+string* Indexador::retiraExtensao(string *nome) {
+	int pos = nome->size()-4;
+	if (nome->substr(pos) == string(".txt")) {
+		string *nomeSemExtensao = new string(nome->substr(0, pos));
 		return nomeSemExtensao;
 	}
-	return new string(nome);
+	return nome;
 }
 
-string* Indexador::leConteudo(char *nome) {
+string* Indexador::leConteudo(string *nome) {
 	struct stat propriedades;
-	if (stat(nome, &propriedades) == -1) {
+	if (stat(nome->c_str(), &propriedades) == -1) {
 		return NULL;
 	}
-	ifstream *input = new ifstream(nome);
+	ifstream *input = new ifstream(nome->c_str());
 	if(input == NULL) {
 		return NULL;
 	}
@@ -53,7 +51,7 @@ Indexador::Indexador(RemovedorLexico *removedor) {
 	this->removedor = removedor;
 }
 
-void Indexador::indexaArquivo(char *nome) {
+void Indexador::indexaArquivo(string *nome) {
 	ManPage *manpage = new ManPage();
 	manpage->comando = this->retiraExtensao(nome);
 	manpage->conteudo = this->leConteudo(nome);
@@ -94,11 +92,11 @@ void Indexador::indexaArquivo(char *nome) {
 	delete palavras;
 }
 
-void Indexador::salvaIndicePrimario(char *nome) {
+void Indexador::salvaIndicePrimario(string *nome) {
 	if (this->indicePrimario == NULL) {
 		return;
 	}
-	ofstream *output = new ofstream(nome,
+	ofstream *output = new ofstream(nome->c_str(),
 		ios::out //abre arquivo para escrita.
 		//ios::app //abre arquivo para escrita, adicionando ao fim do arquivo (append).
 		| ios::binary //arquivo binario.
@@ -123,11 +121,11 @@ void Indexador::salvaIndicePrimario(char *nome) {
 	delete output;
 }
 
-void Indexador::salvaIndiceSecundario(char *nome) {
+void Indexador::salvaIndiceSecundario(string *nome) {
 	if (this->indiceSecundario == NULL) {
 		return;
 	}
-	ofstream *output = new ofstream(nome,
+	ofstream *output = new ofstream(nome->c_str(),
 		ios::out //abre arquivo para escrita.
 		//ios::app //abre arquivo para escrita, adicionando ao fim do arquivo (append).
 		| ios::binary //arquivo binario.

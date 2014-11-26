@@ -17,7 +17,13 @@ using std::string;
  * irrelevantes para a pesquisa em questao
  */
 class SerializadorWord {
+ private:
+ 	Serializador<char> *serializadorChar;
+ 	Serializador<int> *serializadorInt;
+
  public:
+ 	SerializadorWord();
+ 	
  	/*!
  	 * Metodo que le as palavras de um arquivo
  	 *

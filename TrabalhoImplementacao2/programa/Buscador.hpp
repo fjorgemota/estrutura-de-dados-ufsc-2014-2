@@ -14,9 +14,9 @@ using std::string;
  */
 class Buscador {
  protected:
- 	string indicePrimario;  //!< string correspondente ao 
+ 	string *indicePrimario;  //!< string correspondente ao 
  							//!< indice primario
- 	string indiceSecundario;  //!< string correspondente ao
+ 	string *indiceSecundario;  //!< string correspondente ao
  							//!< indice secundario
 
  public:
@@ -26,7 +26,7 @@ class Buscador {
  	 * @param indicePrimario Indice correspondente a busca de comandos
  	 * @param indiceSecundario Indice correspondente a busca de palavras
  	 */
- 	Buscador(string indicePrimario, string indiceSecundario);
+ 	Buscador(string *indicePrimario, string *indiceSecundario);
 
  	/*!
  	 *	Metodo que realiza busca pelo indice primario atras
@@ -34,7 +34,7 @@ class Buscador {
  	 *
  	 * @param termo O comando a ser encotrado na pesquisa
  	 */
- 	Resultado<ManPage>* buscaNoIndicePrimario(string termo);
+ 	Resultado<ManPage>* buscaNoIndicePrimario(string *termo);
 
  	/*!
  	 * Metodo que realiza busca pelo indice secundario atras
@@ -42,7 +42,7 @@ class Buscador {
  	 *
  	 * @param termos Vetor de palavras a ser encontrado na pesquisa
  	 */
- 	Resultado<string>* buscaNoIndiceSecundario(string *termos);
+ 	Resultado<string>* buscaNoIndiceSecundario(ListaDupla<string*> *termos);
 };
 
 #include "Buscador.cpp"

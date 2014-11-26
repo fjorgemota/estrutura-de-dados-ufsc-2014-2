@@ -4,6 +4,9 @@
 #include "../colecoes/IndicePrimario.hpp"
 #include "../colecoes/IndiceSecundario.hpp"
 #include "../util/RemovedorLexico.hpp"
+#include <string>
+
+using std::string;
 
 /*!
  * Classe que indexa (indentifica) um registro
@@ -27,7 +30,7 @@ class Indexador {
  	 *
  	 * @param nome O nome do arquivo que sera verificado
  	 */
- 	string* retiraExtensao(char *nome);
+ 	string* retiraExtensao(string *nome);
 
  	/*!
  	 * Metodo que le os conteudos do arquivo 
@@ -35,7 +38,7 @@ class Indexador {
  	 *
  	 * @param nome O nome do arquivo que sera lido
  	 */
- 	string* leConteudo(char *nome);
+ 	string* leConteudo(string *nome);
 
  public:
  	/*!
@@ -51,7 +54,7 @@ class Indexador {
  	 *
  	 * @param nome O nome do arquivo que sera indexado
  	 */
- 	void indexaArquivo(char *nome);
+ 	void indexaArquivo(string *nome);
 
  	/*!
  	 * Metodo que gera e salva os arquivos na arvore
@@ -59,7 +62,7 @@ class Indexador {
  	 *
  	 * @param nome O nome do arquivo a ser salvo
  	 */
- 	void salvaIndicePrimario(char *nome);
+ 	void salvaIndicePrimario(string *nome);
 
  	/*!
  	 * Metodo que gera e salva os arquivos na arvore
@@ -67,7 +70,7 @@ class Indexador {
  	 *
  	 * @param nome O nome do arquivo a ser salvo
  	 */
- 	void salvaIndiceSecundario(char *nome);
+ 	void salvaIndiceSecundario(string *nome);
 };
 
 #include "Indexador.cpp"

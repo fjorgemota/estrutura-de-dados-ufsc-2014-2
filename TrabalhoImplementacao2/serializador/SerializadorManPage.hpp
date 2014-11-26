@@ -18,7 +18,17 @@ using std::string;
  * para a pesquisa em questao
  */
 class SerializadorManPage {
+ private:
+ 	Serializador<char> *serializadorChar;
+ 	Serializador<int> *serializadorInt;
+
  public:
+
+ 	/*!
+ 	 * Inicializa os serializadores necessários
+ 	 */
+ 	SerializadorManPage();
+
  	/*!
  	 * Metodo que le um arquivo manual page
  	 *
