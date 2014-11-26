@@ -5,6 +5,11 @@
 #include "../colecoes/IndiceSecundario.hpp"
 #include "../util/RemovedorLexico.hpp"
 
+/*!
+ * Classe que indexa (indentifica) um registro
+ * a fim de usa-los como referencia para a
+ * pesquisa pelas manual pages
+ */
 class Indexador {
  private:
  	IndicePrimario *indicePrimario;

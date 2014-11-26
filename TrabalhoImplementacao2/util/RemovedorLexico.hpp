@@ -53,16 +53,23 @@ class RemovedorLexico {
  	~RemovedorLexico();
 
  	/*!
- 	 * 
+ 	 * Verifica se dada palavra e um conectivo
+ 	 *
+ 	 * @param palavra Palavra a ser verificada
  	 */
  	bool e_conectivo(string palavra);
 	
 	/*!
- 	 * 
+ 	 * Metodo que retorna uma lista duplamente encadeada com
+ 	 * cada palavra referenciada pelo parametro
+ 	 *
+ 	 * @param busca String que sera dividida em palavras
  	 */
  	ListaDupla<string>* separa_em_palavras(string busca);
  	/*!
- 	 * 
+ 	 * Metodo que remove os conectivos de uma lista de palavras
+ 	 *
+ 	 * @param palavras A lista a ser verificada
  	 */
  	ListaDupla<string>* remove_conectivos(ListaDupla<string> *palavras);
 };
