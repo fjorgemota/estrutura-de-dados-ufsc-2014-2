@@ -31,10 +31,10 @@ string RemovedorLexico::removeCaracteresEspeciais(string str) {
     resultado.reserve(l);
     for(i = 0; i < l; i++) {
     	char caractere = str[i];
-    	if(caractere >= 65 && caractere <= 90) {
+    	if(caractere >= 'A' && caractere <= 'Z') {
     		caractere = caractere + 32; // Lowercase it all :D
     	}
-        if(!((caractere < 97 || caractere > 122))) {
+        if((caractere >= 'a' && caractere <= 'z') || (caractere >= '0' && caractere <= '9')) {
             resultado += caractere;
         }   
     }
