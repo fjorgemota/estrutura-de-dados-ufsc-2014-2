@@ -66,6 +66,13 @@ int Programa::executa(int argc, char **argv) {
 		for(int i=0; i <= l; i++) {
 			printf("- %s\n", resultados->mostra(i).c_str());
 		}
+	} else {
+		printf("Action '%s' is not supported in this program\n", acao.c_str());
+		printf("Action can be ONE of:\n");
+		printf("- index - Accepts as arguments the filenames of the manpages to index\n");
+		printf("- search-primary-index - Accepts as unique argument the command to search in the primary index\n");
+		printf("- search-secondary-index - Accepts as arguments the words to search in the secondary index\n");
+		return 1;
 	}
 	return 0;
 }
