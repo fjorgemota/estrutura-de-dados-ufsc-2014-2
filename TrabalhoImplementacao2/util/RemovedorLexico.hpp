@@ -2,7 +2,7 @@
 #define REMOVEDOR_LEXICO_HPP
 
 #include <string>
-#include "ListaDupla.hpp"
+#include "NoAVL.hpp"
 
 using std::string;
 
@@ -13,7 +13,7 @@ using std::string;
  */
 class RemovedorLexico {
  private:
- 	ListaDupla<string> *conectivosProibidos;  
+ 	NoAVL<string> *conectivosProibidos;  
  			//!< Lista duplamente encadeada com os conectivos nao
  			//!< incluidos na busca pelas manpages
  	/*!
@@ -57,7 +57,7 @@ class RemovedorLexico {
  	 *
  	 * @param palavra Palavra a ser verificada
  	 */
- 	bool e_conectivo(string palavra);
+ 	bool eConectivo(string palavra);
 	
 	/*!
  	 * Metodo que retorna uma lista duplamente encadeada com
@@ -65,13 +65,21 @@ class RemovedorLexico {
  	 *
  	 * @param busca String que sera dividida em palavras
  	 */
- 	ListaDupla<string>* separa_em_palavras(string busca);
+ 	ListaDupla<string>* separaEmPalavras(string busca);
+	
+	/*!
+ 	 * Remove todo e qualquer caractere que não seja número
+ 	 * ou letra de uma string e também aplica o lowercase
+ 	 * nas letras válidas
+ 	 */
+ 	string removeCaracteresEspeciais(string str);
+ 	
  	/*!
  	 * Metodo que remove os conectivos de uma lista de palavras
  	 *
  	 * @param palavras A lista a ser verificada
  	 */
- 	ListaDupla<string>* remove_conectivos(ListaDupla<string> *palavras);
+ 	ListaDupla<string>* removeConectivos(ListaDupla<string> *palavras);
 };
 
 #include "RemovedorLexico.cpp"

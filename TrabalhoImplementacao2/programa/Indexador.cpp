@@ -66,8 +66,8 @@ void Indexador::indexaArquivo(string *nome) {
 	} else {
 		this->indicePrimario = this->indicePrimario->inserir(*manpage, this->indicePrimario);
 	}
-	ListaDupla<string> *palavras = this->removedor->separa_em_palavras(*(manpage->conteudo));
-	palavras = this->removedor->remove_conectivos(palavras);
+	ListaDupla<string> *palavras = this->removedor->separaEmPalavras(*(manpage->conteudo));
+	palavras = this->removedor->removeConectivos(palavras);
 	string *palavrasVetor = palavras->paraVetor();
 	int l = palavras->verUltimo();
 	for (int i = 0; i <= l; i++) {
