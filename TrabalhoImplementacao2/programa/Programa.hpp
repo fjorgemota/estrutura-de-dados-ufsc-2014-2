@@ -5,6 +5,7 @@
 #include "../modelos/ManPage.hpp"
 #include "../modelos/Word.hpp"
 #include "../util/ListaDupla.hpp"
+#include "../util/RemovedorLexico.hpp"
 #include <string>
 
 using std::string;
@@ -15,8 +16,12 @@ using std::string;
  */
 class Programa {
  private:
- 	string *indicePrimario;
- 	string *indiceSecundario;
+ 	string *indicePrimario; //!< Nome do arquivo do indice
+ 		//!< primário
+ 	string *indiceSecundario; //!< Nome do arquivo do indice
+ 		//!< secundário
+	RemovedorLexico *removedor; //!< Removedor léxico usado na
+		//!< busca secundária e na indexação
 
  public:
  	/*!

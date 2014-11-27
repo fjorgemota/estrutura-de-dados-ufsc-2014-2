@@ -4,6 +4,7 @@
 #include "Programa.hpp"
 #include "Buscador.hpp"
 #include "Indexador.hpp"
+#include "../util/RemovedorLexico.hpp"
 #include "../modelos/ManPage.hpp"
 #include "../modelos/Word.hpp"
 #include "../colecoes/Resultado.hpp"
@@ -15,6 +16,7 @@ using std::string;
 Programa::Programa(string *indicePrimario, string *indiceSecundario) {
 	this->indicePrimario = indicePrimario;
 	this->indiceSecundario = indiceSecundario;
+	this->removedor = new RemovedorLexico();
 }
 
 int Programa::executa(int argc, char **argv) {
@@ -30,7 +32,7 @@ int Programa::executa(int argc, char **argv) {
 	if (acao == string("index")) {
 		ListaDupla<string* > *arquivos = new ListaDupla<string* >();
 		for (int i = 2; i < argc; i++) {
-			arquivos->adicionaDuplo(new string(argv[i]));
+			arquivos->adicionaNoInicioDuplo(new string(argv[i]));
 		}
 		this->indexar(arquivos);
 	} else if (acao == string("search-primary-index")) {
@@ -38,7 +40,9 @@ int Programa::executa(int argc, char **argv) {
 			printf("You can search only one term using primary index\n");
 			return 2;
 		}
-		ManPage* resultado = this->procurarIndicePrimario(new string(argv[2]));
+		string keyword = string(argv[2]);
+		keyword = this->removedor->removeCaracteresEspeciais(keyword);
+		ManPage* resultado = this->procurarIndicePrimario(new string(keyword));
 		if (resultado == NULL) {
 			printf("No result found for '%s'\n", argv[2]);
 			return 0;
@@ -49,7 +53,9 @@ int Programa::executa(int argc, char **argv) {
 	} else if (acao == string("search-secondary-index")) {
 		ListaDupla<string* > *arquivos = new ListaDupla<string* >();
 		for (int i = 2; i < argc; i++) {
-			arquivos->adicionaDuplo(new string(argv[i]));
+			string keyword = string(argv[i]);
+			keyword = this->removedor->removeCaracteresEspeciais(keyword);
+			arquivos->adicionaNoInicioDuplo(new string(keyword));
 		}
 		Resultado<string> *resultados = this->procurarIndiceSecundario(arquivos);
 		if (resultados->listaVazia()) {
@@ -66,8 +72,7 @@ int Programa::executa(int argc, char **argv) {
 }
 
 void Programa::indexar(ListaDupla<string* > *arquivos) {
-	RemovedorLexico *removedor = new RemovedorLexico();
-	Indexador *indexer = new Indexador(removedor);
+	Indexador *indexer = new Indexador(this->removedor);
 	for(int i=0; i <= arquivos->verUltimo(); i++) {
 		string *arquivo = arquivos->mostra(i);
 		printf("- Indexing %s\n", arquivo->c_str());
