@@ -1,5 +1,7 @@
 #include "programa/Programa.hpp"
+#include <string>
 
+using std::string;
 
 int main(int argc, char **argv) {
 	Programa *programa = new Programa(new string("manpages.dat"), new string("manwords.dat"));
