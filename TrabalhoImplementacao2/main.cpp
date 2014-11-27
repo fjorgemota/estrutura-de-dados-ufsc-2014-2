@@ -1,3 +1,5 @@
+// Copyright 2014 Caique Rodrigues Marques e Fernando Jorge Mota
+
 #include "programa/Programa.hpp"
 #include <string>
 
