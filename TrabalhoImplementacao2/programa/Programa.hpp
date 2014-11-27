@@ -1,8 +1,10 @@
 #ifndef PROGRAMA_HPP
 #define PROGRAMA_HPP
 
-#include "../util/ListaDupla.hpp"
 #include "../colecoes/Resultado.hpp"
+#include "../modelos/ManPage.hpp"
+#include "../modelos/Word.hpp"
+#include "../util/ListaDupla.hpp"
 #include <string>
 
 using std::string;
@@ -13,24 +15,24 @@ using std::string;
  */
 class Programa {
  private:
- 	string indicePrimario;
- 	string indiceSecundario;
+ 	string *indicePrimario;
+ 	string *indiceSecundario;
 
  public:
  	/*!
  	 * Inicializa o programa
  	 */
- 	Programa(string indicePrimario, string indiceSecundario);
+ 	Programa(string *indicePrimario, string *indiceSecundario);
 
  	/*!
  	 * Executa a ação especificada com os parâmetros especificados
  	 */
- 	int executar(string acao, char **argv);
+ 	int executa(int argc, char **argv);
 
  	/*!
  	 * Indexaçao de um arquivo
  	 */
- 	void indexar(ListaDupla<string> *arquivos);
+ 	void indexar(ListaDupla<string* > *arquivos);
 
  	/*!
  	 * Metodo que procura pelo indice primario
@@ -38,7 +40,7 @@ class Programa {
  	 *
  	 * @param string O comando a ser verificado
  	 */
- 	Resultado<ManPage>* procurarIndicePrimario(string *termo);
+ 	ManPage* procurarIndicePrimario(string *termo);
 
  	/*!
  	 * Metodo que procura pelo indice secundario
@@ -46,7 +48,7 @@ class Programa {
  	 *
  	 * @param string A palavra a ser verificada
  	 */
- 	Resultado<string>* void procurarIndiceSecundario(ListaDupla<string* > *termos);
+ 	Resultado<string>* procurarIndiceSecundario(ListaDupla<string* > *termos);
 };
 
 #include "Programa.cpp"

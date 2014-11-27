@@ -34,7 +34,7 @@ class Buscador {
  	 *
  	 * @param termo O comando a ser encotrado na pesquisa
  	 */
- 	Resultado<ManPage>* buscaNoIndicePrimario(string *termo);
+ 	ManPage* buscaNoIndicePrimario(string *termo);
 
  	/*!
  	 * Metodo que realiza busca pelo indice secundario atras

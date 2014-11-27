@@ -26,11 +26,12 @@ class Indexador {
 
  	/*!
  	 * Metodo que remove a extensao '.txt' do
- 	 * arquivo manual page
+ 	 * arquivo manual page e também remove qualquer
+ 	 * traço de caminho completo até o arquivo
  	 *
- 	 * @param nome O nome do arquivo que sera verificado
+ 	 * @param nome O nome do arquivo que sera purificado
  	 */
- 	string* retiraExtensao(string *nome);
+ 	string* purifica(string *nome);
 
  	/*!
  	 * Metodo que le os conteudos do arquivo 
