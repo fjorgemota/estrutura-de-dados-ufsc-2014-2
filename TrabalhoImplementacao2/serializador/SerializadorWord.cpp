@@ -40,8 +40,8 @@ void SerializadorWord::escreve(ofstream *arquivo, Word* dado, int tamanho) {
 	for (int i=0; i<tamanho; i++) {
 		Word palavra = dado[i];
 		this->serializadorChar->escreve(arquivo, (char *)palavra.word->c_str(), palavra.word->size());
-		this->serializadorInt->escreve(arquivo, new int(palavra.comandos->verUltimo()), 1);
 		int l = palavra.comandos->verUltimo();
+		this->serializadorInt->escreve(arquivo, new int(l), 1);
 		string **comandos = palavra.comandos->paraVetor();
 		for(int i2=0; i2 <= l; i2++) {
 			string *comando = comandos[i2];
@@ -64,16 +64,17 @@ string* SerializadorWord::leWord(ifstream *arquivo) {
 
 void SerializadorWord::pulaComandos(ifstream *arquivo) {
 	int tamanho = *(this->serializadorInt->le(arquivo));
-	while(tamanho--) {
+	int i;
+	for (i=0; i <= tamanho; i++) {
 		this->serializadorChar->proximaPosicao(arquivo);
 	}
 }
 
 ListaDupla<string>* SerializadorWord::leComandos(ifstream *arquivo) {
-	int tamanho, a;
+	int tamanho, i;
 	tamanho = *(this->serializadorInt->le(arquivo));
 	ListaDupla<string>* comandos = new ListaDupla<string>();
-	for (a = 0; a <= tamanho; a++) {
+	for (i = 0; i <= tamanho; i++) {
 		comandos->adicionaNoInicioDuplo(string(this->serializadorChar->le(arquivo)));
 	}
 	return comandos;

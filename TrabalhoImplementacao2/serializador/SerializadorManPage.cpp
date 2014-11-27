@@ -36,32 +36,27 @@ void SerializadorManPage::escreve(ofstream *arquivo, ManPage* dado, int tamanho)
 		this->serializadorChar->escreve(arquivo, (char*) manpage.comando->c_str(), manpage.comando->size());
 		this->serializadorChar->escreve(arquivo, (char*) manpage.conteudo->c_str(), manpage.conteudo->size());
 	}
-	delete serializadorChar;
 }
 
 
 void SerializadorManPage::proximaPosicao(ifstream *arquivo) {
 	this->serializadorChar->proximaPosicao(arquivo);
 	this->pulaConteudo(arquivo);
-	delete serializadorChar;
 }
 
 string* SerializadorManPage::leComando(ifstream *arquivo) {
 	char *comando = this->serializadorChar->le(arquivo);
 	string *palavraString = new string(comando);
-	delete serializadorChar;
 	return palavraString;
 }
 
 void SerializadorManPage::pulaConteudo(ifstream *arquivo) {
 	this->serializadorChar->proximaPosicao(arquivo);
-	delete serializadorChar;
 }
 
 string* SerializadorManPage::leConteudo(ifstream *arquivo) {
 	char *conteudo = this->serializadorChar->le(arquivo);
 	string *palavra = new string(conteudo);
-	delete serializadorChar;
 	return palavra;
 }
 
