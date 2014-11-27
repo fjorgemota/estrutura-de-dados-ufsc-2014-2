@@ -94,6 +94,16 @@ class NoBinario {
     T* busca(const T& dado, NoBinario<T>* arv);
 
     /*!
+     * Busca um determinado dado na árvore representada
+     * pelo nó binário passado no parâmetro arv e retorna
+     * se a árvore contém ou não o valor buscado
+     * 
+     * @param dado Dado a ser buscado na árvore
+     * @param arv Árvore no qual o dado deve ser buscado
+     */
+    bool contem(const T& dado, NoBinario<T>* arv);
+
+    /*!
      * Insere um determimado dado na árvore representada
      * pelo nó binário passado no parâmetro arv
      * 

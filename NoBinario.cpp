@@ -71,6 +71,17 @@ T* NoBinario<T>::busca(const T& info, NoBinario<T> *arv) {
 }
 
 template <typename T>
+bool NoBinario<T>::contem(const T& info, NoBinario<T> *arv) {
+    while (arv != NULL && *(arv->getDado()) != info) {
+        if (*(arv->getDado()) < info) {
+            arv = arv->getDireita();
+        } else {
+            arv = arv->getEsquerda();
+        }
+    }
+    return arv != NULL;
+}
+template <typename T>
 NoBinario<T>* NoBinario<T>::inserir(const T& dado, NoBinario<T>* arv) {
     if (dado < *(arv->getDado())) {
         if (arv->getEsquerda() == NULL) {
