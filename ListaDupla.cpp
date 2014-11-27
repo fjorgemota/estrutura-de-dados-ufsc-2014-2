@@ -212,7 +212,7 @@ bool ListaDupla<T>::contemDuplo(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     for (contador = 0; contador <= max; contador++) {
         if (temporario == NULL) {
-            throw "O temporário foi detetado como nulo na posiçao "+contador;
+            throw "O temporário foi detectado como nulo na posiçao "+contador;
         }
         if (temporario->getInfo() == dado) {
             return true;
