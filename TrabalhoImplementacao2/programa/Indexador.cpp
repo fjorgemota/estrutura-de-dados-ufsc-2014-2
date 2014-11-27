@@ -84,7 +84,7 @@ void Indexador::indexaArquivo(string *nome) {
 		Word *palavraResultado;
 		try {
 			palavraResultado = this->indiceSecundario->busca(*palavra, this->indiceSecundario);
-			if (!palavraResultado->comandos->contemDuplo(manpage->comando)) {
+			if (*(palavraResultado->comandos->mostra(0)) != *(manpage->comando)) {
 				palavraResultado->comandos->adicionaNoInicioDuplo(manpage->comando);
 			}
 			delete palavra;
