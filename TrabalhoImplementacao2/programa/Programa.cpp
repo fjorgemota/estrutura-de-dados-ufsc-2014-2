@@ -41,13 +41,12 @@ int Programa::executa(int argc, char **argv) {
 			return 2;
 		}
 		string keyword = string(argv[2]);
-		keyword = this->removedor->removeCaracteresEspeciais(keyword);
 		ManPage* resultado = this->procurarIndicePrimario(new string(keyword));
 		if (resultado == NULL) {
 			printf("No result found for '%s'\n", argv[2]);
 			return 0;
 		}
-		printf("Found result for the search '%s'\n",argv[2]);
+		printf("Found result for the search '%s'\n",keyword.c_str());
 		printf("Command: %s\n", resultado->comando->c_str());
 		printf("Content: %s\n", resultado->conteudo->c_str());
 	} else if (acao == string("search-secondary-index")) {
