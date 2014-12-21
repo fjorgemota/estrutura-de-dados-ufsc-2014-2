@@ -212,7 +212,7 @@ bool ListaDupla<T>::contemDuplo(const T& dado) {
     ElementoDuplo<T> *temporario = this->head;
     for (contador = 0; contador <= max; contador++) {
         if (temporario == NULL) {
-            throw "O temporário foi detetado como nulo na posiçao "+contador;
+            throw "O temporário foi detectado como nulo na posiçao "+contador;
         }
         if (temporario->getInfo() == dado) {
             return true;
@@ -310,6 +310,18 @@ bool ListaDupla<T>::menor(T dado1, T dado2) {
         return true;
     }
     return false;
+}
+
+template <typename T>
+T* ListaDupla<T>::paraVetor() {
+    int tamanho = this->verUltimo() + 1;
+    T* resultado = new T[tamanho];
+    ElementoDuplo<T> *temporario = this->head;
+    for(int i=0; i < tamanho; i++) {
+        resultado[i] = temporario->getInfo();
+        temporario = temporario->getProximo();
+    }
+    return resultado;
 }
 
 #endif
