@@ -23,7 +23,7 @@
  */
 template <typename T>
 class NoBinario {
- private:
+ protected:
     T* dado;  //!< Atributo onde é guardado o valor representado pelo nó
     NoBinario<T>* esquerda;  //!< Atributo que aponta para menor nó descendente
     NoBinario<T>* direita;  //!< Atributo que aponta para maior nó descendente
@@ -46,7 +46,7 @@ class NoBinario {
     std::vector<NoBinario<T>* > elementos;  //!< Elementos acessados durante
                                             // o percurso realizado
 
-    /*
+    /*!
      * Retorna um novo nó para a árvore binária
      *
      * @param: dado O dado a ser inserido no nó binário
@@ -92,6 +92,16 @@ class NoBinario {
      * @param arv Árvore no qual o dado deve ser buscado
      */
     T* busca(const T& dado, NoBinario<T>* arv);
+
+    /*!
+     * Busca um determinado dado na árvore representada
+     * pelo nó binário passado no parâmetro arv e retorna
+     * se a árvore contém ou não o valor buscado
+     * 
+     * @param dado Dado a ser buscado na árvore
+     * @param arv Árvore no qual o dado deve ser buscado
+     */
+    bool contem(const T& dado, NoBinario<T>* arv);
 
     /*!
      * Insere um determimado dado na árvore representada
