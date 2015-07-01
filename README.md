@@ -11,4 +11,4 @@ Alunos envolvidos na iniciativa
 ===============================
 
 - Fernando Jorge Mota (@fjorgemota)
-- Caique Rodrigues Marques (@Caique-Marques)
+- Caique Rodrigues Marques (@mrcaique)
